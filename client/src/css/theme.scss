@@ -1,25 +1,25 @@
 @charset 'utf-8';
 
 // import font
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,700;1,700&display=swap');
 
 // import icons
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css');
 
 // set color variables
-$purple: #632EA7;
-$pink:  #DE1B55;
-$dark: rgb(37, 37, 37);
-$light:rgb(248,248,248);
+$green: rgb(64,223,159);
+$red:  rgb(194,79,79);
+$dark: rgb(53, 53, 53);
+$light:rgb(255,255,255);
 
 // update global variables
-$family-sans-serif: 'Montserrat', sans-serif;
-$primary: $purple;
-$link: $dark;
-$danger: $pink;
+$family-sans-serif: 'Roboto', sans-serif;
+$primary: $green;
+$link: $light;
+$danger: $red;
 
 //update component variables
-$body-background-color: $light;
+$body-background-color: $dark;
 
 //import bulma css framework
 @import '../../node_modules/bulma/bulma.sass';

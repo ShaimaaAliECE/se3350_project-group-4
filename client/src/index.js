@@ -4,7 +4,7 @@ import ReactDOM from "react-dom";
 import Router from "./Router";
 
 //css files
-// import "css/style.scss";
+import "./css/styles.scss";
 import "./css/theme.scss";
 
 ReactDOM.render(<Router />, document.getElementById("root"));
