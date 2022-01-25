@@ -1,6 +1,7 @@
 import React from "react";
 import { Link, withRouter } from "react-router-dom";
 
+// Header component for login and register page
 const LoginHeader = () => {
   return (
     <div className="header">

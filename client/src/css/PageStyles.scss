@@ -18,6 +18,12 @@
     .login-box {
       width: 450px;
       padding: 1.5rem 1.5rem 2rem 1.5rem;
+      & a {
+        transition: all 0.3s;
+        &:hover {
+          color: rgb(64, 223, 159);
+        }
+      }
     }
   }
 
