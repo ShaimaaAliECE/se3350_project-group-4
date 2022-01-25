@@ -1,5 +1,7 @@
 import React from "react";
 import { Link, withRouter } from "react-router-dom";
+
+
 class Home extends React.Component {
   render() {
     return (
@@ -37,4 +39,4 @@ class Home extends React.Component {
   }
 }
 
-export default Home;
+export default withRouter(Home);

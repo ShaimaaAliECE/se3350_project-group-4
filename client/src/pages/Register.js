@@ -1,12 +1,15 @@
 import React from "react";
 import { Link, withRouter } from "react-router-dom";
-import LoginHeader from "../components/BackBtnHeader";
+// import header area sub component
+import RegisterHeader from "../components/BackBtnHeader";
 
+// Register Page
 class Register extends React.Component {
   render() {
     return (
       <div>
-        <LoginHeader />
+        {/* header */}
+        <RegisterHeader />
         <div className="login-wrapper">
           <form className="login-box">
             <h4 className="title is-2 has-text-light">Create Account</h4>

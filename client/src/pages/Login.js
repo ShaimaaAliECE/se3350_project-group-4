@@ -1,12 +1,14 @@
 import React from "react";
 import { Link, withRouter } from "react-router-dom";
-
+// import header area sub component
 import LoginHeader from "../components/BackBtnHeader";
 
+// Login Page
 class Login extends React.Component {
   render() {
     return (
       <div>
+        {/* header */}
         <LoginHeader />
         <div className="login-wrapper">
           <form className="login-box">
