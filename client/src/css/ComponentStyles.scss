@@ -1,0 +1,27 @@
+.header {
+  width: 100%;
+  height: 50px;
+  color: #fff;
+  line-height: 55px;
+  .grid {
+    max-width: 90%;
+    margin: auto;
+    display: flex;
+    & a {
+      display: inline-block;
+      color: #fff;
+      padding: 0 5px;
+      transition: all 0.3s;
+      font-size: 20px;
+      &:hover {
+        color: rgb(64, 223, 159);
+      }
+    }
+  }
+  .divider {
+    background-color: rgb(64, 223, 159);
+    height: 1px;
+    margin: auto;
+    width: 90%;
+  }
+}

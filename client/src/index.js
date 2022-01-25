@@ -3,8 +3,9 @@ import React from "react";
 import ReactDOM from "react-dom";
 import Router from "./Router";
 
-//css files
-import "./css/styles.scss";
+//scss files
+import "./css/PageStyles.scss";
+import "./css/ComponentStyles.scss";
 import "./css/theme.scss";
 
 ReactDOM.render(<Router />, document.getElementById("root"));

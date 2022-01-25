@@ -1,14 +1,17 @@
 import React from "react";
+import LoginHeader from "../components/BackHeader"
 
 class Login extends React.Component {
   render() {
     return (
-      <div className="login-wrapper">
+      <div>
+        <LoginHeader/>
+        <div className="login-wrapper">
         <form className="login-box">
           <h4 className="title is-2 has-text-light">Login</h4>
           {/* username */}
           <div className="field">
-            <label className="label has-text-light has-text-weight-light">
+            <label className="label has-text-white has-text-weight-light">
               Username
             </label>
             <div className="control">
@@ -22,7 +25,7 @@ class Login extends React.Component {
           </div>
           {/* password */}
           <div className="field mb-6">
-            <label className="label has-text-light has-text-weight-light">
+            <label className="label has-text-white has-text-weight-light">
               Password
             </label>
             <div className="control">
@@ -46,6 +49,9 @@ class Login extends React.Component {
           </div>
         </form>
       </div>
+
+      </div>
+      
     );
   }
 }
