@@ -1,0 +1,1 @@
+//this is a thursday thing, i made the algorithm
