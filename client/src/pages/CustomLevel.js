@@ -1,6 +1,6 @@
 import React from "react";
 
-class customLevel extends React.Component {
+class CustomLevel extends React.Component {
   render() {
     return <div>Custom Level Page</div>;
   }
