@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 import Home from "./pages/Home";
 import Login from "./pages/Login";
@@ -8,7 +8,7 @@ import SelectAlg from "./pages/SelectAlg";
 import SelectLevel from "./pages/SelectLevel";
 import EditLevel from "./pages/EditLevel";
 import NotFound from "./pages/NotFound";
-import LevelOne from "./pages/LevelOne";
+
 
 //router component for switching between pages
 const Router = () => (
@@ -21,7 +21,7 @@ const Router = () => (
       <Route path="/login" component={Login} />
 
       {/* redirect to Create Account page */}
-      {<Route path="/register" component={Register} />}
+      {<Route path="/register" component= {Register} />}
 
       {/* redirect to Select Algorithm page */}
       <Route path="/alg" component={SelectAlg} />
@@ -32,13 +32,11 @@ const Router = () => (
       {/* redirect to Edit Level page */}
       <Route path="/edit" component={EditLevel} />
 
-      {/* redirect to Level 1 page */}
-      <Route path="/level1" component={LevelOne} />
-      
       {/* add more pages here */}
 
       {/* redirect to 404 page */}
       <Route component={NotFound} />
+      
     </Switch>
   </BrowserRouter>
 );
