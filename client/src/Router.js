@@ -9,6 +9,7 @@ import SelectLevel from "./pages/SelectLevel";
 import EditLevel from "./pages/EditLevel";
 import NotFound from "./pages/NotFound";
 import LevelOne from "./pages/LevelOne";
+import CustomLevel from "./pages/CustomLevel";
 
 
 //router component for switching between pages
