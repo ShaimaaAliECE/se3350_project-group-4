@@ -18,7 +18,7 @@ class SelectAlg extends React.Component {
             <div class="dropdown-trigger">
               {/* dropdown button */}
               <button
-                className="button is-large  is-rounded has-background-primary"
+                className="button is-large is-rounded has-background-primary"
                 aria-haspopup="true"
                 aria-controls="dropdown-menu"
               >
@@ -41,15 +41,15 @@ class SelectAlg extends React.Component {
                   </div>
                 </Link>
                 <hr class="dropdown-divider"></hr>
-                <Link to="/login">
+                <Link to="/edit">
                   <div className="dropdown-item">
-                    <span className="dropdown-text">Merge Sort</span>
+                    <span className="dropdown-text">Quick Sort</span>
                   </div>
                 </Link>
                 <hr class="dropdown-divider"></hr>
-                <Link to="/login">
+                <Link to="/...">
                   <div className="dropdown-item">
-                    <span className="dropdown-text">Merge Sort</span>
+                    <span className="dropdown-text">...</span>
                   </div>
                 </Link>
               </div>
