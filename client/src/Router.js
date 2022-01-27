@@ -8,6 +8,7 @@ import SelectAlg from "./pages/SelectAlg";
 import SelectLevel from "./pages/SelectLevel";
 import EditLevel from "./pages/EditLevel";
 import NotFound from "./pages/NotFound";
+import LevelOne from "./pages/LevelOne";
 
 
 //router component for switching between pages
@@ -32,7 +33,8 @@ const Router = () => (
       {/* redirect to Edit Level page */}
       <Route path="/edit" component={EditLevel} />
 
-      {/* add more pages here */}
+      {/* redirect to Level 1 page */}
+      <Route path="/level1" component={LevelOne} />
 
       {/* redirect to 404 page */}
       <Route component={NotFound} />
