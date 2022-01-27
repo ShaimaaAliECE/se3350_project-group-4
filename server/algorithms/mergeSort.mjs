@@ -1,6 +1,10 @@
 import Algorithm from "./abstractAlgorithm.mjs";
 
-class MergeSort extends Algorithm {}
+class MergeSort extends Algorithm {
+    constructor(min, max, arraySize) {
+        super(min, max, arraySize)
+    }
+}
 
 MergeSort.prototype.sort = function(array) {
     //Determine if array needs to be cut in half
@@ -43,6 +47,6 @@ MergeSort.prototype.merge = function(left, right) {
     return arr
 }
 
-var asdf = new MergeSort()
+var asdf = new MergeSort(1, 10, 15)
 
-console.log(asdf.sort([2,1,5,7,23,3,8,8,8,2,8]))
+console.log(asdf.sort(asdf.getArray()))
