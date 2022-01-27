@@ -47,7 +47,7 @@
     right: 10%;
     .btn {
       padding: 0.5rem;
-      margin:10px;
+      margin: 10px;
       width: 450px;
       height: auto;
     }
@@ -55,3 +55,24 @@
 }
 
 // Algorithm Select Page
+.alg-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: left;
+  height: 70vh;
+  .title {
+    font-size: 4em;
+  }
+  .button, #dropdown-menu {
+    width: 100%;
+  }
+  .dropdown-item{
+    color:rgb(53, 53, 53);
+    font-size: 1.5rem;
+    &:hover{
+      font-weight: bold;
+      background-color: rgba(53, 53, 53, 0.158);
+    }
+  }
+}

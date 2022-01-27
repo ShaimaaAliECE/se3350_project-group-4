@@ -21,7 +21,7 @@ const Router = () => (
       <Route path="/login" component={Login} />
 
       {/* redirect to Create Account page */}
-      {<Route path="/register" component={Register} />}
+      {<Route path="/register" component= {Register} />}
 
       {/* redirect to Select Algorithm page */}
       <Route path="/alg" component={SelectAlg} />
