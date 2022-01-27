@@ -5,34 +5,32 @@ import React from "react";
 const LevelHeader = (props) => {
   // open pause menu
   const toPause = () => {
-      //Pause.open({
-//})
+    //Pause.open({
+    //})
   };
 
   return (
     <div className="header">
-      <div className="grid">
-        <div className="start">
-          <div className="lives">
+      <div>
+        <nav class="level">
+          <p class="level-item has-text-centered">
             <i class="fas fa-heart"></i>
             <span>x 3</span>
-          </div>
-          <div className="time">
+          </p>
+          <p class="level-item has-text-centered">
             <span>TIME SPENT IN CURRENT LEVEL:</span>
-            <span>var time</span>
-          </div>
-        </div>
-        <div className="middle">
-          <span onClick={toPause}>PAUSE</span>
-        </div>
-        <div className="end">
-            <span>
-                LEVEL 1
-            </span>
-            <span>
-                NEXT LEVEL
-            </span>
-        </div>
+            <span>XX:XX</span>
+          </p>
+          <p class="level-item has-text-centered">
+            <span onClick={toPause}>PAUSE</span>
+          </p>
+          <p class="level-item has-text-centered has-text-primary">
+            <span>LEVEL 1</span>
+          </p>
+          <p class="level-item has-text-centered">
+            <span>NEXT LEVEL</span>
+          </p>
+        </nav>
       </div>
       <div className="divider"></div>
     </div>
