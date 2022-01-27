@@ -8,8 +8,8 @@ import SelectAlg from "./pages/SelectAlg";
 import SelectLevel from "./pages/SelectLevel";
 import EditLevel from "./pages/EditLevel";
 import NotFound from "./pages/NotFound";
-import LevelOne from "./pages/LevelOne";
-import CustomLevel from "./pages/CustomLevel";
+import LevelOne from "./pages/Levels/LevelOne";
+import CustomLevel from "./pages/Levels/CustomLevel";
 
 
 //router component for switching between pages
