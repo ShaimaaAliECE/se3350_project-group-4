@@ -8,7 +8,7 @@ const setToken = (token) => {
 };
 
 
-const getToken = (token) => {
+const getToken = () => {
   return localStorage.getItem(JWT);
 };
 

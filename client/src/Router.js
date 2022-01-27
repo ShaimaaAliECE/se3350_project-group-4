@@ -6,10 +6,14 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import SelectAlg from "./pages/SelectAlg";
 import SelectLevel from "./pages/SelectLevel";
-import EditLevel from "./pages/EditLevel";
+import EditLevel from "./pages/Admin/EditLevel";
 import NotFound from "./pages/NotFound";
-import LevelOne from "./pages/Levels/LevelOne";
-import CustomLevel from "./pages/Levels/CustomLevel";
+import LevelOne from "./pages/Users/Levels/LevelOne";
+import LevelTwo from "./pages/Users/Levels/LevelTwo";
+import LevelThree from "./pages/Users/Levels/LevelThree";
+import LevelFour from "./pages/Users/Levels/LevelFour";
+import LevelFive from "./pages/Users/Levels/LevelFive";
+import CustomLevel from "./pages/Users/Levels/CustomLevel";
 
 
 //router component for switching between pages
@@ -37,7 +41,19 @@ const Router = () => (
       {/* redirect to Level 1 page */}
       <Route path="/level1" component={LevelOne} />
 
-      {/* redirect to Level 1 page */}
+      {/* redirect to Level 2 page */}
+      <Route path="/level2" component={LevelTwo} />
+
+      {/* redirect to Level 3 page */}
+      <Route path="/level3" component={LevelThree} />
+
+      {/* redirect to Level 4 page */}
+      <Route path="/level4" component={LevelFour} />
+
+      {/* redirect to Level 5 page */}
+      <Route path="/level5" component={LevelFive} />
+
+      {/* redirect to Custom Level page */}
       <Route path="/customlevel" component={CustomLevel} />
 
       {/* redirect to 404 page */}
