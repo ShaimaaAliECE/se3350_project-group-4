@@ -8,6 +8,8 @@ import SelectAlg from "./pages/SelectAlg";
 import SelectLevel from "./pages/SelectLevel";
 import EditLevel from "./pages/EditLevel";
 import NotFound from "./pages/NotFound";
+import LevelOne from "./pages/LevelOne";
+import CustomLevel from "./pages/CustomLevel";
 
 import LevelTwo from "./pages/LevelTwo";
 
@@ -34,7 +36,11 @@ const Router = () => (
       {/* redirect to Edit Level page */}
       <Route path="/edit" component={EditLevel} />
 
-      {/* add more pages here */}
+      {/* redirect to Level 1 page */}
+      <Route path="/level1" component={LevelOne} />
+
+      {/* redirect to Level 1 page */}
+      <Route path="/customlevel" component={CustomLevel} />
 
       <Route path="/LevelTwo" component={LevelTwo} />
 
