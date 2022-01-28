@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import axios from "utils/axios";
 // import header area sub component
 import LoginHeader from "components/BackBtnHeader";
 
@@ -14,11 +15,18 @@ const Login = (props) => {
   } = useForm();
 
   // submit login form function
-  const onSubmit = (data) => {
-    console.log(data);
+  const onSubmit = async (data) => {
+    //Login function implementation
+    try {
+      const { username, password } = data;
+      //verify user information
+      const res = await axios.post("/auth/login", { username, password });
+      const jwToken = res.data;
+      console.log(jwToken);
+    } catch (error) {
+      console.log(error.response.data);
+    }
   };
-
-  console.log(errors);
 
   return (
     <div>

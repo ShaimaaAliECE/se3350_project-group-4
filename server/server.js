@@ -16,14 +16,14 @@ server.use(middleWares);
 //fetch data from users.json
 const getUsersDb = () => {
   return JSON.parse(
-    fs.readFileSync(path.join(__direname, "user.json"), "UTF-8")
+    fs.readFileSync(path.join(__dirname, "users.json"), "UTF-8")
   );
 };
 
 //return user authentication result as boolean
 const isAuthenticated = ({ username, password }) => {
   return (
-    getUsersDb().user.findIndex(
+    getUsersDb().users.findIndex(
       // check if user exists (verify user)
       (user) => user.username === username && user.password === password
     ) !== -1
@@ -46,17 +46,16 @@ server.post("/auth/login", (req, res) => {
 
   // return corresponding json based on user authentication result
   if (isAuthenticated({ username, password })) {
-    const user = getUsersDb.users.find(
+    const user = getUsersDb().users.find(
       (u) => u.username === username && u.password === password
     );
-    const { username, type } = user;
-    const jsonWebToken = createToken({ username, type });
-    return res.status(200).json(jsonWebToken);
-  } else {
-    //user authentication failed
+    const { id, type } = user;
+    const jwToken = createToken({ id, type });
+    return res.status(200).json(jwToken);
+  } else { //user authentication failed
     const status = 401;
-    const msg = "Wrong username or password";
-    return res.status(status).json({ status, msg });
+    const message = "Incorrect username or password.";
+    return res.status(status).json({ status, message });
   }
 });
 
