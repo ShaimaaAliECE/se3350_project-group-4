@@ -1,8 +1,15 @@
 import React from "react";
+import LevelHeader from "../../../components/LevelHeader";
 
 class CustomLevel extends React.Component {
   render() {
-    return <div>Custom Level Page</div>;
+    return 
+     //header
+      <div className="">
+        {/* header */}
+        <LevelHeader />
+      </div>
+    
   }
   
 }
