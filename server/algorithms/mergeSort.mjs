@@ -6,31 +6,34 @@ class MergeSort extends Algorithm {
     }
 }
 
-MergeSort.prototype.sort = function(array) {
+//The function that is called 
+MergeSort.prototype.sort = function(array, trackSplit, trackMerge, tracker) {
+    if (trackSplit.length == 0) tracker = 0
+
     //Determine if array needs to be cut in half
     if (array.length <  2) return array
 
-    console.log("Cutting: " + array)
-
-    //Half given array
+    trackSplit.push(tracker + "|" + array)
+    
+    //Half the given array
     const middle = Math.floor(array.length / 2)
     const array_left = array.slice(0, middle)
     const array_right = array.slice(middle, array.length)
 
     //Send array back to determine if it needs to be halved again
-    const sort_left = this.sort(array_left)
-    const sort_right = this.sort(array_right)
+    const sort_left = this.sort(array_left, trackSplit, trackMerge, tracker + 1)
+    const sort_right = this.sort(array_right, trackSplit, trackMerge, tracker + 1)
     
     //Merge the masses!!!
-    return this.merge(sort_left, sort_right)
+    return this.merge(sort_left, sort_right, trackMerge, tracker)
 }
 
-MergeSort.prototype.merge = function(left, right) {
+//To merge arrays backtogether
+MergeSort.prototype.merge = function(left, right, trackMerge, tracker) {
     let arr = []
-
+    
     //Add the smaller leading value to the sorted array
     while (left.length && right.length) {
-        console.log("Merging: " + left + " || " + right)
         arr.push(left[0] < right[0] ? left.shift() : right.shift())
     }
 
@@ -43,10 +46,18 @@ MergeSort.prototype.merge = function(left, right) {
     while (right.length){
         arr.push(right.shift())
     }
+    
+    trackMerge.push(tracker + "|" + arr)
 
     return arr
 }
 
-var asdf = new MergeSort(1, 10, 15)
+var split = []
+var merge = []
+var asdf = new MergeSort(1, 10, 10)
 
-console.log(asdf.sort(asdf.getArray()))
+asdf.sort(asdf.getArray(), split, merge)
+
+console.log(asdf.getArray())
+console.log(split)
+console.log(merge)
