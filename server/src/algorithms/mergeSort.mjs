@@ -8,11 +8,13 @@ class MergeSort extends Algorithm {
 
 //The function that is called 
 MergeSort.prototype.sort = function(array, trackSplit, trackMerge, tracker) {
+    //Reset tracker if need be
     if (trackSplit.length == 0) tracker = 0
 
     //Determine if array needs to be cut in half
     if (array.length <  2) return array
 
+    //Track iteration
     trackSplit.push(tracker + "|" + array)
     
     //Half the given array
@@ -47,17 +49,18 @@ MergeSort.prototype.merge = function(left, right, trackMerge, tracker) {
         arr.push(right.shift())
     }
     
+    //Track iteration
     trackMerge.push(tracker + "|" + arr)
 
     return arr
 }
 
-var split = []
-var merge = []
-var asdf = new MergeSort(1, 10, 10)
+// var split = []
+// var merge = []
+// var asdf = new MergeSort(1, 10, 10)
 
-asdf.sort(asdf.getArray(), split, merge)
+// asdf.sort(asdf.getArray(), split, merge)
 
-console.log(asdf.getArray())
-console.log(split)
-console.log(merge)
+// console.log(asdf.getArray())
+// console.log(split)
+// console.log(merge)
