@@ -1,15 +1,23 @@
-import React from "react";
-import { Link, withRouter } from "react-router-dom";
+import React, { useMemo } from "react";
+import UserProfile from '../components/UserProfile'
+import { Link } from "react-router-dom";
 
-class SelectAlg extends React.Component {
-  render() {
-    return (
+const SelectAlg = (props) => {
+  // get decoded user info
+  const user = useMemo(() => {
+    return global.auth.getUser() || {};
+  }, []);
+
+  return (
+    <div>
+      <UserProfile/>
       <div className="alg-wrapper">
         <div className="section">
           {/*  */}
           <div className="title label has-text-light">
             <span>Hello </span>
-            <span className="has-text-primary">username</span>,
+            {/* display username of user that's currently logged in */}
+            <span className="has-text-primary">{user.username}</span>,
             <div>Choose an algorithm to begin...</div>
           </div>
           {/* dropdown */}
@@ -57,8 +65,8 @@ class SelectAlg extends React.Component {
           </div>
         </div>
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
-export default withRouter(SelectAlg);
+export default SelectAlg;
