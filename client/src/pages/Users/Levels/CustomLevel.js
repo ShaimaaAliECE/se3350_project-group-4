@@ -5,10 +5,10 @@ import {
 } from "react";
 import ReactDOM from "react-dom";
 
-class CustomLevel extends React.Component {
-        render() {
-                function MyForm() {
-                    const [inputs, setInputs] = useState({});
+// class CustomLevel extends React.Component {
+//         render() {
+//                 function MyForm() {
+//                     const [inputs, setInputs] = useState({});
 
                     const handleChange = (event) => {
                         const name = event.target.name;

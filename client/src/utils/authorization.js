@@ -1,4 +1,4 @@
-import decode from "jwt-decode";
+import decode from "jwt-decode"; //used for decoding jwt
 
 //save key value as constant
 const JWT = "app_token_id";
@@ -16,7 +16,6 @@ const getToken = () => {
 // check if a user is logged in
 const isLogin = () => {
   const jwToken = getToken();
-  // 
   return !!jwToken && !isTokenExpired(jwToken);
 };
 
@@ -35,7 +34,8 @@ const isTokenExpired = (token) => {
 // retrieve user information
 const getUser = () => {
   const jwToken = getToken();
-  if (isLogin()) { //decode token when a user is logged in
+  if (isLogin()) {
+    //decode token when a user is logged in
     const user = decode(jwToken);
     return user;
   } else {
@@ -43,7 +43,7 @@ const getUser = () => {
   }
 };
 
-// logout 
+// logout
 const logout = () => {
   localStorage.removeItem(JWT);
 };
