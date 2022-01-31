@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import axios from "utils/axios";
+import { NotificationManager } from 'react-notifications';
 // import header area sub component
 import LoginHeader from "components/BackBtnHeader";
 
@@ -23,8 +24,11 @@ const Login = (props) => {
       const res = await axios.post("/auth/login", { username, password });
       const jwToken = res.data;
       console.log(jwToken);
+      NotificationManager.success('', 'Login Success', 1500);
     } catch (error) {
       console.log(error.response.data);
+      const message = error.response.data.message;
+      NotificationManager.error('', message , 1500);
     }
   };
 
