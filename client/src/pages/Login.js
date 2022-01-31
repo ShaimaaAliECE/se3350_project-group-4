@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import axios from "utils/axios";
-import { NotificationManager } from 'react-notifications';
+import { toast } from "react-toastify";
 // import header area sub component
 import LoginHeader from "components/BackBtnHeader";
 
@@ -24,11 +24,17 @@ const Login = (props) => {
       const res = await axios.post("/auth/login", { username, password });
       const jwToken = res.data;
       console.log(jwToken);
-      NotificationManager.success('', 'Login Success', 1500);
+      // save jwToken in local storage
+      global.auth.setToken(jwToken);
+      // show login success message
+      toast.success('Login Successful');
+      //redirect to select algorithm page
+      props.history.push("/alg");
     } catch (error) {
       console.log(error.response.data);
       const message = error.response.data.message;
-      NotificationManager.error('', message , 1500);
+      // show login failed message
+      toast.error(message);
     }
   };
 

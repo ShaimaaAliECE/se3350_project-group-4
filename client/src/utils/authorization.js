@@ -1,24 +1,26 @@
 import decode from "jwt-decode";
 
-const JWT = "token_id";
+//save key value as constant
+const JWT = "app_token_id";
 
-//getter and setter for token
+// save json web token into local storage
 const setToken = (token) => {
   localStorage.setItem(JWT, token);
 };
 
-
+// retrieve json web token from local storage
 const getToken = () => {
   return localStorage.getItem(JWT);
 };
 
-// login method
+// check if a user is logged in
 const isLogin = () => {
   const jwToken = getToken();
+  // 
   return !!jwToken && !isTokenExpired(jwToken);
 };
 
-//Login expired method
+//check if a json web token has expired
 const isTokenExpired = (token) => {
   try {
     const _info = decode(token);
@@ -33,7 +35,7 @@ const isTokenExpired = (token) => {
 // retrieve user information
 const getUser = () => {
   const jwToken = getToken();
-  if (isLogin()) {
+  if (isLogin()) { //decode token when a user is logged in
     const user = decode(jwToken);
     return user;
   } else {
@@ -41,11 +43,12 @@ const getUser = () => {
   }
 };
 
-// logout method
+// logout 
 const logout = () => {
   localStorage.removeItem(JWT);
 };
 
+// allows the call functions using 'global.auth.function_name';
 global.auth = {
   setToken,
   getToken,

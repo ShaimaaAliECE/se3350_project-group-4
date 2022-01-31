@@ -50,7 +50,7 @@ server.post("/auth/login", (req, res) => {
       (u) => u.username === username && u.password === password
     );
     const { id, type } = user;
-    const jwToken = createToken({ id, type });
+    const jwToken = createToken({ username, type, id });
     return res.status(200).json(jwToken);
   } else { //user authentication failed
     const status = 401;

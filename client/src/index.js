@@ -2,20 +2,33 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import Router from "./Router";
-import { NotificationContainer } from "react-notifications";
+import "utils/authorization";
+import { ToastContainer } from "react-toastify";
 
 //scss files
 import "./css/PageStyles.scss";
 import "./css/ComponentStyles.scss";
 import "./css/Theme.scss";
 
-// notification css
-import "react-notifications/lib/notifications.css";
+//  css
+import "react-toastify/dist/ReactToastify.css";
 
 ReactDOM.render(
   <div>
     {/* container for toast notifications */}
-    <NotificationContainer />
+    <ToastContainer
+      position="top-right"
+      autoClose={5000}
+      hideProgressBar={false}
+      newestOnTop={false}
+      closeOnClick
+      rtl={false}
+      pauseOnFocusLoss
+      draggable
+      pauseOnHover
+    />
+    {/* Same as */}
+    <ToastContainer />
     <Router />
   </div>,
   document.getElementById("root")
