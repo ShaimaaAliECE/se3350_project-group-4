@@ -3,6 +3,7 @@ import UserProfile from '../components/UserProfile'
 import { Link } from "react-router-dom";
 
 const SelectAlg = (props) => {
+  
   // get decoded user info
   const user = useMemo(() => {
     return global.auth.getUser() || {};
@@ -10,7 +11,7 @@ const SelectAlg = (props) => {
 
   return (
     <div>
-      <UserProfile/>
+      <UserProfile user={user}/>
       <div className="alg-wrapper">
         <div className="section">
           {/*  */}

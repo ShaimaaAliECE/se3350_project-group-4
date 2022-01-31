@@ -5,7 +5,7 @@ import { Link, withRouter } from "react-router-dom";
 const LoginHeader = () => {
   return (
     <div>
-      <div className="header">
+      <div className="back-header">
         <div className="grid">
           <div className="start">
             {/* Back to home page */}

@@ -11,11 +11,11 @@ const LevelHeader = (props) => {
 
   return (
     <div>
-      <div className="header">
+      <div className="lv-header">
         <div>
           <nav class="level">
             <p class="level-item has-text-centered">
-              <i class="fas fa-heart"></i>
+              <i class="fas fa-heart heart"></i>
               <span>x 3</span>
             </p>
             <p class="level-item has-text-centered">
