@@ -1,4 +1,5 @@
 import React, { useMemo } from "react";
+import UserProfile from '../components/UserProfile'
 import { Link } from "react-router-dom";
 
 const SelectAlg = (props) => {
@@ -9,6 +10,7 @@ const SelectAlg = (props) => {
 
   return (
     <div>
+      <UserProfile/>
       <div className="alg-wrapper">
         <div className="section">
           {/*  */}
