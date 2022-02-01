@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 const UserProfile = (props) => {
   // fill icon with first letter of user's name
   const username = props.user.username;
-  // const initials = username.charAt(0).toUpperCase();
+  const initials = username.charAt(0).toUpperCase();
 
   // logout and return to home page
   const toHome = () => {
@@ -21,7 +21,7 @@ const UserProfile = (props) => {
         <div className="end">
           <div className="user-profile-group">
             <div className="button user-icon is-primary">
-              <span className="user-initial">U</span>
+              <span className="user-initial">{initials}</span>
             </div>
             <Link to="/" className="logout" onClick={toHome}>
               Sign Out
