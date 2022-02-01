@@ -24,18 +24,19 @@ const Register = (props) => {
   const onSubmit = async (data) => {
     //register function implementation
     try {
-      //define register required fields
       const { username, password } = data;
       const res = await axios.post("/auth/register", {
         username,
         password,
         type: 0,
       });
+      console.log(res.data);
       const jwToken = res.data;
+      console.log(jwToken);
       global.auth.setToken(jwToken);
       toast.success("Register Success");
       //redirect to home page
-      props.history.push("/");
+      props.history.push("/alg");
     } catch (error) {
       const message = error.response.data.message;
       toast.error(message);
