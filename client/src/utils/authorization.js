@@ -22,10 +22,11 @@ const isLogin = () => {
 //check if a json web token has expired
 const isTokenExpired = (token) => {
   try {
-    const _info = decode(token);
-    if (_info.exp < Date.now() / 1000) {
-      return true;
-    } else return false;
+    const login_info = decode(token);
+    // if token expiration date is lesser than current time
+    if (login_info.exp < Date.now() / 1000) {
+      return true; //token is expired
+    } else return false; //token is valid
   } catch (error) {
     return false;
   }
@@ -43,7 +44,7 @@ const getUser = () => {
   }
 };
 
-// logout
+// logout (remove json web token from local storage)
 const logout = () => {
   localStorage.removeItem(JWT);
 };

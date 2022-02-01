@@ -17,7 +17,7 @@ ReactDOM.render(
   <div>
     {/* container for toast notifications */}
     <ToastContainer
-      position="top-right"
+      position="top-left"
       autoClose={5000}
       hideProgressBar={false}
       newestOnTop={false}
@@ -25,10 +25,8 @@ ReactDOM.render(
       rtl={false}
       pauseOnFocusLoss
       draggable
-      pauseOnHover
+      pauseOnHover={false}
     />
-    {/* Same as */}
-    <ToastContainer />
     <Router />
   </div>,
   document.getElementById("root")
