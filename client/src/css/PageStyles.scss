@@ -72,7 +72,28 @@
     font-size: 1.5rem;
     &:hover{
       font-weight: bold;
-      background-color: rgba(53, 53, 53, 0.158);
+      background-color: rgba(53, 53, 53, 0.150);
     }
   }
+}
+
+// Level Select / Edit Page
+.select-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 85vh;
+  .lv-btn{
+    width: 60%;
+  }
+  .long-btn{
+    width:80%;
+  }
+  .btn-text {
+    font-weight: bold;
+    padding: 0.5rem;
+    color:rgb(53, 53, 53);
+  }
+
 }

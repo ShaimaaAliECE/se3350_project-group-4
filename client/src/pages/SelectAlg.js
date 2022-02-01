@@ -1,17 +1,26 @@
 import React, { useMemo } from "react";
-import UserProfile from '../components/UserProfile'
-import { Link } from "react-router-dom";
+import UserProfile from "../components/UserProfile";
+import { useHistory } from "react-router-dom";
 
 const SelectAlg = (props) => {
-  
   // get decoded user info
   const user = useMemo(() => {
     return global.auth.getUser() || {};
   }, []);
 
+  //redirect to different pages based on user type
+  let history = useHistory();
+  const selectOrEdit = () => {
+    if (user.type === 1) {
+      history.push("/edit");
+    } else {
+      history.push("/select");
+    }
+  };
+
   return (
     <div>
-      <UserProfile user={user}/>
+      <UserProfile user={user} />
       <div className="alg-wrapper">
         <div className="section">
           {/*  */}
@@ -44,23 +53,20 @@ const SelectAlg = (props) => {
             {/* dropdown menu */}
             <div className="dropdown-menu" id="dropdown-menu" role="menu">
               <div className="dropdown-content">
-                <Link to="/select">
-                  <div className="dropdown-item">
-                    <span className="dropdown-text">Merge Sort</span>
-                  </div>
-                </Link>
+                {/* item 1 */}
+                <div className="dropdown-item" onClick={selectOrEdit}>
+                  <span className="dropdown-text">Merge Sort</span>
+                </div>
                 <hr class="dropdown-divider"></hr>
-                <Link to="/edit">
-                  <div className="dropdown-item">
-                    <span className="dropdown-text">Quick Sort</span>
-                  </div>
-                </Link>
+                {/* item 2 */}
+                <div className="dropdown-item">
+                  <span className="dropdown-text">Quick Sort</span>
+                </div>
                 <hr class="dropdown-divider"></hr>
-                <Link to="/...">
-                  <div className="dropdown-item">
-                    <span className="dropdown-text">...</span>
-                  </div>
-                </Link>
+                {/* item 3 */}
+                <div className="dropdown-item">
+                  <span className="dropdown-text">...</span>
+                </div>
               </div>
             </div>
           </div>
