@@ -50,7 +50,7 @@ class PopupMenu extends React.Component {
           }}
         ></div>
         {/* window*/}
-        <div className="panel">
+        <div className="window">
           <div className="head">
             {/* close button */}
             <span

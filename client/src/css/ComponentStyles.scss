@@ -41,6 +41,10 @@
     color: rgb(194, 79, 79);
     margin-right: 5px;
   }
+  .pause {
+    font-size: x-large;
+    padding: 1em;
+  }
 }
 
 //Popup Window Component
@@ -55,7 +59,7 @@
     .over-layer {
       display: block;
     }
-    .panel {
+    .window {
       transform: translateX(0);
     }
   }
@@ -67,27 +71,27 @@
   bottom: 0;
   left: 0;
   right: 0;
-  background: rgba(0, 0, 0, 0.4);
+  background: rgba(255, 255, 255, 0.2);
   z-index: 9;
 }
-.panel {
-  width: 25rem;
+.window {
+  width: 35rem;
   position: fixed;
   top: 0;
   bottom: 0;
   right: 0;
-  background: #fff;
-  box-shadow: -3px 0 3px rgba(0, 0, 0, 0.04);
-  transform: translateX(25rem);
+  background: rgba(35,35,35, 0.95);
+  box-shadow: -3px 0 3px rgba(64,223,159, 0.4);
+  transform: translateX(35rem);
   transition: all 0.3s ease-in-out;
   z-index: 99;
   .head {
     padding: 0.5rem;
     text-align: right;
     .close {
-      font-size: 24px;
+      font-size: 28px;
       font-weight: 600;
-      color: #333;
+      color: #fff;
       cursor: pointer;
       line-height: 1;
       margin-right: 4px;

@@ -1,12 +1,11 @@
 import React from "react";
-import PopupMenu from 'components/PopupMenu';
+import PopupMenu from "components/PopupMenu";
 
 // header component for levels
 const LevelHeader = (props) => {
   // open pause menu
   const toPause = () => {
-    PopupMenu.open({
-    })
+    PopupMenu.open({});
   };
 
   return (
@@ -23,7 +22,9 @@ const LevelHeader = (props) => {
               <span>XX:XX</span>
             </p>
             <p class="level-item has-text-centered">
-              <span onClick={toPause}>PAUSE</span>
+              <span className="button is-small is-primary" onClick={toPause}>
+              <i className="pause fas fa-pause"></i>
+              </span>
             </p>
             <p class="level-item has-text-centered has-text-primary">
               <span>LEVEL 1</span>
