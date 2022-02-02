@@ -11,6 +11,8 @@ import NotFound from "./pages/NotFound";
 import LevelOne from "./pages/LevelOne";
 import CustomLevel from "./pages/CustomLevel";
 
+import LevelTwo from "./pages/LevelTwo";
+
 
 //router component for switching between pages
 const Router = () => (
@@ -39,6 +41,8 @@ const Router = () => (
 
       {/* redirect to Level 1 page */}
       <Route path="/customlevel" component={CustomLevel} />
+
+      <Route path="/LevelTwo" component={LevelTwo} />
 
       {/* redirect to 404 page */}
       <Route component={NotFound} />

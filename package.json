@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "react-toastify": "^8.1.0",
+    "tone": "^14.7.77"
+  }
+}
