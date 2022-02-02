@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-
+import {RequireLoginRoute, AdminRoute} from "components/ProtectedRoute"
 import Home from "pages/Home";
 import Login from "pages/Login";
 import Register from "pages/Register";
@@ -27,34 +27,34 @@ const Router = () => (
       <Route path="/login" component={Login} />
 
       {/* redirect to Create Account page */}
-      {<Route path="/register" component= {Register} />}
+      <Route path="/register" component= {Register} />
 
       {/* redirect to Select Algorithm page */}
-      <Route path="/alg" component={SelectAlg} />
+      <RequireLoginRoute path="/alg" component={SelectAlg} />
 
       {/* redirect to Select Level page */}
-      <Route path="/select" component={SelectLevel} />
+      <RequireLoginRoute path="/select" component={SelectLevel} />
 
       {/* redirect to Edit Level page */}
-      <Route path="/edit" component={EditLevel} />
+      <AdminRoute path="/edit" component={EditLevel} />
 
       {/* redirect to Level 1 page */}
-      <Route path="/level1" component={LevelOne} />
+      <RequireLoginRoute path="/level1" component={LevelOne} />
 
       {/* redirect to Level 2 page */}
-      <Route path="/level2" component={LevelTwo} />
+      <RequireLoginRoute path="/level2" component={LevelTwo} />
 
       {/* redirect to Level 3 page */}
-      <Route path="/level3" component={LevelThree} />
+      <RequireLoginRoute path="/level3" component={LevelThree} />
 
       {/* redirect to Level 4 page */}
-      <Route path="/level4" component={LevelFour} />
+      <RequireLoginRoute path="/level4" component={LevelFour} />
 
       {/* redirect to Level 5 page */}
-      <Route path="/level5" component={LevelFive} />
+      <RequireLoginRoute path="/level5" component={LevelFive} />
 
       {/* redirect to Custom Level page */}
-      <Route path="/customlevel" component={CustomLevel} />
+      <RequireLoginRoute path="/custom" component={CustomLevel} />
 
       {/* redirect to 404 page */}
       <Route component={NotFound} />

@@ -54,7 +54,6 @@ class SelectLevel extends React.Component {
                 <span className="btn-text">Back</span>
               </button>
             </div>
-            
           </div>
         </div>
       </div>

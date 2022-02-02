@@ -44,6 +44,13 @@ const getUser = () => {
   }
 };
 
+// // check if a user has admin access
+// const isAdmin = () => {
+//   const user = getUser();
+//   if (user.type === 1)
+
+// }
+
 // logout (remove json web token from local storage)
 const logout = () => {
   localStorage.removeItem(JWT);
