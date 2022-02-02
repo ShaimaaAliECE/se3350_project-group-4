@@ -1,12 +1,12 @@
 import React from "react";
-// import Pause from 'components/Pause';
+import PopupMenu from 'components/PopupMenu';
 
 // header component for levels
 const LevelHeader = (props) => {
   // open pause menu
   const toPause = () => {
-    //Pause.open({
-    //})
+    PopupMenu.open({
+    })
   };
 
   return (

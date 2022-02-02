@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 class SelectLevel extends React.Component {
   render() {
@@ -14,45 +15,45 @@ class SelectLevel extends React.Component {
           <div className="columns is-multiline buttons are-large">
             {/* lv 1 */}
             <div className="column is-half">
-              <button className="lv-btn button is-rounded has-background-primary">
+              <Link to ="/level1" className="lv-btn button is-rounded has-background-primary">
                 <span className="btn-text">Level 1</span>
-              </button>
+              </Link>
             </div>
             {/* lv 2 */}
             <div className="column is-half">
-              <button className="lv-btn button is-rounded has-background-primary">
+              <Link to ="/level2" className="lv-btn button is-rounded has-background-primary">
                 <span className="btn-text">Level 2</span>
-              </button>
+              </Link>
             </div>
             {/* lv 3 */}
             <div className="column is-half">
-              <button className="lv-btn button is-rounded has-background-primary">
+              <Link to ="/level3" className="lv-btn button is-rounded has-background-primary">
                 <span className="btn-text">Level 3</span>
-              </button>
+              </Link>
             </div>
             {/* lv 4 */}
             <div className="column is-half">
-              <button className="lv-btn button is-rounded has-background-primary">
+              <Link to ="/level4" className="lv-btn button is-rounded has-background-primary">
                 <span className="btn-text">Level 4</span>
-              </button>
+              </Link>
             </div>
             {/* lv 5 */}
             <div className="column is-half">
-              <button className="lv-btn button is-rounded has-background-primary">
+              <Link to ="/level5" className="lv-btn button is-rounded has-background-primary">
                 <span className="btn-text">Level 5</span>
-              </button>
+              </Link>
             </div>
             {/* custom lv */}
             <div className="column is-half">
-              <button className="lv-btn button is-rounded has-background-primary">
+              <Link to ="/custom" className="lv-btn button is-rounded has-background-primary">
                 <span className="btn-text">Custom</span>
-              </button>
+              </Link>
             </div>
             {/* back button */}
             <div className="column is-full-width">
-              <button className="long-btn button is-rounded has-background-light">
+              <Link to ="/alg" className="long-btn button is-rounded has-background-light">
                 <span className="btn-text">Back</span>
-              </button>
+              </Link>
             </div>
           </div>
         </div>

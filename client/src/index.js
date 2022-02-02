@@ -17,7 +17,7 @@ ReactDOM.render(
   <div>
     {/* container for toast notifications */}
     <ToastContainer
-      position="top-left"
+      position="bottom-right"
       autoClose={5000}
       hideProgressBar={false}
       newestOnTop={false}

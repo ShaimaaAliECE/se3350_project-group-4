@@ -5,34 +5,54 @@ import { render } from "react-dom";
    * popup menu component : 
    * used as a container for pause and gameover menu
     (1)、child component can be rendered within the menu
-    (2)、Child components can close parent component (cancel button)
-    (3)、Child component can communicate with other components (i.e. restart current level)
+    (2)、child components can close parent component (cancel button)
+    (3)、child component can communicate with other components (i.e. restart current level)
  */
 
 class PopupMenu extends React.Component {
   //popup window state
-  sate = {
+  state = {
     active: false, //closed by default
     component: null, //empty (no child component by default)
+    callback: () => {},
   };
+
+  //open popup window method
+  open = (data) => {
+    this.setState({
+      active: true,
+    });
+    this.state.callback(data);
+  };
+
+  //close popup window method
+  close = (data) => {
+    this.setState({
+      active: false,
+    });
+    this.state.callback(data);
+  };
+
   render() {
+    // toggle between active/inactive using css class
     const _class = {
-      true: "popup-window active",
-      false: "popup-window",
+      true: "panel-wrapper active",
+      false: "panel-wrapper",
     };
 
     return (
       <div className={_class[this.state.active]}>
-        {/* overlay rest of the page when panel is open*/}
+        {/* overlay */}
         <div
           className="over-layer"
           onClick={() => {
-            //close panel when user clicks on overlay
             this.close();
           }}
         ></div>
+        {/* window*/}
         <div className="panel">
           <div className="head">
+            {/* close button */}
             <span
               className="close"
               onClick={() => {
@@ -41,6 +61,7 @@ class PopupMenu extends React.Component {
             >
               ×
             </span>
+            {/* mounted child component */}
             {this.state.component}
           </div>
         </div>
@@ -49,8 +70,9 @@ class PopupMenu extends React.Component {
   }
 }
 
-//render the child component into the popup window component 
+//create an empty div container
 const _div = document.createElement("div");
+//render the child component into the popup window component
 document.body.appendChild(_div);
-const _popup = render(<PopupMenu/>, _div);
+const _popup = render(<PopupMenu />, _div);
 export default _popup;
