@@ -19,15 +19,19 @@ class PopupMenu extends React.Component {
 
   //open popup window method
   open = (options) => {
-    const { component, callback } = options;
+    const { props, component, callback } = options;
+    //key is always different, meaning that a new 'component' is render every time window opened.
+    const window_key = new Date().getTime();
     // convert 'component' into a real child component
     const child_component = React.createElement(component, {
+      ...props,
       close: this.close,
+      key: window_key,
     });
     this.setState({
       active: true,
       component: child_component,
-      callback: callback
+      callback: callback,
     });
     this.state.callback(options);
   };
@@ -37,6 +41,7 @@ class PopupMenu extends React.Component {
     this.setState({
       active: false,
     });
+    // save data on close
     this.state.callback(data);
   };
 
