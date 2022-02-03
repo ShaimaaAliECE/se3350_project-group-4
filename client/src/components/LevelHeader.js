@@ -1,26 +1,37 @@
 import React from "react";
 import PopupMenu from "components/PopupMenu";
 import Pause from "components/Pause";
-import Gameover from "components/Gameover";
-
+// import Gameover from "components/Gameover";
+import { withRouter } from "react-router-dom";
 
 // header component for levels
 const LevelHeader = (props) => {
-  
   // open pause menu
   const toPause = () => {
     PopupMenu.open({
       component: Pause,
-      callback: data => {
-        console.log(data);
-      }
+      callback: (data) => {
+        //console.log(data);
+      },
     });
   };
 
   // redirect to next level
   const nextLevel = () => {
-
-  }
+    if (props.level === "1") {
+      props.history.push("/level2");
+    } else if (props.level === "2") {
+      props.history.push("/level3");
+    } else if (props.level === "3") {
+      props.history.push("/level4");
+    } else if (props.level === "4") {
+      props.history.push("/level5"); 
+    } else if (props.level === "5") {
+      props.history.push("/custom");
+    } else if (props.level === "custom") {
+      props.history.push("/select");
+    } 
+  };
 
   return (
     <div>
@@ -37,14 +48,14 @@ const LevelHeader = (props) => {
             </p>
             <p className="level-item has-text-centered">
               <span className="button is-small is-primary" onClick={toPause}>
-              <i className="pause fas fa-pause"></i>
+                <i className="pause fas fa-pause"></i>
               </span>
             </p>
             <p className="level-item has-text-centered has-text-primary">
-              <span>LEVEL 1</span>
+              <span>LEVEL {props.level}</span>
             </p>
-            <p className="level-item has-text-centered">
-              <span  onClick={nextLevel} >NEXT LEVEL</span>
+            <p className="level-item has-text-centered next-lv">
+              <div onClick={nextLevel}>NEXT LEVEL</div>
             </p>
           </nav>
         </div>
@@ -54,4 +65,4 @@ const LevelHeader = (props) => {
   );
 };
 
-export default LevelHeader;
+export default withRouter(LevelHeader);

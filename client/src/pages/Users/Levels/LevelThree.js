@@ -1,8 +1,14 @@
 import React from "react";
+import LevelHeader from "../../../components/LevelHeader";
 
 class LevelThree extends React.Component {
   render() {
-    return <div>Level Three Page</div>;
+    return (
+      <div className="">
+        {/* header */}
+        <LevelHeader level="3"/>
+      </div>
+    );
   }
   
 }

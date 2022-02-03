@@ -39,7 +39,7 @@ class CustomLevel extends React.Component {
                 <div>
                     <div className="">
                         {/* header */}
-                        <LevelHeader />
+                        <LevelHeader level="custom"/>
                     </div>
                     <div className="level">
                         {/* level */}

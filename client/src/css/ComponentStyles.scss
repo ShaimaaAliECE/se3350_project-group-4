@@ -45,6 +45,18 @@
     font-size: x-large;
     padding: 1em;
   }
+  .next-lv {
+    cursor: pointer;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    &:hover {
+      color: rgb(64, 223, 159);
+      font-weight: bold;
+    }
+  }
 }
 
 //Popup Window Component
@@ -139,7 +151,7 @@
   padding: 1rem 2rem;
   .btns {
     margin-top: 80%;
-    .m-btn  {
+    .m-btn {
       width: 480px;
       margin-bottom: 50px;
     }
