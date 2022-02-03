@@ -7,7 +7,10 @@ const LevelHeader = (props) => {
   // open pause menu
   const toPause = () => {
     PopupMenu.open({
-      component: Pause
+      component: Pause,
+      callback: data => {
+        console.log(data);
+      }
     });
   };
 
@@ -15,24 +18,24 @@ const LevelHeader = (props) => {
     <div>
       <div className="lv-header">
         <div>
-          <nav class="level">
-            <p class="level-item has-text-centered">
-              <i class="fas fa-heart heart"></i>
+          <nav className="level">
+            <p className="level-item has-text-centered">
+              <i className="fas fa-heart heart"></i>
               <span>x 3</span>
             </p>
-            <p class="level-item has-text-centered">
+            <p className="level-item has-text-centered">
               <span>TIME SPENT IN CURRENT LEVEL:</span>
               <span>XX:XX</span>
             </p>
-            <p class="level-item has-text-centered">
+            <p className="level-item has-text-centered">
               <span className="button is-small is-primary" onClick={toPause}>
               <i className="pause fas fa-pause"></i>
               </span>
             </p>
-            <p class="level-item has-text-centered has-text-primary">
+            <p className="level-item has-text-centered has-text-primary">
               <span>LEVEL 1</span>
             </p>
-            <p class="level-item has-text-centered">
+            <p className="level-item has-text-centered">
               <span>NEXT LEVEL</span>
             </p>
           </nav>

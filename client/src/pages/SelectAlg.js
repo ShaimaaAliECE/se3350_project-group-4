@@ -31,9 +31,9 @@ const SelectAlg = (props) => {
             <div>Choose an algorithm to begin...</div>
           </div>
           {/* dropdown */}
-          <div class="dropdown is-hoverable">
+          <div className="dropdown is-hoverable">
             {/* dropdown box */}
-            <div class="dropdown-trigger">
+            <div className="dropdown-trigger">
               {/* dropdown button */}
               <button
                 className="button is-large is-rounded has-background-primary"
@@ -57,12 +57,12 @@ const SelectAlg = (props) => {
                 <div className="dropdown-item" onClick={selectOrEdit}>
                   <span className="dropdown-text">Merge Sort</span>
                 </div>
-                <hr class="dropdown-divider"></hr>
+                <hr className="dropdown-divider"></hr>
                 {/* item 2 */}
                 <div className="dropdown-item">
                   <span className="dropdown-text">Quick Sort</span>
                 </div>
-                <hr class="dropdown-divider"></hr>
+                <hr className="dropdown-divider"></hr>
                 {/* item 3 */}
                 <div className="dropdown-item">
                   <span className="dropdown-text">...</span>
