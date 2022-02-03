@@ -25,12 +25,12 @@ const LevelHeader = (props) => {
     } else if (props.level === "3") {
       props.history.push("/level4");
     } else if (props.level === "4") {
-      props.history.push("/level5"); 
+      props.history.push("/level5");
     } else if (props.level === "5") {
       props.history.push("/custom");
     } else if (props.level === "custom") {
       props.history.push("/select");
-    } 
+    }
   };
 
   return (

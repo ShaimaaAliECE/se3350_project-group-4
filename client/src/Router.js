@@ -1,6 +1,6 @@
 import React from "react";
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import {RequireLoginRoute, AdminRoute} from "components/ProtectedRoute"
+import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { RequireLoginRoute, AdminRoute } from "components/ProtectedRoute";
 import Home from "pages/Home";
 import Login from "pages/Login";
 import Register from "pages/Register";
@@ -27,7 +27,7 @@ const Router = () => (
       <Route path="/login" component={Login} />
 
       {/* redirect to Create Account page */}
-      <Route path="/register" component= {Register} />
+      <Route path="/register" component={Register} />
 
       {/* redirect to Select Algorithm page */}
       <RequireLoginRoute path="/alg" component={SelectAlg} />
@@ -59,9 +59,12 @@ const Router = () => (
       {/* redirect to Custom Level page */}
       <RequireLoginRoute path="/custom" component={CustomLevel} />
 
+      <Route path="/LevelOne" component={LevelOne} />
+
+      <Route path="/LevelTwo" component={LevelTwo} />
+
       {/* redirect to 404 page */}
       <Route component={NotFound} />
-      
     </Switch>
   </BrowserRouter>
 );
