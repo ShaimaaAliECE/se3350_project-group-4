@@ -14,7 +14,7 @@ import LevelThree from "pages/Users/Levels/LevelThree";
 import LevelFour from "pages/Users/Levels/LevelFour";
 import LevelFive from "pages/Users/Levels/LevelFive";
 import CustomLevel from "pages/Users/Levels/CustomLevel";
-
+import Analytics from "pages/Admin/Analytics";
 
 //router component for switching between pages
 const Router = () => (
@@ -37,6 +37,9 @@ const Router = () => (
 
       {/* redirect to Edit Level page */}
       <AdminRoute path="/edit" component={EditLevel} />
+
+      {/* redirect to analytics Level page */}
+      <AdminRoute path="/analytics" component={Analytics} />
 
       {/* redirect to Level 1 page */}
       <RequireLoginRoute path="/level1" component={LevelOne} />

@@ -1,5 +1,4 @@
 import React from "react";
-import { withRouter } from "react-router-dom";
 
 //user profile component
 export default function UserProfileDetails(props) {

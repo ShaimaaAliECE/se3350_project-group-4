@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 class EditLevel extends React.Component {
   render() {
@@ -49,16 +50,17 @@ class EditLevel extends React.Component {
               </button>
             </div>
             {/* back button */}
+
             <div className="column is-half">
-              <button className="lv-btn button is-rounded has-background-light">
+              <Link to ="/alg" className="lv-btn button is-rounded has-background-light">
                 <span className="btn-text">Back</span>
-              </button>
+              </Link>
             </div>
 
             <div className="column is-half">
-              <button className="lv-btn button is-rounded has-background-light">
+              <Link to ="/analytics" className="lv-btn button is-rounded has-background-light">
                 <span className="btn-text">View Analytics</span>
-              </button>
+              </Link>
             </div>
             
           </div>

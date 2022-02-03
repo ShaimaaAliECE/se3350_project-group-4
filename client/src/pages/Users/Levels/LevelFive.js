@@ -6,11 +6,10 @@ class LevelFive extends React.Component {
     return (
       <div className="">
         {/* header */}
-        <LevelHeader level="5"/>
+        <LevelHeader level="5" />
       </div>
     );
   }
-  
 }
 
 export default LevelFive;

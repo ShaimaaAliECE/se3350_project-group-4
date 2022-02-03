@@ -22,12 +22,12 @@ const Login = (props) => {
       const { username, password } = data;
       //verify user information
       const res = await axios.post("/auth/login", { username, password });
-      const jwToken = res.data; 
+      const jwToken = res.data;
       console.log(jwToken);
       // save jwToken in local storage
       global.auth.setToken(jwToken);
       // show login success message
-      toast.success('Login Successful');
+      toast.success("Login Successful");
       //redirect to select algorithm page
       props.history.push("/alg");
     } catch (error) {
