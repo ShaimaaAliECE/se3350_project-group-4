@@ -1,6 +1,8 @@
 import React from "react";
 import { toast } from "react-toastify";
-import { Link } from "react-router-dom";
+import { withRouter } from "react-router-dom";
+import PopupMenu from "components/PopupMenu";
+import UserProfileDetails from "components/UserProfileDetails";
 
 //Header components
 const UserProfile = (props) => {
@@ -8,10 +10,20 @@ const UserProfile = (props) => {
   const username = props.user.username;
   const initials = username.charAt(0).toUpperCase();
 
-  // logout and return to home page
-  const toHome = () => {
-    global.auth.logout();
-    toast.success("Logout Successful.");
+  //open user profile detail
+  const toProfile = () => {
+    PopupMenu.open({
+      component: UserProfileDetails,
+      props: {
+        user: props.user,
+      },
+      callback: (data) => {
+        if (data === "logout") {
+          toast.success("Logout Successful.");
+          props.history.push("/login");
+        }
+      },
+    });
   };
 
   return (
@@ -23,9 +35,9 @@ const UserProfile = (props) => {
             <div className="button user-icon is-primary">
               <span className="user-initial">{initials}</span>
             </div>
-            <Link to="/" className="logout" onClick={toHome}>
-              Sign Out
-            </Link>
+            <span className="profile" onClick={toProfile}>
+              Profile
+            </span>
           </div>
         </div>
       </div>
@@ -33,4 +45,4 @@ const UserProfile = (props) => {
   );
 };
 
-export default UserProfile;
+export default withRouter(UserProfile);

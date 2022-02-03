@@ -135,7 +135,7 @@
         font-weight: bold;
         font-size: 1.5em;
       }
-      .logout {
+      .profile {
         font-size: larger;
         &:hover {
           color: rgb(64, 223, 159);
@@ -157,3 +157,12 @@
     }
   }
 }
+
+// User Profile Detail component
+
+.user-profile {
+  padding: 1rem 2rem;
+}
+
+
+
