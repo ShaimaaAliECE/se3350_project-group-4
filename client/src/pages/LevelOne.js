@@ -11,11 +11,12 @@ class LevelOne extends React.Component {
       finishedPlaying: false,
       step: 0,
       boxes: Array(11).fill(""),
-      boxIndex: [1, 2, 3, 4, 5, 4, 8, 9, 9, 5, 6, 7, 6, 10, 11, 11, 7, 3, 1],
+      boxIndex: [1, 2, 4, 4, 5, 8, 9, 9, 5, 2, 3, 6, 6, 7, 10, 11, 11, 7, 3, 1],
       order: [],
     };
     this.generateArray = this.generateArray.bind(this);
     this.handleNextStep = this.handleNextStep.bind(this);
+    this.handleReset = this.handleReset.bind(this);
   }
 
   generateArray() {
@@ -30,6 +31,15 @@ class LevelOne extends React.Component {
 
   setOrder(val) {
     this.setState({ order: val });
+  }
+
+  handleReset(e) {
+    const box = Array(11).fill("");
+    let step = 0;
+    this.setState({
+      step: step,
+      boxes: box,
+    });
   }
 
   handleNextStep(e) {
@@ -85,12 +95,10 @@ class LevelOne extends React.Component {
                   {this.renderBlock(10)}
                   {this.renderBlock(11)}
                 </div>
-                <button
-                  className="button is-white"
-                  onClick={this.handleNextStep}
-                >
-                  Next Step
-                </button>
+                <div>
+                  <NextButton onClick={this.handleNextStep} />
+                  <ResetButton onClick={this.handleReset} />
+                </div>
               </div>
             </div>
           </div>
@@ -98,6 +106,22 @@ class LevelOne extends React.Component {
       </div>
     );
   }
+}
+
+function NextButton(props) {
+  return (
+    <button className="button is-primary" onClick={props.onClick}>
+      Next Step
+    </button>
+  );
+}
+
+function ResetButton(props) {
+  return (
+    <button className="button is-primary" onClick={props.onClick}>
+      Reset
+    </button>
+  );
 }
 
 export default LevelOne;
