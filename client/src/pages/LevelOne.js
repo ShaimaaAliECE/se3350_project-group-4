@@ -10,7 +10,7 @@ class LevelOne extends React.Component {
     this.state = {
       finishedPlaying: false,
       step: 0,
-      boxes: Array(11).fill("hi"),
+      boxes: Array(11).fill(""),
       boxIndex: [1, 2, 3, 4, 5, 4, 8, 9, 9, 5, 6, 7, 6, 10, 11, 11, 7, 3, 1],
       order: [],
     };
@@ -37,9 +37,11 @@ class LevelOne extends React.Component {
     var step = this.state.step;
     const currentBox = this.state.boxIndex[step] - 1;
     box[currentBox] = this.state.order[step];
+    console.log(box);
+    step++;
     this.setState({
       boxes: box,
-      step: step++,
+      step: step,
     });
   }
 
