@@ -18,11 +18,15 @@ class PopupMenu extends React.Component {
   };
 
   //open popup window method
-  open = (data) => {
+  open = (options) => {
+    const { component } = options;
+    // convert 'component' into a real child component
+    const child_component = React.createElement(component)
     this.setState({
       active: true,
+      component: child_component
     });
-    this.state.callback(data);
+    this.state.callback(options);
   };
 
   //close popup window method

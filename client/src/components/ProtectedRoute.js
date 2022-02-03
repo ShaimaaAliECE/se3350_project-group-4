@@ -33,7 +33,7 @@ export const AdminRoute = ({ component: Component, ...rest }) => {
       {...rest}
       render={(props) => {
         const user = global.auth.getUser() || {};
-        if (user.type === 1)  {
+        if (user.type === 1) {
           return <Component {...props} />;
         } else {
           return (
@@ -51,4 +51,3 @@ export const AdminRoute = ({ component: Component, ...rest }) => {
     />
   );
 };
-
