@@ -71,8 +71,8 @@ class LevelOne extends React.Component {
     }
     return (
       <div className="">
+        <LevelHeader />
         <div className="header">
-          <LevelHeader />
         </div>
         <div className="body">
           <div className="sort"></div>

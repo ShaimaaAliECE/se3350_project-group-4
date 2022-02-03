@@ -76,3 +76,16 @@
     }
   }
 }
+
+// Array 'Blocks'
+.columns {
+  display: flex;
+  //justify-content: center;
+  position: relative;
+  text-align: center;
+  column-gap: normal;
+  color: rgb(64, 223, 159);
+  padding-left: 1%;
+  padding-right: 1%;
+  padding-top: 4%;
+}

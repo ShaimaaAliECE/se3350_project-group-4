@@ -42,6 +42,8 @@ const Router = () => (
       {/* redirect to Level 1 page */}
       <Route path="/customlevel" component={CustomLevel} />
 
+      <Route path="/LevelOne" component={LevelOne} />
+
       <Route path="/LevelTwo" component={LevelTwo} />
 
       {/* redirect to 404 page */}

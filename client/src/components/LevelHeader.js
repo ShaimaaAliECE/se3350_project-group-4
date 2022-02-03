@@ -14,7 +14,7 @@ const LevelHeader = (props) => {
       <div className="grid">
         <div className="start">
           <div className="lives">
-            <i class="fas fa-heart"></i>
+            <i className="fas fa-heart"></i>
             <span>x 3</span>
           </div>
           <div className="time">
