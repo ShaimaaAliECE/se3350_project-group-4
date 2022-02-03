@@ -10,6 +10,7 @@ class LevelOne extends React.Component {
     this.state = {
       finishedPlaying: false,
       step: 0,
+      instuctions: [],
       boxes: Array(11).fill(""),
       boxIndex: [1, 2, 4, 4, 5, 8, 9, 9, 5, 2, 3, 6, 6, 7, 10, 11, 11, 7, 3, 1],
       order: [],
@@ -23,10 +24,14 @@ class LevelOne extends React.Component {
     let split = [];
     let merge = [];
     let currentOrd = [];
+    let currentInstr = [];
     var sorting = new MergeSort(1, 20, 10);
-    sorting.sort(sorting.getArray(), split, merge, currentOrd, false);
+    sorting.sort(sorting.getArray(), currentOrd, currentInstr, false);
 
-    this.setState({ order: currentOrd });
+    this.setState({
+      order: currentOrd,
+      instuctions: currentInstr,
+    });
   }
 
   setOrder(val) {
