@@ -66,3 +66,23 @@
   }
 }
 
+.box-surround {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.box-surround div {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+}
+
+// block styling
+.box {
+  min-width: 1.5rem;
+  display: block;
+  background-color: #fff;
+  max-width: 10rem;
+  text-align: center;
+}

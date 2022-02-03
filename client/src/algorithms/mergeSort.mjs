@@ -3,45 +3,49 @@ import Algorithm from "./abstractAlgorithm.mjs";
 class MergeSort extends Algorithm {}
 
 //The function that is called
-MergeSort.prototype.sort = function (array, trackSplit, trackMerge, tracker) {
-  //Reset tracker if need be
-  if (trackSplit.length === 0) tracker = 0;
-  // trackSplit.push(tracker + "|" + array);
+MergeSort.prototype.sort = function (array, order, instruction, flag) {
 
   //Determine if array needs to be cut in half
   if (array.length < 2) {
-    // console.log(tracker - 1 + "|" + array);
     return array;
   }
+
   //Track iteration
-  trackSplit.push(tracker + "|" + array);
-  // console.log(tracker + "|" + array);
+  order.push("" + array);
+  instruction.push("Half this array: [" + array + "]")
+
+  //Record single digit arrays using a flag
+  if (flag) {
+    order.push("" + array[0]);
+    instruction.push("Store the " + array[0])
+    flag = false;
+  }
 
   //Half the given array
   const middle = Math.floor(array.length / 2);
-  // console.log(array);
+  
   const array_left = array.slice(0, middle);
   const array_right = array.slice(middle, array.length);
 
-  // console.log(array_left);
-  // console.log(array_right);
+  if (array_right.length === 3) {
+    let tempL = array_right.slice(0, 1);
+    flag = true;
+  }
 
   //Send array back to determine if it needs to be halved again
-  const sort_left = this.sort(array_left, trackSplit, trackMerge, tracker + 1);
-  const sort_right = this.sort(
-    array_right,
-    trackSplit,
-    trackMerge,
-    tracker + 1
-  );
+  const sort_left = this.sort(array_left, order, instruction);
+  const sort_right = this.sort(array_right, order, instruction, flag);
 
   //Merge the masses!!!
-  return this.merge(sort_left, sort_right, trackMerge, tracker);
+  return this.merge(sort_left, sort_right, order, instruction);
 };
 
 //To merge arrays backtogether
-MergeSort.prototype.merge = function (left, right, trackMerge, tracker) {
+MergeSort.prototype.merge = function (left, right, order, instruction) {
   let arr = [];
+
+  const tempL = JSON.parse(JSON.stringify(left))
+  const tempR = JSON.parse(JSON.stringify(right))
 
   //Add the smaller leading value to the sorted array
   while (left.length && right.length) {
@@ -58,52 +62,20 @@ MergeSort.prototype.merge = function (left, right, trackMerge, tracker) {
     arr.push(right.shift());
   }
 
+  // console.log(arr);
   //Track iteration
-  trackMerge.push(tracker + "|" + arr);
+  order.push("" + arr);
+  instruction.push("Combine [" + tempL + "] and [" + tempR + "] in order to get [" + arr + "].")
 
   return arr;
 };
 
-// var sorting = new MergeSort(1, 20, 10);
-// let split = [];
-// let merge = [];
-// let sorted = sorting.sort(sorting.getArray(), split, merge);
+var sorting = new MergeSort(1, 20, 10);
+let order = [];
+let instruction = []
+let sorted = sorting.sort(sorting.getArray(), order, instruction, false);
 
-// let storageSplit = [];
-// let storageMerge = [];
-// let temp = [];
-
-// for (let i = 0; i < split.length; i++) {
-//   let index = split[i].charAt(0);
-//   let data = split[i].slice(2);
-
-//   if (!temp.includes(index)) {
-//     storageSplit.push([[data]]);
-//     temp.push(index);
-//   } else {
-//     storageSplit[index].push([data]);
-//   }
-// }
-
-// temp = [];
-
-// for (let i = merge.length - 1; i >= 0; i--) {
-//   let index = merge[i].charAt(0);
-//   let data = merge[i].slice(2);
-
-//   if (!temp.includes(index)) {
-//     storageMerge.push([[data]]);
-//     temp.push(index);
-//   } else {
-//     storageMerge[index].push([data]);
-//   }
-// }
-
-// storageMerge.reverse();
-// for (let i = 0; i < storageMerge.length; i++) storageMerge[i].reverse();
-
-// console.log(storageSplit);
-// console.log("______________________________________");
-// console.log(storageMerge);
+console.log(order);
+console.log(instruction)
 
 export default MergeSort;
