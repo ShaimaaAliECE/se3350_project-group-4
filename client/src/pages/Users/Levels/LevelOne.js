@@ -7,11 +7,10 @@ class LevelOne extends React.Component {
       //header
       <div className="">
         {/* header */}
-        <LevelHeader />
+        <LevelHeader level="level1"/>
       </div>
     );
   }
 }
-
 
 export default LevelOne;

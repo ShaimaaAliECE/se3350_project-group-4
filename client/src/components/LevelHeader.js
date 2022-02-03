@@ -1,9 +1,12 @@
 import React from "react";
 import PopupMenu from "components/PopupMenu";
 import Pause from "components/Pause";
+import Gameover from "components/Gameover";
+
 
 // header component for levels
 const LevelHeader = (props) => {
+  
   // open pause menu
   const toPause = () => {
     PopupMenu.open({
@@ -13,6 +16,11 @@ const LevelHeader = (props) => {
       }
     });
   };
+
+  // redirect to next level
+  const nextLevel = () => {
+
+  }
 
   return (
     <div>
@@ -36,7 +44,7 @@ const LevelHeader = (props) => {
               <span>LEVEL 1</span>
             </p>
             <p className="level-item has-text-centered">
-              <span>NEXT LEVEL</span>
+              <span  onClick={nextLevel} >NEXT LEVEL</span>
             </p>
           </nav>
         </div>

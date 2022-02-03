@@ -13,18 +13,30 @@ class Pause extends React.Component {
           <div className="container">
             <button
               className="m-btn button is-primary is-rounded is-large"
-              onClick={() => {this.props.close("adda")}}
+              onClick={() => {
+                this.props.close();
+              }}
             >
               <span className="title">Resume</span>
             </button>
           </div>
           <div className="container">
-            <button className="m-btn button is-primary is-rounded is-large">
+            <button
+              className="m-btn button is-primary is-rounded is-large"
+              onClick={() => {
+                this.props.close();
+              }}
+            >
               <span className="title">Restart</span>
             </button>
           </div>
           <div className="container">
-            <button className="m-btn button is-primary is-rounded is-large">
+            <button
+              className="m-btn button is-primary is-rounded is-large"
+              onClick={() => {
+                this.props.close();
+              }}
+            >
               <span className="title">Exit</span>
             </button>
           </div>
