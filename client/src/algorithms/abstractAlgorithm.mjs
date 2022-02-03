@@ -13,10 +13,6 @@ export default class Algorithm {
 
       this.array = array;
     }
-
-    //REMOVE THIS IF ALGORITHM IS WORKING
-
-    this.array = [3, 7, 6, 2, 1, 10, 7, 8, 9, 4];
   }
 }
 
