@@ -9,7 +9,6 @@ class LevelOne extends React.Component {
     this.state = {
       finishedPlaying: false,
       paused: true,
-      array: [8, 9, 2, 1, 3, 2],
     };
   }
 
@@ -17,13 +16,6 @@ class LevelOne extends React.Component {
     let current = this.state.paused;
     this.setState({ paused: !current });
   };
-
-  async componentDidMount() {
-    const url = "tbd";
-    const response = await fetch(url);
-    const array = await response.json();
-    this.setState({ array: array });
-  }
 
   render() {
     let split = [];
@@ -38,24 +30,25 @@ class LevelOne extends React.Component {
     let temp = [];
 
     for (let i = 0; i < split.length; i++) {
-      if (!temp.includes(split[i].charAt(0))) {
-        storageSplit.push([[split[i].slice(2)]]);
-        temp.push(split[i].charAt(0));
+      let index = split[i].charAt(0);
+      let data = split[i].slice(2);
+
+      if (!temp.includes(index)) {
+        storageSplit.push([[data]]);
+        temp.push(index);
       } else {
-        storageSplit[split[i].charAt(0)].push([split[i].slice(2)]);
+        storageSplit[index].push([data]);
       }
     }
 
     for (let i = 0; i < storageSplit[0][0][0].split(",").length; i++) {
-      // console.log(storageSplit[0][0][0].split(","));
       allElements.push(storageSplit[0][0][0].split(",")[i]);
     }
 
-    let cap = storageSplit.length - 1;
     temp = [];
 
-    for (let i = 0; i < merge.length; i++) {
-      let index = cap - merge[i].charAt(0);
+    for (let i = merge.length - 1; i >= 0; i--) {
+      let index = merge[i].charAt(0);
       let data = merge[i].slice(2);
 
       if (!temp.includes(index)) {
@@ -65,6 +58,10 @@ class LevelOne extends React.Component {
         storageMerge[index].push([data]);
       }
     }
+
+    storageMerge.reverse();
+    for (let i = 0; i < storageMerge.length; i++) storageMerge[i].reverse();
+
     let paused = this.state.paused;
     let button;
     if (paused) {
@@ -81,26 +78,22 @@ class LevelOne extends React.Component {
           <div className="sort"></div>
           <div className="alg-steps">
             <div>
-              <div className="tile is-ancestor is-vertical">
+              <div className="">
                 {storageSplit.map((element) => {
                   return (
-                    <div className="tile is-parent mt-6 mx-6">
+                    <div className="columns mx-6">
                       {element.map((innerElement) => {
-                        return (
-                          <div className="tile is-child has-text-centered box mx-5">
-                            {innerElement}
-                          </div>
-                        );
+                        return <div className="column box">{innerElement}</div>;
                       })}
                     </div>
                   );
                 })}
               </div>
-              <div className="tile is-ancestor is-vertical">
-                <div className="tile is-parent mt-6 mx-6">
+              <div className="">
+                <div className="columns mx-6">
                   {allElements.map((element) => {
                     return (
-                      <div className="tile is-child has-text-centered box mx-5">
+                      <div className="column box">
                         <div id="">{element}</div>
                       </div>
                     );
@@ -110,7 +103,7 @@ class LevelOne extends React.Component {
               <div className="tile is-ancestor is-vertical">
                 {storageMerge.map((element) => {
                   return (
-                    <div className="tile is-parent mt-6 mx-6">
+                    <div className="tile is-parent mt-2 mx-6">
                       {element.map((innerElement) => {
                         return (
                           <div className="tile is-child has-text-centered box mx-5">

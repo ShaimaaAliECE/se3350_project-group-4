@@ -6,6 +6,6 @@ import Router from "./Router";
 //scss files
 import "./css/PageStyles.scss";
 import "./css/ComponentStyles.scss";
-import "./css/theme.scss";
+import "./css/Theme.scss";
 
 ReactDOM.render(<Router />, document.getElementById("root"));
