@@ -70,12 +70,12 @@ MergeSort.prototype.merge = function (left, right, order, instruction) {
   return arr;
 };
 
-var sorting = new MergeSort(1, 20, 10);
-let order = [];
-let instruction = []
-let sorted = sorting.sort(sorting.getArray(), order, instruction, false);
+// var sorting = new MergeSort(1, 20, 10);
+// let order = [];
+// let instruction = []
+// let sorted = sorting.sort(sorting.getArray(), order, instruction, false);
 
-console.log(order);
-console.log(instruction)
+// console.log(order);
+// console.log(instruction)
 
 export default MergeSort;
