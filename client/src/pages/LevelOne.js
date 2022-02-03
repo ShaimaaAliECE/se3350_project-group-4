@@ -14,6 +14,8 @@ class LevelOne extends React.Component {
       boxIndex: [1, 2, 3, 4, 5, 4, 8, 9, 9, 5, 6, 7, 6, 10, 11, 11, 7, 3, 1],
       order: [],
     };
+    this.generateArray = this.generateArray.bind(this);
+    this.handleNextStep = this.handleNextStep.bind(this);
   }
 
   generateArray() {
@@ -21,13 +23,7 @@ class LevelOne extends React.Component {
     let merge = [];
     let currentOrd = [];
     var sorting = new MergeSort(1, 20, 10);
-    let sorted = sorting.sort(
-      sorting.getArray(),
-      split,
-      merge,
-      currentOrd,
-      false
-    );
+    sorting.sort(sorting.getArray(), split, merge, currentOrd, false);
 
     this.setState({ order: currentOrd });
   }
@@ -37,8 +33,14 @@ class LevelOne extends React.Component {
   }
 
   handleNextStep(e) {
-    let currentBox = this.state.boxes[this.state.step];
-    let currentVal = this.state.order[this.state.step];
+    const box = this.state.boxes.slice();
+    var step = this.state.step;
+    const currentBox = this.state.boxIndex[step] - 1;
+    box[currentBox] = this.state.order[step];
+    this.setState({
+      boxes: box,
+      step: step++,
+    });
   }
 
   componentDidMount() {

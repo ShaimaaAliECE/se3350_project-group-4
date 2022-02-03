@@ -17,7 +17,7 @@ MergeSort.prototype.sort = function (
 
   if (flag) {
     trackSplit.push(tracker + 1 + "|" + array[0]);
-    order.push(["" + array[0]]);
+    order.push("" + array[0]);
     flag = false;
   }
 
@@ -29,7 +29,6 @@ MergeSort.prototype.sort = function (
   //Track iteration
   trackSplit.push(tracker + "|" + array);
   order.push("" + array);
-  instruction.push("Split " + arr + " into " + arrR arrL)
   // console.log(tracker + "|" + array);
 
   //Half the given array
@@ -87,19 +86,19 @@ MergeSort.prototype.merge = function (left, right, trackMerge, order, tracker) {
 
   // console.log(arr);
   //Track iteration
-  order.push(arr);
+  order.push("" + arr);
   trackMerge.push(tracker + "|" + arr);
 
   return arr;
 };
 
-// var sorting = new MergeSort(1, 20, 10);
-// let split = [];
-// let merge = [];
-// let order = [];
-// let sorted = sorting.sort(sorting.getArray(), split, merge, order, false);
+var sorting = new MergeSort(1, 20, 10);
+let split = [];
+let merge = [];
+let order = [];
+let sorted = sorting.sort(sorting.getArray(), split, merge, order, false);
 
-// console.log(order);
+console.log(order);
 
 // let storageSplit = [];
 // let storageMerge = [];
