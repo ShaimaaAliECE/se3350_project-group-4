@@ -3,11 +3,6 @@ import LevelHeader from "../../../components/LevelHeader";
 import MergeSort from "../../../algorithms/mergeSort.mjs";
 import Block from "components/Block";
 
-
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-
-toast.configure();
 class LevelOne extends React.Component {
   constructor(props) {
     super(props);
@@ -26,8 +21,6 @@ class LevelOne extends React.Component {
   }
 
   generateArray() {
-    let split = [];
-    let merge = [];
     let currentOrd = [];
     let currentInstr = [];
     var sorting = new MergeSort(1, 20, 10);
@@ -72,17 +65,12 @@ class LevelOne extends React.Component {
   renderBlock(i) {
     return <Block value={this.state.boxes[i - 1]} />;
   }
-  
-  InfoNotify(KNOWLEDGE){
-    toast.info(KNOWLEDGE)
-  }
-  
 
   render() {
     return (
       <div className="">
         <div className="header mb-6">
-          <LevelHeader level="1"/>
+          <LevelHeader />
         </div>
         <div className="body">
           <div className="sort"></div>
@@ -138,4 +126,5 @@ function ResetButton(props) {
     </button>
   );
 }
+
 export default LevelOne;
