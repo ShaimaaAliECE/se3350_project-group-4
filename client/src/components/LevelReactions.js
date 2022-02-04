@@ -1,4 +1,3 @@
-import { Howl } from "howler";
 import React from "react";
 
 import { toast } from 'react-toastify';
