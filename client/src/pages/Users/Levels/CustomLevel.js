@@ -59,22 +59,31 @@ class CustomLevel extends React.Component {
                 name="nbox"
               />
             </label>
+            <br></br>
+            <br></br>
             <label>
               Upper Limit:
               <input
                 type="number"
+                max="1000"
                 defaultValue={this.state.upperLimit}
                 name="ulim"
               />
             </label>
+            <br></br>
+            <br></br>
             <label>
               Lower Limit:
               <input
                 type="number"
+                max={this.state.upperLimit}
+                min="0"
                 defaultValue={this.state.lowerLimit}
                 name="llim"
               />
             </label>
+            <br></br>
+            <br></br>
             <input type="Submit" />
           </form>
         </Modal>

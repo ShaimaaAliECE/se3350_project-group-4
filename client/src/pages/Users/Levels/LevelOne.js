@@ -26,8 +26,6 @@ class LevelOne extends React.Component {
   }
 
   generateArray() {
-    let split = [];
-    let merge = [];
     let currentOrd = [];
     let currentInstr = [];
     var sorting = new MergeSort(1, 20, 10);
@@ -139,4 +137,5 @@ function ResetButton(props) {
     </button>
   );
 }
+
 export default LevelOne;
