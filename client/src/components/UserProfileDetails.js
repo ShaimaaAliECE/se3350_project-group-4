@@ -10,7 +10,7 @@ export default function UserProfileDetails(props) {
   };
 
   return (
-    <div className="user-profile">
+    <div className="form-content">
       <p className="title has-text-centered has-text-light">User Profile</p>
       <fieldset disabled>
         {/* User name */}

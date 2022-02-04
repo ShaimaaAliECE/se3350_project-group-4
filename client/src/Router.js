@@ -57,11 +57,7 @@ const Router = () => (
       <RequireLoginRoute path="/level5" component={LevelFive} />
 
       {/* redirect to Custom Level page */}
-      <Route path="/custom" component={CustomLevel} />
-
-      <Route path="/LevelOne" component={LevelOne} />
-
-      <Route path="/LevelTwo" component={LevelTwo} />
+      <RequireLoginRoute path="/custom" component={CustomLevel} />
 
       {/* redirect to 404 page */}
       <Route component={NotFound} />
