@@ -2,6 +2,7 @@ import React from "react";
 
 //user profile component
 export default function UserProfileDetails(props) {
+  
   // logout method
   const logout = () => {
     global.auth.logout();
