@@ -6,8 +6,7 @@ import Block from "components/Block";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-import RightSound from 'client/src/audioclips/RightSound.mp3';
-
+import RightSound from "client/src/audioclips/RightSound.mp3";
 
 toast.configure();
 class LevelOne extends React.Component {
@@ -26,6 +25,7 @@ class LevelOne extends React.Component {
     this.handleNextStep = this.handleNextStep.bind(this);
     this.handleReset = this.handleReset.bind(this);
     this.InfoNotify = this.InfoNotify.bind(this);
+    this.Soundplayer = this.Soundplayer.bind(this);
   }
 
   generateArray() {
@@ -83,7 +83,7 @@ class LevelOne extends React.Component {
     toast.info(KNOWLEDGE);
   }
 
-  Soundplayer(){
+  Soundplayer() {
     new Audio(RightSound).play();
   }
 
