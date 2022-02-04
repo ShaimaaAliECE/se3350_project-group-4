@@ -23,6 +23,7 @@ class LevelOne extends React.Component {
     this.handleNextStep = this.handleNextStep.bind(this);
     this.handleReset = this.handleReset.bind(this);
     this.InfoNotify = this.InfoNotify.bind(this);
+    this.Soundplayer = this.Soundplayer.bind(this);
   }
 
   generateArray() {
