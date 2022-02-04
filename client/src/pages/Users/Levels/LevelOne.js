@@ -3,6 +3,11 @@ import LevelHeader from "../../../components/LevelHeader";
 import MergeSort from "../../../algorithms/mergeSort.mjs";
 import Block from "components/Block";
 
+
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+toast.configure();
 class LevelOne extends React.Component {
   constructor(props) {
     super(props);
@@ -67,6 +72,11 @@ class LevelOne extends React.Component {
   renderBlock(i) {
     return <Block value={this.state.boxes[i - 1]} />;
   }
+  
+  InfoNotify(KNOWLEDGE){
+    toast.info(KNOWLEDGE)
+  }
+  
 
   render() {
     return (
@@ -128,5 +138,4 @@ function ResetButton(props) {
     </button>
   );
 }
-
 export default LevelOne;
