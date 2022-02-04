@@ -8,7 +8,7 @@ import { ToastContainer } from "react-toastify";
 //scss files
 import "./css/PageStyles.scss";
 import "./css/ComponentStyles.scss";
-import "./css/theme.scss";
+import "./css/Theme.scss";
 
 // css
 import "react-toastify/dist/ReactToastify.css";
