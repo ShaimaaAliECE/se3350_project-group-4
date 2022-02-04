@@ -1,16 +1,16 @@
 //entry point js
 import React from "react";
 import ReactDOM from "react-dom";
-import Router from "./Router";
+import Router from "Router";
 import "utils/authorization";
 import { ToastContainer } from "react-toastify";
 
 //scss files
-import "./css/PageStyles.scss";
-import "./css/ComponentStyles.scss";
-import "./css/Theme.scss";
+import "css/PageStyles.scss";
+import "css/ComponentStyles.scss";
+import "css/Theme.scss";
 
-//  css
+// css
 import "react-toastify/dist/ReactToastify.css";
 
 ReactDOM.render(
