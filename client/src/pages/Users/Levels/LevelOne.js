@@ -12,10 +12,10 @@ class LevelOne extends React.Component {
     super(props);
 
     this.state = {
-      finishedPlaying: false,
+      playButton: true,
       step: 0,
       instuctions: [],
-      boxes: Array(11).fill(""),
+      boxes: Array(11).fill(null),
       boxIndex: [1, 2, 4, 4, 5, 8, 9, 9, 5, 2, 3, 6, 6, 7, 10, 11, 11, 7, 3, 1],
       order: [],
     };
@@ -42,7 +42,7 @@ class LevelOne extends React.Component {
   }
 
   handleReset(e) {
-    const box = Array(11).fill("");
+    const box = Array(11).fill(null);
     let step = 0;
     this.setState({
       step: step,
@@ -84,36 +84,33 @@ class LevelOne extends React.Component {
           <LevelHeader level="1" />
         </div>
         <div className="body">
-          <div className="sort"></div>
           <div className="alg-steps">
-            <div>
-              <div className="box-surround">
-                <div id="top">{this.renderBlock(1)}</div>
-                <div id="second">
-                  {this.renderBlock(2)}
-                  {this.renderBlock(3)}
-                </div>
-                <div id="third">
-                  {this.renderBlock(4)}
-                  {this.renderBlock(5)}
-                  {this.renderBlock(6)}
-                  {this.renderBlock(7)}
-                </div>
-                <div id="third">
-                  <Block />
-                  <Block />
-                  {this.renderBlock(8)}
-                  {this.renderBlock(9)}
-                  <Block />
-                  <Block />
-                  {this.renderBlock(10)}
-                  {this.renderBlock(11)}
-                </div>
-                <div>
-                  <NextButton onClick={this.handleNextStep} />
-                  <ResetButton onClick={this.handleReset} />
-                </div>
+            <div className="box-surround">
+              <div id="top">{this.renderBlock(1)}</div>
+              <div id="second">
+                {this.renderBlock(2)}
+                {this.renderBlock(3)}
               </div>
+              <div id="third">
+                {this.renderBlock(4)}
+                {this.renderBlock(5)}
+                {this.renderBlock(6)}
+                {this.renderBlock(7)}
+              </div>
+              <div id="third">
+                <Block />
+                <Block />
+                {this.renderBlock(8)}
+                {this.renderBlock(9)}
+                <Block />
+                <Block />
+                {this.renderBlock(10)}
+                {this.renderBlock(11)}
+              </div>
+            </div>
+            <div className="container">
+              <NextButton onClick={this.handleNextStep} />
+              <ResetButton onClick={this.handleReset} />
             </div>
           </div>
         </div>
@@ -124,7 +121,7 @@ class LevelOne extends React.Component {
 
 function NextButton(props) {
   return (
-    <button className="button is-primary" onClick={props.onClick}>
+    <button className="button is-primary is-large mx-2" onClick={props.onClick}>
       Next Step
     </button>
   );
@@ -132,7 +129,7 @@ function NextButton(props) {
 
 function ResetButton(props) {
   return (
-    <button className="button is-primary" onClick={props.onClick}>
+    <button className="button is-primary is-large mx-2" onClick={props.onClick}>
       Reset
     </button>
   );
