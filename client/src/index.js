@@ -1,7 +1,7 @@
 //entry point js
 import React from "react";
 import ReactDOM from "react-dom";
-import Router from "./Router";
+import Router from "Router";
 import "utils/authorization";
 import { ToastContainer } from "react-toastify";
 
@@ -10,7 +10,7 @@ import "./css/PageStyles.scss";
 import "./css/ComponentStyles.scss";
 import "./css/theme.scss";
 
-//  css
+// css
 import "react-toastify/dist/ReactToastify.css";
 
 ReactDOM.render(
