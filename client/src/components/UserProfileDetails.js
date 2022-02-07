@@ -2,7 +2,6 @@ import React from "react";
 
 //user profile component
 export default function UserProfileDetails(props) {
-  
   // logout method
   const logout = () => {
     global.auth.logout();
@@ -47,7 +46,11 @@ export default function UserProfileDetails(props) {
       <div className="field is-grouped is-grouped-centered">
         {/* logout button */}
         <div className="control">
-          <button className="button is-danger is-medium" type="button" onClick={logout}>
+          <button
+            className="button is-danger is-medium"
+            type="button"
+            onClick={logout}
+          >
             Logout
           </button>
         </div>

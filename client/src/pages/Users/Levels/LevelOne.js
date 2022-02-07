@@ -1,10 +1,10 @@
 import React from "react";
-import LevelHeader from "../../../components/LevelHeader";
-import MergeSort from "../../../algorithms/mergeSort.mjs";
+import LevelHeader from "components/LevelHeader";
+import MergeSort from "algorithms/mergeSort.mjs";
 import Block from "components/Block";
-
+import StepsScroller from "components/StepsScroller";
 import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+
 
 toast.configure();
 class LevelOne extends React.Component {
@@ -14,7 +14,11 @@ class LevelOne extends React.Component {
     this.state = {
       playButton: true,
       step: 0,
+<<<<<<< Updated upstream
       instuctions: [], //string instructions
+=======
+      instructions: [],
+>>>>>>> Stashed changes
       boxes: Array(11).fill(null),
       boxIndex: [1, 2, 4, 4, 5, 8, 9, 9, 5, 2, 3, 6, 6, 7, 10, 11, 11, 7, 3, 1],
       order: [],
@@ -34,7 +38,7 @@ class LevelOne extends React.Component {
     //retrieves array of instructions and order of steps
     this.setState({
       order: currentOrd,
-      instuctions: currentInstr,
+      instructions: currentInstr,
     });
   }
 
@@ -50,6 +54,9 @@ class LevelOne extends React.Component {
     this.setState({
       step: step,
       boxes: box,
+      lineOne: null,
+      lineTwo: null,
+      lineThree: null,
     });
   }
 
@@ -60,14 +67,23 @@ class LevelOne extends React.Component {
     const currentBox = this.state.boxIndex[step] - 1;
     box[currentBox] = this.state.order[step];
     // console.log(box);
+<<<<<<< Updated upstream
     const instr = this.state.instuctions[step]; //retrieves instruction at current step
     this.InfoNotify(instr);
+=======
+    // const instr = this.state.instructions[step];
+    // this.InfoNotify(instr);
+>>>>>>> Stashed changes
     step++;
     this.setState({
       boxes: box,
       step: step,
+      lineOne: this.state.instructions[step - 1],
+      lineTwo: this.state.instructions[step],
+      lineThree: this.state.instructions[step + 1],
     });
   }
+
 
   componentDidMount() {
     this.generateArray();
@@ -80,6 +96,8 @@ class LevelOne extends React.Component {
   InfoNotify(KNOWLEDGE) {
     toast.info(KNOWLEDGE);
   }
+
+  
 
   render() {
     return (
@@ -112,6 +130,9 @@ class LevelOne extends React.Component {
                 {this.renderBlock(11)}
               </div>
             </div>
+
+            <StepsScroller lineOne={this.state.lineOne} lineTwo={this.state.lineTwo} lineThree={this.state.lineThree}/>
+
             <div className="container">
               <NextButton onClick={this.handleNextStep} />
               <ResetButton onClick={this.handleReset} />
