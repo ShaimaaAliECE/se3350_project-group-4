@@ -14,7 +14,7 @@ class LevelOne extends React.Component {
     this.state = {
       playButton: true,
       step: 0,
-      instuctions: [],
+      instuctions: [], //string instructions
       boxes: Array(11).fill(null),
       boxIndex: [1, 2, 4, 4, 5, 8, 9, 9, 5, 2, 3, 6, 6, 7, 10, 11, 11, 7, 3, 1],
       order: [],
@@ -25,22 +25,25 @@ class LevelOne extends React.Component {
     this.InfoNotify = this.InfoNotify.bind(this);
   }
 
+  //creates array at the rendering of the class
   generateArray() {
     let currentOrd = [];
     let currentInstr = [];
     var sorting = new MergeSort(1, 20, 10);
     sorting.sort(sorting.getArray(), currentOrd, currentInstr, false);
-
+    //retrieves array of instructions and order of steps
     this.setState({
       order: currentOrd,
       instuctions: currentInstr,
     });
   }
 
+  //sets order
   setOrder(val) {
     this.setState({ order: val });
   }
 
+  //reset button handling
   handleReset(e) {
     const box = Array(11).fill(null);
     let step = 0;
@@ -50,13 +53,14 @@ class LevelOne extends React.Component {
     });
   }
 
+  //handles next step
   handleNextStep(e) {
     const box = this.state.boxes.slice();
-    var step = this.state.step;
+    var step = this.state.step; //block order to retrieve
     const currentBox = this.state.boxIndex[step] - 1;
     box[currentBox] = this.state.order[step];
     // console.log(box);
-    const instr = this.state.instuctions[step];
+    const instr = this.state.instuctions[step]; //retrieves instruction at current step
     this.InfoNotify(instr);
     step++;
     this.setState({
@@ -68,7 +72,7 @@ class LevelOne extends React.Component {
   componentDidMount() {
     this.generateArray();
   }
-
+  //rendering block with the state of the box
   renderBlock(i) {
     return <Block value={this.state.boxes[i - 1]} />;
   }
