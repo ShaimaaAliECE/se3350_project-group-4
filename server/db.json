@@ -1,21 +1,25 @@
 {
   "level1": [
     {
+      "id": 1,
       "time": "894",
       "accuracy": 100,
       "username": "player12"
     },
     {
+      "id": 2,
       "time": "221",
       "accuracy": 33,
       "username": "admin32"
     },
     {
+      "id": 3,
       "time": "654",
       "accuracy": 66,
       "username": "admin5"
     },
     {
+      "id": 4,
       "time": "1234",
       "accuracy": 33,
       "username": "player13"
@@ -24,26 +28,31 @@
 
   "level2": [
     {
+      "id": 1,
       "time": "422",
       "accuracy": 66,
       "username": "player"
     },
     {
+      "id": 2,
       "time": "321",
       "accuracy": 100,
       "username": "admin"
     },
     {
+      "id": 3,
       "time": "375",
       "accuracy": 100,
       "username": "admin0"
     },
     {
+      "id": 4,
       "time": "902",
       "accuracy": 100,
       "username": "player1"
     },
     {
+      "id": 5,
       "time": "902",
       "accuracy": 66,
       "username": "player4"
@@ -52,21 +61,25 @@
 
   "level3": [
     {
+      "id": 1,
       "time": "422",
       "accuracy": 100,
       "username": "player21"
     },
     {
+      "id": 2,
       "time": "321",
       "accuracy": 33,
       "username": "admin24"
     },
     {
+      "id": 3,
       "time": "375",
       "accuracy": 33,
       "username": "admin12"
     },
     {
+      "id": 4,
       "time": "902",
       "accuracy": 100,
       "username": "player32"

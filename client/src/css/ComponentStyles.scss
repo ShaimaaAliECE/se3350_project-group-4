@@ -3,16 +3,19 @@
   height: 50px;
   color: #fff;
   line-height: 55px;
+
   .grid {
     max-width: 90%;
     margin: auto;
     display: flex;
+
     & a {
       display: inline-block;
       color: #fff;
       padding: 0 5px;
       transition: all 0.3s;
       font-size: 20px;
+
       &:hover {
         color: rgb(64, 223, 159);
       }
@@ -36,15 +39,18 @@
   color: #fff;
   line-height: 55px;
   font-size: 20px;
+
   .heart {
     font-size: x-large;
     color: rgb(194, 79, 79);
     margin-right: 5px;
   }
+
   .pause {
     font-size: x-large;
     padding: 1em;
   }
+
   .next-lv {
     cursor: pointer;
     -moz-user-select: none;
@@ -52,6 +58,7 @@
     -webkit-user-select: none;
     -ms-user-select: none;
     user-select: none;
+
     &:hover {
       color: rgb(64, 223, 159);
       font-weight: bold;
@@ -63,19 +70,23 @@
 .panel-wrapper {
   position: relative;
   z-index: 99;
+
   .panel {
     transition: all 0.3s ease-in-out;
     transform: translateX(40rem);
   }
+
   &.active {
     .over-layer {
       display: block;
     }
+
     .window {
       transform: translateX(0);
     }
   }
 }
+
 .over-layer {
   display: none;
   position: fixed;
@@ -86,6 +97,7 @@
   background: rgba(255, 255, 255, 0.2);
   z-index: 9;
 }
+
 .window {
   width: 35rem;
   position: fixed;
@@ -97,9 +109,11 @@
   transform: translateX(35rem);
   transition: all 0.3s ease-in-out;
   z-index: 99;
+
   .head {
     padding: 0.5rem;
     text-align: right;
+
     .close {
       font-size: 28px;
       font-weight: 600;
@@ -117,26 +131,32 @@
   height: 44px;
   color: #fff;
   line-height: 44px;
+
   .grid {
     max-width: 90%;
     margin: auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
+
     .user-profile-group {
       margin-top: 1em;
+
       .user-icon {
         border-radius: 50%;
         height: 44px;
         width: 44px;
         margin-right: 8px;
       }
+
       .user-initial {
         font-weight: bold;
         font-size: 1.5em;
       }
+
       .profile {
         font-size: larger;
+
         &:hover {
           color: rgb(64, 223, 159);
           cursor: pointer;
@@ -149,8 +169,10 @@
 // Pause menu Components
 .menu-content {
   padding: 1rem 2rem;
+
   .btns {
     margin-top: 80%;
+
     .m-btn {
       width: 480px;
       margin-bottom: 50px;
@@ -200,16 +222,18 @@
   align-items: center;
 }
 
-//level one button
 
 //Steps Scroller Component
 .steps-wrapper {
   margin: 0 auto;
   width: 850px;
   height: 300px;
-  -webkit-user-select: none; /* Chrome all / Safari all */
-  -moz-user-select: none; /* Firefox all */
-  -ms-user-select: none; /* IE 10+ */
+  -webkit-user-select: none;
+  /* Chrome all / Safari all */
+  -moz-user-select: none;
+  /* Firefox all */
+  -ms-user-select: none;
+  /* IE 10+ */
   user-select: none;
   padding: 2.5em;
 
@@ -217,17 +241,21 @@
     font-size: 2.2em;
     font-weight: bold;
   }
+
   .steps-list {
     color: rgb(255, 255, 255);
     font-size: 1.5em;
     line-height: 44px;
+
     .step1 {
       font-weight: bold;
       text-shadow: 2px 2px 3px #1c8d44;
     }
+
     .step2 {
       opacity: 30%;
     }
+
     .step3 {
       opacity: 9%;
     }
@@ -239,4 +267,36 @@
   position: fixed;
   left: 50%;
   transform: translate(-50%, 0);
+}
+
+// Analytics ToolBar 
+.tool-box {
+  max-width: 90%;
+  margin: auto;
+  border-bottom: 3px solid rgb(64,223,159);
+  padding: 2rem 0.2rem 1.5rem 0.2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  .logo-text {
+    font-size: 2rem;
+    color: rgb(64,223,159);
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+  .search-box {
+    .search-input {
+      width: 30rem;
+      outline: 0;
+    }
+  }
+  .cart-box {
+    cursor: pointer;
+    display: inline-block;
+    color: rgb(64,223,159);
+    font-size: 1.5rem;
+    .cart-num {
+      margin-right: 5px;
+    }
+  }
 }
