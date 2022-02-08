@@ -5,12 +5,10 @@ import Block from "components/Block";
 import StepsScroller from "components/StepsScroller";
 import { toast } from "react-toastify";
 
-
 toast.configure();
 class LevelOne extends React.Component {
   constructor(props) {
     super(props);
-
     this.state = {
       playButton: true,
       step: 0,
@@ -73,7 +71,6 @@ class LevelOne extends React.Component {
     });
   }
 
-
   componentDidMount() {
     this.generateArray();
   }
@@ -85,8 +82,6 @@ class LevelOne extends React.Component {
   InfoNotify(KNOWLEDGE) {
     toast.info(KNOWLEDGE);
   }
-
-  
 
   render() {
     return (
@@ -120,12 +115,13 @@ class LevelOne extends React.Component {
               </div>
             </div>
 
-            <StepsScroller lineOne={this.state.lineOne} lineTwo={this.state.lineTwo} lineThree={this.state.lineThree}/>
-
-            <div className="container">
-              <NextButton onClick={this.handleNextStep} />
-              <ResetButton onClick={this.handleReset} />
-            </div>
+            <StepsScroller
+              lineOne={this.state.lineOne}
+              lineTwo={this.state.lineTwo}
+              lineThree={this.state.lineThree}
+              handleReset={this.handleReset}
+              handleNextStep={this.handleNextStep}
+            />
           </div>
         </div>
       </div>
@@ -133,20 +129,5 @@ class LevelOne extends React.Component {
   }
 }
 
-function NextButton(props) {
-  return (
-    <button className="button is-primary is-large mx-2" onClick={props.onClick}>
-      Next Step
-    </button>
-  );
-}
-
-function ResetButton(props) {
-  return (
-    <button className="button is-primary is-large mx-2" onClick={props.onClick}>
-      Reset
-    </button>
-  );
-}
 
 export default LevelOne;

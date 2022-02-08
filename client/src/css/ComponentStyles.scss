@@ -204,27 +204,38 @@
 
 //Steps Scroller Component
 .steps-wrapper {
-  width: 60%;
-  margin: auto;
+  margin: 0 auto;
+  width: 850px;
+  -webkit-user-select: none; /* Chrome all / Safari all */
+  -moz-user-select: none; /* Firefox all */
+  -ms-user-select: none; /* IE 10+ */
+  user-select: none;
+  border: 3px dotted ;
+  padding: 2.5em;
   .steps-header {
     font-size: 2.2em;
     font-weight: bold;
   }
-  .steps-list{
-    color:rgb(255,255,255);
-    font-size: 1.5em;
+  .steps-list {
+    color: rgb(255, 255, 255);
+    font-size: 1.2em;
     line-height: 44px;
-    display: inline;
     .step1 {
       font-weight: bold;
       text-shadow: 2px 2px 3px #000000;
     }
     .step2 {
-      opacity: 30%;
-
+      opacity: 20%;
     }
-    .step3{
-      opacity: 10%;
+    .step3 {
+      opacity: 9%;
     }
   }
+}
+
+.control-btns {
+  margin-top: 4em;
+  position: fixed;
+  left: 50%;
+  transform: translate(-50%, 0);
 }
