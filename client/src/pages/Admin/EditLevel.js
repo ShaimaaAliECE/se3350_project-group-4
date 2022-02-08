@@ -1,11 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import PopupMenu from "components/PopupMenu";
-import EditLevelOneForm from "pages/Admin/EditLevelOneForm";
-import EditLevelTwoForm from "pages/Admin/EditLevelTwoForm";
-import EditLevelThreeForm from "pages/Admin/EditLevelThreeForm";
-import EditLevelFourForm from "pages/Admin/EditLevelFourForm";
-import EditLevelFiveForm from "pages/Admin/EditLevelFiveForm";
+import EditLevelOneForm from "pages/Admin/EditLevelForms/EditLevelOneForm";
+import EditLevelTwoForm from "pages/Admin/EditLevelForms/EditLevelTwoForm";
+import EditLevelThreeForm from "pages/Admin/EditLevelForms/EditLevelThreeForm";
+import EditLevelFourForm from "pages/Admin/EditLevelForms/EditLevelFourForm";
+import EditLevelFiveForm from "pages/Admin/EditLevelForms/EditLevelFiveForm";
 
 const EditLevel = (props) => {
   // edit level 1 function
