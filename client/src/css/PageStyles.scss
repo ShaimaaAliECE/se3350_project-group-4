@@ -113,9 +113,22 @@
 
 // Analytics Page
 .analytics-wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  height: 100vh;
+  max-width: 80%;
+  margin: auto;
+  min-height: calc(100vh - 50px);
+
+  .level-container {
+    padding: 0.8rem;
+    cursor: pointer;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+    .level-btn {
+      width: 90%;
+      font-weight: bold;
+      font-size: 1.1rem;
+    }
+  }
+
 }

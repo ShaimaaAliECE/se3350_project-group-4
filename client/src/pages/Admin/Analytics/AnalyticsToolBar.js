@@ -55,10 +55,10 @@ class AnalyticsToolBar extends React.Component {
           </div>
         </div>
         {/* level select */}
-        <div to="/edit" className="cart-box">
+        <Link to="/edit" className="quit-box">
         <span className="cart-num">Back</span>
         <i class="fas fa-sign-out-alt"></i>
-        </div>
+        </Link>
       </div>
     );
   }

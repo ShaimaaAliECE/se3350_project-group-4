@@ -14,7 +14,7 @@ import LevelThree from "pages/Users/Levels/LevelThree";
 import LevelFour from "pages/Users/Levels/LevelFour";
 import LevelFive from "pages/Users/Levels/LevelFive";
 import CustomLevel from "pages/Users/Levels/CustomLevel";
-import Analytics from "pages/Admin/Analytics";
+import Analytics from "pages/Admin/Analytics/Analytics";
 
 //router component for switching between pages
 const Router = () => (

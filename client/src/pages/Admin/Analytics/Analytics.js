@@ -1,5 +1,5 @@
 import React from "react";
-import ToolBar from "pages/Admin/AnalyticsToolBar";
+import ToolBar from "pages/Admin/Analytics/AnalyticsToolBar";
 
 class Analytics extends React.Component {
   render() {
@@ -7,11 +7,34 @@ class Analytics extends React.Component {
       <div>
         <ToolBar />
         <div className="analytics-wrapper">
-          {/* view controller */}
-          
+          {/* choose which level to show */}
+          <div className="level-container">
+            {/* each line has 12 slots */}
+            <div className="columns">
+              <div className="column is-2">
+                <div className="level-btn button is-primary">Level 1</div>
+              </div>
+              <div className="column is-2">
+                <div className="level-btn  button is-primary">Level 2</div>
+              </div>
+              <div className="column is-2">
+                <div className="level-btn button is-primary">Level 3</div>
+              </div>
+              <div className="column is-2">
+                <div className="level-btn button is-primary">Level 4</div>
+              </div>
+              <div className="column is-2">
+                <div className="level-btn button is-primary">Level 5</div>
+              </div>
+              <div className="column is-2">
+                <div className="level-btn  button is-primary">Custom</div>
+              </div>
+            </div>
+          </div>
+
           {/* table */}
-          <div class="table-container">
-            <table class="table">
+          <div className="table-container">
+            <table className="table">
               {/* table */}
               <thead>
                 <tr>
@@ -31,7 +54,7 @@ class Analytics extends React.Component {
               </thead>
               {/* table footer */}
               <tfoot>
-              <tr>
+                <tr>
                   <th>
                     <abbr title="Position">ID</abbr>
                   </th>
@@ -52,9 +75,7 @@ class Analytics extends React.Component {
                 {/* row */}
                 <tr>
                   <th>1</th>
-                  <td>
-                    admin0
-                  </td>
+                  <td>admin0</td>
                   <td>33</td>
                   <td>18.55</td>
                 </tr>
