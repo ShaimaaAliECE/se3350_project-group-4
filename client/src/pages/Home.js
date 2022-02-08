@@ -2,10 +2,11 @@ import React from "react";
 import { Link, withRouter } from "react-router-dom";
 import styled from "styled-components";
 import { motion } from "framer-motion";
-import PlanetOne from "assets/svgs/0.svg";
-import PlanetTwo from "assets/svgs/8.svg";
-import PlanetThree from "assets/svgs/7.svg";
-import PlanetFour from "assets/svgs/4.svg";
+import BlockOne from "assets/svgs/0.svg";
+import BlockTwo from "assets/svgs/8.svg";
+import BlockThree from "assets/svgs/7.svg";
+import BlockFour from "assets/svgs/4.svg";
+import BlockFive from "assets/svgs/3.svg";
 
 // buttons with motion
 const Btn = styled(motion.div)`
@@ -22,6 +23,7 @@ const Btn = styled(motion.div)`
   text-align: center;
 `;
 
+// page container
 const Container = styled.div`
   grid-template-columns: 1fr 1fr;
   height: 100vh;
@@ -73,7 +75,7 @@ const SVG = styled(motion.img)`
   max-width: 150px;
   max-height: 150px;
   border: 10px solid rgba(255, 255, 255);
-  padding: 0.5rem;
+  padding: 2rem;
 `;
 
 // right side items
@@ -89,15 +91,19 @@ const RightColumn = styled.div`
   }
   ${SVG}:nth-child(2) {
     top: 170px;
-    right: 10px;
+    right: 5px;
   }
   ${SVG}:nth-child(3) {
-    top: 350px;
+    top: 450px;
     left: 50px;
   }
   ${SVG}:nth-child(4) {
     bottom: 100px;
     right: 75px;
+  }
+  ${SVG}:nth-child(5) {
+    bottom: 80px;
+    right: 375px;
   }
 `;
 
@@ -111,7 +117,7 @@ const Home = () => {
   return (
     <Section>
       <Container>
-        <LeftColumn>
+        <LeftColumn className="mr-6">
           <motion.h1
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -174,21 +180,20 @@ const Home = () => {
             </Link>
           </div>
         </LeftColumn>
-        <RightColumn>
-          <a href="https://youtu.be/XaqR3G_NVoo">
-            <SVG
-              src={PlanetOne}
-              alt="icon1"
-              whileTap={{ scale: 0.9 }}
-              drag={true}
-              dragConstraints={{ left: -250, right: 250, top: 0, bottom: 50 }}
-              initial={{ opacity: 0, y: -100 }}
-              animate={{ opacity: 1, y: 0, transition: { duration: 1 } }}
-            />
-          </a>
+
+        <RightColumn className="ml-6">
+          <SVG
+            src={BlockOne}
+            alt="icon1"
+            whileTap={{ scale: 0.9 }}
+            drag={true}
+            dragConstraints={{ left: -250, right: 250, top: 0, bottom: 50 }}
+            initial={{ opacity: 0, y: -100 }}
+            animate={{ opacity: 1, y: 0, transition: { duration: 1 } }}
+          />
 
           <SVG
-            src={PlanetTwo}
+            src={BlockTwo}
             alt="icon2"
             whileTap={{ scale: 0.6 }}
             drag={true}
@@ -197,7 +202,7 @@ const Home = () => {
             animate={{ opacity: 1, x: 0, transition: { duration: 1 } }}
           />
           <SVG
-            src={PlanetThree}
+            src={BlockThree}
             alt="icon3"
             whileTap={{ scale: 0.8 }}
             drag={true}
@@ -206,11 +211,21 @@ const Home = () => {
             animate={{ opacity: 1, x: 0, transition: { duration: 1 } }}
           />
           <SVG
-            src={PlanetFour}
+            src={BlockFour}
             alt="icon4"
             whileTap={{ scale: 0.9 }}
             drag={true}
-            dragConstraints={{ left: 0, right: 0, top: 0, bottom: 0 }}
+            dragConstraints={{ left: -50, right: 80, top: -150, bottom: 70 }}
+            initial={{ opacity: 0, y: 100 }}
+            animate={{ opacity: 1, y: 0, transition: { duration: 1 } }}
+          />
+
+          <SVG
+            src={BlockFive}
+            alt="icon5"
+            whileTap={{ scale: 0.4 }}
+            drag={true}
+            dragConstraints={{ top: -25, right: 125, bottom: 50, left: -125 }}
             initial={{ opacity: 0, y: 100 }}
             animate={{ opacity: 1, y: 0, transition: { duration: 1 } }}
           />
