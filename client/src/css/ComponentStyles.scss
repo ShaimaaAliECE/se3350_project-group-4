@@ -273,30 +273,52 @@
 .tool-box {
   max-width: 90%;
   margin: auto;
-  border-bottom: 3px solid rgb(64,223,159);
+  border-bottom: 3px solid rgb(64, 223, 159);
   padding: 2rem 0.2rem 1.5rem 0.2rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
+
   .logo-text {
     font-size: 2rem;
-    color: rgb(64,223,159);
+    color: rgb(64, 223, 159);
     font-weight: 600;
     text-transform: uppercase;
   }
+
   .search-box {
     .search-input {
       width: 30rem;
       outline: 0;
     }
   }
+
   .quit-box {
     cursor: pointer;
     display: inline-block;
-    color: rgb(64,223,159);
+    color: rgb(64, 223, 159);
     font-size: 1.5rem;
+
     .cart-num {
       margin-right: 5px;
     }
   }
+}
+
+// Analytics Item component
+.rank {
+  font-weight: 800;
+  display: block;
+  padding: 0 8px;
+  cursor: pointer;
+  color:rgb(194,79,79);
+
+}
+
+.a-item-name {
+  width: 400px;
+  padding:0px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }

@@ -1,6 +1,6 @@
 import React from "react";
 import ToolBar from "pages/Admin/Analytics/AnalyticsToolBar";
-
+import AnalyticsItem from "pages/Admin/Analytics/AnalyticsItem";
 class Analytics extends React.Component {
   render() {
     return (
@@ -32,55 +32,67 @@ class Analytics extends React.Component {
             </div>
           </div>
 
-          {/* table */}
-          <div className="table-container">
-            <table className="table">
-              {/* table */}
-              <thead>
-                <tr>
-                  <th>
-                    <abbr title="Position">ID</abbr>
-                  </th>
-                  <th>
-                    <abbr title="username">Username</abbr>
-                  </th>
-                  <th>
-                    <abbr title="Accuracy">Accuracy</abbr>
-                  </th>
-                  <th>
-                    <abbr title="Time">Best Time</abbr>
-                  </th>
-                </tr>
-              </thead>
-              {/* table footer */}
-              <tfoot>
-                <tr>
-                  <th>
-                    <abbr title="Position">ID</abbr>
-                  </th>
-                  <th>
-                    <abbr title="username">Username</abbr>
-                  </th>
-                  <th>
-                    <abbr title="Accuracy">Accuracy</abbr>
-                  </th>
-                  <th>
-                    <abbr title="Time">Best Time</abbr>
-                  </th>
-                </tr>
-              </tfoot>
+          {/* user list */}
+          <nav className="level mt-5 has-text-light">
+            <div className="level-item has-text-centered">
+              <div>
+                <p class="heading">Level</p>
+                <p class="title a-stat">1</p>
+              </div>
+            </div>
+            <div class="level-item has-text-centered">
+              <div>
+                <p class="heading">Times Completed</p>
+                <p class="title a-stat">321</p>
+              </div>
+            </div>
+            <div class="level-item has-text-centered">
+              <div>
+                <p class="heading">Fastest Time</p>
+                <p class="title a-stat">5:21</p>
+              </div>
+            </div>
+            <div class="level-item has-text-centered">
+              <div>
+                <p class="heading">Average Accuracy</p>
+                <p class="title a-stat">73%</p>
+              </div>
+            </div>
+          </nav>
 
-              {/* table body */}
-              <tbody>
-                {/* row */}
-                <tr>
-                  <th>1</th>
-                  <td>admin0</td>
-                  <td>33</td>
-                  <td>18.55</td>
-                </tr>
-              </tbody>
-            </table>
+          <div className="items-list">
+            {/* table header */}
+            <div className="columns is-vcentered has-text-dark has-background-primary">
+              <div className="column">
+                <strong>Rank</strong>
+              </div>
+
+              <div className="column ">
+                <strong>Username</strong>
+              </div>
+
+              <div className="column">
+                <strong>Time</strong>
+              </div>
+
+              <div className="column">
+                <strong>Accuracy</strong>
+              </div>
+
+              <div className="column">
+                <strong>Completion Date</strong>
+              </div>
+            </div>
+            <AnalyticsItem />
+            <AnalyticsItem />
+            <AnalyticsItem />
+            <AnalyticsItem />
+            <AnalyticsItem />
+            <AnalyticsItem />
+            <AnalyticsItem />
+            <AnalyticsItem />
+            <AnalyticsItem />
+            <AnalyticsItem />
           </div>
         </div>
       </div>

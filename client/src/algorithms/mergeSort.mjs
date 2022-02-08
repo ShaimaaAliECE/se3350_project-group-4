@@ -1,4 +1,4 @@
-import Algorithm from "abstractAlgorithm.mjs";
+import Algorithm from "algorithms/abstractAlgorithm.mjs";
 
 class MergeSort extends Algorithm {}
 
