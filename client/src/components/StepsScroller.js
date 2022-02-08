@@ -7,21 +7,22 @@ const StepsScroller = (props) => {
   return (
     <div>
       <div className="steps-wrapper">
-        <div className="steps-header has-text-primary">Steps:</div>
-        
-          <div className="steps-list">
-            {lineOne ? <li className="step1">{lineOne}</li> : <span></span>}  
-            {lineTwo ? <li className="step2">{lineTwo}</li> : <span></span>}
-            {lineThree ? <li className="step3">{lineThree}</li> : <span></span>}
-          </div>
-        
-          
-        
+        {lineOne ? (
+          <div className="steps-header has-text-primary">Steps:</div>
+        ) : (
+          <span></span>
+        )}
+
+        <div className="steps-list">
+          {lineOne ? <li className="step1">{lineOne}</li> : <span></span>}
+          {lineTwo ? <li className="step2">{lineTwo}</li> : <span></span>}
+          {lineThree ? <li className="step3">{lineThree}</li> : <span></span>}
+        </div>
       </div>
 
       <div className="control-btns field has-addons">
         <p className="control">
-          <button className="button is-primary is-large">
+          <button className="button is-primary is-large is-outlined">
             <span className="icon is-small">
               <i class="fas fa-angle-left"></i>
             </span>
@@ -29,7 +30,10 @@ const StepsScroller = (props) => {
           </button>
         </p>
         <p className="control">
-          <button className="button is-large" onClick={handleReset}>
+          <button
+            className="button is-primary is-large is-outlined"
+            onClick={handleReset}
+          >
             <span className="icon is-small">
               <i class="fa fa-refresh"></i>
             </span>
@@ -38,7 +42,7 @@ const StepsScroller = (props) => {
         </p>
         <p className="control">
           <button
-            className="button is-primary is-large"
+            className="button is-primary is-large is-outlined"
             onClick={handleNextStep}
           >
             <span>Next</span>
