@@ -61,7 +61,7 @@ const LeftColumn = styled.div`
     line-height: 1.1em;
     font-weight: bold;
     font-size: 84px;
-    text-shadow: 3px 4px rgb(194,79,79);
+    text-shadow: 3px 4px rgb(194, 79, 79);
   }
 `;
 
@@ -175,15 +175,18 @@ const Home = () => {
           </div>
         </LeftColumn>
         <RightColumn>
-          <SVG
-            src={PlanetOne}
-            alt="icon1"
-            whileTap={{ scale: 0.9 }}
-            drag={true}
-            dragConstraints={{ left: -250, right: 250, top: 0, bottom: 50 }}
-            initial={{ opacity: 0, y: -100 }}
-            animate={{ opacity: 1, y: 0, transition: { duration: 1 } }}
-          />
+          <a href="https://youtu.be/XaqR3G_NVoo">
+            <SVG
+              src={PlanetOne}
+              alt="icon1"
+              whileTap={{ scale: 0.9 }}
+              drag={true}
+              dragConstraints={{ left: -250, right: 250, top: 0, bottom: 50 }}
+              initial={{ opacity: 0, y: -100 }}
+              animate={{ opacity: 1, y: 0, transition: { duration: 1 } }}
+            />
+          </a>
+
           <SVG
             src={PlanetTwo}
             alt="icon2"
