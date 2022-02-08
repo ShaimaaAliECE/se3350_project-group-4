@@ -1,0 +1,75 @@
+{
+  "level1": [
+    {
+      "time": "894",
+      "accuracy": 100,
+      "username": "player12"
+    },
+    {
+      "time": "221",
+      "accuracy": 33,
+      "username": "admin32"
+    },
+    {
+      "time": "654",
+      "accuracy": 66,
+      "username": "admin5"
+    },
+    {
+      "time": "1234",
+      "accuracy": 33,
+      "username": "player13"
+    }
+  ],
+
+  "level2": [
+    {
+      "time": "422",
+      "accuracy": 66,
+      "username": "player"
+    },
+    {
+      "time": "321",
+      "accuracy": 100,
+      "username": "admin"
+    },
+    {
+      "time": "375",
+      "accuracy": 100,
+      "username": "admin0"
+    },
+    {
+      "time": "902",
+      "accuracy": 100,
+      "username": "player1"
+    },
+    {
+      "time": "902",
+      "accuracy": 66,
+      "username": "player4"
+    }
+  ],
+
+  "level3": [
+    {
+      "time": "422",
+      "accuracy": 100,
+      "username": "player21"
+    },
+    {
+      "time": "321",
+      "accuracy": 33,
+      "username": "admin24"
+    },
+    {
+      "time": "375",
+      "accuracy": 33,
+      "username": "admin12"
+    },
+    {
+      "time": "902",
+      "accuracy": 100,
+      "username": "player32"
+    }
+  ]
+}
