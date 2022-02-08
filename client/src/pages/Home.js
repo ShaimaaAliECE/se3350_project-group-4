@@ -2,10 +2,10 @@ import React from "react";
 import { Link, withRouter } from "react-router-dom";
 import styled from "styled-components";
 import { motion } from "framer-motion";
-import PlanetOne from "assets/svgs/green-alg.svg";
-import PlanetTwo from "assets/svgs/green-alg.svg";
-import PlanetThree from "assets/svgs/green-alg.svg";
-import PlanetFour from "assets/svgs/green-alg.svg";
+import PlanetOne from "assets/svgs/0.svg";
+import PlanetTwo from "assets/svgs/8.svg";
+import PlanetThree from "assets/svgs/7.svg";
+import PlanetFour from "assets/svgs/4.svg";
 
 // buttons with motion
 const Btn = styled(motion.div)`
@@ -21,7 +21,6 @@ const Btn = styled(motion.div)`
   width: 350px;
   text-align: center;
 `;
-
 
 const Container = styled.div`
   grid-template-columns: 1fr 1fr;
@@ -39,7 +38,8 @@ const Section = styled.section`
   align-items: center;
   height: 100hv;
   display: flex;
-  background: rgb(30, 28, 28);
+  background-color: #000000;
+  background-image: linear-gradient(147deg, #000000 0%, #434343 104%);
 `;
 
 // left side items
@@ -49,15 +49,19 @@ const LeftColumn = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
+  margin-tight: 20%;
   padding: 5rem 2rem;
   h1 {
-    margin-bottom: 0.5rem;
-    font-size: 2rem;
+    margin-bottom: 0.2rem;
+    font-size: 2.5rem;
   }
   p {
     margin: 2rem 0;
-    font-size: 4rem;
-    line-height: 1.1;
+    font-size: 4.8rem;
+    line-height: 1.1em;
+    font-weight: bold;
+    font-size: 84px;
+    text-shadow: 3px 4px rgb(194,79,79);
   }
 `;
 
@@ -66,17 +70,19 @@ const SVG = styled(motion.img)`
   position: absolute;
   width: 100%;
   height: 100%;
-  max-width: 250px;
-  max-height: 250px;
+  max-width: 150px;
+  max-height: 150px;
+  border: 10px solid rgba(255, 255, 255);
+  padding: 0.5rem;
 `;
 
 // right side items
 const RightColumn = styled.div`
   display: flex;
   justify-content: center;
-  align-items: center;
   padding: 2rem;
   position: relative;
+  align-items: center;
   ${SVG}:nth-child(1) {
     top: 10px;
     left: 10px;
@@ -111,7 +117,7 @@ const Home = () => {
             animate={{ opacity: 1 }}
             transition={{ duration: 1 }}
           >
-            Welcome to 3350 Game 
+            Welcome to
           </motion.h1>
           <motion.p
             variants={fadeLeft}
@@ -119,51 +125,54 @@ const Home = () => {
             animate="visible"
             transition={{ duration: 1 }}
           >
-            Journey to the unknown
+            AlgoLab
+            <i class="fas fa-atom"></i>
           </motion.p>
 
           {/* button group */}
-          <Link to="/login">
-            <Btn
-              whileHover={{
-                scale: 1.05,
-                backgroundColor: "rgb(64,223,159)",
-                border: "none",
-                color: "#000",
-              }}
-              whileTap={{
-                scale: 0.95,
-              }}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1, transition: { duration: 1.5 } }}
-            >
-              <span className="icon mr-2">
-                <i className="fas fa-user-circle"></i>
-              </span>
-              <span>Login</span>
-            </Btn>
-          </Link>
+          <div className="">
+            <Link to="/login">
+              <Btn
+                whileHover={{
+                  scale: 1.05,
+                  backgroundColor: "rgb(64,223,159)",
+                  border: "none",
+                  color: "#000",
+                }}
+                whileTap={{
+                  scale: 0.95,
+                }}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1, transition: { duration: 1.5 } }}
+              >
+                <span className="icon mr-2">
+                  <i className="fas fa-user-circle"></i>
+                </span>
+                <span>Login</span>
+              </Btn>
+            </Link>
 
-          <Link to="/register">
-            <Btn
-              whileHover={{
-                scale: 1.05,
-                backgroundColor: "rgb(64,223,159)",
-                border: "none",
-                color: "#000",
-              }}
-              whileTap={{
-                scale: 0.95,
-              }}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1, transition: { duration: 1.5 } }}
-            >
-              <span className="icon mr-2">
-                <i className="fas fa-user-circle"></i>
-              </span>
-              <span>Register</span>
-            </Btn>
-          </Link>
+            <Link to="/register">
+              <Btn
+                whileHover={{
+                  scale: 1.05,
+                  backgroundColor: "rgb(64,223,159)",
+                  border: "none",
+                  color: "#000",
+                }}
+                whileTap={{
+                  scale: 0.95,
+                }}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1, transition: { duration: 1.5 } }}
+              >
+                <span className="icon mr-2">
+                  <i class="fa fa-user-plus" aria-hidden="true"></i>
+                </span>
+                <span>Register</span>
+              </Btn>
+            </Link>
+          </div>
         </LeftColumn>
         <RightColumn>
           <SVG
@@ -171,7 +180,7 @@ const Home = () => {
             alt="icon1"
             whileTap={{ scale: 0.9 }}
             drag={true}
-            dragConstraints={{ left: 0, right: 250, top: 0, bottom: 50 }}
+            dragConstraints={{ left: -250, right: 250, top: 0, bottom: 50 }}
             initial={{ opacity: 0, y: -100 }}
             animate={{ opacity: 1, y: 0, transition: { duration: 1 } }}
           />
@@ -180,7 +189,7 @@ const Home = () => {
             alt="icon2"
             whileTap={{ scale: 0.6 }}
             drag={true}
-            dragConstraints={{ left: 50, right: 0, top: 0, bottom: 50 }}
+            dragConstraints={{ left: 50, right: 0, top: 50, bottom: 50 }}
             initial={{ opacity: 0, x: 100 }}
             animate={{ opacity: 1, x: 0, transition: { duration: 1 } }}
           />
