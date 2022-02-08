@@ -1,5 +1,5 @@
 import React, { useMemo } from "react";
-import UserProfile from "../components/UserProfile";
+import UserProfile from "components/UserProfile";
 import { useHistory } from "react-router-dom";
 
 const SelectAlg = (props) => {

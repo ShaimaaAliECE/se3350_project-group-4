@@ -1,7 +1,7 @@
 import React from "react";
-import { Link, withRouter } from "react-router-dom";
-import LevelHeader from "../components/LevelHeader";
-import MergeSort from "../algorithms/mergeSort.mjs";
+import { withRouter } from "react-router-dom";
+import LevelHeader from "components/LevelHeader";
+import MergeSort from "algorithms/mergeSort.mjs";
 import Block from "components/Block";
 
 class LevelTwo extends React.Component {

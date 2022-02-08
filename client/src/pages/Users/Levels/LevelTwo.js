@@ -1,6 +1,6 @@
 import React from "react";
-import LevelHeader from "../../../components/LevelHeader";
-import MergeSort from "../../../algorithms/mergeSort.mjs";
+import LevelHeader from "components/LevelHeader";
+import MergeSort from "algorithms/mergeSort.mjs";
 import Block from "components/Block";
 
 class LevelTwo extends React.Component {

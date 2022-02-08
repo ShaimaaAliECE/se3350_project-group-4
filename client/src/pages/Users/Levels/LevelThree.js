@@ -1,5 +1,5 @@
 import React from "react";
-import LevelHeader from "../../../components/LevelHeader";
+import LevelHeader from "components/LevelHeader";
 
 class LevelThree extends React.Component {
   render() {

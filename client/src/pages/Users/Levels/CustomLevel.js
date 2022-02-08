@@ -1,6 +1,6 @@
 import React from "react";
 import Modal from "react-modal";
-import LevelHeader from "../../../components/LevelHeader";
+import LevelHeader from "components/LevelHeader";
 
 class CustomLevel extends React.Component {
   constructor(props) {

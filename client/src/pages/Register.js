@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import axios from "utils/axios";
 import { toast } from "react-toastify";
 // import header area sub component
-import RegisterHeader from "../components/BackBtnHeader";
+import RegisterHeader from "components/BackBtnHeader";
 
 // Register Page
 const Register = (props) => {
