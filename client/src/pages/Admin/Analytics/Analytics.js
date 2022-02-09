@@ -13,21 +13,24 @@ const Analytics = () => {
   // });
 
   const averageAccuracy = () => {
-    const averageAccuracy = items
+    const average = items
       .map((item) => item.accuracy)
       .reduce((a, value) => a + value, 0);
-    return averageAccuracy;
+    return average;
   };
 
   function loadData(level) {
     if (level === "level1") {
-      axios.get("/level1").then((res) => setItems(res.data));
+      axios.get("/level1").then((res) => {
+        setItems(res.data);
+        console.log(averageAccuracy());
+      });
     } else if (level === "level2") {
       axios.get("/level2").then((res) => setItems(res.data));
     } else if (level === "level3") {
       axios.get("/level3").then((res) => setItems(res.data));
     } else if (level === "level4") {
-      axios.get("/level2").then((res) => setItems(res.data));
+      axios.get("/level4").then((res) => setItems(res.data));
     }
   }
 
@@ -49,19 +52,44 @@ const Analytics = () => {
               </div>
             </div>
             <div className="column is-2">
-              <div className="level-btn  button is-primary" onClick={() => loadData("level2")}>Level 2</div>
+              <div
+                className="level-btn  button is-primary"
+                onClick={() => loadData("level2")}
+              >
+                Level 2
+              </div>
             </div>
             <div className="column is-2">
-              <div className="level-btn button is-primary" onClick={() => loadData("level3")}>Level 3</div>
+              <div
+                className="level-btn button is-primary"
+                onClick={() => loadData("level3")}
+              >
+                Level 3
+              </div>
             </div>
             <div className="column is-2">
-              <div className="level-btn button is-primary" onClick={() => loadData("level4")}>Level 4</div>
+              <div
+                className="level-btn button is-primary"
+                onClick={() => loadData("level4")}
+              >
+                Level 4
+              </div>
             </div>
             <div className="column is-2">
-              <div className="level-btn button is-primary" onClick={() => loadData("level5")}>Level 5</div>
+              <div
+                className="level-btn button is-primary"
+                onClick={() => loadData("level5")}
+              >
+                Level 5
+              </div>
             </div>
             <div className="column is-2">
-              <div className="level-btn  button is-primary" onClick={() => loadData("level6")}>Custom</div>
+              <div
+                className="level-btn  button is-primary"
+                onClick={() => loadData("level6")}
+              >
+                Custom
+              </div>
             </div>
           </div>
         </div>
@@ -89,7 +117,7 @@ const Analytics = () => {
           <div class="level-item has-text-centered">
             <div>
               <p class="heading">Average Accuracy</p>
-              <p class="title a-stat"></p>
+              <p class="title a-stat">{averageAccuracy()}</p>
             </div>
           </div>
         </nav>

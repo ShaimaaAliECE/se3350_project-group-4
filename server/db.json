@@ -27,47 +27,41 @@
       "accuracy": 100,
       "username": "AkOuda",
       "complete_date": "1241-02-14"
-      
     },
     {
-      "id": 4,
+      "id": 5,
       "time": "943",
       "accuracy": 100,
       "username": "bacon122",
       "complete_date": "2021-10-07"
-      
     },
     {
-      "id": 4,
+      "id": 6,
       "time": "1234",
       "accuracy": 66,
       "username": "Dragon_born",
       "complete_date": "2021-10-21"
-      
     },
     {
-      "id": 4,
+      "id": 7,
       "time": "432",
       "accuracy": 100,
       "username": "SkullTrooper",
       "complete_date": "2021-11-19"
-      
     },
     {
-      "id": 4,
+      "id": 8,
       "time": "120",
       "accuracy": 66,
       "username": "Hugh_Mongus",
       "complete_date": "2021-10-19"
-      
     },
     {
-      "id": 4,
+      "id": 9,
       "time": "8432",
       "accuracy": 100,
       "username": "player13",
       "complete_date": "2021-10-19"
-      
     }
   ],
 
@@ -78,7 +72,6 @@
       "accuracy": 66,
       "username": "player",
       "complete_date": "2021-09-26"
-      
     },
     {
       "id": 2,
@@ -100,7 +93,6 @@
       "accuracy": 100,
       "username": "player1",
       "complete_date": "2021-04-06"
-      
     },
     {
       "id": 5,
@@ -112,6 +104,98 @@
   ],
 
   "level3": [
+    {
+      "id": 1,
+      "time": "422",
+      "accuracy": 100,
+      "username": "player21",
+      "complete_date": "2022-02-04"
+    },
+    {
+      "id": 2,
+      "time": "321",
+      "accuracy": 33,
+      "username": "admin24",
+      "complete_date": "2022-05-13"
+    },
+    {
+      "id": 3,
+      "time": "375",
+      "accuracy": 33,
+      "username": "admin12",
+      "complete_date": "2022-01-03"
+    },
+    {
+      "id": 4,
+      "time": "902",
+      "accuracy": 100,
+      "username": "player32",
+      "complete_date": "2022-05-03"
+    }
+  ],
+
+  "level4": [
+    {
+      "id": 1,
+      "time": "422",
+      "accuracy": 100,
+      "username": "player21",
+      "complete_date": "2022-02-04"
+    },
+    {
+      "id": 2,
+      "time": "321",
+      "accuracy": 33,
+      "username": "admin24",
+      "complete_date": "2022-05-13"
+    },
+    {
+      "id": 3,
+      "time": "375",
+      "accuracy": 33,
+      "username": "admin12",
+      "complete_date": "2022-01-03"
+    },
+    {
+      "id": 4,
+      "time": "902",
+      "accuracy": 100,
+      "username": "player32",
+      "complete_date": "2022-05-03"
+    }
+  ],
+
+  "level5": [
+    {
+      "id": 1,
+      "time": "422",
+      "accuracy": 100,
+      "username": "player21",
+      "complete_date": "2022-02-04"
+    },
+    {
+      "id": 2,
+      "time": "321",
+      "accuracy": 33,
+      "username": "admin24",
+      "complete_date": "2022-05-13"
+    },
+    {
+      "id": 3,
+      "time": "375",
+      "accuracy": 33,
+      "username": "admin12",
+      "complete_date": "2022-01-03"
+    },
+    {
+      "id": 4,
+      "time": "902",
+      "accuracy": 100,
+      "username": "player32",
+      "complete_date": "2022-05-03"
+    }
+  ],
+  "custom": [
     {
       "id": 1,
       "time": "422",
