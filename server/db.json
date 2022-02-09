@@ -4,63 +4,63 @@
       "id": 1,
       "time": "894",
       "accuracy": 100,
-      "username": "Sirius",
+      "username": "Drake",
       "complete_date": "2021-08-12"
     },
     {
       "id": 2,
       "time": "492",
       "accuracy": 33,
-      "username": "Shadow123Caster",
+      "username": "Prado",
       "complete_date": "2021-10-11"
     },
     {
       "id": 3,
-      "time": "4322",
+      "time": "948",
       "accuracy": 66,
-      "username": "Chaos_King",
+      "username": "Thomas",
       "complete_date": "2022-03-14"
     },
     {
       "id": 4,
-      "time": "1",
+      "time": "112",
       "accuracy": 100,
-      "username": "AkOuda",
+      "username": "Vargas",
       "complete_date": "1241-02-14"
     },
     {
       "id": 5,
       "time": "943",
       "accuracy": 100,
-      "username": "bacon122",
+      "username": "Stark",
       "complete_date": "2021-10-07"
     },
     {
       "id": 6,
       "time": "1234",
       "accuracy": 66,
-      "username": "Dragon_born",
+      "username": "Smith",
       "complete_date": "2021-10-21"
     },
     {
       "id": 7,
-      "time": "432",
-      "accuracy": 100,
-      "username": "SkullTrooper",
+      "time": "541",
+      "accuracy": 33,
+      "username": "Miller",
       "complete_date": "2021-11-19"
     },
     {
       "id": 8,
       "time": "120",
       "accuracy": 66,
-      "username": "Hugh_Mongus",
+      "username": "Wilhoit",
       "complete_date": "2021-10-19"
     },
     {
       "id": 9,
-      "time": "8432",
-      "accuracy": 100,
-      "username": "player13",
+      "time": "949",
+      "accuracy": 33,
+      "username": "Bullock",
       "complete_date": "2021-10-19"
     }
   ],
@@ -68,23 +68,23 @@
   "level2": [
     {
       "id": 1,
-      "time": "422",
+      "time": "726",
       "accuracy": 66,
-      "username": "player",
+      "username": "Ashley",
       "complete_date": "2021-09-26"
     },
     {
       "id": 2,
-      "time": "321",
+      "time": "1209",
       "accuracy": 100,
-      "username": "admin",
+      "username": "Bowden",
       "complete_date": "2021-04-26"
     },
     {
       "id": 3,
-      "time": "375",
+      "time": "998",
       "accuracy": 100,
-      "username": "Superman",
+      "username": "Schmidt",
       "complete_date": "2022-01-12"
     },
     {
@@ -96,9 +96,9 @@
     },
     {
       "id": 5,
-      "time": "902",
+      "time": "1383",
       "accuracy": 66,
-      "username": "player4",
+      "username": "Evan",
       "complete_date": "2022-05-06"
     }
   ],
@@ -106,30 +106,72 @@
   "level3": [
     {
       "id": 1,
-      "time": "422",
+      "time": "1471",
       "accuracy": 100,
-      "username": "player21",
+      "username": "Joann",
       "complete_date": "2022-02-04"
     },
     {
       "id": 2,
-      "time": "321",
+      "time": "1009",
       "accuracy": 33,
-      "username": "admin24",
-      "complete_date": "2022-05-13"
+      "username": "Gerald",
+      "complete_date": "2022-03-21"
     },
     {
       "id": 3,
-      "time": "375",
+      "time": "1437",
       "accuracy": 33,
-      "username": "admin12",
+      "username": "Coleman",
       "complete_date": "2022-01-03"
     },
     {
       "id": 4,
-      "time": "902",
+      "time": "369",
       "accuracy": 100,
-      "username": "player32",
+      "username": "Vantassel",
+      "complete_date": "2022-05-03"
+    },
+    {
+      "id": 5,
+      "time": "348",
+      "accuracy": 33,
+      "username": "Gerald",
+      "complete_date": "2021-03-18"
+    },
+    {
+      "id": 6,
+      "time": "1141",
+      "accuracy": 33,
+      "username": "Coleman",
+      "complete_date": "2022-01-03"
+    },
+    {
+      "id": 7,
+      "time": "173",
+      "accuracy": 100,
+      "username": "Vantassel",
+      "complete_date": "2022-05-03"
+    },
+    {
+      "id": 8,
+      "time": "373",
+      "accuracy": 33,
+      "username": "Gerald",
+      "complete_date": "2022-05-13"
+    },
+    {
+      "id": 9,
+      "time": "579",
+      "accuracy": 33,
+      "username": "Coleman",
+      "complete_date": "2022-01-03"
+    },
+    {
+      "id": 10,
+      "time": "1155",
+      "accuracy": 100,
+      "username": "Vantassel",
       "complete_date": "2022-05-03"
     }
   ],
@@ -137,30 +179,30 @@
   "level4": [
     {
       "id": 1,
-      "time": "422",
+      "time": "447",
       "accuracy": 100,
-      "username": "player21",
+      "username": "Whiteley",
       "complete_date": "2022-02-04"
     },
     {
       "id": 2,
-      "time": "321",
+      "time": "585",
       "accuracy": 33,
-      "username": "admin24",
+      "username": "Manhart",
       "complete_date": "2022-05-13"
     },
     {
       "id": 3,
-      "time": "375",
+      "time": "1084",
       "accuracy": 33,
-      "username": "admin12",
+      "username": "Martin",
       "complete_date": "2022-01-03"
     },
     {
       "id": 4,
-      "time": "902",
+      "time": "648",
       "accuracy": 100,
-      "username": "player32",
+      "username": "Jessie",
       "complete_date": "2022-05-03"
     }
   ],
@@ -168,61 +210,83 @@
   "level5": [
     {
       "id": 1,
-      "time": "422",
-      "accuracy": 100,
-      "username": "player21",
+      "time": "1641",
+      "accuracy": 33,
+      "username": "Fetterman",
       "complete_date": "2022-02-04"
     },
     {
       "id": 2,
-      "time": "321",
-      "accuracy": 33,
-      "username": "admin24",
+      "time": "3766",
+      "accuracy": 100,
+      "username": "Crawford",
       "complete_date": "2022-05-13"
     },
     {
       "id": 3,
-      "time": "375",
-      "accuracy": 33,
-      "username": "admin12",
-      "complete_date": "2022-01-03"
+      "time": "3698",
+      "accuracy": 100,
+      "username": "Teresa",
+      "complete_date": "2022-01-12"
     },
     {
       "id": 4,
-      "time": "902",
+      "time": "201",
       "accuracy": 100,
-      "username": "player32",
-      "complete_date": "2022-05-03"
+      "username": "Teresa",
+      "complete_date": "2022-02-08"
+    },
+    {
+      "id": 5,
+      "time": "764",
+      "accuracy": 100,
+      "username": "Jacob",
+      "complete_date": "2022-05-24"
     }
   ],
+
   "custom": [
     {
       "id": 1,
-      "time": "422",
+      "time": "1902",
       "accuracy": 100,
-      "username": "player21",
-      "complete_date": "2022-02-04"
+      "username": "Haller",
+      "complete_date": "2022-02-23"
     },
     {
       "id": 2,
-      "time": "321",
+      "time": "1441",
       "accuracy": 33,
-      "username": "admin24",
+      "username": "Humphrey",
       "complete_date": "2022-05-13"
     },
     {
       "id": 3,
-      "time": "375",
+      "time": "475",
       "accuracy": 33,
-      "username": "admin12",
-      "complete_date": "2022-01-03"
+      "username": "Choi",
+      "complete_date": "2022-01-14"
     },
     {
       "id": 4,
-      "time": "902",
+      "time": "1219",
+      "accuracy": 33,
+      "username": "Humphrey",
+      "complete_date": "2022-05-13"
+    },
+    {
+      "id": 5,
+      "time": "715",
       "accuracy": 100,
-      "username": "player32",
-      "complete_date": "2022-05-03"
+      "username": "Jackson",
+      "complete_date": "2022-05-04"
+    },
+    {
+      "id": 6,
+      "time": "403",
+      "accuracy": 66,
+      "username": "Mads",
+      "complete_date": "2021-03-04"
     }
   ]
 }
