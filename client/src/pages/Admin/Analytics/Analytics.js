@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import ToolBar from "pages/Admin/Analytics/AnalyticsToolBar";
 import AnalyticsItem from "pages/Admin/Analytics/AnalyticsItem";
 import axios from "utils/axios";
-import { formatTime } from "utils/format";
 
 const Analytics = () => {
   // use state hooks
@@ -19,15 +18,23 @@ const Analytics = () => {
     return average;
   };
 
-
   //  get the fastest record in the response
- const fastestTime = () => {
-   let times = items.map((item)=>item.time);
-   var min = Math.min.apply( null, times );
-   var date = new Date(0);
-   date.setSeconds(min);
-   return date.toISOString().substr(11, 8);
- }
+  const fastestTime = () => {
+    let times = items.map((item) => item.time);
+    var min = Math.min.apply(null, times);
+    return formatTime(min);
+  };
+
+  // format time
+  function formatTime(seconds) {
+    return [
+      parseInt(seconds / 60 / 60),
+      parseInt((seconds / 60) % 60),
+      parseInt(seconds % 60),
+    ]
+      .join(":")
+      .replace(/\b(\d)\b/g, "0$1");
+  }
 
   // load data into AnalyticItems
   const loadData = (level) => {
