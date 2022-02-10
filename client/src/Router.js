@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
-import { RequireLoginRoute, AdminRoute } from "components/ProtectedRoute";
+import { RequireLoginRoute, AdminRoute } from "utils/ProtectedRoute";
 import Home from "pages/Home";
 import Login from "pages/Login";
 import Register from "pages/Register";

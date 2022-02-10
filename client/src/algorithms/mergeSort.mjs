@@ -4,7 +4,6 @@ class MergeSort extends Algorithm {}
 
 //The function that is called
 MergeSort.prototype.sort = function (array, order, instruction, flag) {
-
   //Determine if array needs to be cut in half
   if (array.length < 2) {
     return array;
@@ -12,18 +11,18 @@ MergeSort.prototype.sort = function (array, order, instruction, flag) {
 
   //Track iteration
   order.push("" + array);
-  instruction.push("Half this array: [" + array + "]")
+  instruction.push("Half this array: [" + array + "]");
 
   //Record single digit arrays using a flag
   if (flag) {
     order.push("" + array[0]);
-    instruction.push("Store the " + array[0])
+    instruction.push("Store the " + array[0]);
     flag = false;
   }
 
   //Half the given array
   const middle = Math.floor(array.length / 2);
-  
+
   const array_left = array.slice(0, middle);
   const array_right = array.slice(middle, array.length);
 
@@ -43,8 +42,8 @@ MergeSort.prototype.sort = function (array, order, instruction, flag) {
 MergeSort.prototype.merge = function (left, right, order, instruction) {
   let arr = [];
 
-  const tempL = JSON.parse(JSON.stringify(left))
-  const tempR = JSON.parse(JSON.stringify(right))
+  const tempL = JSON.parse(JSON.stringify(left));
+  const tempR = JSON.parse(JSON.stringify(right));
 
   //Add the smaller leading value to the sorted array
   while (left.length && right.length) {
@@ -64,7 +63,9 @@ MergeSort.prototype.merge = function (left, right, order, instruction) {
   // console.log(arr);
   //Track iteration
   order.push("" + arr);
-  instruction.push("Combine [" + tempL + "] and [" + tempR + "] in order to get [" + arr + "].")
+  instruction.push(
+    "Combine [" + tempL + "] and [" + tempR + "] in order to get [" + arr + "]."
+  );
 
   return arr;
 };
