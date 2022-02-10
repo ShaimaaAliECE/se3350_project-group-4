@@ -1,9 +1,8 @@
 import React from "react";
-import Modal from "react-modal";
 import LevelHeader from "components/LevelHeader";
 import MergeSort from "algorithms/mergeSort.mjs";
 import PopupMenu from "components/PopupMenu";
-import CustomLevelForm from "pages/Admin/EditLevelForms/CustomLevelForm";
+import CustomLevelForm from "pages/Admin/EditLevelForms/EditLevelFiveForm";
 
 class CustomLevel extends React.Component {
   constructor(props) {
@@ -14,7 +13,6 @@ class CustomLevel extends React.Component {
       lowerLimit: 0,
       order: [],
     };
-    this.handleOpenModal = this.handleOpenModal.bind(this);
   }
 
   // mount popup form before level renders
