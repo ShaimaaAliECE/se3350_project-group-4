@@ -2,7 +2,7 @@ import React from "react";
 import LevelHeader from "components/LevelHeader";
 import MergeSort from "algorithms/mergeSort.mjs";
 import PopupMenu from "components/PopupMenu";
-import CustomLevelForm from "pages/Admin/EditLevelForms/EditLevelFiveForm";
+import CustomLevelForm from "pages/Admin/EditLevelForms/CustomLevelForm";
 
 class CustomLevel extends React.Component {
   constructor(props) {
@@ -86,7 +86,7 @@ class CustomLevel extends React.Component {
           {this.state.order}
         </div>
         {/* Modal, contains the form to collect information for the custom level */}
-        <Modal isOpen={this.state.showModal} ariaHideApp={false}>
+        {/* <Modal isOpen={this.state.showModal} ariaHideApp={false}> */}
           {/* Call startLevel on the submission of the form */}
           <form onSubmit={this.startLevel}>
             <label>
@@ -127,7 +127,7 @@ class CustomLevel extends React.Component {
             <br></br>
             <input type="Submit" />
           </form>
-        </Modal>
+        {/* </Modal> */}
       </div>
     );
   }
