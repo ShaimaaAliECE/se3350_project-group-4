@@ -1,11 +1,9 @@
 import React from "react";
+import Modal from "react-modal";
 import LevelHeader from "components/LevelHeader";
 import MergeSort from "algorithms/mergeSort.mjs";
-import PopupMenu from "components/PopupMenu";
-import CustomLevelForm from "pages/Admin/EditLevelForms/CustomLevelForm";
 
 class CustomLevel extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -15,19 +13,13 @@ class CustomLevel extends React.Component {
       showModal: true,
       order: []
     };
+    this.handleOpenModal = this.handleOpenModal.bind(this);
   }
 
-  // mount popup form before level renders
-  componentDidMount() {
-    PopupMenu.open({
-      component: CustomLevelForm,
-      callback: (data) => {
-        //console.log(data);
-      },
-    });
-    
+  handleOpenModal() {
+    //Show modal (called before the first render of the page)
+    this.setState({ showModal: true });
   }
-
 
   startLevel = (event) => {
     //Store data from form
@@ -55,7 +47,10 @@ class CustomLevel extends React.Component {
     this.setState();
   };
 
-
+  componentDidMount() {
+    //Open modal upon successful deployment
+    this.handleOpenModal();
+  }
 
   render() {
     return (
@@ -74,6 +69,49 @@ class CustomLevel extends React.Component {
             {this.state.order}
           </div>
         </div>
+        {/* Modal, contains the form to collect information for the custom level */}
+        <Modal isOpen={this.state.showModal} ariaHideApp={false}>
+          {/* Call startLevel on the submission of the form */}
+          <form onSubmit={this.startLevel}>
+            <label>
+              Number Of Boxes:
+              <input
+                type="number"
+                min="3"
+                max="30"
+                defaultValue={this.state.numOfBoxes}
+                name="nbox"
+              />
+            </label>
+            <br></br>
+            <br></br>
+            <label>
+              Upper Limit:
+              <input
+                type="number"
+                max="1000"
+                min="5"
+                defaultValue={this.state.upperLimit}
+                name="ulim"
+              />
+            </label>
+            <br></br>
+            <br></br>
+            <label>
+              Lower Limit:
+              <input
+                type="number"
+                max={this.state.upperLimit}
+                min="0"
+                defaultValue={this.state.lowerLimit}
+                name="llim"
+              />
+            </label>
+            <br></br>
+            <br></br>
+            <input type="Submit" />
+          </form>
+        </Modal>
       </div>
     );
   }
