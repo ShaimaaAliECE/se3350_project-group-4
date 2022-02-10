@@ -13,7 +13,6 @@ class CustomLevelForm extends React.Component {
   handleChange = (e) => {
     const value = e.target.value;
     const name = e.target.name;
-    //set name and value
     this.setState({
       [name]: value,
     });
@@ -22,6 +21,9 @@ class CustomLevelForm extends React.Component {
   // handle custom level form submission
   submit = (e) => {
     e.preventDefault();
+    const customState = { ...this.state};
+    console.log(customState);
+    this.props.close(customState);
   };
 
   render() {

@@ -5,15 +5,13 @@ import PopupMenu from "components/PopupMenu";
 import CustomLevelForm from "pages/Admin/EditLevelForms/CustomLevelForm";
 
 class CustomLevel extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = {
-      numOfBoxes: 15,
-      upperLimit: 50,
+      numOfBoxes: 0,
+      upperLimit: 0,
       lowerLimit: 0,
-      showModal: true,
-      order: []
+      order: [],
     };
   }
 
@@ -22,57 +20,70 @@ class CustomLevel extends React.Component {
     PopupMenu.open({
       component: CustomLevelForm,
       callback: (data) => {
-        //console.log(data);
+        this.setState({
+          numOfBoxes: data.boxCount,
+          upperLimit: data.upperRange,
+          lowerLimit: data.lowerRange,
+        });
       },
     });
-    
   }
-
 
   startLevel = (event) => {
     //Store data from form
-    let min = event.target[2].value
-    let max = event.target[1].value
-    let arraySize = event.target[0].value
+    let min = event.target[2].value;
+    let max = event.target[1].value;
+    let arraySize = event.target[0].value;
 
     //Generate the array to be sorted
-    let orderT = []
-    let instructions = []
+    let orderT = [];
+    let instructions = [];
 
-    const sorting = new MergeSort(min / 10, max, arraySize)
-    sorting.sort(sorting.getArray(), orderT, instructions, false)
+    const sorting = new MergeSort(min / 10, max, arraySize);
+    sorting.sort(sorting.getArray(), orderT, instructions, false);
 
     //Gather the inputed information and store
     this.setState({
       numOfBoxes: arraySize,
       upperLimit: max,
       lowerLimit: min,
-      showModal: false,
-      order: orderT
+      order: orderT,
     });
 
     //Rerender by calling an empty setState
     this.setState();
   };
 
-
-
   render() {
     return (
       <div>
-        <div>
-          <div className="">
-            {/* header */}
-            <LevelHeader level="custom" />
+        <LevelHeader level="custom" />
+        {/* show custom info */}
+        <nav class="level has-text-light mt-3">
+          <div class="level-item has-text-centered">
+            <div>
+              <p class="heading">Number of Boxes</p>
+              <p class="title has-text-danger">{this.state.numOfBoxes}</p>
+            </div>
           </div>
-          <div className="level">
-            {/* level */}
-            {this.state.numOfBoxes}
-            {this.state.upperLimit}
-            {this.state.lowerLimit}
-            <br></br>
-            {this.state.order}
+         
+          <div class="level-item has-text-centered">
+            <div>
+              <p class="heading">Lower Limit</p>
+              <p class="title has-text-danger">{this.state.lowerLimit}</p>
+            </div>
           </div>
+          <div class="level-item has-text-centered">
+            <div>
+              <p class="heading">Upper Limit</p>
+              <p class="title has-text-danger">{this.state.upperLimit}</p>
+            </div>
+          </div>
+        </nav>
+        <div className="level-wrapper">
+          {/* level */}
+
+          {this.state.order}
         </div>
       </div>
     );
