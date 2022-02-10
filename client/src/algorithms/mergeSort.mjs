@@ -1,4 +1,4 @@
-import Algorithm from "algorithms/abstractAlgorithm.mjs";
+import Algorithm from "./abstractAlgorithm.mjs";
 
 class MergeSort extends Algorithm {}
 
@@ -28,7 +28,6 @@ MergeSort.prototype.sort = function (array, order, instruction, flag) {
   const array_right = array.slice(middle, array.length);
 
   if (array_right.length === 3) {
-    let tempL = array_right.slice(0, 1);
     flag = true;
   }
 
@@ -70,12 +69,14 @@ MergeSort.prototype.merge = function (left, right, order, instruction) {
   return arr;
 };
 
+//Template on how to use the above class
+
 // var sorting = new MergeSort(1, 20, 10);
 // let order = [];
-// let instruction = []
+// let instruction = [];
 // let sorted = sorting.sort(sorting.getArray(), order, instruction, false);
 
 // console.log(order);
-// console.log(instruction)
+// console.log(instruction);
 
 export default MergeSort;

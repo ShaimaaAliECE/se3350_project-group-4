@@ -8,7 +8,7 @@ export default class Algorithm {
       let array = [];
 
       for (let i = 0; i < arraySize; i++) {
-        array.push(Math.floor(Math.random() * max) + min);
+        array.push(Math.floor(Math.random() * (max - min)) + min);
       }
 
       this.array = array;
