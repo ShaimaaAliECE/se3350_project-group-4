@@ -22,24 +22,26 @@ class CustomLevel extends React.Component {
   }
 
   startLevel = (event) => {
-    //Gather the inputed information and store
-    this.setState({
-      numOfBoxes: event.target[0].value,
-      upperLimit: event.target[1].value,
-      lowerLimit: event.target[2].value,
-      showModal: false,
-    });
+    //Store data from form
+    let min = event.target[2].value
+    let max = event.target[1].value
+    let arraySize = event.target[0].value
 
     //Generate the array to be sorted
     let orderT = []
-    console.log(event.target[2].value, event.target[1].value, event.target[0].value)
-    var sorting = new MergeSort(event.target[2].value, event.target[1].value, event.target[0].value)
-    sorting.sort(sorting.getArray(), orderT, [], false)
+    let instructions = []
 
-    console.log(orderT)
+    const sorting = new MergeSort(min / 10, max, arraySize)
+    sorting.sort(sorting.getArray(), orderT, instructions, false)
 
-    //Save the order of the completion of the algorithm
-    this.setState({order: orderT})
+    //Gather the inputed information and store
+    this.setState({
+      numOfBoxes: arraySize,
+      upperLimit: max,
+      lowerLimit: min,
+      showModal: false,
+      order: orderT
+    });
 
     //Rerender by calling an empty setState
     this.setState();
