@@ -75,10 +75,13 @@ class LevelOne extends React.Component {
 
   generateBlocks() {
     const order = this.state.order.slice()[0];
-    console.log(order);
-    return order.map((element) => {
-      return this.renderBlock(element);
-    });
+    if (order !== undefined) {
+      let temp = order.split(",");
+      temp.map((element) => {
+        console.log(element);
+        return <Block value={element} />;
+      });
+    }
   }
 
   componentDidMount() {
@@ -102,9 +105,9 @@ class LevelOne extends React.Component {
         </div>
         <div className="body">
           <div className="alg-steps">
-            {this.generateBlocks()}
-            {/* <div className="box-surround"> */}
-            {/* <div id="top">{this.renderBlock(1)}</div>
+            {/* {this.generateBlocks()} */}
+            <div className="box-surround">
+              <div id="top">{this.renderBlock(1)}</div>
               <div id="second">
                 {this.renderBlock(2)}
                 {this.renderBlock(3)}
@@ -125,7 +128,7 @@ class LevelOne extends React.Component {
                 {this.renderBlock(10)}
                 {this.renderBlock(11)}
               </div>
-            </div> */}
+            </div>
 
             <StepsScroller
               lineOne={this.state.lineOne}
