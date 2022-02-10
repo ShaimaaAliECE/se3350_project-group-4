@@ -22,12 +22,11 @@ class CustomLevel extends React.Component {
     PopupMenu.open({
       component: CustomLevelForm,
       callback: (data) => {
-        //console.log(data);
+        console.log(data)
       },
     });
     
   }
-
 
   startLevel = (event) => {
     //Store data from form
@@ -63,7 +62,7 @@ class CustomLevel extends React.Component {
         <div>
           <div className="">
             {/* header */}
-            <LevelHeader level="custom" />
+            <LevelHeader level="Custom" />
           </div>
           <div className="level">
             {/* level */}
