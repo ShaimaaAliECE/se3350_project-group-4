@@ -85,7 +85,7 @@ class LevelOne extends React.Component {
 
   render() {
     return (
-      <div className="">
+      <div>
         <div className="header mb-6">
           <LevelHeader level="1" />
         </div>
