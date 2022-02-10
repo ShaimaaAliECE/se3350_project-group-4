@@ -1,5 +1,6 @@
 import _axios from "axios";
 
+// change the base url when sending axios requests
 const axios = (baseURL) => {
   const instance = _axios.create({
     baseURL: baseURL || "http://localhost:3001",

@@ -8,6 +8,8 @@ import BlockThree from "assets/svgs/7.svg";
 import BlockFour from "assets/svgs/4.svg";
 import BlockFive from "assets/svgs/3.svg";
 
+// ------ define styled components ------ //
+
 // buttons with motion
 const Btn = styled(motion.div)`
   padding: 1rem 3rem;
@@ -107,6 +109,7 @@ const RightColumn = styled.div`
   }
 `;
 
+// Home page functional component
 const Home = () => {
   // fade in effect
   const fadeLeft = {

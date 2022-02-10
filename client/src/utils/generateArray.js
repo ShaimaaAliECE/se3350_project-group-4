@@ -1,5 +1,4 @@
 // generate an random array of 
-
 //(1) size 'count' 
 //(2) a lower limit of 'min'
 //(3) an upper limit of 'max'
