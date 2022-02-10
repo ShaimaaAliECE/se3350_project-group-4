@@ -3,9 +3,6 @@ import LevelHeader from "components/LevelHeader";
 import MergeSort from "algorithms/mergeSort.mjs";
 import Block from "components/Block";
 import StepsScroller from "components/StepsScroller";
-import { toast } from "react-toastify";
-
-toast.configure();
 class LevelOne extends React.Component {
   constructor(props) {
     super(props);
@@ -20,7 +17,6 @@ class LevelOne extends React.Component {
     this.generateArray = this.generateArray.bind(this);
     this.handleNextStep = this.handleNextStep.bind(this);
     this.handleReset = this.handleReset.bind(this);
-    this.InfoNotify = this.InfoNotify.bind(this);
     this.generateBlocks = this.generateBlocks.bind(this);
   }
 
@@ -91,10 +87,6 @@ class LevelOne extends React.Component {
   //rendering block with the state of the box
   renderBlock(i) {
     return <Block value={this.state.boxes[i - 1]} />;
-  }
-
-  InfoNotify(KNOWLEDGE) {
-    toast.info(KNOWLEDGE);
   }
 
   render() {
