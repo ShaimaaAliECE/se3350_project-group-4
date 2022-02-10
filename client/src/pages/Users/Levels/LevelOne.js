@@ -21,6 +21,7 @@ class LevelOne extends React.Component {
     this.handleNextStep = this.handleNextStep.bind(this);
     this.handleReset = this.handleReset.bind(this);
     this.InfoNotify = this.InfoNotify.bind(this);
+    this.generateBlocks = this.generateBlocks.bind(this);
   }
 
   //creates array at the rendering of the class
@@ -28,6 +29,7 @@ class LevelOne extends React.Component {
     let currentOrd = [];
     let currentInstr = [];
     var sorting = new MergeSort(1, 20, 10);
+    // console.log(sorting);
     sorting.sort(sorting.getArray(), currentOrd, currentInstr, false);
     //retrieves array of instructions and order of steps
     this.setState({
@@ -71,9 +73,18 @@ class LevelOne extends React.Component {
     });
   }
 
+  generateBlocks() {
+    const order = this.state.order.slice()[0];
+    console.log(order);
+    return order.map((element) => {
+      return this.renderBlock(element);
+    });
+  }
+
   componentDidMount() {
     this.generateArray();
   }
+
   //rendering block with the state of the box
   renderBlock(i) {
     return <Block value={this.state.boxes[i - 1]} />;
@@ -91,8 +102,9 @@ class LevelOne extends React.Component {
         </div>
         <div className="body">
           <div className="alg-steps">
-            <div className="box-surround">
-              <div id="top">{this.renderBlock(1)}</div>
+            {this.generateBlocks()}
+            {/* <div className="box-surround"> */}
+            {/* <div id="top">{this.renderBlock(1)}</div>
               <div id="second">
                 {this.renderBlock(2)}
                 {this.renderBlock(3)}
@@ -113,7 +125,7 @@ class LevelOne extends React.Component {
                 {this.renderBlock(10)}
                 {this.renderBlock(11)}
               </div>
-            </div>
+            </div> */}
 
             <StepsScroller
               lineOne={this.state.lineOne}
@@ -128,6 +140,5 @@ class LevelOne extends React.Component {
     );
   }
 }
-
 
 export default LevelOne;
