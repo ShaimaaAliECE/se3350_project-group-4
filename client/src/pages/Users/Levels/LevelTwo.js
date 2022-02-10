@@ -4,7 +4,6 @@ import MergeSort from "algorithms/mergeSort.mjs";
 import Block from "components/Block";
 
 class LevelTwo extends React.Component {
-
   constructor(props) {
     super(props);
 
@@ -12,10 +11,13 @@ class LevelTwo extends React.Component {
       finishedPlaying: false,
       step: 0,
       instuctions: [],
-      boxes: Array(11).fill(""),
+      boxes: Array(11).fill(null),
       boxIndex: [1, 2, 4, 4, 5, 8, 9, 9, 5, 2, 3, 6, 6, 7, 10, 11, 11, 7, 3, 1],
       order: [],
     };
+
+    this.generateArray();
+
     this.generateArray = this.generateArray.bind(this);
     this.handleNextStep = this.handleNextStep.bind(this);
     this.handleReset = this.handleReset.bind(this);
@@ -35,9 +37,9 @@ class LevelTwo extends React.Component {
     });
   }
 
-  setOrder(val) {
-    this.setState({ order: val });
-  }
+  // setOrder(val) {
+  //   this.setState({ order: val });
+  // }
 
   handleReset(e) {
     const box = Array(11).fill("");
@@ -47,6 +49,7 @@ class LevelTwo extends React.Component {
       boxes: box,
     });
   }
+  generateBlocks() {}
 
   handleNextStep(e) {
     const box = this.state.boxes.slice();
@@ -61,24 +64,11 @@ class LevelTwo extends React.Component {
     });
   }
 
-  componentDidMount() {
-    this.generateArray();
-  }
-
   renderBlock(i) {
     return <Block value={this.state.boxes[i - 1]} />;
   }
 
-  choosePivot(value) {
-    
-  }
-
   render() {
-    function choosePivot(e) {
-      let pivot = this;
-      console.log(pivot);
-    }
-
     return (
       <div className="">
         <div className="header mb-6">
@@ -88,7 +78,8 @@ class LevelTwo extends React.Component {
           <div className="sort"></div>
           <div className="alg-steps">
             <div>
-              <div className="box-surround">
+              {this.generateBlocks()}
+              {/* <div className="box-surround">
                 <div id="top">{this.renderBlock(1)}</div>
                 <div id="second">
                   {this.renderBlock(2)}
@@ -114,14 +105,13 @@ class LevelTwo extends React.Component {
                   <NextButton onClick={this.handleNextStep} />
                   <ResetButton onClick={this.handleReset} />
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
       </div>
     );
   }
-  
 }
 
 function NextButton(props) {
