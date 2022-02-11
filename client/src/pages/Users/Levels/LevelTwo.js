@@ -20,6 +20,7 @@ class LevelTwo extends React.Component {
     this.handleNextStep = this.handleNextStep.bind(this);
     this.handleReset = this.handleReset.bind(this);
     this.generateArrayBlock = this.generateArrayBlock.bind(this);
+    this.handleMerge = this.handleMerge.bind(this);
   }
 
   //creates array at the rendering of the class
@@ -72,11 +73,19 @@ class LevelTwo extends React.Component {
     });
   }
 
+  handleMerge() {
+    console.log("hi");
+  }
+
+  handleSplit() {
+    console.log("split");
+  }
+
   generateArrayBlock() {
     const arr = this.state.initialArr.slice();
     if (arr !== undefined) {
       return arr.map((element) => {
-        return <Block value={element} />;
+        return <Block value={element} onClick={this.handleMerge} />;
       });
     }
   }
@@ -97,9 +106,10 @@ class LevelTwo extends React.Component {
           <LevelHeader level="1" />
         </div>
         <div className="body">
-          {/* <div className="box-surround"> */}
-          {/* <div>{this.generateArrayBlock()}</div> */}
-          {/* <div id="top">{this.renderBlock(1)}</div>
+          <div className="box-surround">
+            <SplitButton onClick={this.handleSplit} />
+            <div>{this.generateArrayBlock()}</div>
+            <div id="top">{this.renderBlock(1)}</div>
             <div id="second">
               {this.renderBlock(2)}
               {this.renderBlock(3)}
@@ -119,8 +129,8 @@ class LevelTwo extends React.Component {
               <Block />
               {this.renderBlock(10)}
               {this.renderBlock(11)}
-            </div> */}
-          {/* </div> */}
+            </div>
+          </div>
           <div className="alg-steps">
             <StepsScroller
               lineOne={this.state.lineOne}
@@ -139,7 +149,7 @@ class LevelTwo extends React.Component {
 function MergeButton(props) {
   return (
     <button className="button is-primary" onClick={props.onClick}>
-      Next Step
+      Merge
     </button>
   );
 }
@@ -147,7 +157,7 @@ function MergeButton(props) {
 function SplitButton(props) {
   return (
     <button className="button is-primary" onClick={props.onClick}>
-      Reset
+      Split
     </button>
   );
 }

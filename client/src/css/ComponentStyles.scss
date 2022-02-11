@@ -222,6 +222,12 @@
   align-items: center;
 }
 
+.buttons-in-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
 //Steps Scroller Component
 .steps-wrapper {
   margin: 0 auto;
