@@ -1,4 +1,5 @@
 import React from "react";
+import { toast } from "react-toastify";
 
 // Edit Level components
 class CustomLevelForm extends React.Component {
@@ -21,9 +22,13 @@ class CustomLevelForm extends React.Component {
   // handle custom level form submission
   submit = (e) => {
     e.preventDefault();
-    const customState = { ...this.state};
-    console.log(customState);
-    this.props.close(customState);
+    const customState = { ...this.state };
+    if (this.state.boxCount !== "" && this.state.upperRange !== "" && this.lowerRange !== "") {
+      this.props.close(customState);
+    } else {
+      const message = "Oops, you forgot to define custom parameters!"
+      toast.error(message);
+    }
   };
 
   render() {
