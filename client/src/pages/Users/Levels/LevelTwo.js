@@ -97,9 +97,9 @@ class LevelTwo extends React.Component {
           <LevelHeader level="1" />
         </div>
         <div className="body">
-          <div className="box-surround">
-            <div>{this.generateArrayBlock()}</div>
-            {/* <div id="top">{this.renderBlock(1)}</div>
+          {/* <div className="box-surround"> */}
+          {/* <div>{this.generateArrayBlock()}</div> */}
+          {/* <div id="top">{this.renderBlock(1)}</div>
             <div id="second">
               {this.renderBlock(2)}
               {this.renderBlock(3)}
@@ -120,7 +120,7 @@ class LevelTwo extends React.Component {
               {this.renderBlock(10)}
               {this.renderBlock(11)}
             </div> */}
-          </div>
+          {/* </div> */}
           <div className="alg-steps">
             <StepsScroller
               lineOne={this.state.lineOne}

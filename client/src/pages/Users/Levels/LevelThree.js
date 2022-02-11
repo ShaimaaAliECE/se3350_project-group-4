@@ -4,8 +4,8 @@ import MergeSort from "algorithms/mergeSort.mjs";
 import Block from "components/Block";
 import { toast } from "react-toastify";
 
-import RightSound from "client/src/assets/audios/RightSound.mp3";
-import WrongSound from "client/src/audioclips/WrongSound.mp3";
+import RightSound from "../../../assets/audios/RightSound.mp3";
+import WrongSound from "../../../assets/audios/WrongSound.mp3";
 
 toast.configure();
 //LEVEL 3 must have a set of 10 numbers are randomly generated out of the range (1-20)
