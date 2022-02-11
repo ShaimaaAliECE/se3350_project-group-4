@@ -96,32 +96,31 @@ class LevelOne extends React.Component {
           <LevelHeader level="1" />
         </div>
         <div className="body">
-          <div className="alg-steps">
-            {/* {this.generateBlocks()} */}
-            <div className="box-surround">
-              <div id="top">{this.renderBlock(1)}</div>
-              <div id="second">
-                {this.renderBlock(2)}
-                {this.renderBlock(3)}
-              </div>
-              <div id="third">
-                {this.renderBlock(4)}
-                {this.renderBlock(5)}
-                {this.renderBlock(6)}
-                {this.renderBlock(7)}
-              </div>
-              <div id="third">
-                <Block />
-                <Block />
-                {this.renderBlock(8)}
-                {this.renderBlock(9)}
-                <Block />
-                <Block />
-                {this.renderBlock(10)}
-                {this.renderBlock(11)}
-              </div>
+          {/* {this.generateBlocks()} */}
+          <div className="box-surround">
+            <div id="top">{this.renderBlock(1)}</div>
+            <div id="second">
+              {this.renderBlock(2)}
+              {this.renderBlock(3)}
             </div>
-
+            <div id="third">
+              {this.renderBlock(4)}
+              {this.renderBlock(5)}
+              {this.renderBlock(6)}
+              {this.renderBlock(7)}
+            </div>
+            <div id="third">
+              <Block />
+              <Block />
+              {this.renderBlock(8)}
+              {this.renderBlock(9)}
+              <Block />
+              <Block />
+              {this.renderBlock(10)}
+              {this.renderBlock(11)}
+            </div>
+          </div>
+          <div className="alg-steps">
             <StepsScroller
               lineOne={this.state.lineOne}
               lineTwo={this.state.lineTwo}

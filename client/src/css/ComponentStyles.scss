@@ -196,15 +196,15 @@
 .box-surround div {
   display: flex;
   justify-content: center;
-  align-content: space-between;
+  justify-content: space-around;
   flex-direction: row;
 }
 
 .box-stuff {
-  border-radius: 25px;
+  border-radius: 10px;
   padding: 20px;
   font-size: 2rem;
-  margin: 1.5rem;
+  margin: 0.2rem;
   display: block;
   background-color: #fff;
   text-align: center;
@@ -221,7 +221,6 @@
   flex-direction: column;
   align-items: center;
 }
-
 
 //Steps Scroller Component
 .steps-wrapper {
@@ -269,7 +268,7 @@
   transform: translate(-50%, 0);
 }
 
-// Analytics ToolBar 
+// Analytics ToolBar
 .tool-box {
   max-width: 90%;
   margin: auto;
@@ -311,13 +310,12 @@
   display: block;
   padding: 0 8px;
   cursor: pointer;
-  color:rgb(194,79,79);
-
+  color: rgb(194, 79, 79);
 }
 
 .a-item-name {
   width: 400px;
-  padding:0px;
+  padding: 0px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;

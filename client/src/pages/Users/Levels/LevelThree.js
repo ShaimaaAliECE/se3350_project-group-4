@@ -4,9 +4,8 @@ import MergeSort from "algorithms/mergeSort.mjs";
 import Block from "components/Block";
 import { toast } from "react-toastify";
 
-
-import RightSound from 'client/src/audioclips/RightSound.mp3';
-import WrongSound from 'client/src/audioclips/WrongSound.mp3';
+import RightSound from "client/src/assets/audios/RightSound.mp3";
+import WrongSound from "client/src/audioclips/WrongSound.mp3";
 
 toast.configure();
 //LEVEL 3 must have a set of 10 numbers are randomly generated out of the range (1-20)
@@ -59,33 +58,33 @@ class LevelThree extends React.Component {
   renderBlock(i) {
     return <Block value={this.state.boxes[i - 1]} />;
   }
-  
-  PositiveNotify(){
-    toast.success('CORRECT!');
+
+  PositiveNotify() {
+    toast.success("CORRECT!");
   }
-  
-  PositiveSound(){
+
+  PositiveSound() {
     new Audio(RightSound).play();
   }
 
-  NegativeNotify(){
-    toast.error('INCORRECT');
+  NegativeNotify() {
+    toast.error("INCORRECT");
   }
 
-  NegativeSound(){
+  NegativeSound() {
     new Audio(WrongSound).play();
   }
-  
+
   render() {
     function choosePivot(e) {
       let pivot = this;
       console.log(pivot);
     }
-    
+
     return (
       <div className="">
         <div className="header mb-6">
-          <LevelHeader level="3"/>
+          <LevelHeader level="3" />
         </div>
         <div className="body">
           <div className="sort"></div>
@@ -114,11 +113,13 @@ class LevelThree extends React.Component {
                   {this.renderBlock(11)}
                 </div>
                 <div>
-                  <NextButton onClick={
-                    this.handleNextStep,
-                    this.PositiveNotify,
-                    this.PositiveSound
-                    } />
+                  <NextButton
+                    onClick={
+                      (this.handleNextStep,
+                      this.PositiveNotify,
+                      this.PositiveSound)
+                    }
+                  />
                   <ResetButton onClick={this.handleReset} />
                 </div>
               </div>
