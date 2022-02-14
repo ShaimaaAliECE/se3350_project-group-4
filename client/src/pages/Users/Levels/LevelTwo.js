@@ -103,7 +103,7 @@ class LevelTwo extends React.Component {
     return (
       <div>
         <div className="header mb-6">
-          <LevelHeader level="1" />
+          <LevelHeader level="2" />
         </div>
         <div className="body">
           <div className="box-surround">
