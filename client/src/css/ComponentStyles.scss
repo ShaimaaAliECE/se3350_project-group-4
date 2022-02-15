@@ -326,3 +326,55 @@
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+
+// Modal component
+.modal-overlay {
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(35, 35, 35, 0.95);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .modal-container {
+    width: 600px;
+    height: 500px;
+    border-radius: 12px;
+    background-color: #000000;
+    background-image: linear-gradient(180deg, #000000 0%, #434343 104%);
+    box-shadow: rgba(64, 223, 159, 0.9) 0px 5px 15px;
+    display: flex;
+    flex-direction:column;
+    padding: 40px;
+    .modal-title{
+      display: inline-block;
+      text-align: center;
+      margin-top: 10px;
+      
+    }
+    .modal-body{
+      display: flex;
+      flex: 50%;
+      font-size: 1.3rem;
+      text-align: left;
+      align-items: center;
+      justify-content: center;
+      padding:30px;
+    }
+    .modal-footer {
+      flex: 20%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      .modal-btn{
+        margin: 10px;
+        width: 200px;
+        height: 45px;
+        font-weight: bold;
+        border:rgba(35, 35, 35, 0.95);
+      }
+    }
+  }
+}
+
+
+
