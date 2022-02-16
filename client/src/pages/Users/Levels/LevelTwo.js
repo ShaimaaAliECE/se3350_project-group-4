@@ -17,12 +17,19 @@ class LevelTwo extends React.Component {
       boxes: Array(11).fill(null),
       boxIndex: [1, 2, 4, 4, 5, 8, 9, 9, 5, 2, 3, 6, 6, 7, 10, 11, 11, 7, 3, 1],
       order: [],
-      showModal: true,
+      showModal: true, //show modal when page loads
     };
     this.generateArray = this.generateArray.bind(this);
     this.handleNextStep = this.handleNextStep.bind(this);
     this.handleReset = this.handleReset.bind(this);
     this.handleMerge = this.handleMerge.bind(this);
+    this.handleStart = this.handleStart.bind(this);
+  }
+
+  // execute when start on the modal is pressed
+  handleStart() {
+    this.generateArray();
+    this.setState({ showModal: false });
   }
 
   //creates array at the rendering of the class
@@ -31,7 +38,7 @@ class LevelTwo extends React.Component {
     let currentInstr = [];
     // Create array using given algorithm class
     var sorting = new MergeSort(1, 20, 10);
-    
+
     sorting.sort(sorting.getArray(), currentOrd, currentInstr, false);
     //retrieves array of instructions and order of steps
     this.setState({
@@ -84,19 +91,29 @@ class LevelTwo extends React.Component {
     console.log("split");
   }
 
-  componentDidMount() {
-    this.generateArray();
-  }
-
   render() {
+    // modal content
+    const modal_title = "Welcome to Level 2";
+    const modal_msg =
+      "A set of 10 numbers are randomly generated out of the range (1-20). The steps of the algorithm are displayed in the text allowing the user to move the numbers according to the current step.";
     return (
       <div>
-        <div>
-          <LevelHeader level="2"/>
-        </div>
-        <div>
-          <Arrays array={this.state.initialArr} label="initial" />
-        </div>
+        {this.state.showModal ? (
+          <Modal
+            handleStart={this.handleStart}
+            title={modal_title}
+            text={modal_msg}
+          />
+        ) : (
+          <div>
+            <div>
+              <LevelHeader level="2" />
+            </div>
+            <div>
+              <Arrays array={this.state.initialArr} label="initial" />
+            </div>
+          </div>
+        )}
       </div>
     );
   }
@@ -107,7 +124,6 @@ function Arrays(props) {
   let array = props.array;
   let blockItems = [];
   let children = [];
-
 
   const [isSplit, setIsSplit] = useState(false);
   const [childArrays, setChildArrays] = useState();
@@ -124,7 +140,7 @@ function Arrays(props) {
   }, [array]);
 
   function handleSplit() {
-    setIsSplit(!isSplit)
+    setIsSplit(!isSplit);
 
     const middle = Math.floor(array.length / 2);
     const array_left = array.slice(0, middle);
@@ -164,12 +180,12 @@ function Arrays(props) {
   if (!isMerging) {
     //add current arrays items into blocked elements
     for (let i = 0; i < array.length; i++) {
-      let temp = true
-      if (array.length == 1) temp = false
+      let temp = true;
+      if (array.length == 1) temp = false;
       blockItems.push([
-          <button disabled = {temp} onClick={selectValue} value={array[i]}>
-            {array[i]}
-          </button>,
+        <button disabled={temp} onClick={selectValue} value={array[i]}>
+          {array[i]}
+        </button>,
       ]);
     }
   }
@@ -199,7 +215,11 @@ function Arrays(props) {
 
   return (
     <div className="initial">
-      <div className={`${!isSplit ? null : "disappear"} + ${array.length > 1 ? null : "disappear"}`}>
+      <div
+        className={`${!isSplit ? null : "disappear"} + ${
+          array.length > 1 ? null : "disappear"
+        }`}
+      >
         <button onClick={handleSplit}>Split</button>
       </div>
       <div>{blockItems}</div>
