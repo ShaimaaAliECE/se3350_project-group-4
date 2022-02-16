@@ -59,24 +59,24 @@ class CustomLevel extends React.Component {
       <div>
         <LevelHeader level="custom" />
         {/* show custom info */}
-        <nav class="level has-text-light mt-3">
-          <div class="level-item has-text-centered">
+        <nav className="level has-text-light mt-3">
+          <div className="level-item has-text-centered">
             <div>
-              <p class="heading">Number of Boxes</p>
-              <p class="title has-text-danger">{this.state.numOfBoxes}</p>
+              <p className="heading">Number of Boxes</p>
+              <p className="title has-text-danger">{this.state.numOfBoxes}</p>
             </div>
           </div>
          
-          <div class="level-item has-text-centered">
+          <div className="level-item has-text-centered">
             <div>
-              <p class="heading">Lower Limit</p>
-              <p class="title has-text-danger">{this.state.lowerLimit}</p>
+              <p className="heading">Lower Limit</p>
+              <p className="title has-text-danger">{this.state.lowerLimit}</p>
             </div>
           </div>
-          <div class="level-item has-text-centered">
+          <div className="level-item has-text-centered">
             <div>
-              <p class="heading">Upper Limit</p>
-              <p class="title has-text-danger">{this.state.upperLimit}</p>
+              <p className="heading">Upper Limit</p>
+              <p className="title has-text-danger">{this.state.upperLimit}</p>
             </div>
           </div>
         </nav>

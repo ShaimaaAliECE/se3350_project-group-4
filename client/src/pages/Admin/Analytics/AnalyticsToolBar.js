@@ -31,7 +31,7 @@ class AnalyticsToolBar extends React.Component {
       <div className="tool-box">
         {/* logo */}
         <div className="logo-text">
-          <i class="fas fa-chart-bar"></i> Analytics
+          <i className="fas fa-chart-bar"></i> Analytics
         </div>
         {/* search bar */}
         <div className="search-box">
@@ -51,7 +51,7 @@ class AnalyticsToolBar extends React.Component {
                 className="button is-danger"
                 onClick={this.clearSearchText}
               >
-                <i class="fas fa-eraser"></i>
+                <i className="fas fa-eraser"></i>
               </button>
             </div>
           </div>
@@ -59,7 +59,7 @@ class AnalyticsToolBar extends React.Component {
         {/* level select */}
         <Link to="/edit" className="quit-box">
           <span className="cart-num">Back</span>
-          <i class="fas fa-sign-out-alt"></i>
+          <i className="fas fa-sign-out-alt"></i>
         </Link>
       </div>
     );

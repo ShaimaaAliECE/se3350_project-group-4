@@ -24,7 +24,7 @@ const StepsScroller = (props) => {
         <p className="control">
           <button className="button is-primary is-large is-outlined">
             <span className="icon is-small">
-              <i class="fas fa-angle-left"></i>
+              <i className="fas fa-angle-left"></i>
             </span>
             <span>Prev</span>
           </button>
@@ -35,7 +35,7 @@ const StepsScroller = (props) => {
             onClick={handleReset}
           >
             <span className="icon is-small">
-              <i class="fa fa-refresh"></i>
+              <i className="fa fa-refresh"></i>
             </span>
             <span>Reset</span>
           </button>
@@ -47,7 +47,7 @@ const StepsScroller = (props) => {
           >
             <span>Next</span>
             <span className="icon is-small">
-              <i class="fas fa-angle-right"></i>
+              <i className="fas fa-angle-right"></i>
             </span>
           </button>
         </p>
