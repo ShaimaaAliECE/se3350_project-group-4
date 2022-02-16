@@ -1,4 +1,4 @@
-import React, { use } from "react";
+import React, { useEffect, useState } from "react";
 import LevelHeader from "components/LevelHeader";
 import MergeSort from "algorithms/mergeSort.mjs";
 import Block from "components/Block";
