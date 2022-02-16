@@ -1,11 +1,11 @@
 import React from "react";
 import PopupMenu from "components/PopupMenu";
 import Pause from "components/Pause";
-// import Gameover from "components/Gameover";
 import { withRouter } from "react-router-dom";
 
 // header component for levels
 const LevelHeader = (props) => {
+
   // open pause menu
   const toPause = () => {
     PopupMenu.open({
@@ -38,28 +38,35 @@ const LevelHeader = (props) => {
       <div className="lv-header">
         <div>
           <nav className="level">
+            {/*  */}
             <p className="level-item has-text-centered">
               <i className="fas fa-heart heart"></i>
               <span>x 3</span>
             </p>
+            {/* Timer */}
             <p className="level-item has-text-centered">
-              <span>TIME SPENT IN CURRENT LEVEL:</span>
+              <span>TIME SPENT:</span>
               <span>XX:XX</span>
             </p>
+            {/* Pause button */}
             <p className="level-item has-text-centered">
               <span className="button is-small is-primary" onClick={toPause}>
                 <i className="pause fas fa-pause"></i>
               </span>
             </p>
+            {/* Level number */}
             <p className="level-item has-text-centered has-text-primary">
               <span>LEVEL {props.level}</span>
             </p>
+            {/* Next level button */}
             <p className="level-item has-text-centered next-lv">
               <div onClick={nextLevel}>NEXT LEVEL</div>
             </p>
           </nav>
         </div>
       </div>
+      
+      {/* green divider */}
       <div className="divider"></div>
     </div>
   );

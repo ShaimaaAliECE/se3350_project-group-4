@@ -8,7 +8,7 @@ export const formatTime = (seconds) => {
     return date.toISOString().substr(11, 8);
   };
 
-// convert remaining lives into accuracy progressPercentage
+// convert remaining lives into accuracy percentage
 
 
 
