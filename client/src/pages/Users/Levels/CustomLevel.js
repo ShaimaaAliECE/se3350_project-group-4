@@ -30,12 +30,12 @@ class CustomLevel extends React.Component {
   }
 
   startLevel = (event) => {
-    //Store data from form
+    // Store data from form
     let min = event.target[2].value;
     let max = event.target[1].value;
     let arraySize = event.target[0].value;
 
-    //Generate the array to be sorted
+    // Generate the array to be sorted
     let orderT = [];
     let instructions = [];
 
@@ -50,7 +50,7 @@ class CustomLevel extends React.Component {
       order: orderT,
     });
 
-    //Rerender by calling an empty setState
+    // Re-render by calling an empty setState
     this.setState();
   };
 
