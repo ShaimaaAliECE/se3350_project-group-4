@@ -117,6 +117,8 @@ function Arrays(props) {
   }, [array]);
 
   function handleSplit() {
+    setIsSplit(!isSplit)
+    
     const middle = Math.floor(array.length / 2);
     const array_left = array.slice(0, middle);
     const array_right = array.slice(middle, array.length);
@@ -188,11 +190,7 @@ function Arrays(props) {
 
   return (
     <div className="initial">
-      <div
-        className={`${!isSplit ? null : "disappear"} + ${
-          array.length > 1 ? null : "disappear"
-        }`}
-      >
+      <div className={`${!isSplit ? null : "disappear"} + ${array.length > 1 ? null : "disappear"}`}>
         <button onClick={handleSplit}>Split</button>
       </div>
       <div>{blockItems}</div>
