@@ -1,4 +1,4 @@
-import React from "react";
+import React, { use } from "react";
 import LevelHeader from "components/LevelHeader";
 import MergeSort from "algorithms/mergeSort.mjs";
 import Block from "components/Block";
@@ -19,8 +19,8 @@ class LevelTwo extends React.Component {
     this.generateArray = this.generateArray.bind(this);
     this.handleNextStep = this.handleNextStep.bind(this);
     this.handleReset = this.handleReset.bind(this);
-    this.generateArrayBlock = this.generateArrayBlock.bind(this);
     this.handleMerge = this.handleMerge.bind(this);
+    this.ArrayBlock = this.ArrayBlock.bind(this);
   }
 
   //creates array at the rendering of the class
@@ -81,34 +81,23 @@ class LevelTwo extends React.Component {
     console.log("split");
   }
 
-  generateArrayBlock() {
-    const arr = this.state.initialArr.slice();
-    if (arr !== undefined) {
-      return arr.map((element) => {
-        return <Block value={element} onClick={this.handleMerge} />;
-      });
-    }
-  }
-
   componentDidMount() {
     this.generateArray();
-  }
-
-  //rendering block with the state of the box
-  renderBlock(i) {
-    return <Block value={this.state.boxes[i - 1]} />;
   }
 
   render() {
     return (
       <div>
-        <div className="header mb-6">
+        {this.ArrayBlock()}
+        {/* <div className="header mb-6">
           <LevelHeader level="1" />
         </div>
         <div className="body">
           <div className="box-surround">
-            <SplitButton onClick={this.handleSplit} />
-            <div>{this.generateArrayBlock()}</div>
+            <div className="buttons-in-row">
+              <SplitButton onClick={this.handleSplit} />
+              {this.generateArrayBlock()}
+            </div>
             <div id="top">{this.renderBlock(1)}</div>
             <div id="second">
               {this.renderBlock(2)}
@@ -140,10 +129,115 @@ class LevelTwo extends React.Component {
               handleNextStep={this.handleNextStep}
             />
           </div>
-        </div>
+        </div> */}
       </div>
     );
   }
+}
+
+function Arrays(props) {
+  let array = props.array;
+  let blockItems = [];
+  let children = [];
+
+  const [isSplit, setIsSplit] = useState(false);
+  const [childArrays, setChildArrays] = useState();
+  const [mergedArray, setMergedArray] = useState(array === 1 ? [...array] : []);
+  const [isMerging, setIsMerging] = useState(false);
+  const [isMerged, setIsMerged] = useState(false);
+
+  function pushToMerged(value) {
+    setMergedArray([...mergedArray, value]);
+  }
+
+  useEffect(() => {
+    console.log("array changed");
+  }, [array]);
+
+  function handleSplit() {
+    const middle = Math.floor(array.length / 2);
+    const array_left = array.slice(0, middle);
+    const array_right = array.slice(middle, array.length);
+
+    setChildArrays({
+      leftArray: array_left,
+      rightArray: array_right,
+    });
+
+    setIsSplit(!isSplit);
+    setIsMerging(true);
+  }
+
+  function selectValue(el) {
+    let value = el.target.getAttribute("value");
+    props.pushToMerge(value);
+    el.target.style.display = "none";
+  }
+
+  if (isMerging) {
+    if (mergedArray != null) {
+      for (let i = 0; i < mergedArray.length; i++) {
+        blockItems.push([
+          <button onClick={selectValue} value={mergedArray[i]}>
+            {mergedArray[i]}
+          </button>,
+        ]);
+      }
+    }
+    //merging is done if merged array length = original array length
+    if (mergedArray.length === array.length) {
+      console.log("merging completed");
+    }
+  }
+
+  if (!isMerging) {
+    //add current arrays items into blocked elements
+    for (let i = 0; i < array.length; i++) {
+      blockItems.push([
+        <button onClick={selectValue} value={array[i]}>
+          {array[i]}
+        </button>,
+      ]);
+    }
+  }
+
+  if (!isMerged) {
+    if (childArrays !== undefined) {
+      children = (
+        <div className="split">
+          <div className="left">
+            <Arrays
+              array={childArrays.leftArray}
+              label="Left Array"
+              pushToMerge={pushToMerged}
+            />
+          </div>
+          <div className="right">
+            <Arrays
+              array={childArrays.rightArray}
+              label="Right Array"
+              pushToMerge={pushToMerged}
+            />
+          </div>
+        </div>
+      );
+    }
+  }
+
+  return (
+    <div className="initial">
+      <div
+        className={`${!isSplit ? null : "disappear"} + ${
+          array.length > 1 ? null : "disappear"
+        }`}
+      >
+        <button onClick={handleSplit}>Split</button>
+      </div>
+      <div>{blockItems}</div>
+      <br></br>
+      <div>{children}</div>
+    </div>
+  );
 }
 
 function MergeButton(props) {
