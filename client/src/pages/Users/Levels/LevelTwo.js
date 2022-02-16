@@ -23,15 +23,15 @@ class LevelTwo extends React.Component {
     this.handleNextStep = this.handleNextStep.bind(this);
     this.handleReset = this.handleReset.bind(this);
     this.handleMerge = this.handleMerge.bind(this);
-    this.ArrayBlock = this.ArrayBlock.bind(this);
   }
 
   //creates array at the rendering of the class
   generateArray() {
     let currentOrd = [];
     let currentInstr = [];
+    // Create array using given algorithm class
     var sorting = new MergeSort(1, 20, 10);
-    // console.log(sorting);
+    
     sorting.sort(sorting.getArray(), currentOrd, currentInstr, false);
     //retrieves array of instructions and order of steps
     this.setState({
@@ -65,7 +65,7 @@ class LevelTwo extends React.Component {
     var step = this.state.step; //block order to retrieve
     const currentBox = this.state.boxIndex[step] - 1;
     box[currentBox] = this.state.order[step];
-    // console.log(box);
+
     step++;
     this.setState({
       boxes: box,
@@ -77,7 +77,7 @@ class LevelTwo extends React.Component {
   }
 
   handleMerge() {
-    console.log("hi");
+    console.log("merge");
   }
 
   handleSplit() {
@@ -91,16 +91,23 @@ class LevelTwo extends React.Component {
   render() {
     return (
       <div>
-        <Arrays array={this.state.initialArr} label="initial" />
+        <div>
+          <LevelHeader level="2"/>
+        </div>
+        <div>
+          <Arrays array={this.state.initialArr} label="initial" />
+        </div>
       </div>
     );
   }
 }
 
 function Arrays(props) {
+  //Get array and prep block values and children
   let array = props.array;
   let blockItems = [];
   let children = [];
+
 
   const [isSplit, setIsSplit] = useState(false);
   const [childArrays, setChildArrays] = useState();
@@ -118,7 +125,7 @@ function Arrays(props) {
 
   function handleSplit() {
     setIsSplit(!isSplit)
-    
+
     const middle = Math.floor(array.length / 2);
     const array_left = array.slice(0, middle);
     const array_right = array.slice(middle, array.length);
@@ -157,10 +164,12 @@ function Arrays(props) {
   if (!isMerging) {
     //add current arrays items into blocked elements
     for (let i = 0; i < array.length; i++) {
+      let temp = true
+      if (array.length == 1) temp = false
       blockItems.push([
-        <button onClick={selectValue} value={array[i]}>
-          {array[i]}
-        </button>,
+          <button disabled = {temp} onClick={selectValue} value={array[i]}>
+            {array[i]}
+          </button>,
       ]);
     }
   }
@@ -197,22 +206,6 @@ function Arrays(props) {
       <br></br>
       <div>{children}</div>
     </div>
-  );
-}
-
-function MergeButton(props) {
-  return (
-    <button className="button is-primary" onClick={props.onClick}>
-      Merge
-    </button>
-  );
-}
-
-function SplitButton(props) {
-  return (
-    <button className="button is-primary" onClick={props.onClick}>
-      Split
-    </button>
   );
 }
 
