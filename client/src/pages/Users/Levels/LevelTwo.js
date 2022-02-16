@@ -106,7 +106,7 @@ class LevelTwo extends React.Component {
           />
         ) : (
           <div>
-            <div>
+            <div className="header mb-6">
               <LevelHeader level="2" />
             </div>
             <div>

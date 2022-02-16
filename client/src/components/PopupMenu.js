@@ -32,6 +32,7 @@ class PopupMenu extends React.Component {
     const child_component = React.createElement(component, {
       ...props,
       close: this.close,
+      restart : this.restart,
       key: window_key,
     });
     this.setState({
@@ -50,7 +51,9 @@ class PopupMenu extends React.Component {
     this.state.callback(data);
   };
 
-  
+  restart = () => {
+    window.location.reload(false);
+  }
 
   render() {
     // toggle between active/inactive using css class

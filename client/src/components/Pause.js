@@ -24,7 +24,7 @@ class Pause extends React.Component {
             <button
               className="m-btn button is-primary is-rounded is-large"
               onClick={() => {
-                this.props.close();
+                this.props.restart();
               }}
             >
               <span className="title">Restart</span>
