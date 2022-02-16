@@ -88,67 +88,9 @@ class LevelTwo extends React.Component {
   }
 
   render() {
-    //
-    const modal_title = "Welcome to Level 2";
-    const modal_msg =
-      "A set of 10 numbers are randomly generated out of the range (1-20)." +
-      "The steps of the algorithm are displayed in the text allowing the user" +
-      "to move the numbers according to the current step.";
     return (
       <div>
-        {this.ArrayBlock()}
-        {/* <div className="header mb-6">
-          <LevelHeader level="1" />
-        </div>
-        <div className="body">
-          <div className="box-surround">
-            <div className="buttons-in-row">
-              <SplitButton onClick={this.handleSplit} />
-              {this.generateArrayBlock()}
-            </div>
-            <div id="top">{this.renderBlock(1)}</div>
-            <div id="second">
-              {this.renderBlock(2)}
-              {this.renderBlock(3)}
-            </div>
-            <div className="body">
-              <div className="box-surround">
-                <SplitButton onClick={this.handleSplit} />
-                <div>{this.generateArrayBlock()}</div>
-                <div id="top">{this.renderBlock(1)}</div>
-                <div id="second">
-                  {this.renderBlock(2)}
-                  {this.renderBlock(3)}
-                </div>
-                <div id="third">
-                  {this.renderBlock(4)}
-                  {this.renderBlock(5)}
-                  {this.renderBlock(6)}
-                  {this.renderBlock(7)}
-                </div>
-                <div id="third">
-                  <Block />
-                  <Block />
-                  {this.renderBlock(8)}
-                  {this.renderBlock(9)}
-                  <Block />
-                  <Block />
-                  {this.renderBlock(10)}
-                  {this.renderBlock(11)}
-                </div>
-              </div>
-              <div className="alg-steps">
-                <StepsScroller
-                  lineOne={this.state.lineOne}
-                  lineTwo={this.state.lineTwo}
-                  lineThree={this.state.lineThree}
-                  handleReset={this.handleReset}
-                  handleNextStep={this.handleNextStep}
-                />
-              </div>
-            </div>
-          </div>
-        </div> */}
+        <Arrays array={this.state.initialArr} label="initial" />
       </div>
     );
   }
