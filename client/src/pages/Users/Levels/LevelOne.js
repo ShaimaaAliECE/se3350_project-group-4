@@ -27,7 +27,7 @@ class LevelOne extends React.Component {
   // execute when start on the modal is pressed
   handleStart() {
     this.generateArray();
-    this.setState({ showModal: false, step: 1});
+    this.setState({ showModal: false });
   }
 
   //creates array at the rendering of the class

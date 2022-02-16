@@ -50,6 +50,8 @@ class PopupMenu extends React.Component {
     this.state.callback(data);
   };
 
+  
+
   render() {
     // toggle between active/inactive using css class
     const _class = {

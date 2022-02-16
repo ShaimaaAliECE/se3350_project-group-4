@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 
 class Pause extends React.Component {
   render() {
@@ -34,6 +33,9 @@ class Pause extends React.Component {
           <div className="container">
             <button
               className="m-btn button is-primary is-rounded is-large"
+              onClick={() => {
+                this.props.close();
+              }}
             >
               <span className="title">Exit</span>
             </button>

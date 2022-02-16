@@ -21,15 +21,7 @@ const StepsScroller = (props) => {
       </div>
 
       <div className="control-btns field has-addons">
-        <p className="control">
-          <button className="button is-primary is-large is-outlined">
-            <span className="icon is-small">
-              <i className="fas fa-angle-left"></i>
-            </span>
-            <span>Prev</span>
-          </button>
-        </p>
-        <p className="control">
+        <div className="control">
           <button
             className="button is-primary is-large is-outlined"
             onClick={handleReset}
@@ -39,8 +31,8 @@ const StepsScroller = (props) => {
             </span>
             <span>Reset</span>
           </button>
-        </p>
-        <p className="control">
+        </div>
+        <div className="control">
           <button
             className="button is-primary is-large is-outlined"
             onClick={handleNextStep}
@@ -50,7 +42,7 @@ const StepsScroller = (props) => {
               <i className="fas fa-angle-right"></i>
             </span>
           </button>
-        </p>
+        </div>
       </div>
     </div>
   );
