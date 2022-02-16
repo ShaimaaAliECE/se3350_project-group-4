@@ -4,6 +4,7 @@ import MergeSort from "algorithms/mergeSort.mjs";
 import Block from "components/Block";
 import StepsScroller from "components/StepsScroller";
 import Modal from "components/Modal";
+import "../../../css/LevelStyles.css";
 
 class LevelTwo extends React.Component {
   constructor(props) {
