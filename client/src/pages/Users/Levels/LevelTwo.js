@@ -1,10 +1,7 @@
 import React, { useEffect, useState } from "react";
 import LevelHeader from "components/LevelHeader";
 import MergeSort from "algorithms/mergeSort.mjs";
-import Block from "components/Block";
-import StepsScroller from "components/StepsScroller";
 import Modal from "components/Modal";
-import { Link, withRouter } from "react-router-dom";
 import "../../../css/LevelStyles.css";
 
 class LevelTwo extends React.Component {
@@ -19,12 +16,15 @@ class LevelTwo extends React.Component {
       boxIndex: [1, 2, 4, 4, 5, 8, 9, 9, 5, 2, 3, 6, 6, 7, 10, 11, 11, 7, 3, 1],
       order: [],
       showModal: true, //show modal when page loads
+      win: false,
     };
     this.generateArray = this.generateArray.bind(this);
     this.handleNextStep = this.handleNextStep.bind(this);
     this.handleReset = this.handleReset.bind(this);
     this.handleMerge = this.handleMerge.bind(this);
     this.handleStart = this.handleStart.bind(this);
+    this.handleEnd = this.handleEnd.bind(this);
+    this.Arrays = this.render.Arrays.bind(this);
   }
 
   // execute when start on the modal is pressed
@@ -92,13 +92,36 @@ class LevelTwo extends React.Component {
     console.log("split");
   }
 
+  handleEnd() {
+    this.setState({showModal:false});
+  }
+
   render() {
     // modal content
     const modal_title = "Level 2";
     const modal_msg =
       "A set of 10 numbers are randomly generated out of the range (1-20). The steps of the algorithm are displayed in the text allowing the user to move the numbers according to the current step.";
-    return (
+    const modal_title_win = "Level 2 Complete";
+    const modal_msg_win = "Congrats! You Win!";
+    /*return (
       <div>
+        
+        {this.state.showModal ? (
+          <Modal
+            handleStart={this.handleStart}
+            title={modal_title}
+            text={modal_msg}
+          />
+        ) : (
+          <div>
+            <div className="header mb-6">
+              <LevelHeader level="2" />
+            </div>
+            <div>
+              <Arrays array={this.state.initialArr} label="initial" />
+            </div>
+          </div>
+        )}
         {this.state.showModal ? (
           <Modal
             handleStart={this.handleStart}
@@ -116,7 +139,41 @@ class LevelTwo extends React.Component {
           </div>
         )}
       </div>
-    );
+    );*/
+    if(this.state.showModal === true){
+      return (
+        <div>
+          <Modal
+            handleStart={this.handleStart}
+            title={modal_title}
+            text={modal_msg}
+          />
+        </div>
+      );
+    }
+    else if(this.state.showModal === false){
+      return(
+        <div>
+            <div className="header mb-6">
+              <LevelHeader level="2" />
+            </div>
+            <div>
+              <Arrays array={this.state.initialArr} label="initial" />
+            </div>
+          </div>
+      );
+    }
+    else if((this.state.showModal === true) && (this.state.win === true)){
+      return(
+        <div>
+          <Modal
+            handleStart={this.handleEnd}
+            title={modal_title_win}
+            text={modal_msg_win}
+          />
+        </div>
+      );
+    }
   }
 }
 
@@ -125,6 +182,8 @@ function Arrays(props) {
   let array = props.array;
   let blockItems = [];
   let children = [];
+
+  //console.log(array.length);
 
   const [isSplit, setIsSplit] = useState(false);
   const [childArrays, setChildArrays] = useState();
@@ -164,6 +223,14 @@ function Arrays(props) {
 
   if (isMerging) {
     if (mergedArray != null) {
+      let sorted = true;
+      for (let x = 0; x < mergedArray.length - 1; x++) {
+        if (parseInt(mergedArray[x]) > parseInt(mergedArray[x+1])) {
+          sorted = false;
+        }
+      }
+      if(!sorted)
+        console.log("bad");
       for (let i = 0; i < mergedArray.length; i++) {
         blockItems.push([
           <button onClick={selectValue} value={mergedArray[i]}>
@@ -173,8 +240,15 @@ function Arrays(props) {
       }
     }
     //merging is done if merged array length = original array length
-    if (mergedArray.length === array.length) {
+    if (mergedArray.length === 10) {
       console.log("merging completed");
+      const winner = true;
+      setIsMerged(isMerged);
+      setIsMerging(!isMerging);
+      console.log("Winner");
+      this.setState({ //this = undefined, not completely sure want it do to fix
+        win: winner, //once this sets should show a new modal (see line 166-174)
+      })
     }
   }
 
@@ -230,4 +304,6 @@ function Arrays(props) {
   );
 }
 
-export default withRouter(LevelTwo);
+export default LevelTwo;
+
+//too many rerenders error: when setIsMerge is set to true on line 177, keeps repeating over and over
