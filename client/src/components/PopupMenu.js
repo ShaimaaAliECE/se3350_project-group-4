@@ -17,6 +17,8 @@ class PopupMenu extends React.Component {
     callback: () => {},
   };
 
+  // ----- Popup menu functions ----- //
+
   //open popup window method
   open = (
     options = {
@@ -32,7 +34,7 @@ class PopupMenu extends React.Component {
     const child_component = React.createElement(component, {
       ...props,
       close: this.close,
-      restart : this.restart,
+      restart: this.restart,
       key: window_key,
     });
     this.setState({
@@ -42,9 +44,9 @@ class PopupMenu extends React.Component {
     });
   };
 
+  
   //close popup window method
   close = (data) => {
-    
     this.setState({
       active: false,
     });
@@ -52,11 +54,12 @@ class PopupMenu extends React.Component {
     this.state.callback(data);
   };
 
+  // ----- Pause Menu functions ----- //
+
+  // restart the level
   restart = () => {
     window.location.reload(false);
-  }
-
-  
+  };
 
   render() {
     // toggle between active/inactive using css class

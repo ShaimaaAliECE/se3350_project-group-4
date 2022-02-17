@@ -19,6 +19,7 @@ class LevelOne extends React.Component {
     };
     this.generateArray = this.generateArray.bind(this);
     this.handleNextStep = this.handleNextStep.bind(this);
+    this.handlePrevStep = this.handlePrevStep.bind(this);
     this.handleReset = this.handleReset.bind(this);
     this.generateBlocks = this.generateBlocks.bind(this);
     this.handleStart = this.handleStart.bind(this);
@@ -76,6 +77,22 @@ class LevelOne extends React.Component {
       lineOne: this.state.instructions[step - 1],
       lineTwo: this.state.instructions[step],
       lineThree: this.state.instructions[step + 1],
+    });
+  }
+
+  handlePrevStep(e) {
+    const box = this.state.boxes.slice();
+    var step = this.state.step; //block order to retrieve
+    const currentBox = this.state.boxIndex[step] + 1;
+    box[currentBox] = this.state.order[step];
+    // console.log(box);
+    step--;
+    this.setState({
+      boxes: box,
+      step: step,
+      lineOne: this.state.instructions[step + 1],
+      lineTwo: this.state.instructions[step],
+      lineThree: this.state.instructions[step - 1],
     });
   }
 
@@ -146,6 +163,7 @@ class LevelOne extends React.Component {
                   lineThree={this.state.lineThree}
                   handleReset={this.handleReset}
                   handleNextStep={this.handleNextStep}
+                  handlePrevStep={this.handlePrevStep}
                 />
               </div>
             </div>

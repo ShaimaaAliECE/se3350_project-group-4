@@ -1,8 +1,16 @@
 import React from "react";
+import { Animated } from "react-animated-css";
 
 // component for showing steps
 const StepsScroller = (props) => {
-  const { lineOne, lineTwo, lineThree, handleReset, handleNextStep } = props;
+  const {
+    lineOne,
+    lineTwo,
+    lineThree,
+    handleReset,
+    handleNextStep,
+    handlePrevStep,
+  } = props;
 
   return (
     <div>
@@ -19,8 +27,19 @@ const StepsScroller = (props) => {
           {lineThree ? <li className="step3">{lineThree}</li> : <span></span>}
         </div>
       </div>
-
+      {/* buttons */}
       <div className="control-btns field has-addons">
+        <div className="control">
+          <button
+            className="button is-primary is-large is-outlined"
+            onClick={handlePrevStep}
+          >
+            <span className="icon is-small">
+              <i className="fas fa-angle-left"></i>
+            </span>
+            <span>Prev</span>
+          </button>
+        </div>
         <div className="control">
           <button
             className="button is-primary is-large is-outlined"

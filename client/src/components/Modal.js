@@ -1,11 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import {Animated} from "react-animated-css";
+
 const Modal = (props) => {
   // get values from props
   const { handleStart, title, text } = props;
 
   return (
     <div className="modal-overlay">
+      <Animated animationIn="bounceInUp" animationOut="bounceOut" isVisible={true}>
       <div className="modal-container">
         <div className="modal-title">
           <h2 className="title is-2 has-text-primary">Welcome To {title}</h2>
@@ -24,6 +27,7 @@ const Modal = (props) => {
           </button>
         </div>
       </div>
+      </Animated>
     </div>
   );
 };
