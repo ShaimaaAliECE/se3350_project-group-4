@@ -80,6 +80,7 @@ class LevelOne extends React.Component {
     });
   }
 
+  // handle previous step
   handlePrevStep(e) {
     const box = this.state.boxes.slice();
     var step = this.state.step; //block order to retrieve
@@ -111,8 +112,6 @@ class LevelOne extends React.Component {
   renderBlock(i) {
     return <Block value={this.state.boxes[i - 1]} />;
   }
-
-  
 
   render() {
     // modal content
@@ -177,4 +176,3 @@ class LevelOne extends React.Component {
 }
 
 export default LevelOne;
-

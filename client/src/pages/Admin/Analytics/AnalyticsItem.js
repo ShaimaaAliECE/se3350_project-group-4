@@ -3,11 +3,11 @@ import { formatTime } from "utils/format";
 
 const AnalyticsItem = (props) => {
     // deconstruct props
-  const { time, accuracy, username, complete_date } = props.item || {};
+  const { id, time, accuracy, username, complete_date } = props.item || {};
   return (
     <div className="columns is-vcentered item-wrapper has-text-centered">
       <div className="column">
-        <span className="rank">1</span>
+        <span className="rank">{id}</span>
       </div>
 
       <div className="column a-item-name">{username}</div>
