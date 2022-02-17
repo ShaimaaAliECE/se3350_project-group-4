@@ -8,6 +8,7 @@ const Analytics = () => {
   const [items, setItems] = useState([]); //default empty object
   const [levelName, setLevelName] = useState(0); //default
   const [timesCompleted, setTimesCompleted] = useState(0);
+  const [sourceItems, setSourceItems] = useState([]); 
 
   // get the average accuracy of the corresponding level
   const averageAccuracy = () => {
@@ -36,41 +37,62 @@ const Analytics = () => {
       .replace(/\b(\d)\b/g, "0$1");
   }
 
+  // search function
+  const search = (text) => {
+    // get a new array
+    let _items = [...sourceItems];
+
+    // filter new array
+    _items = _items.filter((i) => {
+      const matchArray = i.username.match(new RegExp(text, "gi"));
+      return !!matchArray;
+    });
+
+    // set state of new array
+    setItems(_items);
+  };
+
   // load data into AnalyticItems
   const loadData = (level) => {
     if (level === "level1") {
       axios.get("/level1").then((res) => {
         setItems(res.data);
+        setSourceItems(res.data);
         setLevelName(1);
         setTimesCompleted(res.data.length);
       });
     } else if (level === "level2") {
       axios.get("/level2").then((res) => {
         setItems(res.data);
+        setSourceItems(res.data);
         setLevelName(2);
         setTimesCompleted(res.data.length);
       });
     } else if (level === "level3") {
       axios.get("/level3").then((res) => {
         setItems(res.data);
+        setSourceItems(res.data);
         setLevelName(3);
         setTimesCompleted(res.data.length);
       });
     } else if (level === "level4") {
       axios.get("/level4").then((res) => {
         setItems(res.data);
+        setSourceItems(res.data);
         setLevelName(4);
         setTimesCompleted(res.data.length);
       });
     } else if (level === "level5") {
       axios.get("/level5").then((res) => {
         setItems(res.data);
+        setSourceItems(res.data);
         setLevelName(5);
         setTimesCompleted(res.data.length);
       });
     } else if (level === "custom") {
       axios.get("/custom").then((res) => {
         setItems(res.data);
+        setSourceItems(res.data);
         setLevelName("C");
         setTimesCompleted(res.data.length);
       });
@@ -79,7 +101,7 @@ const Analytics = () => {
 
   return (
     <div>
-      <ToolBar />
+      <ToolBar search={search} />
       <div className="analytics-wrapper">
         {/* choose which level to show */}
         <div className="level-container">
@@ -141,26 +163,26 @@ const Analytics = () => {
         <nav className="level mt-5 has-text-light">
           <div className="level-item has-text-centered">
             <div>
-              <p class="heading">Level</p>
-              <p class="title a-stat">{levelName}</p>
+              <p className="heading">Level</p>
+              <p className="title a-stat">{levelName}</p>
             </div>
           </div>
-          <div class="level-item has-text-centered">
+          <div className="level-item has-text-centered">
             <div>
-              <p class="heading">Times Completed</p>
-              <p class="title a-stat">{timesCompleted}</p>
+              <p className="heading">Times Completed</p>
+              <p className="title a-stat">{timesCompleted}</p>
             </div>
           </div>
-          <div class="level-item has-text-centered">
+          <div className="level-item has-text-centered">
             <div>
-              <p class="heading">Fastest Time</p>
-              <p class="title a-stat">{fastestTime()}</p>
+              <p className="heading">Fastest Time</p>
+              <p className="title a-stat">{fastestTime()}</p>
             </div>
           </div>
-          <div class="level-item has-text-centered">
+          <div className="level-item has-text-centered">
             <div>
-              <p class="heading">Average Accuracy</p>
-              <p class="title a-stat">{averageAccuracy()}%</p>
+              <p className="heading">Average Accuracy</p>
+              <p className="title a-stat">{averageAccuracy()}%</p>
             </div>
           </div>
         </nav>

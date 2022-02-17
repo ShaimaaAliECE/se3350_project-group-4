@@ -23,10 +23,14 @@ class CustomLevelForm extends React.Component {
   submit = (e) => {
     e.preventDefault();
     const customState = { ...this.state };
-    if (this.state.boxCount !== "" && this.state.upperRange !== "" && this.lowerRange !== "") {
+    if (
+      this.state.boxCount !== "" &&
+      this.state.upperRange !== "" &&
+      this.lowerRange !== ""
+    ) {
       this.props.close(customState);
     } else {
-      const message = "Oops, you forgot to define custom parameters!"
+      const message = "Oops, you forgot to define custom parameters!";
       toast.error(message);
     }
   };

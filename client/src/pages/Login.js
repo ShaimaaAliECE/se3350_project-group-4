@@ -6,7 +6,11 @@ import { toast } from "react-toastify";
 // import header area sub component
 import LoginHeader from "components/BackBtnHeader";
 
+<<<<<<< Updated upstream
 import Clicksound from '../assets/audios/ClickSound2.mp3';
+=======
+import Clicksound from 'assets/audios/ClickSound2.mp3';
+>>>>>>> Stashed changes
 
 // Login Page
 const Login = (props) => {
