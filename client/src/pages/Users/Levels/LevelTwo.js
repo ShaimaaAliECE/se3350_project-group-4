@@ -4,6 +4,7 @@ import MergeSort from "algorithms/mergeSort.mjs";
 import Block from "components/Block";
 import StepsScroller from "components/StepsScroller";
 import Modal from "components/Modal";
+import { Link, withRouter } from "react-router-dom";
 
 class LevelTwo extends React.Component {
   constructor(props) {
@@ -11,12 +12,13 @@ class LevelTwo extends React.Component {
     this.state = {
       initialArr: [],
       splitting: true,
-      step: 0,
+      step: 1,
       instructions: [],
       boxes: Array(11).fill(null),
       boxIndex: [1, 2, 4, 4, 5, 8, 9, 9, 5, 2, 3, 6, 6, 7, 10, 11, 11, 7, 3, 1],
       order: [],
       showModal: true,
+      currentArray: [],
     };
     this.generateArray = this.generateArray.bind(this);
     this.handleNextStep = this.handleNextStep.bind(this);
@@ -67,11 +69,14 @@ class LevelTwo extends React.Component {
 
   //handles next step
   handleNextStep(e) {
+    console.log(this.state.initialArr); //prints initial array
+    console.log(this.state.currentArray);
+    console.log(this.state.step);
+    //console.log(this.state.order[this.state.step].split(',').map(Number)); //prints latest array as numbers
     const box = this.state.boxes.slice();
     var step = this.state.step; //block order to retrieve
     const currentBox = this.state.boxIndex[step] - 1;
     box[currentBox] = this.state.order[step];
-    // console.log(box);
     step++;
     this.setState({
       boxes: box,
@@ -79,6 +84,7 @@ class LevelTwo extends React.Component {
       lineOne: this.state.instructions[step - 1],
       lineTwo: this.state.instructions[step],
       lineThree: this.state.instructions[step + 1],
+      currentArray: this.state.order[this.state.step].split(',').map(Number),
     });
   }
 
@@ -94,13 +100,26 @@ class LevelTwo extends React.Component {
     const arr = this.state.initialArr.slice();
     if (arr !== undefined) {
       return arr.map((element) => {
-        return <Block value={element} onClick={this.handleMerge} />;
+        return <Block value={element} onClick={this.handleMerge}/>;
+      });
+    }
+  }
+
+  generateArrayBlockCurrent() {
+    const arr = this.state.currentArray;
+    if (arr !== undefined) {
+      return arr.map((element) => {
+        return <Block value={element} onClick={this.handleMerge}/>;
       });
     }
   }
 
   //rendering block with the state of the box
   renderBlock(i) {
+    return <Block value={this.state.boxes[i - 1]} />;
+  }
+
+  renderBlockTwo(i) {
     return <Block value={this.state.boxes[i - 1]} />;
   }
 
@@ -126,28 +145,22 @@ class LevelTwo extends React.Component {
             </div>
             <div className="body">
               <div className="box-surround">
-                <SplitButton onClick={this.handleSplit} />
+                <SplitButton onClick={this.handleSplit, this.handleNextStep} />
                 <div>{this.generateArrayBlock()}</div>
-                <div id="top">{this.renderBlock(1)}</div>
+                <div id="top"></div>
                 <div id="second">
-                  {this.renderBlock(2)}
-                  {this.renderBlock(3)}
+                  <div>{this.generateArrayBlockCurrent()}</div>
                 </div>
                 <div id="third">
-                  {this.renderBlock(4)}
-                  {this.renderBlock(5)}
-                  {this.renderBlock(6)}
-                  {this.renderBlock(7)}
+                  
                 </div>
                 <div id="third">
                   <Block />
                   <Block />
-                  {this.renderBlock(8)}
-                  {this.renderBlock(9)}
+
                   <Block />
                   <Block />
-                  {this.renderBlock(10)}
-                  {this.renderBlock(11)}
+
                 </div>
               </div>
               <div className="alg-steps">
@@ -183,4 +196,4 @@ function SplitButton(props) {
   );
 }
 
-export default LevelTwo;
+export default withRouter(LevelTwo);
