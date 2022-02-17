@@ -114,7 +114,7 @@ class LevelTwo extends React.Component {
               <LevelHeader level="2" />
             </div>
             <div>
-              <Arrays array={this.state.initialArr} label="initial" />
+              <Arrays array={this.state.initialArr} label="initial" order = {this.state.order}/>
             </div>
           </div>
         )}
@@ -126,6 +126,7 @@ class LevelTwo extends React.Component {
 function Arrays(props) {
   //Get array and prep block values and children
   let array = props.array;
+  let order = props.order;
   let blockItems = [];
   let children = [];
 
@@ -134,6 +135,7 @@ function Arrays(props) {
   const [mergedArray, setMergedArray] = useState(array === 1 ? [...array] : []);
   const [isMerging, setIsMerging] = useState(false);
   const [isMerged, setIsMerged] = useState(false);
+  const [step, setStep] = useState(0)
 
   function pushToMerged(value) {
     setMergedArray([...mergedArray, value]);
@@ -145,6 +147,7 @@ function Arrays(props) {
 
   function handleSplit() {
     setIsSplit(!isSplit);
+    setStep(step + 1)
 
     const middle = Math.floor(array.length / 2);
     const array_left = array.slice(0, middle);
@@ -163,6 +166,23 @@ function Arrays(props) {
     let value = el.target.getAttribute("value");
     props.pushToMerge(value);
     el.target.style.display = "none";
+  }
+
+  //Function to make sure user can only split one array at a time
+  function checkSplitValidity(array) {
+    array = array.toString()
+
+    console.log(order)
+    console.log(step)
+    console.log(order[step])
+    console.log(array)
+
+    if (array.indexOf(order[step]) == -1) {
+      return false
+    } else {
+      return true
+    }
+
   }
 
   if (isMerging) {
@@ -220,9 +240,9 @@ function Arrays(props) {
   return (
     <div className="initial">
       <div
-        className={`${!isSplit ? null : "disappear"} + ${
-          array.length > 1 ? null : "disappear"
-        }`}
+        className={`${!isSplit ? null : "disappear"} + 
+        ${array.length > 1 ? null : "disappear"} +
+        ${checkSplitValidity(array) ? null: "disappear"}`}
       >
         <button onClick={handleSplit}>Split</button>
       </div>
