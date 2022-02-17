@@ -6,9 +6,10 @@ import { toast } from "react-toastify";
 // import header area sub component
 import LoginHeader from "components/BackBtnHeader";
 //button click sound stuff
-import { Howl } from "howler";
+/*import { Howl } from "howler";
 import 'react-toastify/dist/ReactToastify.css';
 import clickSound from 'client/src/audioclips/clickSound.mp3';
+*/
 
 // Login Page
 const Login = (props) => {
