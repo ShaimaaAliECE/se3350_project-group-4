@@ -17,6 +17,8 @@ class PopupMenu extends React.Component {
     callback: () => {},
   };
 
+  // ----- Popup menu functions ----- //
+
   //open popup window method
   open = (
     options = {
@@ -32,6 +34,7 @@ class PopupMenu extends React.Component {
     const child_component = React.createElement(component, {
       ...props,
       close: this.close,
+      restart: this.restart,
       key: window_key,
     });
     this.setState({
@@ -41,6 +44,7 @@ class PopupMenu extends React.Component {
     });
   };
 
+  
   //close popup window method
   close = (data) => {
     this.setState({
@@ -48,6 +52,13 @@ class PopupMenu extends React.Component {
     });
     // save data on close
     this.state.callback(data);
+  };
+
+  // ----- Pause Menu functions ----- //
+
+  // restart the level
+  restart = () => {
+    window.location.reload(false);
   };
 
   render() {
@@ -62,22 +73,22 @@ class PopupMenu extends React.Component {
         {/* overlay */}
         <div
           className="over-layer"
-          onClick={() => {
-            this.close();
-          }}
+          // onClick={() => {
+          //   this.close();
+          // }}
         ></div>
         {/* window*/}
         <div className="window">
           <div className="head">
             {/* close button */}
-            <span
+            {/* <span
               className="close"
               onClick={() => {
                 this.close();
               }}
             >
               ×
-            </span>
+            </span> */}
             {/* mounted child component */}
             {this.state.component}
           </div>

@@ -226,6 +226,7 @@
   display: flex;
   flex-direction: row;
   align-items: center;
+  align-content: space-between;
 }
 
 //Steps Scroller Component
@@ -268,10 +269,10 @@
 }
 
 .control-btns {
-  margin-top: 4em;
+  margin-top: 1em;
   position: fixed;
   left: 50%;
-  transform: translate(-50%, 0);
+  transform: translate(-50%, -30%);
 }
 
 // Analytics ToolBar

@@ -135,7 +135,7 @@ const Home = () => {
             transition={{ duration: 1 }}
           >
             AlgoLab
-            <i class="fas fa-atom"></i>
+            <i className="fas fa-atom"></i>
           </motion.p>
 
           {/* button group */}
@@ -176,7 +176,7 @@ const Home = () => {
                 animate={{ opacity: 1, transition: { duration: 1.5 } }}
               >
                 <span className="icon mr-2">
-                  <i class="fa fa-user-plus" aria-hidden="true"></i>
+                  <i className="fa fa-user-plus" aria-hidden="true"></i>
                 </span>
                 <span>Register</span>
               </Btn>

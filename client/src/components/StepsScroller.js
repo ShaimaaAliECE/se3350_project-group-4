@@ -1,8 +1,16 @@
 import React from "react";
+import { Animated } from "react-animated-css";
 
 // component for showing steps
 const StepsScroller = (props) => {
-  const { lineOne, lineTwo, lineThree, handleReset, handleNextStep } = props;
+  const {
+    lineOne,
+    lineTwo,
+    lineThree,
+    handleReset,
+    handleNextStep,
+    handlePrevStep,
+  } = props;
 
   return (
     <div>
@@ -19,39 +27,48 @@ const StepsScroller = (props) => {
           {lineThree ? <li className="step3">{lineThree}</li> : <span></span>}
         </div>
       </div>
-
-      <div className="control-btns field has-addons">
-        <p className="control">
-          <button className="button is-primary is-large is-outlined">
-            <span className="icon is-small">
-              <i class="fas fa-angle-left"></i>
-            </span>
-            <span>Prev</span>
-          </button>
-        </p>
-        <p className="control">
-          <button
-            className="button is-primary is-large is-outlined"
-            onClick={handleReset}
-          >
-            <span className="icon is-small">
-              <i class="fa fa-refresh"></i>
-            </span>
-            <span>Reset</span>
-          </button>
-        </p>
-        <p className="control">
-          <button
-            className="button is-primary is-large is-outlined"
-            onClick={handleNextStep}
-          >
-            <span>Next</span>
-            <span className="icon is-small">
-              <i class="fas fa-angle-right"></i>
-            </span>
-          </button>
-        </p>
-      </div>
+      {/* buttons */}
+      <Animated
+        animationIn="bounceInUp"
+        animationOut="bounceOut"
+        isVisible={true}
+      >
+        <div className="control-btns field has-addons">
+          <div className="control">
+            <button
+              className="button is-primary is-large p-5 is-outlined"
+              onClick={handlePrevStep}
+            >
+              <span className="icon is-small">
+                <i className="fas fa-angle-left"></i>
+              </span>
+              <span>Prev</span>
+            </button>
+          </div>
+          <div className="control">
+            <button
+              className="button is-primary is-large p-5 is-outlined"
+              onClick={handleReset}
+            >
+              <span className="icon is-small">
+                <i className="fa fa-refresh"></i>
+              </span>
+              <span>Reset</span>
+            </button>
+          </div>
+          <div className="control">
+            <button
+              className="button is-primary is-large p-5 is-outlined"
+              onClick={handleNextStep}
+            >
+              <span>Next</span>
+              <span className="icon is-small">
+                <i className="fas fa-angle-right"></i>
+              </span>
+            </button>
+          </div>
+        </div>
+      </Animated>
     </div>
   );
 };

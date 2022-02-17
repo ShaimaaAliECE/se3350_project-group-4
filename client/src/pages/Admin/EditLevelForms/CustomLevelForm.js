@@ -89,11 +89,11 @@ class CustomLevelForm extends React.Component {
             {/* Start Button */}
             <div className="control">
               <button className="button is-primary is-medium">
-                <strong>Start</strong>
+                <strong>Start Custom Level</strong>
               </button>
             </div>
             {/* Close Button */}
-            <div className="control">
+            {/* <div className="control">
               <button
                 className="button is-medium"
                 type="button"
@@ -103,7 +103,7 @@ class CustomLevelForm extends React.Component {
               >
                 <strong>Back</strong>
               </button>
-            </div>
+            </div> */}
           </div>
         </form>
       </div>

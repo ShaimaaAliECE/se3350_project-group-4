@@ -1,20 +1,92 @@
-import React from "react";
+import React, { useState } from "react";
 import PopupMenu from "components/PopupMenu";
 import Pause from "components/Pause";
 import { withRouter } from "react-router-dom";
+import { Animated } from "react-animated-css";
+
 
 // header component for levels
 const LevelHeader = (props) => {
+
+  // ----- Timer ----- //
+  const [time, setTime] = useState({ ms: 0, s: 0, m: 0, h: 0 });
+  const [interv, setInterv] = useState();
+  const [status, setStatus] = useState(0);
+
+  // start timer
+  const start = () => {
+    run();
+    setStatus(1);
+    setInterv(setInterval(run, 10));
+  };
+  var updatedMs = time.ms,
+    updatedS = time.s,
+    updatedM = time.m,
+    updatedH = time.h;
+  // run timer
+  const run = () => {
+    if (updatedM === 60) {
+      updatedH++;
+      updatedM = 0;
+    }
+    if (updatedS === 60) {
+      updatedM++;
+      updatedS = 0;
+    }
+    if (updatedMs === 100) {
+      updatedS++;
+      updatedMs = 0;
+    }
+    updatedMs++;
+    return setTime({ ms: updatedMs, s: updatedS, m: updatedM, h: updatedH });
+  };
+  // stop timer
+  const stop = () => {
+    clearInterval(interv);
+    setStatus(2);
+  };
+  // reset timer
+  const reset = () => {
+    clearInterval(interv);
+    setStatus(0);
+    setTime({ ms: 0, s: 0, m: 0, h: 0 });
+  };
+  // resume timer
+  const resume = () => start();
 
   // open pause menu
   const toPause = () => {
     PopupMenu.open({
       component: Pause,
       callback: (data) => {
-        //console.log(data);
+        if (data === "exit") {
+          props.history.push("/select");
+        }
       },
     });
   };
+
+  function DisplayComponent(props) {
+    const h = () => {
+      if (props.time.h === 0) {
+        return "";
+      } else {
+        return (
+          <span>{props.time.h >= 10 ? props.time.h : "0" + props.time.h}</span>
+        );
+      }
+    };
+    return (
+      <div>
+        {h()}&nbsp;&nbsp;
+        <span>{props.time.m >= 10 ? props.time.m : "0" + props.time.m}</span>
+        &nbsp;:&nbsp;
+        <span>{props.time.s >= 10 ? props.time.s : "0" + props.time.s}</span>
+        &nbsp;:&nbsp;
+        <span>{props.time.ms >= 10 ? props.time.ms : "0" + props.time.ms}</span>
+      </div>
+    );
+  }
 
   // redirect to next level
   const nextLevel = () => {
@@ -34,7 +106,12 @@ const LevelHeader = (props) => {
   };
 
   return (
-    <div>
+    <Animated
+      animationIn="fadeInDown"
+      animationOut="bounceOut"
+      isVisible={true}
+      animationInDelay={1000}
+    >
       <div className="lv-header">
         <div>
           <nav className="level">
@@ -45,8 +122,10 @@ const LevelHeader = (props) => {
             </p>
             {/* Timer */}
             <p className="level-item has-text-centered">
-              <span>TIME SPENT:</span>
-              <span>XX:XX</span>
+              <span>Time Spent In Current Level:</span>
+              <span>
+                <DisplayComponent time={time}/>
+              </span>
             </p>
             {/* Pause button */}
             <p className="level-item has-text-centered">
@@ -65,10 +144,10 @@ const LevelHeader = (props) => {
           </nav>
         </div>
       </div>
-      
+
       {/* green divider */}
       <div className="divider"></div>
-    </div>
+    </Animated>
   );
 };
 

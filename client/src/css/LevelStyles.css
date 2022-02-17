@@ -1,0 +1,16 @@
+.split { 
+    display: grid; 
+    text-align: center;
+    grid-template-columns: 1fr 1fr;
+}
+
+.initial {
+    text-align: center;
+}
+
+.disappear {
+    /* Removes the button from the view */
+    /* display: none; */
+    /* Hides the button, replaces with a blank space */
+    visibility: hidden;
+}
