@@ -3,6 +3,7 @@ import LevelHeader from "components/LevelHeader";
 import MergeSort from "algorithms/mergeSort.mjs";
 import Modal from "components/Modal";
 import "../../../css/LevelStyles.css";
+import { Link, withRouter } from "react-router-dom";
 
 class LevelTwo extends React.Component {
   constructor(props) {
@@ -24,7 +25,6 @@ class LevelTwo extends React.Component {
     this.handleMerge = this.handleMerge.bind(this);
     this.handleStart = this.handleStart.bind(this);
     this.handleEnd = this.handleEnd.bind(this);
-    this.Arrays = this.render.Arrays.bind(this);
     this.checkCorrect = this.checkCorrect.bind(this);
   }
 
@@ -307,4 +307,4 @@ function Arrays(props) {
   );
 }
 
-export default LevelTwo;
+export default withRouter(LevelTwo);
