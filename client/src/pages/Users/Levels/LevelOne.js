@@ -9,6 +9,7 @@ class LevelOne extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      initialArr: null,
       playButton: true,
       step: 0,
       instructions: [],
@@ -21,8 +22,9 @@ class LevelOne extends React.Component {
     this.handleNextStep = this.handleNextStep.bind(this);
     this.handlePrevStep = this.handlePrevStep.bind(this);
     this.handleReset = this.handleReset.bind(this);
-    this.generateBlocks = this.generateBlocks.bind(this);
+    // this.generateBlocks = this.generateBlocks.bind(this);
     this.handleStart = this.handleStart.bind(this);
+    this.orderToArray = this.orderToArray.bind(this);
   }
 
   // execute when start on the modal is pressed
@@ -40,6 +42,7 @@ class LevelOne extends React.Component {
     sorting.sort(sorting.getArray(), currentOrd, currentInstr, false);
     //retrieves array of instructions and order of steps
     this.setState({
+      initialArr: sorting.getArray(),
       order: currentOrd,
       instructions: currentInstr,
     });
@@ -96,6 +99,8 @@ class LevelOne extends React.Component {
     });
   }
 
+  orderToArray(arr) {}
+
   // generateBlocks() {
   //   const order = this.state.order.slice()[0];
   //   if (order !== undefined) {
@@ -132,6 +137,7 @@ class LevelOne extends React.Component {
               <LevelHeader level="1" />
             </div>
             <div className="body">
+              <Arrays array={this.state.initialArr} />
               {/* {this.generateBlocks()} */}
               <div className="alg-steps">
                 <StepsScroller
@@ -247,11 +253,7 @@ function Arrays(props) {
 
   return (
     <div className="initial">
-      <div
-        className={`${!isSplit ? null : "disappear"} + ${
-          array.length > 1 ? null : "disappear"
-        }`}
-      >
+      <div className={"disappear"}>
         <button onClick={handleSplit}>Split</button>
       </div>
       <div>{blockItems}</div>
