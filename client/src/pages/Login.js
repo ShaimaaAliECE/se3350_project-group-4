@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 // import header area sub component
 import LoginHeader from "components/BackBtnHeader";
 
-import Clicksound from 'client/src/assets/audios/clickSound.mp3';
+import Clicksound from 'assets/audios/clickSound.mp3';
 
 //button click sound stuff
 /*import { Howl } from "howler";
