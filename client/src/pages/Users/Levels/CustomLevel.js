@@ -11,10 +11,13 @@ class CustomLevel extends React.Component {
 
       //must be >= 3
       numOfBoxes: 3,
+      
       //must be >= 5
       upperLimit: 5,
+      
       //must be = 0 
       lowerLimit: 0,
+      
       order: [],
     };
   }
