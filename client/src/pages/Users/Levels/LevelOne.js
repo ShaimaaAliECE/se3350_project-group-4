@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import LevelHeader from "components/LevelHeader";
 import MergeSort from "algorithms/mergeSort.mjs";
 import Block from "components/Block";
@@ -12,8 +12,8 @@ class LevelOne extends React.Component {
       playButton: true,
       step: 0,
       instructions: [],
-      boxes: Array(11).fill(null),
-      boxIndex: [1, 2, 4, 4, 5, 8, 9, 9, 5, 2, 3, 6, 6, 7, 10, 11, 11, 7, 3, 1],
+      // boxes: Array(11).fill(null),
+      // boxIndex: [1, 2, 4, 4, 5, 8, 9, 9, 5, 2, 3, 6, 6, 7, 10, 11, 11, 7, 3, 1],
       order: [],
       showModal: true, //show modal when page loads
     };
@@ -52,11 +52,11 @@ class LevelOne extends React.Component {
 
   //reset button handling
   handleReset(e) {
-    const box = Array(11).fill(null);
+    // const box = Array(11).fill(null);
     let step = 0;
     this.setState({
       step: step,
-      boxes: box,
+      // boxes: box,
       lineOne: null,
       lineTwo: null,
       lineThree: null,
@@ -65,14 +65,14 @@ class LevelOne extends React.Component {
 
   //handles next step
   handleNextStep(e) {
-    const box = this.state.boxes.slice();
+    // const box = this.state.boxes.slice();
     var step = this.state.step; //block order to retrieve
-    const currentBox = this.state.boxIndex[step] - 1;
-    box[currentBox] = this.state.order[step];
+    // const currentBox = this.state.boxIndex[step] - 1;
+    // box[currentBox] = this.state.order[step];
     // console.log(box);
     step++;
     this.setState({
-      boxes: box,
+      // boxes: box,
       step: step,
       lineOne: this.state.instructions[step - 1],
       lineTwo: this.state.instructions[step],
@@ -81,14 +81,14 @@ class LevelOne extends React.Component {
   }
 
   handlePrevStep(e) {
-    const box = this.state.boxes.slice();
+    // const box = this.state.boxes.slice();
     var step = this.state.step; //block order to retrieve
-    const currentBox = this.state.boxIndex[step] + 1;
-    box[currentBox] = this.state.order[step];
+    // const currentBox = this.state.boxIndex[step] + 1;
+    // box[currentBox] = this.state.order[step];
     // console.log(box);
     step--;
     this.setState({
-      boxes: box,
+      // boxes: box,
       step: step,
       lineOne: this.state.instructions[step + 1],
       lineTwo: this.state.instructions[step],
@@ -96,21 +96,21 @@ class LevelOne extends React.Component {
     });
   }
 
-  generateBlocks() {
-    const order = this.state.order.slice()[0];
-    if (order !== undefined) {
-      let temp = order.split(",");
-      temp.map((element) => {
-        console.log(element);
-        return <Block value={element} />;
-      });
-    }
-  }
+  // generateBlocks() {
+  //   const order = this.state.order.slice()[0];
+  //   if (order !== undefined) {
+  //     let temp = order.split(",");
+  //     temp.map((element) => {
+  //       console.log(element);
+  //       return <Block value={element} />;
+  //     });
+  //   }
+  // }
 
   //rendering block with the state of the box
-  renderBlock(i) {
-    return <Block value={this.state.boxes[i - 1]} />;
-  }
+  // renderBlock(i) {
+  //   return <Block value={this.state.boxes[i - 1]} />;
+  // }
 
   render() {
     // modal content
@@ -133,29 +133,6 @@ class LevelOne extends React.Component {
             </div>
             <div className="body">
               {/* {this.generateBlocks()} */}
-              <div className="box-surround">
-                <div id="top">{this.renderBlock(1)}</div>
-                <div id="second">
-                  {this.renderBlock(2)}
-                  {this.renderBlock(3)}
-                </div>
-                <div id="third">
-                  {this.renderBlock(4)}
-                  {this.renderBlock(5)}
-                  {this.renderBlock(6)}
-                  {this.renderBlock(7)}
-                </div>
-                <div id="third">
-                  <Block />
-                  <Block />
-                  {this.renderBlock(8)}
-                  {this.renderBlock(9)}
-                  <Block />
-                  <Block />
-                  {this.renderBlock(10)}
-                  {this.renderBlock(11)}
-                </div>
-              </div>
               <div className="alg-steps">
                 <StepsScroller
                   lineOne={this.state.lineOne}
@@ -172,6 +149,116 @@ class LevelOne extends React.Component {
       </div>
     );
   }
+}
+
+function Arrays(props) {
+  //Get array and prep block values and children
+  let array = props.array;
+  let blockItems = [];
+  let children = [];
+
+  const [isSplit, setIsSplit] = useState(false);
+  const [childArrays, setChildArrays] = useState();
+  const [mergedArray, setMergedArray] = useState(array === 1 ? [...array] : []);
+  const [isMerging, setIsMerging] = useState(false);
+  const [isMerged, setIsMerged] = useState(false);
+
+  function pushToMerged(value) {
+    setMergedArray([...mergedArray, value]);
+  }
+
+  useEffect(() => {
+    console.log("array changed");
+  }, [array]);
+
+  function handleSplit() {
+    setIsSplit(!isSplit);
+
+    const middle = Math.floor(array.length / 2);
+    const array_left = array.slice(0, middle);
+    const array_right = array.slice(middle, array.length);
+
+    setChildArrays({
+      leftArray: array_left,
+      rightArray: array_right,
+    });
+
+    setIsSplit(!isSplit);
+    setIsMerging(true);
+  }
+
+  function selectValue(el) {
+    let value = el.target.getAttribute("value");
+    props.pushToMerge(value);
+    el.target.style.display = "none";
+  }
+
+  if (isMerging) {
+    if (mergedArray != null) {
+      for (let i = 0; i < mergedArray.length; i++) {
+        blockItems.push([
+          <button disabled={true} onClick={selectValue} value={mergedArray[i]}>
+            {mergedArray[i]}
+          </button>,
+        ]);
+      }
+    }
+    //merging is done if merged array length = original array length
+    if (mergedArray.length === array.length) {
+      console.log("merging completed");
+    }
+  }
+
+  if (!isMerging) {
+    //add current arrays items into blocked elements
+    for (let i = 0; i < array.length; i++) {
+      let temp = true;
+      if (array.length === 1) temp = false;
+      blockItems.push([
+        <button disabled={true} onClick={selectValue} value={array[i]}>
+          {array[i]}
+        </button>,
+      ]);
+    }
+  }
+
+  if (!isMerged) {
+    if (childArrays !== undefined) {
+      children = (
+        <div className="split">
+          <div className="left">
+            <Arrays
+              array={childArrays.leftArray}
+              label="Left Array"
+              pushToMerge={pushToMerged}
+            />
+          </div>
+          <div className="right">
+            <Arrays
+              array={childArrays.rightArray}
+              label="Right Array"
+              pushToMerge={pushToMerged}
+            />
+          </div>
+        </div>
+      );
+    }
+  }
+
+  return (
+    <div className="initial">
+      <div
+        className={`${!isSplit ? null : "disappear"} + ${
+          array.length > 1 ? null : "disappear"
+        }`}
+      >
+        <button onClick={handleSplit}>Split</button>
+      </div>
+      <div>{blockItems}</div>
+      <br></br>
+      <div>{children}</div>
+    </div>
+  );
 }
 
 export default LevelOne;

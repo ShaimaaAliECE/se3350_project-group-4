@@ -10,7 +10,7 @@ MergeSort.prototype.sort = function (array, order, instruction, flag) {
   }
 
   //Track iteration
-  order.push("" + array);
+  order.push("s," + array);
   instruction.push("Half this array: [" + array + "]");
 
   //Record single digit arrays using a flag
@@ -62,7 +62,7 @@ MergeSort.prototype.merge = function (left, right, order, instruction) {
 
   // console.log(arr);
   //Track iteration
-  order.push("" + arr);
+  order.push("m," + arr);
   instruction.push(
     "Combine [" + tempL + "] and [" + tempR + "] in order to get [" + arr + "]."
   );
