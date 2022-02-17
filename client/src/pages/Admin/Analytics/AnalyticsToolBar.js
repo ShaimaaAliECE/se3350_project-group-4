@@ -25,6 +25,8 @@ class AnalyticsToolBar extends React.Component {
     this.props.search("");
   };
 
+  
+
   //JFX
   render() {
     return (
@@ -40,7 +42,7 @@ class AnalyticsToolBar extends React.Component {
               <input
                 type="text"
                 className="input search-input"
-                placeholder="Search by username or id..."
+                placeholder="Search for a user by their username.."
                 value={this.state.searchText}
                 onChange={this.handleChange}
               />
