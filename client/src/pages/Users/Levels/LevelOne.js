@@ -112,6 +112,8 @@ class LevelOne extends React.Component {
     return <Block value={this.state.boxes[i - 1]} />;
   }
 
+  
+
   render() {
     // modal content
     const modal_title = "Level 1";
@@ -175,3 +177,4 @@ class LevelOne extends React.Component {
 }
 
 export default LevelOne;
+
