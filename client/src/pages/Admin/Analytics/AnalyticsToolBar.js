@@ -40,7 +40,7 @@ class AnalyticsToolBar extends React.Component {
               <input
                 type="text"
                 className="input search-input"
-                placeholder="Search by username or rank..."
+                placeholder="Search by username or id..."
                 value={this.state.searchText}
                 onChange={this.handleChange}
               />

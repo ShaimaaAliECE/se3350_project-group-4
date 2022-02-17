@@ -169,7 +169,7 @@ const Analytics = () => {
           {/* table header */}
           <div className="columns is-vcentered has-text-dark has-background-primary has-text-centered">
             <div className="column">
-              <strong>Rank</strong>
+              <strong>ID</strong>
             </div>
 
             <div className="column ">
