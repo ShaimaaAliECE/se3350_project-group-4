@@ -8,8 +8,12 @@ class CustomLevel extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      numOfBoxes: 0,
-      upperLimit: 0,
+
+      //must be >= 3
+      numOfBoxes: 3,
+      //must be >= 5
+      upperLimit: 5,
+      //must be = 0 
       lowerLimit: 0,
       order: [],
     };
