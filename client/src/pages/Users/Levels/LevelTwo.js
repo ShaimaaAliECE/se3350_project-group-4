@@ -15,8 +15,8 @@ class LevelTwo extends React.Component {
       splitting: true,
       step: 0,
       instructions: [],
-      boxes: Array(11).fill(null),
-      boxIndex: [1, 2, 4, 4, 5, 8, 9, 9, 5, 2, 3, 6, 6, 7, 10, 11, 11, 7, 3, 1],
+      // boxes: Array(11).fill(null),
+      // boxIndex: [1, 2, 4, 4, 5, 8, 9, 9, 5, 2, 3, 6, 6, 7, 10, 11, 11, 7, 3, 1],
       order: [],
       showModal: true, //show modal when page loads
     };
@@ -56,11 +56,11 @@ class LevelTwo extends React.Component {
 
   //reset button handling
   handleReset(e) {
-    const box = Array(11).fill(null);
+    // const box = Array(11).fill(null);
     let step = 0;
     this.setState({
       step: step,
-      boxes: box,
+      // boxes: box,
       lineOne: null,
       lineTwo: null,
       lineThree: null,
@@ -69,14 +69,14 @@ class LevelTwo extends React.Component {
 
   //handles next step
   handleNextStep(e) {
-    const box = this.state.boxes.slice();
+    // const box = this.state.boxes.slice();
     var step = this.state.step; //block order to retrieve
-    const currentBox = this.state.boxIndex[step] - 1;
-    box[currentBox] = this.state.order[step];
+    // const currentBox = this.state.boxIndex[step] - 1;
+    // box[currentBox] = this.state.order[step];
 
     step++;
     this.setState({
-      boxes: box,
+      // boxes: box,
       step: step,
       lineOne: this.state.instructions[step - 1],
       lineTwo: this.state.instructions[step],
