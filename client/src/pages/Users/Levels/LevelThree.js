@@ -3,6 +3,9 @@ import LevelHeader from "components/LevelHeader";
 import MergeSort from "algorithms/mergeSort.mjs";
 import Block from "components/Block";
 import { toast } from "react-toastify";
+import Modal from "components/Modal";
+import { Link, withRouter } from "react-router-dom";
+import "../../../css/LevelStyles.css";
 
 import RightSound from "../../../assets/audios/RightSound.mp3";
 import WrongSound from "../../../assets/audios/WrongSound.mp3";
@@ -13,19 +16,30 @@ class LevelThree extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      initialArr: [],
+      splitting: true,
       step: 0,
       boxes: Array(11).fill(null),
       boxIndex: [1, 2, 4, 4, 5, 8, 9, 9, 5, 2, 3, 6, 6, 7, 10, 11, 11, 7, 3, 1],
       order: [],
+      showModal: true,
     };
     this.generateArray = this.generateArray.bind(this);
     this.handleNextStep = this.handleNextStep.bind(this);
+    this.handleMerge = this.handleMerge.bind(this);
+    this.handleStart = this.handleStart.bind(this);
     this.handleReset = this.handleReset.bind(this);
     this.PostiveNotify = this.PositiveNotify.bind(this);
     this.NegativeNotify = this.NegativeNotify.bind(this);
     this.PositiveSound = this.PositiveSound.bind(this);
     this.PositiveSound = this.PositiveSound.bind(this);
   }
+
+  handleStart() {
+    this.generateArray();
+    this.setState({ showModal: false });
+  }
+
   generateArray() {
     let split = [];
     let merge = [];
@@ -35,6 +49,7 @@ class LevelThree extends React.Component {
     sorting.sort(sorting.getArray(), currentOrd, false);
 
     this.setState({
+      initialArr: sorting.getArray(),
       order: currentOrd,
     });
   }
@@ -80,7 +95,9 @@ class LevelThree extends React.Component {
       let pivot = this;
       console.log(pivot);
     }
-
+    const modal_title = "Level 3";
+    const modal_msg =
+      "A set of 10 numbers are randomly generated out of the range (1-20). The steps of the algorithm are not displayed. Goodluck!";
     return (
       <div className="">
         <div className="header mb-6">
@@ -146,4 +163,4 @@ function ResetButton(props) {
   );
 }
 
-export default LevelThree;
+export default withRouter(LevelThree);

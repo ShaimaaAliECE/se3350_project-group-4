@@ -29,7 +29,7 @@ const StepsScroller = (props) => {
       </div>
       {/* buttons */}
       <Animated
-        animationIn="bounceInUp"
+        animationIn="bounceInDown"
         animationOut="bounceOut"
         isVisible={true}
       >
