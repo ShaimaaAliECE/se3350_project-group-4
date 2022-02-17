@@ -25,6 +25,7 @@ class LevelTwo extends React.Component {
     this.handleReset = this.handleReset.bind(this);
     this.handleMerge = this.handleMerge.bind(this);
     this.handleStart = this.handleStart.bind(this);
+    this.checkCorrect = this.checkCorrect.bind(this);
   }
 
   // execute when start on the modal is pressed
@@ -83,6 +84,8 @@ class LevelTwo extends React.Component {
       lineThree: this.state.instructions[step + 1],
     });
   }
+
+  checkCorrect(arr) {}
 
   handleMerge() {
     console.log("merge");
