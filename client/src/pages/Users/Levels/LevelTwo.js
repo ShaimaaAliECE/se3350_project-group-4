@@ -93,7 +93,7 @@ class LevelTwo extends React.Component {
 
   render() {
     // modal content
-    const modal_title = "Welcome to Level 2";
+    const modal_title = "Level 2";
     const modal_msg =
       "A set of 10 numbers are randomly generated out of the range (1-20). The steps of the algorithm are displayed in the text allowing the user to move the numbers according to the current step.";
     return (

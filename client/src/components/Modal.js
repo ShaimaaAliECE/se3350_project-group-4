@@ -8,7 +8,7 @@ const Modal = (props) => {
     <div className="modal-overlay">
       <div className="modal-container">
         <div className="modal-title">
-          <h2 className="title is-2 has-text-primary">{title}</h2>
+          <h2 className="title is-2 has-text-primary">Welcome To {title}</h2>
         </div>
         <div className="modal-body ">
           <p className="has-text-light">
@@ -17,10 +17,10 @@ const Modal = (props) => {
         </div>
         <div className="modal-footer">
           <Link to="/select">
-            <button className="modal-btn button is-primary">Return</button>
+            <button className="modal-btn button is-primary">Select Another Level</button>
           </Link>
           <button className="modal-btn button is-primary" onClick={handleStart}>
-            Start
+            Start {title}
           </button>
         </div>
       </div>

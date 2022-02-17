@@ -97,7 +97,7 @@ class LevelOne extends React.Component {
 
   render() {
     // modal content
-    const modal_title = "Welcome to Level 1";
+    const modal_title = "Level 1";
     const modal_msg =
       "A set of 10 numbers are randomly generated out of the range (1-20). " +
       "The steps of the algorithm would be executed as visual animation accompanied with explanation texts.";
