@@ -11,7 +11,9 @@ const LevelHeader = (props) => {
     PopupMenu.open({
       component: Pause,
       callback: (data) => {
-        //console.log(data);
+        if (data === "exit") {
+          props.history.push("/select");
+        }
       },
     });
   };
@@ -32,6 +34,7 @@ const LevelHeader = (props) => {
       props.history.push("/select");
     }
   };
+
 
   return (
     <div>

@@ -1,6 +1,8 @@
 import React from "react";
 
 class Pause extends React.Component {
+
+  
   render() {
     return (
       <div className="menu-content">
@@ -34,7 +36,7 @@ class Pause extends React.Component {
             <button
               className="m-btn button is-primary is-rounded is-large"
               onClick={() => {
-                this.props.close();
+                this.props.close("exit");
               }}
             >
               <span className="title">Exit</span>

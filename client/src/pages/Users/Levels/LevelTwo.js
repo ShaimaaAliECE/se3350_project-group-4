@@ -181,7 +181,7 @@ function Arrays(props) {
     //add current arrays items into blocked elements
     for (let i = 0; i < array.length; i++) {
       let temp = true;
-      if (array.length == 1) temp = false;
+      if (array.length === 1) temp = false;
       blockItems.push([
         <button disabled={temp} onClick={selectValue} value={array[i]}>
           {array[i]}

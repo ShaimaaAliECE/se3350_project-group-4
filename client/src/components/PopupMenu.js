@@ -44,6 +44,7 @@ class PopupMenu extends React.Component {
 
   //close popup window method
   close = (data) => {
+    
     this.setState({
       active: false,
     });
@@ -54,6 +55,8 @@ class PopupMenu extends React.Component {
   restart = () => {
     window.location.reload(false);
   }
+
+  
 
   render() {
     // toggle between active/inactive using css class
