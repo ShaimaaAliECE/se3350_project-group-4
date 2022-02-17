@@ -161,7 +161,7 @@ class LevelTwo extends React.Component {
               <LevelHeader level="2" />
             </div>
             <div>
-              <Arrays array={this.state.initialArr} label="initial" />
+              <Arrays array={this.state.initialArr} label="initial" order={this.state.order}/>
             </div>
           </div>
       );
@@ -217,7 +217,6 @@ function Arrays(props) {
       rightArray: array_right,
     });
 
-    setIsSplit(!isSplit);
     setIsMerging(true);
   }
 
@@ -235,8 +234,8 @@ function Arrays(props) {
     console.log(step)
     console.log(order[step])
     console.log(array)
-
-    if (array.indexOf(order[step]) == -1) {
+    
+    if (array.indexOf(order[step]) === -1) {
       return false
     } else {
       return true
