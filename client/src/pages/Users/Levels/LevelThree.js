@@ -4,6 +4,7 @@ import MergeSort from "algorithms/mergeSort.mjs";
 import Block from "components/Block";
 import { toast } from "react-toastify";
 import Modal from "components/Modal";
+import { Link, withRouter } from "react-router-dom";
 import "../../../css/LevelStyles.css";
 
 import RightSound from "../../../assets/audios/RightSound.mp3";
@@ -93,7 +94,6 @@ class LevelThree extends React.Component {
     function choosePivot(e) {
       let pivot = this;
       console.log(pivot);
-      
     }
     const modal_title = "Level 3";
     const modal_msg =
