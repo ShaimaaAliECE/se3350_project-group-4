@@ -296,15 +296,17 @@ function Arrays(props) {
           //}
       }
       */
-      let sorted = true;
-      for (let x = 0; x < mergedArray.length - 1; x++) {
-        if (parseInt(mergedArray[x]) > parseInt(mergedArray[x+1])) {
-          sorted = false;
+      let sorted = true; //array is sorted by default
+      for (let x = 0; x < mergedArray.length - 1; x++) { //iterate through the array
+        if (parseInt(mergedArray[x]) > parseInt(mergedArray[x+1])) { //compares current and next value
+          sorted = false; //array no longer sorted
           if(!sorted){
-            console.log("L");
+            console.log("L"); //debugging
             console.log(mergedArray);
             console.log(array);
-            x = mergedArray.length-1;
+            }
+            else if(sorted){
+              console.log("nice");
             }
         }
       }
@@ -312,8 +314,8 @@ function Arrays(props) {
       if (!sorted) {
         console.log(mergedArray);
         console.log("bad");
-        SoundError();
-        toast.error("INCORRECT");
+        SoundError(); //bad sound
+        toast.error("INCORRECT"); 
       }
       for (let i = 0; i < mergedArray.length; i++) {
         blockItems.push([
@@ -325,22 +327,18 @@ function Arrays(props) {
     }
     //merging is done if merged array length = original array length
     if (mergedArray.length === 10) {
-      console.log("merging completed");
+      console.log("merging completed"); 
       setIsMerged(isMerged);
       setIsMerging(!isMerging);
       let sorted = true;
-      for (let x = 0; x < mergedArray.length - 1; x++) {
-        if (parseInt(mergedArray[x]) > parseInt(mergedArray[x+1])) {
+      for (let x = 0; x < mergedArray.length - 1; x++) { //goes through array
+        if (parseInt(mergedArray[x]) > parseInt(mergedArray[x+1])) { //checks if unsorted
           sorted = false;
-          if(!sorted){
-            console.log("Loser");
-            console.log(mergedArray);
-            }
         }
       }
-      if(sorted){
+      if(sorted){ //if sorted
         console.log("Winner");
-        SoundSuccess();
+        SoundSuccess(); //nice sound
         toast.success("WINNER");
         setWinner(!winner);
       }
