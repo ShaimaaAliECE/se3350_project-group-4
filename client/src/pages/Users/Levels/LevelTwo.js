@@ -7,6 +7,7 @@ import { Link, withRouter } from "react-router-dom";
 
 
 import RightSound from 'assets/audios/RightSound.mp3';
+import WrongSound from 'assets/audios/WrongSound.mp3';
 
 
 class LevelTwo extends React.Component {
@@ -241,6 +242,10 @@ function Arrays(props) {
     new Audio(RightSound).play();
   }
 
+  function Soundplayer2(){
+    new Audio(WrongSound).play();
+  }
+
   //Function to make sure user can only split one array at a time
   function checkSplitValidity(array) {
     array = array.toString();
@@ -268,6 +273,7 @@ function Arrays(props) {
         }
       }
       if (!sorted) console.log("bad");
+      Soundplayer2();
       for (let i = 0; i < mergedArray.length; i++) {
         blockItems.push([
           <button onClick={selectValue} value={mergedArray[i]}>
