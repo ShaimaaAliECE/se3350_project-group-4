@@ -234,9 +234,9 @@ function Arrays(props) {
   function checkSplitValidity(array) {
     array = array.toString()
     let count = 0
-    console.log(step)
-    console.log(order[step])
-    console.log(array)
+    //console.log(step)
+    //console.log(order[step])
+    //console.log(array)
     
     if (array.indexOf(order[step]) !== -1) {
       return true
@@ -251,14 +251,22 @@ function Arrays(props) {
 
   if (isMerging) {
     if (mergedArray != null) {
-      let sorted = true;
+      //let sorted = true;
       for (let x = 0; x < mergedArray.length - 1; x++) {
+        let sorted = true;
         if (parseInt(mergedArray[x]) > parseInt(mergedArray[x+1])) {
           sorted = false;
+          if(!sorted){
+            console.log("bad");
+            console.log(mergedArray);
+            }
         }
       }
-      if(!sorted)
-        console.log("bad");
+      //if(!sorted){
+      //  console.log("bad");
+      //  console.log(mergedArray);
+      //  }
+        
       for (let i = 0; i < mergedArray.length; i++) {
         blockItems.push([
           <button onClick={selectValue} value={mergedArray[i]}>
