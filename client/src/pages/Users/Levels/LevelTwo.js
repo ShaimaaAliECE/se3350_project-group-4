@@ -199,6 +199,8 @@ function Arrays(props) {
   const [isMerged, setIsMerged] = useState(false);
   const [winner, setWinner] = useState(false);
   const [step, setStep] = useState(props.step);
+  const [right, setRight] = useState();
+
 
   function pushToMerged(value) {
     setMergedArray([...mergedArray, value]);
@@ -216,6 +218,8 @@ function Arrays(props) {
     const array_left = array.slice(0, middle);
     const array_right = array.slice(middle, array.length);
 
+    setRight(array_right)
+
     setChildArrays({
       leftArray: array_left,
       rightArray: array_right,
@@ -230,22 +234,28 @@ function Arrays(props) {
     el.target.style.display = "none";
   }
 
+  function evaluateOtherSplit(condition) {
+    console.log("Evaluating: " + right + " to " + condition)
+    if (right === condition){
+      console.log("Found a match: " + right + " and " + condition)
+    } else {
+      if (array.length !== 10){
+        props.evaluateOtherSplit(condition)
+      } else {
+        console.log("Nothing Found")
+      }
+    }
+  }
+
   //Function to make sure user can only split one array at a time
   function checkSplitValidity(array) {
-    array = array.toString()
-    let count = 0
-    console.log(step)
-    console.log(order[step])
-    console.log(array)
-    
-    if (array.indexOf(order[step]) !== -1) {
+    if (array.toString().indexOf(order[step]) !== -1) {
       return true
     } else {
-      count++
-    }
-
-    if (count > 2){
-      
+      if (array.length !== 10) {
+        props.evaluateOtherSplit(order[step])
+      }
+      return false
     }
   }
 
@@ -301,6 +311,7 @@ function Arrays(props) {
               order={order}
               step={step}
               pushToMerge={pushToMerged}
+              evaluateOtherSplit={evaluateOtherSplit}
             />
           </div>
           <div className="right">
@@ -310,6 +321,7 @@ function Arrays(props) {
               order={order}
               step={step}
               pushToMerge={pushToMerged}
+              evaluateOtherSplit={evaluateOtherSplit}
             />
           </div>
         </div>
