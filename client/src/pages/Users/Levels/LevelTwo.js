@@ -5,6 +5,11 @@ import Modal from "components/Modal";
 import "../../../css/LevelStyles.css";
 import { Link, withRouter } from "react-router-dom";
 
+import { toast } from "react-toastify";
+import RightSound from 'assets/audios/RightSound.mp3';
+import WrongSound from 'assets/audios/WrongSound.mp3';
+
+toast.configure();
 class LevelTwo extends React.Component {
   constructor(props) {
     super(props);
@@ -99,7 +104,7 @@ class LevelTwo extends React.Component {
   }
 
   handleEnd() {
-    this.setState({showModal:false});
+    this.setState({ showModal: false });
   }
 
   render() {
@@ -146,7 +151,7 @@ class LevelTwo extends React.Component {
         )}
       </div>
     );*/
-    if(this.state.showModal === true){
+    if (this.state.showModal === true) {
       return (
         <div>
           <Modal
@@ -156,21 +161,24 @@ class LevelTwo extends React.Component {
           />
         </div>
       );
-    }
-    else if(this.state.showModal === false){
-      return(
+    } else if (this.state.showModal === false) {
+      return (
         <div>
-            <div className="header mb-6">
-              <LevelHeader level="2" />
-            </div>
-            <div>
-              <Arrays array={this.state.initialArr} label="initial" step={0} order={this.state.splitOrder}/>
-            </div>
+          <div className="header mb-6">
+            <LevelHeader level="2" />
           </div>
+          <div>
+            <Arrays
+              array={this.state.initialArr}
+              label="initial"
+              step={0}
+              order={this.state.splitOrder}
+            />
+          </div>
+        </div>
       );
-    }
-    else if((this.state.showModal === true) && (this.state.win === true)){
-      return(
+    } else if (this.state.showModal === true && this.state.win === true) {
+      return (
         <div>
           <Modal
             handleStart={this.handleEnd}
@@ -212,7 +220,7 @@ function Arrays(props) {
 
   function handleSplit() {
     setIsSplit(!isSplit);
-    setStep(step + 1)
+    setStep(step + 1);
 
     const middle = Math.floor(array.length / 2);
     const array_left = array.slice(0, middle);
@@ -246,6 +254,14 @@ function Arrays(props) {
       }
     }
   }
+    
+  function SoundSuccess(){
+    new Audio(RightSound).play();
+  }
+
+  function SoundError(){
+    new Audio(WrongSound).play();
+  }
 
   //Function to make sure user can only split one array at a time
   function checkSplitValidity(array) {
@@ -263,12 +279,13 @@ function Arrays(props) {
     if (mergedArray != null) {
       let sorted = true;
       for (let x = 0; x < mergedArray.length - 1; x++) {
-        if (parseInt(mergedArray[x]) > parseInt(mergedArray[x+1])) {
+        if (parseInt(mergedArray[x]) > parseInt(mergedArray[x + 1])) {
           sorted = false;
         }
       }
-      if(!sorted)
-        console.log("bad");
+      if (!sorted) console.log("bad");
+      SoundError();
+      toast.error("INCORRECT");
       for (let i = 0; i < mergedArray.length; i++) {
         blockItems.push([
           <button onClick={selectValue} value={mergedArray[i]}>
@@ -283,6 +300,9 @@ function Arrays(props) {
       setIsMerged(isMerged);
       setIsMerging(!isMerging);
       console.log("Winner");
+      //successNotification
+      SoundSuccess();
+      toast.success("WINNER");
       setWinner(!winner);
     }
   }
@@ -334,7 +354,7 @@ function Arrays(props) {
       <div
         className={`${!isSplit ? null : "disappear"} + 
         ${array.length > 1 ? null : "disappear"} +
-        ${checkSplitValidity(array) ? null: "disappear"}`}
+        ${checkSplitValidity(array) ? null : "disappear"}`}
       >
         <button onClick={handleSplit}>Split</button>
       </div>
