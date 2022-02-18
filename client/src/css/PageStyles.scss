@@ -146,4 +146,20 @@
     color: rgb(194, 79, 79);
   }
 
+  .analytics-fade-enter {
+    opacity: 0.1;
+  }
+  .analytics-fade-enter-active {
+    opacity: 1;
+    transition: all 0.3s ease-in;
+  }
+  
+  .analytics-fade-exit {
+    opacity: 1;
+  }
+  .analytics-fade-exit-active {
+    opacity: 0.1;
+    transition: all 0.3s ease-in;
+  }
+
 }

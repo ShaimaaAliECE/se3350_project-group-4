@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import ToolBar from "pages/Admin/Analytics/AnalyticsToolBar";
 import AnalyticsItem from "pages/Admin/Analytics/AnalyticsItem";
+import { CSSTransition, TransitionGroup } from "react-transition-group";
 import axios from "utils/axios";
 
 const Analytics = () => {
@@ -8,7 +9,7 @@ const Analytics = () => {
   const [items, setItems] = useState([]); //default empty object
   const [levelName, setLevelName] = useState(0); //default
   const [timesCompleted, setTimesCompleted] = useState(0);
-  const [sourceItems, setSourceItems] = useState([]); 
+  const [sourceItems, setSourceItems] = useState([]);
 
   // get the average accuracy of the corresponding level
   const averageAccuracy = () => {
@@ -41,13 +42,11 @@ const Analytics = () => {
   const search = (text) => {
     // get a new array
     let _items = [...sourceItems];
-
     // filter new array
-    _items = _items.filter((i) => {
-      const matchArray = i.username.match(new RegExp(text, "gi"));
+    _items = _items.filter((item) => {
+      const matchArray = item.username.match(new RegExp(text, "gi"));
       return !!matchArray;
     });
-
     // set state of new array
     setItems(_items);
   };
@@ -210,9 +209,17 @@ const Analytics = () => {
               <strong>Completion Date</strong>
             </div>
           </div>
-          {items.map((item) => (
-            <AnalyticsItem key={item.id} item={item} />
-          ))}
+          <TransitionGroup component={null}>
+            {items.map((item) => (
+              <CSSTransition
+                classNames="analytics-fade"
+                timeout={300}
+                key={item.id}
+              >
+                <AnalyticsItem key={item.id} item={item} />
+              </CSSTransition>
+            ))}
+          </TransitionGroup>
         </div>
       </div>
     </div>
