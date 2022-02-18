@@ -172,7 +172,6 @@ class LevelTwo extends React.Component {
             <Arrays
               array={this.state.initialArr}
               label="initial"
-              step={0}
               order={this.state.splitOrder}
             />
           </div>
@@ -209,7 +208,6 @@ function Arrays(props) {
   const [isMerging, setIsMerging] = useState(false);
   const [isMerged, setIsMerged] = useState(false);
   const [winner, setWinner] = useState(false);
-  const [step, setStep] = useState(props.step);
   const [right, setRight] = useState();
 
 
@@ -223,7 +221,7 @@ function Arrays(props) {
 
   function handleSplit() {
     setIsSplit(!isSplit);
-    setStep(step + 1);
+    step++
 
     const middle = Math.floor(array.length / 2);
     const array_left = array.slice(0, middle);
@@ -382,9 +380,9 @@ function Arrays(props) {
               array={childArrays.leftArray}
               label="Left Array"
               order={order}
-              step={step}
               pushToMerge={pushToMerged}
               evaluateOtherSplit={evaluateOtherSplit}
+              setButtonState = {buttonEnabled}
             />
           </div>
           <div className="right">
@@ -392,13 +390,21 @@ function Arrays(props) {
               array={childArrays.rightArray}
               label="Right Array"
               order={order}
-              step={step}
               pushToMerge={pushToMerged}
               evaluateOtherSplit={evaluateOtherSplit}
+              parentButton = {buttonEnabled}
             />
           </div>
         </div>
       );
+    }
+  }
+
+  function SplitButtonEnabler(array) {
+    if (props.parentButton) {
+      return true
+    } else {
+      return checkSplitValidity(array)
     }
   }
 
@@ -412,7 +418,7 @@ function Arrays(props) {
       //     or if the override is enabled.
         className={`${!isSplit ? null : "disappear"} + 
         ${array.length > 1 ? null : "disappear"} +
-        ${checkSplitValidity(array) ? null : "disappear"}`}
+        ${SplitButtonEnabler(array) ? null : "disappear"}`}
       >
         <button onClick={handleSplit}>Split</button>
       </div>
