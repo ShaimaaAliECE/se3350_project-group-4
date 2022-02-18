@@ -308,17 +308,10 @@ function Arrays(props) {
       for (let x = 0; x < mergedArray.length - 1; x++) { //iterate through the array
         if (parseInt(mergedArray[x]) > parseInt(mergedArray[x+1])) { //compares current and next value
           sorted = false; //array no longer sorted
-          if(!sorted){
-            console.log("L"); //debugging
-            console.log(mergedArray);
-            console.log(array);
-            }
-            else if(sorted){
-              console.log("nice");
-            }
+          console.log("L"); //debugging
+          console.log(mergedArray);
+          console.log(array);
         }
-        toast.success("CORRECT");
-        CorrectAnswer();
       }
 
       if (!sorted) {
@@ -326,6 +319,11 @@ function Arrays(props) {
         console.log("bad");
         SoundError(); //bad sound
         toast.error("INCORRECT"); 
+      }
+      else if(sorted){
+        console.log("nice");
+        toast.success("CORRECT");
+        CorrectAnswer();
       }
       for (let i = 0; i < mergedArray.length; i++) {
         blockItems.push([
