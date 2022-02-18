@@ -16,6 +16,7 @@ class LevelTwo extends React.Component {
       // boxes: Array(11).fill(null),
       // boxIndex: [1, 2, 4, 4, 5, 8, 9, 9, 5, 2, 3, 6, 6, 7, 10, 11, 11, 7, 3, 1],
       order: [],
+      splitOrder: [],
       showModal: true, //show modal when page loads
       win: false,
     };
@@ -38,14 +39,16 @@ class LevelTwo extends React.Component {
   generateArray() {
     let currentOrd = [];
     let currentInstr = [];
+    let splitOrd = [];
     // Create array using given algorithm class
     var sorting = new MergeSort(1, 20, 10);
 
-    sorting.sort(sorting.getArray(), currentOrd, currentInstr, false);
+    sorting.sort(sorting.getArray(), currentOrd, splitOrd, currentInstr, false);
     //retrieves array of instructions and order of steps
     this.setState({
       initialArr: sorting.getArray(),
       order: currentOrd,
+      splitOrder: splitOrd,
       instructions: currentInstr,
     });
   }
@@ -161,7 +164,7 @@ class LevelTwo extends React.Component {
               <LevelHeader level="2" />
             </div>
             <div>
-              <Arrays array={this.state.initialArr} label="initial" order={this.state.order}/>
+              <Arrays array={this.state.initialArr} label="initial" step={0} order={this.state.splitOrder}/>
             </div>
           </div>
       );
@@ -196,6 +199,7 @@ function Arrays(props) {
   const [isMerged, setIsMerged] = useState(false);
   const [step, setStep] = useState(0)
   const [winner, setWinner] = useState(false);
+  const [step, setStep] = useState(props.step);
 
   function pushToMerged(value) {
     setMergedArray([...mergedArray, value]);
@@ -230,18 +234,20 @@ function Arrays(props) {
   //Function to make sure user can only split one array at a time
   function checkSplitValidity(array) {
     array = array.toString()
-
-    console.log(order)
+    let count = 0
     console.log(step)
     console.log(order[step])
     console.log(array)
     
-    if (array.indexOf(order[step]) === -1) {
-      return false
-    } else {
+    if (array.indexOf(order[step]) !== -1) {
       return true
+    } else {
+      count++
     }
 
+    if (count > 2){
+
+    }
   }
 
   if (isMerging) {
@@ -293,6 +299,8 @@ function Arrays(props) {
             <Arrays
               array={childArrays.leftArray}
               label="Left Array"
+              order={order}
+              step={step}
               pushToMerge={pushToMerged}
             />
           </div>
@@ -300,6 +308,8 @@ function Arrays(props) {
             <Arrays
               array={childArrays.rightArray}
               label="Right Array"
+              order={order}
+              step={step}
               pushToMerge={pushToMerged}
             />
           </div>
