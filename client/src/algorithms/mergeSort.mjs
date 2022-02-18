@@ -3,7 +3,7 @@ import Algorithm from "./abstractAlgorithm.mjs";
 class MergeSort extends Algorithm {}
 
 //The function that is called
-MergeSort.prototype.sort = function (array, order, instruction, flag) {
+MergeSort.prototype.sort = function (array, order, orderS, instruction, flag) {
   //Determine if array needs to be cut in half
   if (array.length < 2) {
     return array;
@@ -11,11 +11,13 @@ MergeSort.prototype.sort = function (array, order, instruction, flag) {
 
   //Track iteration
   order.push("" + array);
+  orderS.push("" + array);
   instruction.push("Half this array: [" + array + "]");
 
   //Record single digit arrays using a flag
   if (flag) {
     order.push("" + array[0]);
+    orderS.push("" + array[0]);
     instruction.push("Store the " + array[0]);
     flag = false;
   }
