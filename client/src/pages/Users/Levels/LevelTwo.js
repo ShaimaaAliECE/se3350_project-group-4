@@ -234,9 +234,9 @@ function Arrays(props) {
   function checkSplitValidity(array) {
     array = array.toString()
     let count = 0
-    //console.log(step)
-    //console.log(order[step])
-    //console.log(array)
+    console.log(step)
+    console.log(order[step])
+    console.log(array)
     
     if (array.indexOf(order[step]) !== -1) {
       return true
