@@ -200,7 +200,6 @@ function Arrays(props) {
   const [mergedArray, setMergedArray] = useState(array === 1 ? [...array] : []);
   const [isMerging, setIsMerging] = useState(false);
   const [isMerged, setIsMerged] = useState(false);
-  // const [step, setStep] = useState(0)
   const [winner, setWinner] = useState(false);
   const [step, setStep] = useState(props.step);
 
@@ -336,5 +335,3 @@ function Arrays(props) {
 }
 
 export default withRouter(LevelTwo);
-
-//adding something so i can recommit idk why its doing this
