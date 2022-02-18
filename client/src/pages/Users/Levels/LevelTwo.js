@@ -5,11 +5,11 @@ import Modal from "components/Modal";
 import "../../../css/LevelStyles.css";
 import { Link, withRouter } from "react-router-dom";
 
-
+import { toast } from "react-toastify";
 import RightSound from 'assets/audios/RightSound.mp3';
 import WrongSound from 'assets/audios/WrongSound.mp3';
 
-
+toast.configure();
 class LevelTwo extends React.Component {
   constructor(props) {
     super(props);
@@ -238,11 +238,11 @@ function Arrays(props) {
     el.target.style.display = "none";
   }
 
-  function Soundplayer(){
+  function SoundSuccess(){
     new Audio(RightSound).play();
   }
 
-  function Soundplayer2(){
+  function SoundError(){
     new Audio(WrongSound).play();
   }
 
@@ -273,7 +273,8 @@ function Arrays(props) {
         }
       }
       if (!sorted) console.log("bad");
-      Soundplayer2();
+      SoundError();
+      toast.error("INCORRECT");
       for (let i = 0; i < mergedArray.length; i++) {
         blockItems.push([
           <button onClick={selectValue} value={mergedArray[i]}>
@@ -288,7 +289,9 @@ function Arrays(props) {
       setIsMerged(isMerged);
       setIsMerging(!isMerging);
       console.log("Winner");
-      Soundplayer();
+      //successNotification
+      SoundSuccess();
+      toast.success("WINNER");
       setWinner(!winner);
     }
   }
