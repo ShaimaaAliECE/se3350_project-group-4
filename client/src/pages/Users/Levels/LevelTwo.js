@@ -8,6 +8,7 @@ import { Link, withRouter } from "react-router-dom";
 import { toast } from "react-toastify";
 import RightSound from 'assets/audios/RightSound.mp3';
 import WrongSound from 'assets/audios/WrongSound.mp3';
+import CorrectAnswer from 'assets/audios/CorrectAnswer.mp3';
 
 toast.configure();
 class LevelTwo extends React.Component {
@@ -208,6 +209,7 @@ function Arrays(props) {
   const [isMerging, setIsMerging] = useState(false);
   const [isMerged, setIsMerged] = useState(false);
   const [winner, setWinner] = useState(false);
+  const [step, setStep] = useState(props.step);
   const [right, setRight] = useState();
 
 
@@ -216,11 +218,12 @@ function Arrays(props) {
   }
 
   useEffect(() => {
+    console.log("array changed");
   }, [array]);
 
   function handleSplit() {
     setIsSplit(!isSplit);
-    step++;
+    setStep(step + 1);
 
     const middle = Math.floor(array.length / 2);
     const array_left = array.slice(0, middle);
@@ -241,14 +244,6 @@ function Arrays(props) {
     props.pushToMerge(value);
     el.target.style.display = "none";
   }
-    
-  function SoundSuccess(){
-    new Audio(RightSound).play();
-  }
-
-  function SoundError(){
-    new Audio(WrongSound).play();
-  }
 
   //Called from checkSplitValidity, checks the rest of the arrays to enable Split.
   function evaluateOtherSplit(condition) { 
@@ -267,7 +262,18 @@ function Arrays(props) {
     }
     //No need to return anything, either the screen is updated by the override, or there is no change required.
   }
+    
+  function SoundSuccess(){
+    new Audio(RightSound).play();
+  }
 
+  function SoundError(){
+    new Audio(WrongSound).play();
+  }
+
+  function CorrectAnswer(){
+    new Audio(CorrectAnswer).play();
+  }
   //Function to make sure user can only split one array at a time
   function checkSplitValidity(array) {
 
@@ -286,23 +292,41 @@ function Arrays(props) {
 
   if (isMerging) {
     if (mergedArray != null) {
+      /*
       let sorted = true;
-      for (let x = 0; x < mergedArray.length - 1; x++) {
-        //let sorted = true;
-        if (parseInt(mergedArray[x]) > parseInt(mergedArray[x+1])) {
-          sorted = false;
+      console.log(mergedArray[mergedArray.length-2]);
+      console.log(mergedArray[mergedArray.length-1]);
+      if (mergedArray[mergedArray.length-1] > mergedArray[mergedArray.length-2]) {
+        sorted = false;
+        //if(!sorted){
+        //  console.log("bad");
+          //console.log(mergedArray);
+          //}
+      }
+      */
+      let sorted = true; //array is sorted by default
+      for (let x = 0; x < mergedArray.length - 1; x++) { //iterate through the array
+        if (parseInt(mergedArray[x]) > parseInt(mergedArray[x+1])) { //compares current and next value
+          sorted = false; //array no longer sorted
           if(!sorted){
-            console.log("bad");
+            console.log("L"); //debugging
             console.log(mergedArray);
+            console.log(array);
+            }
+            else if(sorted){
+              console.log("nice");
             }
         }
+        toast.success("CORRECT");
+        CorrectAnswer();
       }
+
       if (!sorted) {
+        console.log(mergedArray);
         console.log("bad");
-        SoundError();
-        toast.error("INCORRECT");
+        SoundError(); //bad sound
+        toast.error("INCORRECT"); 
       }
-      
       for (let i = 0; i < mergedArray.length; i++) {
         blockItems.push([
           <button onClick={selectValue} value={mergedArray[i]}>
@@ -314,22 +338,18 @@ function Arrays(props) {
 
     //merging is done if merged array length = original array length
     if (mergedArray.length === 10) {
-      console.log("merging completed");
+      console.log("merging completed"); 
       setIsMerged(isMerged);
       setIsMerging(!isMerging);
       let sorted = true;
-      for (let x = 0; x < mergedArray.length - 1; x++) {
-        if (parseInt(mergedArray[x]) > parseInt(mergedArray[x+1])) {
+      for (let x = 0; x < mergedArray.length - 1; x++) { //goes through array
+        if (parseInt(mergedArray[x]) > parseInt(mergedArray[x+1])) { //checks if unsorted
           sorted = false;
-          if(!sorted){
-            console.log("Loser");
-            console.log(mergedArray);
-            }
         }
       }
-      if(sorted){
+      if(sorted){ //if sorted
         console.log("Winner");
-        SoundSuccess();
+        SoundSuccess(); //nice sound
         toast.success("WINNER");
         setWinner(!winner);
       }
@@ -365,7 +385,6 @@ function Arrays(props) {
               step={step}
               pushToMerge={pushToMerged}
               evaluateOtherSplit={evaluateOtherSplit}
-              setButtonState = {buttonEnabled}
             />
           </div>
           <div className="right">
@@ -376,7 +395,6 @@ function Arrays(props) {
               step={step}
               pushToMerge={pushToMerged}
               evaluateOtherSplit={evaluateOtherSplit}
-              parentButton = {buttonEnabled}
             />
           </div>
         </div>
@@ -384,15 +402,6 @@ function Arrays(props) {
     }
   }
 
-  function SplitButtonEnabler(array) {
-    if (props.parentButton) {
-      return true
-    } else {
-      return checkSplitValidity(array)
-    }
-  }
-
-  //${checkSplitValidity(array) ? null : "disappear"}`} should go after line '${array.length > 1 ? null : "disappear"} +'
   return (
     <div className="initial">
       <div
@@ -403,7 +412,7 @@ function Arrays(props) {
       //     or if the override is enabled.
         className={`${!isSplit ? null : "disappear"} + 
         ${array.length > 1 ? null : "disappear"} +
-        ${SplitButtonEnabler(array) ? null : "disappear"}`}
+        ${checkSplitValidity(array) ? null : "disappear"}`}
       >
         <button onClick={handleSplit}>Split</button>
       </div>
