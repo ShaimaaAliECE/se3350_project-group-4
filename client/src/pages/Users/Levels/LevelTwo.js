@@ -4,10 +4,10 @@ import MergeSort from "algorithms/mergeSort.mjs";
 import Modal from "components/Modal";
 import "../../../css/LevelStyles.css";
 import { Link, withRouter } from "react-router-dom";
-
+import StepsScroller from "components/StepsScroller";
 import { toast } from "react-toastify";
-import RightSound from 'assets/audios/RightSound.mp3';
-import WrongSound from 'assets/audios/WrongSound.mp3';
+import RightSound from "assets/audios/RightSound.mp3";
+import WrongSound from "assets/audios/WrongSound.mp3";
 
 toast.configure();
 class LevelTwo extends React.Component {
@@ -16,10 +16,8 @@ class LevelTwo extends React.Component {
     this.state = {
       initialArr: [],
       splitting: true,
-      step: 0,
+      step: 1,
       instructions: [],
-      // boxes: Array(11).fill(null),
-      // boxIndex: [1, 2, 4, 4, 5, 8, 9, 9, 5, 2, 3, 6, 6, 7, 10, 11, 11, 7, 3, 1],
       order: [],
       splitOrder: [],
       showModal: true, //show modal when page loads
@@ -65,11 +63,9 @@ class LevelTwo extends React.Component {
 
   //reset button handling
   handleReset(e) {
-    // const box = Array(11).fill(null);
     let step = 0;
     this.setState({
       step: step,
-      // boxes: box,
       lineOne: null,
       lineTwo: null,
       lineThree: null,
@@ -78,14 +74,10 @@ class LevelTwo extends React.Component {
 
   //handles next step
   handleNextStep(e) {
-    // const box = this.state.boxes.slice();
-    var step = this.state.step; //block order to retrieve
-    // const currentBox = this.state.boxIndex[step] - 1;
-    // box[currentBox] = this.state.order[step];
+    var step = this.state.step;
 
     step++;
     this.setState({
-      // boxes: box,
       step: step,
       lineOne: this.state.instructions[step - 1],
       lineTwo: this.state.instructions[step],
@@ -173,6 +165,15 @@ class LevelTwo extends React.Component {
               label="initial"
               step={0}
               order={this.state.splitOrder}
+              nextStep={this.handleNextStep}
+            />
+          </div>
+          <div>
+            <StepsScroller
+              lineOne={this.state.lineOne}
+              lineTwo={this.state.lineTwo}
+              lineThree={this.state.lineThree}
+              // handleReset={this.handleReset}
             />
           </div>
         </div>
@@ -191,7 +192,7 @@ class LevelTwo extends React.Component {
   }
 }
 
-let step = 0
+let step = 0;
 
 function Arrays(props) {
   //Get array and prep block values and children
@@ -202,7 +203,7 @@ function Arrays(props) {
 
   //console.log(array.length);
 
-  const [buttonEnabled, setButtonState] = useState(false)
+  const [buttonEnabled, setButtonState] = useState(false);
   const [isSplit, setIsSplit] = useState(false);
   const [childArrays, setChildArrays] = useState();
   const [mergedArray, setMergedArray] = useState(array === 1 ? [...array] : []);
@@ -211,13 +212,11 @@ function Arrays(props) {
   const [winner, setWinner] = useState(false);
   const [right, setRight] = useState();
 
-
   function pushToMerged(value) {
     setMergedArray([...mergedArray, value]);
   }
 
-  useEffect(() => {
-  }, [array]);
+  useEffect(() => {}, [array]);
 
   function handleSplit() {
     setIsSplit(!isSplit);
@@ -227,12 +226,14 @@ function Arrays(props) {
     const array_left = array.slice(0, middle);
     const array_right = array.slice(middle, array.length);
 
-    setRight(array_right)
+    setRight(array_right);
 
     setChildArrays({
       leftArray: array_left,
       rightArray: array_right,
     });
+
+    props.nextStep();
 
     setIsMerging(true);
   }
@@ -242,25 +243,24 @@ function Arrays(props) {
     props.pushToMerge(value);
     el.target.style.display = "none";
   }
-    
-  function SoundSuccess(){
+
+  function SoundSuccess() {
     new Audio(RightSound).play();
   }
 
-  function SoundError(){
+  function SoundError() {
     new Audio(WrongSound).play();
   }
 
   function evaluateOtherSplit(condition) {
     // console.log("Evaluating: " + right + " to " + condition)
 
-    if (right.toString() === condition){
+    if (right.toString() === condition) {
       // console.log("Found a match: " + right + " and " + condition)
-      setButtonState(true)
+      setButtonState(true);
     } else {
-
-      if (array.length !== 10){
-        props.evaluateOtherSplit(condition)
+      if (array.length !== 10) {
+        props.evaluateOtherSplit(condition);
       } else {
         // console.log("Nothing Found")
       }
@@ -273,12 +273,12 @@ function Arrays(props) {
     // console.log(order[step])
     // console.log(array)
     if (array.toString().indexOf(order[step]) !== -1) {
-      return true
+      return true;
     } else {
       if (array.length !== 10) {
-        props.evaluateOtherSplit(order[step])
+        props.evaluateOtherSplit(order[step]);
       }
-      return false
+      return false;
     }
   }
 
@@ -287,12 +287,12 @@ function Arrays(props) {
       let sorted = true;
       for (let x = 0; x < mergedArray.length - 1; x++) {
         //let sorted = true;
-        if (parseInt(mergedArray[x]) > parseInt(mergedArray[x+1])) {
+        if (parseInt(mergedArray[x]) > parseInt(mergedArray[x + 1])) {
           sorted = false;
-          if(!sorted){
+          if (!sorted) {
             console.log("bad");
             console.log(mergedArray);
-            }
+          }
         }
       }
       if (!sorted) {
@@ -300,7 +300,7 @@ function Arrays(props) {
         SoundError();
         toast.error("INCORRECT");
       }
-      
+
       for (let i = 0; i < mergedArray.length; i++) {
         blockItems.push([
           <button onClick={selectValue} value={mergedArray[i]}>
@@ -316,24 +316,23 @@ function Arrays(props) {
       setIsMerging(!isMerging);
       let sorted = true;
       for (let x = 0; x < mergedArray.length - 1; x++) {
-        if (parseInt(mergedArray[x]) > parseInt(mergedArray[x+1])) {
+        if (parseInt(mergedArray[x]) > parseInt(mergedArray[x + 1])) {
           sorted = false;
-          if(!sorted){
+          if (!sorted) {
             console.log("Loser");
             console.log(mergedArray);
-            }
+          }
         }
       }
-      if(sorted){
+      if (sorted) {
         console.log("Winner");
         SoundSuccess();
         toast.success("WINNER");
         setWinner(!winner);
-      }
-      else if(!sorted){
+      } else if (!sorted) {
         console.log("Loser");
         console.log(mergedArray);
-        }
+      }
     }
   }
 
@@ -362,7 +361,8 @@ function Arrays(props) {
               step={step}
               pushToMerge={pushToMerged}
               evaluateOtherSplit={evaluateOtherSplit}
-              setButtonState = {buttonEnabled}
+              setButtonState={buttonEnabled}
+              nextStep={props.nextStep}
             />
           </div>
           <div className="right">
@@ -373,7 +373,8 @@ function Arrays(props) {
               step={step}
               pushToMerge={pushToMerged}
               evaluateOtherSplit={evaluateOtherSplit}
-              parentButton = {buttonEnabled}
+              parentButton={buttonEnabled}
+              nextStep={props.nextStep}
             />
           </div>
         </div>
@@ -383,9 +384,9 @@ function Arrays(props) {
 
   function SplitButtonEnabler(array) {
     if (props.parentButton) {
-      return true
+      return true;
     } else {
-      return checkSplitValidity(array)
+      return checkSplitValidity(array);
     }
   }
 
