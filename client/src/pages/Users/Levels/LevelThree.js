@@ -1,14 +1,13 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import LevelHeader from "components/LevelHeader";
 import MergeSort from "algorithms/mergeSort.mjs";
-import Block from "components/Block";
-import { toast } from "react-toastify";
 import Modal from "components/Modal";
-import { Link, withRouter } from "react-router-dom";
 import "../../../css/LevelStyles.css";
+import { Link, withRouter } from "react-router-dom";
 
-import RightSound from "../../../assets/audios/RightSound.mp3";
-import WrongSound from "../../../assets/audios/WrongSound.mp3";
+import { toast } from "react-toastify";
+import RightSound from 'assets/audios/RightSound.mp3';
+import WrongSound from 'assets/audios/WrongSound.mp3';
 
 toast.configure();
 //LEVEL 3 must have a set of 10 numbers are randomly generated out of the range (1-20)
@@ -19,20 +18,20 @@ class LevelThree extends React.Component {
       initialArr: [],
       splitting: true,
       step: 0,
-      boxes: Array(11).fill(null),
-      boxIndex: [1, 2, 4, 4, 5, 8, 9, 9, 5, 2, 3, 6, 6, 7, 10, 11, 11, 7, 3, 1],
+      // boxes: Array(11).fill(null),
+      // boxIndex: [1, 2, 4, 4, 5, 8, 9, 9, 5, 2, 3, 6, 6, 7, 10, 11, 11, 7, 3, 1],
       order: [],
-      showModal: true,
+      splitOrder: [],
+      showModal: true, //show modal when page loads
+      win: false,
     };
     this.generateArray = this.generateArray.bind(this);
     this.handleNextStep = this.handleNextStep.bind(this);
+    this.handleReset = this.handleReset.bind(this);
     this.handleMerge = this.handleMerge.bind(this);
     this.handleStart = this.handleStart.bind(this);
-    this.handleReset = this.handleReset.bind(this);
-    this.PostiveNotify = this.PositiveNotify.bind(this);
-    this.NegativeNotify = this.NegativeNotify.bind(this);
-    this.PositiveSound = this.PositiveSound.bind(this);
-    this.PositiveSound = this.PositiveSound.bind(this);
+    this.handleEnd = this.handleEnd.bind(this);
+    this.checkCorrect = this.checkCorrect.bind(this);
   }
 
   handleStart() {
@@ -40,126 +39,284 @@ class LevelThree extends React.Component {
     this.setState({ showModal: false });
   }
 
+  //creates array at the rendering of the class
   generateArray() {
-    let split = [];
-    let merge = [];
     let currentOrd = [];
-    //min 1 max 20 arraysize 10
+    let splitOrd = [];
+    // Create array using given algorithm class
     var sorting = new MergeSort(1, 20, 10);
-    sorting.sort(sorting.getArray(), currentOrd, false);
 
+    sorting.sort(sorting.getArray(), currentOrd, splitOrd, false);
+    //retrieves order of steps
     this.setState({
       initialArr: sorting.getArray(),
       order: currentOrd,
+      splitOrder: splitOrd,
     });
   }
+
+  //sets order
+  setOrder(val) {
+    this.setState({ order: val });
+  }
+
+  //reset button handling
+  handleReset(e) {
+    // const box = Array(11).fill(null);
+    let step = 0;
+    this.setState({
+      step: step,
+     
+    });
+  }
+
+  //handles next step
   handleNextStep(e) {
-    const box = this.state.boxes.slice();
-    var step = this.state.step;
-    const currentBox = this.state.boxIndex[step] - 1;
-    box[currentBox] = this.state.order[step];
-    console.log(box);
+    // const box = this.state.boxes.slice();
+    var step = this.state.step; //block order to retrieve
+    // const currentBox = this.state.boxIndex[step] - 1;
+    // box[currentBox] = this.state.order[step];
+
     step++;
     this.setState({
-      boxes: box,
+      // boxes: box,
       step: step,
     });
   }
 
-  componentDidMount() {
-    this.generateArray();
-  }
-  //rendering block with the state of the box
-  renderBlock(i) {
-    return <Block value={this.state.boxes[i - 1]} />;
+  checkCorrect(arr) {}
+
+  handleMerge() {
+    console.log("merge");
   }
 
-  PositiveNotify() {
-    toast.success("CORRECT!");
+  handleSplit() {
+    console.log("split");
   }
 
-  PositiveSound() {
-    new Audio(RightSound).play();
-  }
-
-  NegativeNotify() {
-    toast.error("INCORRECT");
-  }
-
-  NegativeSound() {
-    new Audio(WrongSound).play();
+  handleEnd() {
+    this.setState({ showModal: false });
   }
 
   render() {
-    function choosePivot(e) {
-      let pivot = this;
-      console.log(pivot);
-    }
+    //MODAL CONTENT
     const modal_title = "Level 3";
     const modal_msg =
       "A set of 10 numbers are randomly generated out of the range (1-20). The steps of the algorithm are not displayed. Goodluck!";
-    return (
-      <div className="">
-        <div className="header mb-6">
-          <LevelHeader level="3" />
-        </div>
-        <div className="body">
-          <div className="sort"></div>
-          <div className="alg-steps">
+    const modal_title_win = "Level 3 Complete";
+    const modal_msg_win = "Congrats! You Win!";
+    if (this.state.showModal === true) {
+      if (this.state.showModal === true) {
+        return (
+          <div>
+            <Modal
+              handleStart={this.handleStart}
+              title={modal_title}
+              text={modal_msg}
+            />
+          </div>
+        );
+      } else if (this.state.showModal === false) {
+        return (
+          <div>
+            <div className="header mb-6">
+              <LevelHeader level="3" />
+            </div>
             <div>
-              <div className="box-surround">
-                <div id="top">{this.renderBlock(1)}</div>
-                <div id="second">
-                  {this.renderBlock(2)}
-                  {this.renderBlock(3)}
-                </div>
-                <div id="third">
-                  {this.renderBlock(4)}
-                  {this.renderBlock(5)}
-                  {this.renderBlock(6)}
-                  {this.renderBlock(7)}
-                </div>
-                <div id="third">
-                  <Block />
-                  <Block />
-                  {this.renderBlock(8)}
-                  {this.renderBlock(9)}
-                  <Block />
-                  <Block />
-                  {this.renderBlock(10)}
-                  {this.renderBlock(11)}
-                </div>
-                <div>
-                  <NextButton
-                    onClick={
-                      (this.handleNextStep,
-                      this.PositiveNotify,
-                      this.PositiveSound)
-                    }
-                  />
-                  <ResetButton onClick={this.handleReset} />
-                </div>
-              </div>
+              <Arrays
+                array={this.state.initialArr}
+                label="initial"
+                step={0}
+                order={this.state.splitOrder}
+              />
             </div>
           </div>
-        </div>
-      </div>
-    );
+        );
+      } else if (this.state.showModal === true && this.state.win === true) {
+        return (
+          <div>
+            <Modal
+              handleStart={this.handleEnd}
+              title={modal_title_win}
+              text={modal_msg_win}
+            />
+          </div>
+        );
+      }
+    };
   }
 }
-function NextButton(props) {
-  return (
-    <button className="button is-primary" onClick={props.onClick}>
-      Next Step
-    </button>
-  );
-}
+function Arrays(props) {
+  //Get array and prep block values and children
+  let array = props.array;
+  let order = props.order;
+  let blockItems = [];
+  let children = [];
 
-function ResetButton(props) {
+  //console.log(array.length);
+
+  const [isSplit, setIsSplit] = useState(false);
+  const [childArrays, setChildArrays] = useState();
+  const [mergedArray, setMergedArray] = useState(array === 1 ? [...array] : []);
+  const [isMerging, setIsMerging] = useState(false);
+  const [isMerged, setIsMerged] = useState(false);
+  const [winner, setWinner] = useState(false);
+  const [step, setStep] = useState(props.step);
+  const [right, setRight] = useState();
+
+
+  function pushToMerged(value) {
+    setMergedArray([...mergedArray, value]);
+  }
+
+  useEffect(() => {
+    console.log("array changed");
+  }, [array]);
+
+  function handleSplit() {
+    setIsSplit(!isSplit);
+    setStep(step + 1);
+
+    const middle = Math.floor(array.length / 2);
+    const array_left = array.slice(0, middle);
+    const array_right = array.slice(middle, array.length);
+
+    setRight(array_right)
+
+    setChildArrays({
+      leftArray: array_left,
+      rightArray: array_right,
+    });
+
+    setIsMerging(true);
+  }
+
+  function selectValue(el) {
+    let value = el.target.getAttribute("value");
+    props.pushToMerge(value);
+    el.target.style.display = "none";
+  }
+
+  function evaluateOtherSplit(condition) {
+    console.log("Evaluating: " + right + " to " + condition)
+    if (right === condition){
+      console.log("Found a match: " + right + " and " + condition)
+    } else {
+      if (array.length !== 10){
+        props.evaluateOtherSplit(condition)
+      } else {
+        console.log("Nothing Found")
+      }
+    }
+  }
+    
+  function SoundSuccess(){
+    new Audio(RightSound).play();
+  }
+
+  function SoundError(){
+    new Audio(WrongSound).play();
+  }
+
+  //Function to make sure user can only split one array at a time
+  function checkSplitValidity(array) {
+    if (array.toString().indexOf(order[step]) !== -1) {
+      return true
+    } else {
+      if (array.length !== 10) {
+        props.evaluateOtherSplit(order[step])
+      }
+      return false
+    }
+  }
+
+  if (isMerging) {
+    if (mergedArray != null) {
+      let sorted = true;
+      for (let x = 0; x < mergedArray.length - 1; x++) {
+        if (parseInt(mergedArray[x]) > parseInt(mergedArray[x + 1])) {
+          sorted = false;
+        }
+      }
+      if (!sorted) console.log("bad");
+      SoundError();
+      toast.error("INCORRECT");
+      for (let i = 0; i < mergedArray.length; i++) {
+        blockItems.push([
+          <button onClick={selectValue} value={mergedArray[i]}>
+            {mergedArray[i]}
+          </button>,
+        ]);
+      }
+    }
+    //merging is done if merged array length = original array length
+    if (mergedArray.length === 10) {
+      console.log("merging completed");
+      setIsMerged(isMerged);
+      setIsMerging(!isMerging);
+      console.log("Winner");
+      //successNotification
+      SoundSuccess();
+      toast.success("WINNER");
+      setWinner(!winner);
+    }
+  }
+
+  if (!isMerging) {
+    //add current arrays items into blocked elements
+    for (let i = 0; i < array.length; i++) {
+      let temp = true;
+      if (array.length === 1) temp = false;
+      blockItems.push([
+        <button disabled={temp} onClick={selectValue} value={array[i]}>
+          {array[i]}
+        </button>,
+      ]);
+    }
+  }
+
+  if (!isMerged) {
+    if (childArrays !== undefined) {
+      children = (
+        <div className="split">
+          <div className="left">
+            <Arrays
+              array={childArrays.leftArray}
+              label="Left Array"
+              order={order}
+              step={step}
+              pushToMerge={pushToMerged}
+              evaluateOtherSplit={evaluateOtherSplit}
+            />
+          </div>
+          <div className="right">
+            <Arrays
+              array={childArrays.rightArray}
+              label="Right Array"
+              order={order}
+              step={step}
+              pushToMerge={pushToMerged}
+              evaluateOtherSplit={evaluateOtherSplit}
+            />
+          </div>
+        </div>
+      );
+    }
+  }
+
   return (
-    <button className="button is-primary" onClick={props.onClick}>
-      Reset
-    </button>
+    <div className="initial">
+      <div
+        className={`${!isSplit ? null : "disappear"} + 
+        ${array.length > 1 ? null : "disappear"} +
+        ${checkSplitValidity(array) ? null : "disappear"}`}
+      >
+        <button onClick={handleSplit}>Split</button>
+      </div>
+      <div>{blockItems}</div>
+      <br></br>
+      <div>{children}</div>
+    </div>
   );
 }
 
