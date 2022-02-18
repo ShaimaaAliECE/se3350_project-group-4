@@ -197,7 +197,9 @@ function Arrays(props) {
   const [mergedArray, setMergedArray] = useState(array === 1 ? [...array] : []);
   const [isMerging, setIsMerging] = useState(false);
   const [isMerged, setIsMerged] = useState(false);
-  const [step, setStep] = useState(props.step)
+  const [step, setStep] = useState(0)
+  const [winner, setWinner] = useState(false);
+  const [step, setStep] = useState(props.step);
 
   function pushToMerged(value) {
     setMergedArray([...mergedArray, value]);
@@ -269,13 +271,10 @@ function Arrays(props) {
     //merging is done if merged array length = original array length
     if (mergedArray.length === 10) {
       console.log("merging completed");
-      const winner = true;
       setIsMerged(isMerged);
       setIsMerging(!isMerging);
       console.log("Winner");
-      this.setState({ //this = undefined, not completely sure want it do to fix
-        win: winner, //once this sets should show a new modal (see line 166-174)
-      })
+      setWinner(!winner);
     }
   }
 
