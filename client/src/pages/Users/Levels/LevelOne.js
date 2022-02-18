@@ -203,9 +203,7 @@ function Arrays(props) {
     if (mergedArray != null) {
       for (let i = 0; i < mergedArray.length; i++) {
         blockItems.push([
-          <button disabled={true} onClick={selectValue} value={mergedArray[i]}>
-            {mergedArray[i]}
-          </button>,
+          <button value={mergedArray[i]}>{mergedArray[i]}</button>,
         ]);
       }
     }
@@ -220,11 +218,7 @@ function Arrays(props) {
     for (let i = 0; i < array.length; i++) {
       let temp = true;
       if (array.length === 1) temp = false;
-      blockItems.push([
-        <button disabled={true} onClick={selectValue} value={array[i]}>
-          {array[i]}
-        </button>,
-      ]);
+      blockItems.push([<button value={array[i]}>{array[i]}</button>]);
     }
   }
 
