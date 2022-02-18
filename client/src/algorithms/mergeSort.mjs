@@ -33,8 +33,8 @@ MergeSort.prototype.sort = function (array, order, orderS, instruction, flag) {
   }
 
   //Send array back to determine if it needs to be halved again
-  const sort_left = this.sort(array_left, order, instruction);
-  const sort_right = this.sort(array_right, order, instruction, flag);
+  const sort_left = this.sort(array_left, order, orderS, instruction);
+  const sort_right = this.sort(array_right, order, orderS, instruction, flag);
 
   //Merge the masses!!!
   return this.merge(sort_left, sort_right, order, instruction);

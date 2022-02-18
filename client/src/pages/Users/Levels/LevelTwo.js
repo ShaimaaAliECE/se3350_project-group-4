@@ -244,7 +244,7 @@ function Arrays(props) {
     }
 
     if (count > 2){
-
+      
     }
   }
 
@@ -336,6 +336,3 @@ function Arrays(props) {
 }
 
 export default withRouter(LevelTwo);
-
-
-//adding something so i can recommit idk why its doing this
