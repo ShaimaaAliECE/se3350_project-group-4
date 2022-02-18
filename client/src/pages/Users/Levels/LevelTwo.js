@@ -191,6 +191,7 @@ class LevelTwo extends React.Component {
   }
 }
 
+//This will keep track of what step the player is on through out the entire level.
 let step = 0
 
 function Arrays(props) {
@@ -199,8 +200,6 @@ function Arrays(props) {
   let order = props.order;
   let blockItems = [];
   let children = [];
-
-  //console.log(array.length);
 
   const [buttonEnabled, setButtonState] = useState(false)
   const [isSplit, setIsSplit] = useState(false);
@@ -251,33 +250,36 @@ function Arrays(props) {
     new Audio(WrongSound).play();
   }
 
-  function evaluateOtherSplit(condition) {
-    // console.log("Evaluating: " + right + " to " + condition)
+  //Called from checkSplitValidity, checks the rest of the arrays to enable Split.
+  function evaluateOtherSplit(condition) { 
 
+    //Check if the child array on the right is now allowed to be split.
     if (right.toString() === condition){
-      // console.log("Found a match: " + right + " and " + condition)
+
+      //Set the override for the Split button, this will show the button regardless of the step.
       setButtonState(true)
     } else {
 
+      //If the condition is not met, check if a parent exists, and pass this function through again.
       if (array.length !== 10){
         props.evaluateOtherSplit(condition)
-      } else {
-        // console.log("Nothing Found")
       }
     }
+    //No need to return anything, either the screen is updated by the override, or there is no change required.
   }
 
   //Function to make sure user can only split one array at a time
   function checkSplitValidity(array) {
-    // console.log(step)
-    // console.log(order[step])
-    // console.log(array)
+
+    //Check if the array in question is the next array in the given order.
     if (array.toString().indexOf(order[step]) !== -1) {
       return true
     } else {
+      //Check if a parent exists, if so, check if other arrays are next in the order.
       if (array.length !== 10) {
         props.evaluateOtherSplit(order[step])
       }
+      //If the next array in order is not found, return false and show no Split buttons.
       return false
     }
   }
@@ -309,6 +311,7 @@ function Arrays(props) {
         ]);
       }
     }
+
     //merging is done if merged array length = original array length
     if (mergedArray.length === 10) {
       console.log("merging completed");
@@ -393,6 +396,11 @@ function Arrays(props) {
   return (
     <div className="initial">
       <div
+      // null, shows the Split button, disappear hides the button
+      // !isSplit checks if the button was pressed
+      // array.length > 1 checks if the array being displayed isnt a single number
+      // SplitButtonEnabler is a function that checks for the next valid place for the split button,
+      //     or if the override is enabled.
         className={`${!isSplit ? null : "disappear"} + 
         ${array.length > 1 ? null : "disappear"} +
         ${SplitButtonEnabler(array) ? null : "disappear"}`}
