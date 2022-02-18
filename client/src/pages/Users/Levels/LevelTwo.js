@@ -5,6 +5,10 @@ import Modal from "components/Modal";
 import "../../../css/LevelStyles.css";
 import { Link, withRouter } from "react-router-dom";
 
+
+import RightSound from 'assets/audios/RightSound.mp3';
+
+
 class LevelTwo extends React.Component {
   constructor(props) {
     super(props);
@@ -233,6 +237,10 @@ function Arrays(props) {
     el.target.style.display = "none";
   }
 
+  function Soundplayer(){
+    new Audio(RightSound).play();
+  }
+
   //Function to make sure user can only split one array at a time
   function checkSplitValidity(array) {
     array = array.toString();
@@ -274,6 +282,7 @@ function Arrays(props) {
       setIsMerged(isMerged);
       setIsMerging(!isMerging);
       console.log("Winner");
+      Soundplayer();
       setWinner(!winner);
     }
   }
