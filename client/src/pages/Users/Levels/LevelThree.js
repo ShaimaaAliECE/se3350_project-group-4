@@ -360,7 +360,6 @@ function Arrays(props) {
               array={childArrays.leftArray}
               label="Left Array"
               order={order}
-              step={step}
               pushToMerge={pushToMerged}
               evaluateOtherSplit={evaluateOtherSplit}
               setButtonState = {buttonEnabled}
@@ -371,7 +370,6 @@ function Arrays(props) {
               array={childArrays.rightArray}
               label="Right Array"
               order={order}
-              step={step}
               pushToMerge={pushToMerged}
               evaluateOtherSplit={evaluateOtherSplit}
               parentButton = {buttonEnabled}
