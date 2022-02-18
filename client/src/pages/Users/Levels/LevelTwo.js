@@ -277,23 +277,37 @@ function Arrays(props) {
 
   if (isMerging) {
     if (mergedArray != null) {
+      /*
+      let sorted = true;
+      console.log(mergedArray[mergedArray.length-2]);
+      console.log(mergedArray[mergedArray.length-1]);
+      if (mergedArray[mergedArray.length-1] > mergedArray[mergedArray.length-2]) {
+        sorted = false;
+        //if(!sorted){
+        //  console.log("bad");
+          //console.log(mergedArray);
+          //}
+      }
+      */
       let sorted = true;
       for (let x = 0; x < mergedArray.length - 1; x++) {
-        //let sorted = true;
         if (parseInt(mergedArray[x]) > parseInt(mergedArray[x+1])) {
           sorted = false;
           if(!sorted){
-            console.log("bad");
+            console.log("L");
             console.log(mergedArray);
+            console.log(array);
+            x = mergedArray.length-1;
             }
         }
       }
+
       if (!sorted) {
+        console.log(mergedArray);
         console.log("bad");
         SoundError();
         toast.error("INCORRECT");
       }
-      
       for (let i = 0; i < mergedArray.length; i++) {
         blockItems.push([
           <button onClick={selectValue} value={mergedArray[i]}>
