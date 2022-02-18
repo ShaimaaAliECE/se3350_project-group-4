@@ -191,6 +191,8 @@ class LevelTwo extends React.Component {
   }
 }
 
+let step = 0
+
 function Arrays(props) {
   //Get array and prep block values and children
   let array = props.array;
@@ -200,13 +202,13 @@ function Arrays(props) {
 
   //console.log(array.length);
 
+  const [buttonEnabled, setButtonState] = useState(false)
   const [isSplit, setIsSplit] = useState(false);
   const [childArrays, setChildArrays] = useState();
   const [mergedArray, setMergedArray] = useState(array === 1 ? [...array] : []);
   const [isMerging, setIsMerging] = useState(false);
   const [isMerged, setIsMerged] = useState(false);
   const [winner, setWinner] = useState(false);
-  const [step, setStep] = useState(props.step);
   const [right, setRight] = useState();
 
 
@@ -215,12 +217,11 @@ function Arrays(props) {
   }
 
   useEffect(() => {
-    console.log("array changed");
   }, [array]);
 
   function handleSplit() {
     setIsSplit(!isSplit);
-    setStep(step + 1);
+    step++;
 
     const middle = Math.floor(array.length / 2);
     const array_left = array.slice(0, middle);
@@ -241,19 +242,6 @@ function Arrays(props) {
     props.pushToMerge(value);
     el.target.style.display = "none";
   }
-
-  function evaluateOtherSplit(condition) {
-    console.log("Evaluating: " + right + " to " + condition)
-    if (right === condition){
-      console.log("Found a match: " + right + " and " + condition)
-    } else {
-      if (array.length !== 10){
-        props.evaluateOtherSplit(condition)
-      } else {
-        console.log("Nothing Found")
-      }
-    }
-  }
     
   function SoundSuccess(){
     new Audio(RightSound).play();
@@ -263,8 +251,27 @@ function Arrays(props) {
     new Audio(WrongSound).play();
   }
 
+  function evaluateOtherSplit(condition) {
+    // console.log("Evaluating: " + right + " to " + condition)
+
+    if (right.toString() === condition){
+      // console.log("Found a match: " + right + " and " + condition)
+      setButtonState(true)
+    } else {
+
+      if (array.length !== 10){
+        props.evaluateOtherSplit(condition)
+      } else {
+        // console.log("Nothing Found")
+      }
+    }
+  }
+
   //Function to make sure user can only split one array at a time
   function checkSplitValidity(array) {
+    // console.log(step)
+    // console.log(order[step])
+    // console.log(array)
     if (array.toString().indexOf(order[step]) !== -1) {
       return true
     } else {
@@ -369,6 +376,7 @@ function Arrays(props) {
               step={step}
               pushToMerge={pushToMerged}
               evaluateOtherSplit={evaluateOtherSplit}
+              setButtonState = {buttonEnabled}
             />
           </div>
           <div className="right">
@@ -379,18 +387,29 @@ function Arrays(props) {
               step={step}
               pushToMerge={pushToMerged}
               evaluateOtherSplit={evaluateOtherSplit}
+              parentButton = {buttonEnabled}
             />
           </div>
         </div>
       );
     }
   }
+
+  function SplitButtonEnabler(array) {
+    if (props.parentButton) {
+      return true
+    } else {
+      return checkSplitValidity(array)
+    }
+  }
+
   //${checkSplitValidity(array) ? null : "disappear"}`} should go after line '${array.length > 1 ? null : "disappear"} +'
   return (
     <div className="initial">
       <div
         className={`${!isSplit ? null : "disappear"} + 
-        ${array.length > 1 ? null : "disappear"}`}
+        ${array.length > 1 ? null : "disappear"} +
+        ${SplitButtonEnabler(array) ? null : "disappear"}`}
       >
         <button onClick={handleSplit}>Split</button>
       </div>
