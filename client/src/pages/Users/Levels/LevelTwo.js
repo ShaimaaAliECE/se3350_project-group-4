@@ -243,6 +243,18 @@ function Arrays(props) {
     el.target.style.display = "none";
   }
 
+  function SoundSuccess(){
+    new Audio(RightSound).play();
+  }
+
+  function SoundError(){
+    new Audio(WrongSound).play();
+  }
+
+  function CorrectAnswer(){
+    new Audio(CorrectAnswer).play();
+  }
+
   //Called from checkSplitValidity, checks the rest of the arrays to enable Split.
   function evaluateOtherSplit(condition) { 
 
@@ -260,19 +272,7 @@ function Arrays(props) {
     }
     //No need to return anything, either the screen is updated by the override, or there is no change required.
   }
-    
-  function SoundSuccess(){
-    new Audio(RightSound).play();
-  }
 
-  function SoundError(){
-    new Audio(WrongSound).play();
-  }
-
-  function CorrectAnswer(){
-    new Audio(CorrectAnswer).play();
-  }
-  
   //Function to make sure user can only split one array at a time
   function checkSplitValidity(array) {
 
@@ -417,7 +417,7 @@ function Arrays(props) {
       //     or if the override is enabled.
         className={`${!isSplit ? null : "disappear"} + 
         ${array.length > 1 ? null : "disappear"} +
-        ${SplitButtonEnabler ? null : "disappear"}`}
+        ${SplitButtonEnabler(array) ? null : "disappear"}`}
       >
         <button onClick={handleSplit}>Split</button>
       </div>
