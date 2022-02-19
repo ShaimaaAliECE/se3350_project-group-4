@@ -178,6 +178,9 @@ class LevelTwo extends React.Component {
               lineOne={this.state.lineOne}
               lineTwo={this.state.lineTwo}
               lineThree={this.state.lineThree}
+              enablePrev={false}
+              enableReset={false}
+              enableNext={false}
             />
           </div>
         </div>
