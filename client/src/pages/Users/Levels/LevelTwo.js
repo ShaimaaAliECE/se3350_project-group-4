@@ -390,6 +390,7 @@ function Arrays(props) {
               pushToMerge={pushToMerged}
               evaluateOtherSplit={evaluateOtherSplit}
               setButtonState={buttonEnabled}
+              nextStep={props.nextStep}
             />
           </div>
           <div className="right">
@@ -400,6 +401,7 @@ function Arrays(props) {
               pushToMerge={pushToMerged}
               evaluateOtherSplit={evaluateOtherSplit}
               parentButton={buttonEnabled}
+              nextStep={props.nextStep}
             />
           </div>
         </div>
@@ -419,7 +421,7 @@ function Arrays(props) {
     <div className="initial">
       <div
         // null, shows the Split button, disappear hides the button
-        // !isSplit checks if the button was pressed
+        // isSplit checks if the button was pressed
         // array.length > 1 checks if the array being displayed isnt a single number
         // SplitButtonEnabler is a function that checks for the next valid place for the split button,
         //     or if the override is enabled.
