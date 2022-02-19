@@ -8,6 +8,7 @@ import StepsScroller from "components/StepsScroller";
 import { toast } from "react-toastify";
 import RightSound from "assets/audios/RightSound.mp3";
 import WrongSound from "assets/audios/WrongSound.mp3";
+import CorrectAnswer from "assets/audios/CorrectAnswer.mp3";
 
 toast.configure();
 class LevelTwo extends React.Component {
@@ -18,6 +19,8 @@ class LevelTwo extends React.Component {
       splitting: true,
       step: 0,
       instructions: [],
+      // boxes: Array(11).fill(null),
+      // boxIndex: [1, 2, 4, 4, 5, 8, 9, 9, 5, 2, 3, 6, 6, 7, 10, 11, 11, 7, 3, 1],
       order: [],
       splitOrder: [],
       showModal: true, //show modal when page loads
@@ -62,9 +65,11 @@ class LevelTwo extends React.Component {
 
   //reset button handling
   handleReset(e) {
+    // const box = Array(11).fill(null);
     let step = 0;
     this.setState({
       step: step,
+      // boxes: box,
       lineOne: null,
       lineTwo: null,
       lineThree: null,
@@ -73,10 +78,14 @@ class LevelTwo extends React.Component {
 
   //handles next step
   handleNextStep(e) {
-    var step = this.state.step;
+    // const box = this.state.boxes.slice();
+    var step = this.state.step; //block order to retrieve
+    // const currentBox = this.state.boxIndex[step] - 1;
+    // box[currentBox] = this.state.order[step];
 
     step++;
     this.setState({
+      // boxes: box,
       step: step,
       lineOne: this.state.instructions[step - 1],
       lineTwo: this.state.instructions[step],
@@ -160,7 +169,6 @@ class LevelTwo extends React.Component {
             <Arrays
               array={this.state.initialArr}
               label="initial"
-              step={0}
               order={this.state.splitOrder}
               nextStep={this.handleNextStep}
             />
@@ -188,6 +196,7 @@ class LevelTwo extends React.Component {
   }
 }
 
+//This will keep track of what step the player is on through out the entire level.
 let step = 0;
 
 function Arrays(props) {
@@ -196,8 +205,6 @@ function Arrays(props) {
   let order = props.order;
   let blockItems = [];
   let children = [];
-
-  //console.log(array.length);
 
   const [buttonEnabled, setButtonState] = useState(false);
   const [isSplit, setIsSplit] = useState(false);
@@ -253,55 +260,76 @@ function Arrays(props) {
     new Audio(WrongSound).play();
   }
 
-  function evaluateOtherSplit(condition) {
-    // console.log("Evaluating: " + right + " to " + condition)
+  function CorrectAnswer() {
+    new Audio(CorrectAnswer).play();
+  }
 
+  //Called from checkSplitValidity, checks the rest of the arrays to enable Split.
+  function evaluateOtherSplit(condition) {
+    //Check if the child array on the right is now allowed to be split.
     if (right.toString() === condition) {
-      // console.log("Found a match: " + right + " and " + condition)
+      //Set the override for the Split button, this will show the button regardless of the step.
       setButtonState(true);
     } else {
+      //If the condition is not met, check if a parent exists, and pass this function through again.
       if (array.length !== 10) {
         props.evaluateOtherSplit(condition);
-      } else {
-        // console.log("Nothing Found")
       }
     }
+    //No need to return anything, either the screen is updated by the override, or there is no change required.
   }
 
   //Function to make sure user can only split one array at a time
   function checkSplitValidity(array) {
-    // console.log(step)
-    // console.log(order[step])
-    // console.log(array)
+    //Check if the array in question is the next array in the given order.
     if (array.toString().indexOf(order[step]) !== -1) {
       return true;
     } else {
+      //Check if a parent exists, if so, check if other arrays are next in the order.
       if (array.length !== 10) {
         props.evaluateOtherSplit(order[step]);
       }
+      //If the next array in order is not found, return false and show no Split buttons.
       return false;
     }
   }
 
   if (isMerging) {
     if (mergedArray != null) {
+      /*
       let sorted = true;
+      console.log(mergedArray[mergedArray.length-2]);
+      console.log(mergedArray[mergedArray.length-1]);
+      if (mergedArray[mergedArray.length-1] > mergedArray[mergedArray.length-2]) {
+        sorted = false;
+        //if(!sorted){
+        //  console.log("bad");
+          //console.log(mergedArray);
+          //}
+      }
+      */
+      let sorted = true; //array is sorted by default
       for (let x = 0; x < mergedArray.length - 1; x++) {
-        //let sorted = true;
+        //iterate through the array
         if (parseInt(mergedArray[x]) > parseInt(mergedArray[x + 1])) {
-          sorted = false;
-          if (!sorted) {
-            console.log("bad");
-            console.log(mergedArray);
-          }
+          //compares current and next value
+          sorted = false; //array no longer sorted
+          console.log("L"); //debugging
+          console.log(mergedArray);
+          console.log(array);
         }
       }
-      if (!sorted) {
-        console.log("bad");
-        SoundError();
-        toast.error("INCORRECT");
-      }
 
+      if (!sorted) {
+        console.log(mergedArray);
+        console.log("bad");
+        SoundError(); //bad sound
+        toast.error("INCORRECT");
+      } else if (sorted) {
+        console.log("nice");
+        toast.success("CORRECT");
+        CorrectAnswer();
+      }
       for (let i = 0; i < mergedArray.length; i++) {
         blockItems.push([
           <button onClick={selectValue} value={mergedArray[i]}>
@@ -318,17 +346,16 @@ function Arrays(props) {
       setIsMerging(!isMerging);
       let sorted = true;
       for (let x = 0; x < mergedArray.length - 1; x++) {
+        //goes through array
         if (parseInt(mergedArray[x]) > parseInt(mergedArray[x + 1])) {
+          //checks if unsorted
           sorted = false;
-          if (!sorted) {
-            console.log("Loser");
-            console.log(mergedArray);
-          }
         }
       }
       if (sorted) {
+        //if sorted
         console.log("Winner");
-        SoundSuccess();
+        SoundSuccess(); //nice sound
         toast.success("WINNER");
         setWinner(!winner);
       } else if (!sorted) {
@@ -360,11 +387,9 @@ function Arrays(props) {
               array={childArrays.leftArray}
               label="Left Array"
               order={order}
-              step={step}
               pushToMerge={pushToMerged}
               evaluateOtherSplit={evaluateOtherSplit}
               setButtonState={buttonEnabled}
-              nextStep={props.nextStep}
             />
           </div>
           <div className="right">
@@ -372,11 +397,9 @@ function Arrays(props) {
               array={childArrays.rightArray}
               label="Right Array"
               order={order}
-              step={step}
               pushToMerge={pushToMerged}
               evaluateOtherSplit={evaluateOtherSplit}
               parentButton={buttonEnabled}
-              nextStep={props.nextStep}
             />
           </div>
         </div>
@@ -392,10 +415,14 @@ function Arrays(props) {
     }
   }
 
-  //${checkSplitValidity(array) ? null : "disappear"}`} should go after line '${array.length > 1 ? null : "disappear"} +'
   return (
     <div className="initial">
       <div
+        // null, shows the Split button, disappear hides the button
+        // !isSplit checks if the button was pressed
+        // array.length > 1 checks if the array being displayed isnt a single number
+        // SplitButtonEnabler is a function that checks for the next valid place for the split button,
+        //     or if the override is enabled.
         className={`${!isSplit ? null : "disappear"} + 
         ${array.length > 1 ? null : "disappear"} +
         ${SplitButtonEnabler(array) ? null : "disappear"}`}

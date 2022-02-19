@@ -16,7 +16,7 @@ export default class Algorithm {
   }
 }
 
-//Create the protortype for sort, every sorting algorithm will sort, so this will be overwritten.
+//Create the prototype for sort, every sorting algorithm will sort, so this will be overwritten.
 Algorithm.prototype.sort = function () {
   throw new Error("This is an abstract method.... come on bro.");
 };
