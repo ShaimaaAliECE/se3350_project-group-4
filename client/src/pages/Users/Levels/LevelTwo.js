@@ -172,6 +172,7 @@ class LevelTwo extends React.Component {
             <Arrays
               array={this.state.initialArr}
               label="initial"
+              step={0}
               order={this.state.splitOrder}
             />
           </div>
@@ -208,6 +209,7 @@ function Arrays(props) {
   const [isMerging, setIsMerging] = useState(false);
   const [isMerged, setIsMerged] = useState(false);
   const [winner, setWinner] = useState(false);
+  const [step, setStep] = useState(props.step);
   const [right, setRight] = useState();
 
 
@@ -221,7 +223,7 @@ function Arrays(props) {
 
   function handleSplit() {
     setIsSplit(!isSplit);
-    step++
+    setStep(step + 1);
 
     const middle = Math.floor(array.length / 2);
     const array_left = array.slice(0, middle);
@@ -306,17 +308,10 @@ function Arrays(props) {
       for (let x = 0; x < mergedArray.length - 1; x++) { //iterate through the array
         if (parseInt(mergedArray[x]) > parseInt(mergedArray[x+1])) { //compares current and next value
           sorted = false; //array no longer sorted
-          if(!sorted){
-            console.log("L"); //debugging
-            console.log(mergedArray);
-            console.log(array);
-            }
-            else if(sorted){
-              console.log("nice");
-            }
+          console.log("L"); //debugging
+          console.log(mergedArray);
+          console.log(array);
         }
-        toast.success("CORRECT");
-        CorrectAnswer();
       }
 
       if (!sorted) {
@@ -324,6 +319,11 @@ function Arrays(props) {
         console.log("bad");
         SoundError(); //bad sound
         toast.error("INCORRECT"); 
+      }
+      else if(sorted){
+        console.log("nice");
+        toast.success("CORRECT");
+        CorrectAnswer();
       }
       for (let i = 0; i < mergedArray.length; i++) {
         blockItems.push([
@@ -380,9 +380,9 @@ function Arrays(props) {
               array={childArrays.leftArray}
               label="Left Array"
               order={order}
+              step={step}
               pushToMerge={pushToMerged}
               evaluateOtherSplit={evaluateOtherSplit}
-              setButtonState = {buttonEnabled}
             />
           </div>
           <div className="right">
@@ -390,21 +390,13 @@ function Arrays(props) {
               array={childArrays.rightArray}
               label="Right Array"
               order={order}
+              step={step}
               pushToMerge={pushToMerged}
               evaluateOtherSplit={evaluateOtherSplit}
-              parentButton = {buttonEnabled}
             />
           </div>
         </div>
       );
-    }
-  }
-
-  function SplitButtonEnabler(array) {
-    if (props.parentButton) {
-      return true
-    } else {
-      return checkSplitValidity(array)
     }
   }
 
@@ -418,7 +410,7 @@ function Arrays(props) {
       //     or if the override is enabled.
         className={`${!isSplit ? null : "disappear"} + 
         ${array.length > 1 ? null : "disappear"} +
-        ${SplitButtonEnabler(array) ? null : "disappear"}`}
+        ${checkSplitValidity(array) ? null : "disappear"}`}
       >
         <button onClick={handleSplit}>Split</button>
       </div>
