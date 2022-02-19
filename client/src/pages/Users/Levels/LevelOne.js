@@ -165,6 +165,9 @@ class LevelOne extends React.Component {
                   handleReset={this.handleReset}
                   handleNextStep={this.handleNextStep}
                   handlePrevStep={this.handlePrevStep}
+                  enablePrev={true}
+                  enableReset={true}
+                  enableNext={true}
                 />
               </div>
             </div>
