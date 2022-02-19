@@ -17,7 +17,7 @@ MergeSort.prototype.sort = function (array, order, orderS, instruction, flag) {
   //Record single digit arrays using a flag
   if (flag) {
     order.push("" + array[0]);
-    // instruction.push("Store the " + array[0]);
+    instruction.push("Store the " + array[0]);
     flag = false;
   }
 

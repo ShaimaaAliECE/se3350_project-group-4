@@ -16,7 +16,7 @@ class LevelTwo extends React.Component {
     this.state = {
       initialArr: [],
       splitting: true,
-      step: 1,
+      step: 0,
       instructions: [],
       order: [],
       splitOrder: [],
@@ -29,7 +29,6 @@ class LevelTwo extends React.Component {
     this.handleMerge = this.handleMerge.bind(this);
     this.handleStart = this.handleStart.bind(this);
     this.handleEnd = this.handleEnd.bind(this);
-    this.checkCorrect = this.checkCorrect.bind(this);
   }
 
   // execute when start on the modal is pressed
@@ -84,8 +83,6 @@ class LevelTwo extends React.Component {
       lineThree: this.state.instructions[step + 1],
     });
   }
-
-  checkCorrect(arr) {}
 
   handleMerge() {
     console.log("merge");
@@ -173,7 +170,6 @@ class LevelTwo extends React.Component {
               lineOne={this.state.lineOne}
               lineTwo={this.state.lineTwo}
               lineThree={this.state.lineThree}
-              // handleReset={this.handleReset}
             />
           </div>
         </div>
@@ -211,12 +207,15 @@ function Arrays(props) {
   const [isMerged, setIsMerged] = useState(false);
   const [winner, setWinner] = useState(false);
   const [right, setRight] = useState();
+  const [steped, setSteped] = useState(false);
 
   function pushToMerged(value) {
     setMergedArray([...mergedArray, value]);
   }
 
-  useEffect(() => {}, [array]);
+  useEffect(() => {
+    props.nextStep();
+  }, [array.length, array.length == mergedArray.length, array.length == 1]);
 
   function handleSplit() {
     setIsSplit(!isSplit);
@@ -226,14 +225,16 @@ function Arrays(props) {
     const array_left = array.slice(0, middle);
     const array_right = array.slice(middle, array.length);
 
+    if (array_left.length == 1 && array_right.length > 1) {
+      props.nextStep();
+    }
+
     setRight(array_right);
 
     setChildArrays({
       leftArray: array_left,
       rightArray: array_right,
     });
-
-    props.nextStep();
 
     setIsMerging(true);
   }
@@ -309,6 +310,7 @@ function Arrays(props) {
         ]);
       }
     }
+
     //merging is done if merged array length = original array length
     if (mergedArray.length === 10) {
       console.log("merging completed");

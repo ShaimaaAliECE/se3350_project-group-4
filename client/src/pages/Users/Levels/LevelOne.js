@@ -37,7 +37,7 @@ class LevelOne extends React.Component {
     let currentInstr = [];
     var sorting = new MergeSort(1, 20, 10);
     // console.log(sorting);
-    sorting.sort(sorting.getArray(), currentOrd, currentInstr, false);
+    sorting.sort(sorting.getArray(), currentOrd, [], currentInstr, false);
     //retrieves array of instructions and order of steps
     this.setState({
       order: currentOrd,
