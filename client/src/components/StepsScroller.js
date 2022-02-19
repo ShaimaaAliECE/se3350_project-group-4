@@ -10,6 +10,9 @@ const StepsScroller = (props) => {
     handleReset,
     handleNextStep,
     handlePrevStep,
+    enablePrev,
+    enableReset,
+    enableNext,
   } = props;
 
   return (
@@ -35,37 +38,43 @@ const StepsScroller = (props) => {
       >
         <div className="control-btns field has-addons">
           <div className="control">
-            <button
-              className="button is-primary is-large p-5 is-outlined"
-              onClick={handlePrevStep}
-            >
-              <span className="icon is-small">
-                <i className="fas fa-angle-left"></i>
-              </span>
-              <span>Prev</span>
-            </button>
+            {enablePrev ? (
+              <button
+                className="button is-primary is-large p-5 is-outlined"
+                onClick={handlePrevStep}
+              >
+                <span className="icon is-small">
+                  <i className="fas fa-angle-left"></i>
+                </span>
+                <span>Prev</span>
+              </button>
+            ) : null}
           </div>
           <div className="control">
-            <button
-              className="button is-primary is-large p-5 is-outlined"
-              onClick={handleReset}
-            >
-              <span className="icon is-small">
-                <i className="fa fa-refresh"></i>
-              </span>
-              <span>Reset</span>
-            </button>
+            {enableReset ? (
+              <button
+                className="button is-primary is-large p-5 is-outlined"
+                onClick={handleReset}
+              >
+                <span className="icon is-small">
+                  <i className="fa fa-refresh"></i>
+                </span>
+                <span>Reset</span>
+              </button>
+            ) : null}
           </div>
           <div className="control">
-            <button
-              className="button is-primary is-large p-5 is-outlined"
-              onClick={handleNextStep}
-            >
-              <span>Next</span>
-              <span className="icon is-small">
-                <i className="fas fa-angle-right"></i>
-              </span>
-            </button>
+            {enableNext ? (
+              <button
+                className="button is-primary is-large p-5 is-outlined"
+                onClick={handleNextStep}
+              >
+                <span>Next</span>
+                <span className="icon is-small">
+                  <i className="fas fa-angle-right"></i>
+                </span>
+              </button>
+            ) : null}
           </div>
         </div>
       </Animated>
