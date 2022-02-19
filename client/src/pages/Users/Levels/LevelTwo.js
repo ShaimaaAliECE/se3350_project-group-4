@@ -409,6 +409,7 @@ function Arrays(props) {
     }
   }
 
+  //Allows for an override to let the Split button show no matter the evalutaion
   function SplitButtonEnabler(array) {
     if (props.parentButton) {
       return true;
