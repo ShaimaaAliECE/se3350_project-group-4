@@ -122,7 +122,8 @@ const LevelHeader = (props) => {
             </p>
             {/* Timer */}
             <p className="level-item has-text-centered">
-              <span>Time Spent In Current Level:</span>
+            <i class="fa-solid fa-clock mr-2"></i>
+              <span>Level Timer:</span>
               <span>
                 <DisplayComponent time={time}/>
               </span>

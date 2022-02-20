@@ -3,8 +3,6 @@ import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import axios from "utils/axios";
 import { toast } from "react-toastify";
-// import header area sub component
-import RegisterHeader from "components/BackBtnHeader";
 
 // Register Page
 const Register = (props) => {
@@ -159,3 +157,20 @@ const Register = (props) => {
 };
 
 export default Register;
+
+// Header component for login and register page
+export const RegisterHeader = () => {
+  return (
+    <div>
+      <div className="back-header">
+        <div className="grid">
+          <div className="start">
+            {/* Back to home page */}
+            <Link to="/">Back</Link>
+          </div>
+        </div>
+      </div>
+      <div className="divider"></div>
+    </div>
+  );
+};
