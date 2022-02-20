@@ -1,6 +1,5 @@
 import React from "react";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
-import { RequireLoginRoute, AdminRoute } from "utils/ProtectedRoute";
+import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 import Home from "pages/Home";
 import Login from "pages/Login";
 import Register from "pages/Register";
@@ -66,3 +65,54 @@ const Router = () => (
 );
 
 export default Router;
+
+// Used for limiting access to pages that require login
+export const RequireLoginRoute = ({ component: Component, ...rest }) => {
+  return (
+    <Route
+      {...rest}
+      render={(props) => {
+        if (global.auth.isLogin()) {
+          return <Component {...props} />;
+        } else {
+          return (
+            <Redirect
+              to={{
+                pathname: "/",
+                state: {
+                  from: props.location,
+                },
+              }}
+            />
+          );
+        }
+      }}
+    />
+  );
+};
+
+// Used for limiting access to admin only pages
+export const AdminRoute = ({ component: Component, ...rest }) => {
+  return (
+    <Route
+      {...rest}
+      render={(props) => {
+        const user = global.auth.getUser() || {};
+        if (user.type === 1) {
+          return <Component {...props} />;
+        } else {
+          return (
+            <Redirect
+              to={{
+                pathname: "/NotFound",
+                state: {
+                  from: props.location,
+                },
+              }}
+            />
+          );
+        }
+      }}
+    />
+  );
+};

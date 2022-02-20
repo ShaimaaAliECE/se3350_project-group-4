@@ -5,8 +5,7 @@ import axios from "utils/axios";
 import { toast } from "react-toastify";
 // import header area sub component
 import LoginHeader from "components/BackBtnHeader";
-
-import Clicksound from 'assets/audios/ClickSound2.mp3';
+import clickSound from "assets/audios/ClickSound2.mp3";
 
 // Login Page
 const Login = (props) => {
@@ -24,12 +23,12 @@ const Login = (props) => {
       const { username, password } = data;
       //verify user information
       const res = await axios.post("/auth/login", { username, password });
-      const jwToken = res.data; 
+      const jwToken = res.data;
       console.log(jwToken);
       // save jwToken in local storage
       global.auth.setToken(jwToken);
       // show login success message
-      toast.success('Login Successful');
+      toast.success("Login Successful");
       //redirect to select algorithm page
       props.history.push("/alg");
     } catch (error) {
@@ -40,8 +39,8 @@ const Login = (props) => {
     }
   };
 
-  function Soundplayer(){
-    new Audio(Clicksound).play();
+  function playSound() {
+    new Audio(clickSound).play();
   }
 
   return (
@@ -118,9 +117,12 @@ const Login = (props) => {
           </div>
           {/* LOG In button */}
           <div className="control">
-            <button className="button is-fullwidth is-primary has-text-weight-bold is-size-5" onClick={() => {
-              Soundplayer();
-            }}>
+            <button
+              className="button is-fullwidth is-primary has-text-weight-bold is-size-5"
+              onClick={() => {
+                playSound();
+              }}
+            >
               LOG IN
             </button>
           </div>

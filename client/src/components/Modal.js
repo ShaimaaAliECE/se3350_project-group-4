@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Animated } from "react-animated-css";
-
 const Modal = (props) => {
   // get values from props
   const { handleStart, title, text } = props;
