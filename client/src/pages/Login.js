@@ -5,6 +5,7 @@ import axios from "utils/axios";
 import { toast } from "react-toastify";
 import { Animated } from "react-animated-css";
 import clickSound from "assets/audios/ClickSound2.mp3";
+import { motion } from "framer-motion";
 
 // Login Page
 const Login = (props) => {
@@ -45,11 +46,7 @@ const Login = (props) => {
   return (
     <div>
       {/* header */}
-      <Animated
-        animationIn="zoomIn"
-        animationOut="zoomOut"
-        isVisible={true}
-      >
+      <Animated animationIn="fadeInLeft" animationOut="bounce" isVisible={true}>
         <LoginHeader />
         <div className="login-wrapper">
           <form className="login-box" onSubmit={handleSubmit(onSubmit)}>
@@ -125,14 +122,17 @@ const Login = (props) => {
             </div>
             {/* LOG In button */}
             <div className="control">
-              <button
+              <motion.button
+                whileTap={{
+                  scale: 0.9,
+                }}
                 className="button is-fullwidth is-primary has-text-weight-bold is-size-5"
                 onClick={() => {
                   playSound();
                 }}
               >
                 LOG IN
-              </button>
+              </motion.button>
             </div>
             {/* link to register */}
             <div className="label has-text-white has-text-weight-light has-text-centered mt-2">
