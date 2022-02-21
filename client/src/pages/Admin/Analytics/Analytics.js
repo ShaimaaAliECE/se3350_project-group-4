@@ -51,6 +51,8 @@ const Analytics = () => {
     setItems(_items);
   };
 
+  
+
   // load data into AnalyticItems
   const loadData = (level) => {
     if (level === "level1") {

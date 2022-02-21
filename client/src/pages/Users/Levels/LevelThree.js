@@ -3,8 +3,7 @@ import LevelHeader from "components/LevelHeader";
 import MergeSort from "algorithms/mergeSort.mjs";
 import Modal from "components/Modal";
 import "../../../css/LevelStyles.css";
-import { Link, withRouter } from "react-router-dom";
-
+import { withRouter } from "react-router-dom";
 import { toast } from "react-toastify";
 import RightSound from 'assets/audios/RightSound.mp3';
 import WrongSound from 'assets/audios/WrongSound.mp3';
@@ -115,43 +114,6 @@ class LevelThree extends React.Component {
       "A set of 10 numbers are randomly generated out of the range (1-20). Unlike level 2, there will be no instructions guiding you. Good Luck!";
     const modal_title_win = "Level 3 Complete";
     const modal_msg_win = "Congrats! You Win!";
-    /*return (
-      <div>
-        
-        {this.state.showModal ? (
-          <Modal
-            handleStart={this.handleStart}
-            title={modal_title}
-            text={modal_msg}
-          />
-        ) : (
-          <div>
-            <div className="header mb-6">
-              <LevelHeader level="2" />
-            </div>
-            <div>
-              <Arrays array={this.state.initialArr} label="initial" />
-            </div>
-          </div>
-        )}
-        {this.state.showModal ? (
-          <Modal
-            handleStart={this.handleStart}
-            title={modal_title}
-            text={modal_msg}
-          />
-        ) : (
-          <div>
-            <div className="header mb-6">
-              <LevelHeader level="2" />
-            </div>
-            <div>
-              <Arrays array={this.state.initialArr} label="initial" order = {this.state.order}/>
-            </div>
-          </div>
-        )}
-      </div>
-    );*/
     if (this.state.showModal === true) {
       return (
         <div>

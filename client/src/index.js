@@ -9,6 +9,7 @@ import { ToastContainer } from "react-toastify";
 import "css/PageStyles.scss";
 import "css/ComponentStyles.scss";
 import "css/Theme.scss";
+import "css/hover.css";
 
 // css
 import "react-toastify/dist/ReactToastify.css";
