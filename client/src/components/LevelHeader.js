@@ -60,7 +60,7 @@ const LevelHeader = (props) => {
       component: Pause,
       callback: (data) => {
         if (data === "exit") {
-          props.history.push("/select");
+          props.history.push("/ms/select");
         }
       },
     });
@@ -91,17 +91,17 @@ const LevelHeader = (props) => {
   // redirect to next level
   const nextLevel = () => {
     if (props.level === "1") {
-      props.history.push("/level2");
+      props.history.push("/ms/level2");
     } else if (props.level === "2") {
-      props.history.push("/level3");
+      props.history.push("/ms/level3");
     } else if (props.level === "3") {
-      props.history.push("/level4");
+      props.history.push("/ms/level4");
     } else if (props.level === "4") {
-      props.history.push("/level5");
+      props.history.push("/ms/level5");
     } else if (props.level === "5") {
-      props.history.push("/custom");
+      props.history.push("/ms/custom");
     } else if (props.level === "custom") {
-      props.history.push("/select");
+      props.history.push("/ms/select");
     }
   };
 
@@ -110,7 +110,6 @@ const LevelHeader = (props) => {
       animationIn="fadeInDown"
       animationOut="bounceOut"
       isVisible={true}
-      animationInDelay={1000}
     >
       <div className="lv-header">
         <div>

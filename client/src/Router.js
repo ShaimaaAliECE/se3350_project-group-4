@@ -32,31 +32,31 @@ const Router = () => (
       <RequireLoginRoute path="/alg" component={SelectAlg} />
 
       {/* redirect to Select Level page */}
-      <RequireLoginRoute path="/select" component={SelectLevel} />
+      <RequireLoginRoute path="/ms/select" component={SelectLevel} />
 
       {/* redirect to Edit Level page */}
-      <AdminRoute path="/edit" component={EditLevel} />
+      <AdminRoute path="/ms/edit" component={EditLevel} />
 
       {/* redirect to analytics Level page */}
-      <AdminRoute path="/analytics" component={Analytics} />
+      <AdminRoute path="/ms/analytics" component={Analytics} />
 
       {/* redirect to Level 1 page */}
-      <RequireLoginRoute path="/level1" component={LevelOne} />
+      <RequireLoginRoute path="/ms/level1" component={LevelOne} />
 
       {/* redirect to Level 2 page */}
-      <RequireLoginRoute path="/level2" component={LevelTwo} />
+      <RequireLoginRoute path="/ms/level2" component={LevelTwo} />
 
       {/* redirect to Level 3 page */}
-      <RequireLoginRoute path="/level3" component={LevelThree} />
+      <RequireLoginRoute path="/ms/level3" component={LevelThree} />
 
       {/* redirect to Level 4 page */}
-      <RequireLoginRoute path="/level4" component={LevelFour} />
+      <RequireLoginRoute path="/ms/level4" component={LevelFour} />
 
       {/* redirect to Level 5 page */}
-      <RequireLoginRoute path="/level5" component={LevelFive} />
+      <RequireLoginRoute path="/ms/level5" component={LevelFive} />
 
       {/* redirect to Custom Level page */}
-      <RequireLoginRoute path="/custom" component={CustomLevel} />
+      <RequireLoginRoute path="/ms/custom" component={CustomLevel} />
 
       {/* redirect to 404 page */}
       <Route component={NotFound} />

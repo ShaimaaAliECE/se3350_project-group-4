@@ -64,7 +64,7 @@ class AnalyticsToolBar extends React.Component {
           </div>
         </Animated>
         {/* level select */}
-        <Link to="/edit" className="quit-box hvr-skew-forward">
+        <Link to="/ms/edit" className="quit-box hvr-skew-forward">
           <span className="cart-num">Back</span>
           <i className="fas fa-sign-out-alt"></i>
         </Link>

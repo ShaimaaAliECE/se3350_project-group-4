@@ -25,7 +25,7 @@ const Modal = (props) => {
           </div>
           <p className="tag is-danger is-align-self-center hvr-buzz">Note: A timer will start when you press Start !</p>
           <div className="modal-footer">
-            <Link to="/select">
+            <Link to="/ms/select">
               <button className="modal-btn button is-primary hvr-sweep-to-left">
                 Select Another Level
               </button>

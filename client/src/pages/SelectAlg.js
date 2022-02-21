@@ -12,9 +12,9 @@ const SelectAlg = (props) => {
   let history = useHistory();
   const selectOrEdit = () => {
     if (user.type === 1) {
-      history.push("/edit");
+      history.push("/ms/edit");
     } else {
-      history.push("/select");
+      history.push("/ms/select");
     }
   };
 

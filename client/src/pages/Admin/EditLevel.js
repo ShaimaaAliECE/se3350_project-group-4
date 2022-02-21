@@ -128,7 +128,7 @@ const EditLevel = (props) => {
           {/* view analytics */}
           <div className="column is-half">
             <Link
-              to="/analytics"
+              to="/ms/analytics"
               className="lv-btn button is-rounded has-background-primary hvr-icon-drop hvr-pulse-shrink"
             >
               <span className="btn-text">View Analytics</span>

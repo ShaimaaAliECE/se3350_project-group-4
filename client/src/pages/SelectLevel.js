@@ -22,7 +22,7 @@ class SelectLevel extends React.Component {
             {/* lv 1 */}
             <div className="column is-half">
               <Link
-                to="/level1"
+                to="/ms/level1"
                 className="lv-btn button is-rounded has-background-primary hvr-icon-forward hvr-pulse-shrink"
               >
                 <span className="btn-text">Level 1</span>
@@ -32,7 +32,7 @@ class SelectLevel extends React.Component {
             {/* lv 2 */}
             <div className="column is-half">
               <Link
-                to="/level2"
+                to="/ms/level2"
                 className="lv-btn button is-rounded has-background-primary hvr-icon-forward hvr-pulse-shrink"
               >
                 <span className="btn-text">Level 2</span>
@@ -42,7 +42,7 @@ class SelectLevel extends React.Component {
             {/* lv 3 */}
             <div className="column is-half">
               <Link
-                to="/level3"
+                to="/ms/level3"
                 className="lv-btn button is-rounded has-background-primary hvr-icon-forward hvr-pulse-shrink"
               >
                 <span className="btn-text">Level 3</span>
@@ -52,7 +52,7 @@ class SelectLevel extends React.Component {
             {/* lv 4 */}
             <div className="column is-half">
               <Link
-                to="/level4"
+                to="/ms/level4"
                 className="lv-btn button is-rounded has-background-primary hvr-icon-forward hvr-pulse-shrink"
               >
                 <span className="btn-text">Level 4</span>
@@ -62,7 +62,7 @@ class SelectLevel extends React.Component {
             {/* lv 5 */}
             <div className="column is-half">
               <Link
-                to="/level5"
+                to="/ms/level5"
                 className="lv-btn button is-rounded has-background-primary hvr-icon-forward hvr-pulse-shrink"
               >
                 <span className="btn-text">Level 5</span>
@@ -72,7 +72,7 @@ class SelectLevel extends React.Component {
             {/* custom lv */}
             <div className="column is-half">
               <Link
-                to="/custom"
+                to="/ms/custom"
                 className="lv-btn button is-rounded has-background-primary hvr-icon-forward hvr-pulse-shrink"
               >
                 <span className="btn-text">Custom</span>
