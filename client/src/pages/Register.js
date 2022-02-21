@@ -158,7 +158,7 @@ const Register = (props) => {
                 whileTap={{
                   scale: 0.9,
                 }}
-                className="button is-fullwidth is-primary has-text-weight-bold is-size-5"
+                className="button is-fullwidth is-primary has-text-weight-bold is-size-5 hvr-outline-out"
                 onClick={() => {
                   playSound();
                 }}
@@ -168,7 +168,7 @@ const Register = (props) => {
             </div>
             {/* link to Login */}
             <div className="label has-text-white has-text-weight-light has-text-centered mt-2">
-              <Link to="/login">Already have an account? Login here</Link>
+              <Link to="/login" className="hvr-pulse-grow">Already have an account? Login here</Link>
             </div>
           </form>
         </div>
@@ -187,7 +187,11 @@ export const RegisterHeader = () => {
         <div className="grid">
           <div className="start">
             {/* Back to home page */}
-            <Link to="/">Back</Link>
+            <Link to="/" className="hvr-skew-backward">
+              <strong>
+                <i class="fa-solid fa-arrow-left"></i> Back
+              </strong>
+            </Link>
           </div>
         </div>
       </div>

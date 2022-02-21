@@ -23,15 +23,15 @@ const Modal = (props) => {
             </p>
             <br />
           </div>
-          <p className="tag is-danger is-align-self-center">Note: A timer will start when you press Start !</p>
+          <p className="tag is-danger is-align-self-center hvr-buzz">Note: A timer will start when you press Start !</p>
           <div className="modal-footer">
             <Link to="/select">
-              <button className="modal-btn button is-primary">
+              <button className="modal-btn button is-primary hvr-sweep-to-left">
                 Select Another Level
               </button>
             </Link>
             <button
-              className="modal-btn button is-primary"
+              className="modal-btn button is-primary hvr-pulse hvr-sweep-to-right"
               onClick={handleStart}
             >
               Start {title}

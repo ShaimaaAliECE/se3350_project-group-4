@@ -2078,7 +2078,7 @@
   .hvr-outline-out:before {
     content: '';
     position: absolute;
-    border: #c86567 solid 4px;
+    border: rgb(64, 223, 159) solid 2px;
     border-radius: 4px;
     top: 0;
     right: 0;
