@@ -27,7 +27,7 @@ const SelectAlg = (props) => {
           <div className="title label has-text-light">
             <span>Hello </span>
             {/* display username of user that's currently logged in */}
-            <span className="has-text-primary">{user.username}</span>,
+            <span className="has-text-primary hvr-rotate">{user.username}</span>,
             <div>Choose an algorithm to begin...</div>
           </div>
           {/* dropdown */}
@@ -52,10 +52,10 @@ const SelectAlg = (props) => {
             </div>
             {/* dropdown menu */}
             <div className="dropdown-menu" id="dropdown-menu" role="menu">
-              <div className="dropdown-content">
+              <div className="dropdown-content ">
                 {/* item 1 */}
                 <div className="dropdown-item" onClick={selectOrEdit}>
-                  <span className="dropdown-text">Merge Sort</span>
+                  <span className="dropdown-text ">Merge Sort</span>
                 </div>
                 <hr className="dropdown-divider"></hr>
                 {/* item 2 */}

@@ -1,16 +1,22 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
+import { Animated } from "react-animated-css";
 class SelectLevel extends React.Component {
   render() {
     return (
       <div className="select-wrapper">
         <div className="select-box">
           {/* title */}
-          <div className="title section">
-            <h2 className="subtitle is-3 has-text-light">Start Learning</h2>
-            <h1 className="title is-1 has-text-primary">Merge Sort</h1>
-          </div>
+          <Animated
+            animationIn="bounceInLeft"
+            animationOut="bounceOut"
+            isVisible={true}
+          >
+            <div className="title section">
+              <h2 className="subtitle is-3 has-text-light">Start Learning</h2>
+              <h1 className="title is-1 has-text-primary">Merge Sort</h1>
+            </div>
+          </Animated>
           {/* level select buttons */}
           <div className="columns is-multiline buttons are-large">
             {/* lv 1 */}
@@ -77,7 +83,7 @@ class SelectLevel extends React.Component {
             <div className="column is-full-width">
               <Link
                 to="/alg"
-                className="long-btn button is-rounded hvr-hang"
+                className="long-btn button is-rounded hvr-wobble-bottom"
               >
                 <span className="btn-text">Back</span>
               </Link>

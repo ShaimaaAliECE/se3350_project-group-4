@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import ToolBar from "pages/Admin/Analytics/AnalyticsToolBar";
 import AnalyticsItem from "pages/Admin/Analytics/AnalyticsItem";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
+import { Animated } from "react-animated-css";
 import axios from "utils/axios";
 
 const Analytics = () => {
@@ -50,8 +51,6 @@ const Analytics = () => {
     // set state of new array
     setItems(_items);
   };
-
-  
 
   // load data into AnalyticItems
   const loadData = (level) => {
@@ -104,61 +103,63 @@ const Analytics = () => {
     <div>
       <ToolBar search={search} />
       <div className="analytics-wrapper">
-        {/* choose which level to show */}
-        <div className="level-container">
-          {/* each line has 12 slots */}
+        <Animated animationIn="flipInX" animationOut="bounce" isVisible={true}>
+          {/* choose which level to show */}
+          <div className="level-container">
+            {/* each line has 12 slots */}
 
-          <div className="columns">
-            <div className="column is-2">
-              <div
-                className="level-btn button is-primary"
-                onClick={() => loadData("level1")}
-              >
-                Level 1
+            <div className="columns">
+              <div className="column is-2">
+                <div
+                  className="level-btn button is-primary is-outlined hvr-underline-from-left"
+                  onClick={() => loadData("level1")}
+                >
+                  Level 1
+                </div>
               </div>
-            </div>
-            <div className="column is-2">
-              <div
-                className="level-btn  button is-primary"
-                onClick={() => loadData("level2")}
-              >
-                Level 2
+              <div className="column is-2">
+                <div
+                  className="level-btn  button is-primary is-outlined hvr-underline-from-left"
+                  onClick={() => loadData("level2")}
+                >
+                  Level 2
+                </div>
               </div>
-            </div>
-            <div className="column is-2">
-              <div
-                className="level-btn button is-primary"
-                onClick={() => loadData("level3")}
-              >
-                Level 3
+              <div className="column is-2">
+                <div
+                  className="level-btn button is-primary is-outlined hvr-underline-from-left"
+                  onClick={() => loadData("level3")}
+                >
+                  Level 3
+                </div>
               </div>
-            </div>
-            <div className="column is-2">
-              <div
-                className="level-btn button is-primary"
-                onClick={() => loadData("level4")}
-              >
-                Level 4
+              <div className="column is-2">
+                <div
+                  className="level-btn button is-primary is-outlined hvr-underline-from-left"
+                  onClick={() => loadData("level4")}
+                >
+                  Level 4
+                </div>
               </div>
-            </div>
-            <div className="column is-2">
-              <div
-                className="level-btn button is-primary"
-                onClick={() => loadData("level5")}
-              >
-                Level 5
+              <div className="column is-2">
+                <div
+                  className="level-btn button is-primary is-outlined hvr-underline-from-left"
+                  onClick={() => loadData("level5")}
+                >
+                  Level 5
+                </div>
               </div>
-            </div>
-            <div className="column is-2">
-              <div
-                className="level-btn  button is-primary"
-                onClick={() => loadData("custom")}
-              >
-                Custom
+              <div className="column is-2">
+                <div
+                  className="level-btn  button is-primary is-outlined hvr-underline-from-left"
+                  onClick={() => loadData("custom")}
+                >
+                  Custom
+                </div>
               </div>
             </div>
           </div>
-        </div>
+        </Animated>
 
         {/* stats level */}
         <nav className="level mt-5 has-text-light">
@@ -188,6 +189,7 @@ const Analytics = () => {
           </div>
         </nav>
         {/* list*/}
+        <Animated animationIn="fadeInRight" animationOut="bounce" isVisible={true}>
         <div className="items-list">
           {/* table header */}
           <div className="columns is-vcentered has-text-dark has-background-primary has-text-centered">
@@ -223,7 +225,9 @@ const Analytics = () => {
             ))}
           </TransitionGroup>
         </div>
+        </Animated>
       </div>
+      
     </div>
   );
 };

@@ -2161,8 +2161,8 @@
     left: 0;
     right: 100%;
     bottom: 0;
-    background: #2098D1;
-    height: 4px;
+    background: rgb(194, 79, 79);
+    height: 5px;
     -webkit-transition-property: right;
     transition-property: right;
     -webkit-transition-duration: 0.3s;

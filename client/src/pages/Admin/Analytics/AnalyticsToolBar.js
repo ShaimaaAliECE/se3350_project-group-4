@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { Animated } from "react-animated-css";
 
 //Utility bar component
 class AnalyticsToolBar extends React.Component {
@@ -25,8 +26,6 @@ class AnalyticsToolBar extends React.Component {
     this.props.search("");
   };
 
-  
-
   //JFX
   render() {
     return (
@@ -36,30 +35,36 @@ class AnalyticsToolBar extends React.Component {
           <i className="fas fa-chart-bar"></i> Analytics
         </div>
         {/* search bar */}
-        <div className="search-box">
-          <div className="field has-addons">
-            <div className="control">
-              <input
-                type="text"
-                className="input search-input"
-                placeholder="Search for a user by their username.."
-                value={this.state.searchText}
-                onChange={this.handleChange}
-              />
-            </div>
-            {/* clear button */}
-            <div className="control">
-              <button
-                className="button is-danger"
-                onClick={this.clearSearchText}
-              >
-                <i className="fas fa-eraser"></i>
-              </button>
+        <Animated
+          animationIn="bounceInDown"
+          animationOut="bounce"
+          isVisible={true}
+        >
+          <div className="search-box">
+            <div className="field has-addons">
+              <div className="control">
+                <input
+                  type="text"
+                  className="input search-input"
+                  placeholder="Search for a user by their username.."
+                  value={this.state.searchText}
+                  onChange={this.handleChange}
+                />
+              </div>
+              {/* clear button */}
+              <div className="control">
+                <button
+                  className="button is-danger"
+                  onClick={this.clearSearchText}
+                >
+                  <i className="fas fa-eraser"></i>
+                </button>
+              </div>
             </div>
           </div>
-        </div>
+        </Animated>
         {/* level select */}
-        <Link to="/edit" className="quit-box">
+        <Link to="/edit" className="quit-box hvr-skew-forward">
           <span className="cart-num">Back</span>
           <i className="fas fa-sign-out-alt"></i>
         </Link>
