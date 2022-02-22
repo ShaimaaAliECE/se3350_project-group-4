@@ -79,15 +79,32 @@ class AnalyticsToolBar extends React.Component {
             </button>
           </div>
           <div class="dropdown-menu" id="dropdown-menu4" role="menu">
+            
             <div class="dropdown-content">
-              <button class="dropdown-item button" onClick={this.props.sortName}>
-                <p className="label">Username ( a - z )</p>
+              
+              <button
+                class="dropdown-item button"
+                onClick={this.props.sortName}
+              >
+                <p className="label">Username ( a {"-->"} z )</p>
               </button>
-              <button class="dropdown-item button" onClick={this.props.sortTime}>
-                <p className="label">Time ( fast - slow )</p>
+              <button
+                class="dropdown-item button"
+                onClick={this.props.sortTime}
+              >
+                <p className="label">Time ( fast {"-->"} slow )</p>
               </button>
-              <button class="dropdown-item button" onClick={this.props.sortAccuracy}>
-                <p className="label">Accuracy ( high - low )</p>
+              <button
+                class="dropdown-item button"
+                onClick={this.props.sortAccuracy}
+              >
+                <p className="label">Accuracy ( high {"-->"} low )</p>
+              </button>
+              <button
+                class="dropdown-item button"
+                onClick={this.props.sortDate}
+              >
+                <p className="label">Date ( new {"-->"} old )</p>
               </button>
             </div>
           </div>

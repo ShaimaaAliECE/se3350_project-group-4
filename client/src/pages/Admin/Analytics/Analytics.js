@@ -3,7 +3,18 @@ import ToolBar from "pages/Admin/Analytics/AnalyticsToolBar";
 import AnalyticsItem from "pages/Admin/Analytics/AnalyticsItem";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import { Animated } from "react-animated-css";
+import { toast } from "react-toastify";
 import axios from "utils/axios";
+
+import {
+  AreaChart,
+  Area,
+  CartesianGrid,
+  XAxis,
+  YAxis,
+  Tooltip,
+  ResponsiveContainer,
+} from "recharts";
 
 const Analytics = () => {
   // use state hooks
@@ -52,6 +63,8 @@ const Analytics = () => {
     setItems(_items);
   };
 
+  // ------ sorting functions ----- //
+
   const sortByAccuracy = () => {
     // get a new array
     let _items = [...sourceItems];
@@ -67,6 +80,7 @@ const Analytics = () => {
     _items = _items.sort(SortArray);
     // set state of new array
     setItems(_items);
+    toast.success("Data is now sorted by accuracy");
   };
 
   const sortByUsername = () => {
@@ -84,6 +98,7 @@ const Analytics = () => {
     _items = _items.sort(SortArray);
     // set state of new array
     setItems(_items);
+    toast.success("Data is now sorted by username");
   };
 
   const sortByTime = () => {
@@ -101,6 +116,25 @@ const Analytics = () => {
     _items = _items.sort(SortArray);
     // set state of new array
     setItems(_items);
+    toast.success("Data is now sorted by time");
+  };
+
+  const sortByDate = () => {
+    // get a new array
+    let _items = [...sourceItems];
+    function SortArray(x, y) {
+      if (x.complete_date < y.complete_date) {
+        return 1;
+      }
+      if (x.complete_date > y.complete_date) {
+        return -1;
+      }
+      return 0;
+    }
+    _items = _items.sort(SortArray);
+    // set state of new array
+    setItems(_items);
+    toast.success("Data is now sorted by date");
   };
 
   // load data into AnalyticItems
@@ -150,6 +184,49 @@ const Analytics = () => {
     }
   };
 
+  const data = [
+    {
+      name: "Page A",
+      uv: 4000,
+      pv: 2400,
+    },
+    {
+      name: "Page B",
+      uv: 3000,
+      pv: 1398,
+    },
+    {
+      name: "Page C",
+      uv: 2000,
+      pv: 9800,
+    },
+    {
+      name: "Page D",
+      uv: 2780,
+      pv: 3908,
+    },
+    {
+      name: "Page E",
+      uv: 1890,
+      pv: 4800,
+    },
+    {
+      name: "Page F",
+      uv: 2390,
+      pv: 3800,
+    },
+    {
+      name: "Page G",
+      uv: 3490,
+      pv: 4300,
+    },
+  ];
+  // const data = [...sourceItems]
+
+  const formatChartData = () => {
+    const data = [...sourceItems]
+
+  }
   return (
     <div>
       <ToolBar
@@ -157,13 +234,13 @@ const Analytics = () => {
         sortTime={sortByTime}
         sortAccuracy={sortByAccuracy}
         sortName={sortByUsername}
+        sortDate={sortByDate}
       />
       <div className="analytics-wrapper">
         <Animated animationIn="flipInX" animationOut="bounce" isVisible={true}>
           {/* choose which level to show */}
           <div className="level-container">
             {/* each line has 12 slots */}
-
             <div className="columns">
               <div className="column is-2">
                 <div
@@ -244,14 +321,51 @@ const Analytics = () => {
             </div>
           </div>
         </nav>
-
+        <div className="recharts-wrapper ">
+          <ResponsiveContainer width="95%" height={400}>
+            <AreaChart
+              
+              data={data}
+              margin={{ top: 20, right: 50, left: 50, bottom: 20 }}
+            >
+              <defs>
+                <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="5%" stopColor="rgb(64, 223, 159)" stopOpacity={0.8} />
+                  <stop offset="95%" stopColor="rgb(64, 223, 159)" stopOpacity={0} />
+                </linearGradient>
+                <linearGradient id="colorPv" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="5%" stopColor="rgb(194, 79, 79)" stopOpacity={0.8} />
+                  <stop offset="95%" stopColor="rgb(194, 79, 79)" stopOpacity={0} />
+                </linearGradient>
+              </defs>
+              <XAxis dataKey="name" />
+              <YAxis />
+              <CartesianGrid strokeDasharray="3 3" />
+              <Tooltip />
+              <Area
+                type="monotone"
+                dataKey="uv"
+                stroke="rgb(64, 223, 159)"
+                fillOpacity={1}
+                fill="url(#colorUv)"
+              />
+              <Area
+                type="monotone"
+                dataKey="pv"
+                stroke="rgb(194, 79, 79)"
+                fillOpacity={1}
+                fill="url(#colorPv)"
+              />
+            </AreaChart>
+          </ResponsiveContainer>
+        </div>
         {/* list*/}
         <Animated
           animationIn="fadeInRight"
           animationOut="bounce"
           isVisible={true}
         >
-          <div className="items-list">
+          <div className="items-list mt-4">
             {/* table header */}
             <div className="columns is-vcentered has-text-dark has-background-primary has-text-centered">
               <div className="column">
@@ -274,6 +388,7 @@ const Analytics = () => {
                 <strong>Completion Date</strong>
               </div>
             </div>
+
             <TransitionGroup component={null}>
               {items.map((item) => (
                 <CSSTransition
