@@ -14,7 +14,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 70vh;
+  height: 62vh;
+ //adjusted height so top line doesn't go through the header
 
   .login-box {
     width: 450px;
