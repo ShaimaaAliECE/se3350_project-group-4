@@ -52,6 +52,57 @@ const Analytics = () => {
     setItems(_items);
   };
 
+  const sortByAccuracy = () => {
+    // get a new array
+    let _items = [...sourceItems];
+    function SortArray(x, y) {
+      if (x.accuracy < y.accuracy) {
+        return 1;
+      }
+      if (x.accuracy > y.accuracy) {
+        return -1;
+      }
+      return 0;
+    }
+    _items = _items.sort(SortArray);
+    // set state of new array
+    setItems(_items);
+  };
+
+  const sortByUsername = () => {
+    // get a new array
+    let _items = [...sourceItems];
+    function SortArray(x, y) {
+      if (x.username < y.username) {
+        return -1;
+      }
+      if (x.username > y.username) {
+        return 1;
+      }
+      return 0;
+    }
+    _items = _items.sort(SortArray);
+    // set state of new array
+    setItems(_items);
+  };
+
+  const sortByTime = () => {
+    // get a new array
+    let _items = [...sourceItems];
+    function SortArray(x, y) {
+      if (x.time < y.time) {
+        return -1;
+      }
+      if (x.time > y.time) {
+        return 1;
+      }
+      return 0;
+    }
+    _items = _items.sort(SortArray);
+    // set state of new array
+    setItems(_items);
+  };
+
   // load data into AnalyticItems
   const loadData = (level) => {
     if (level === "level1") {
@@ -101,7 +152,12 @@ const Analytics = () => {
 
   return (
     <div>
-      <ToolBar search={search} />
+      <ToolBar
+        search={search}
+        sortTime={sortByTime}
+        sortAccuracy={sortByAccuracy}
+        sortName={sortByUsername}
+      />
       <div className="analytics-wrapper">
         <Animated animationIn="flipInX" animationOut="bounce" isVisible={true}>
           {/* choose which level to show */}
@@ -188,46 +244,50 @@ const Analytics = () => {
             </div>
           </div>
         </nav>
+
         {/* list*/}
-        <Animated animationIn="fadeInRight" animationOut="bounce" isVisible={true}>
-        <div className="items-list">
-          {/* table header */}
-          <div className="columns is-vcentered has-text-dark has-background-primary has-text-centered">
-            <div className="column">
-              <strong>ID</strong>
-            </div>
+        <Animated
+          animationIn="fadeInRight"
+          animationOut="bounce"
+          isVisible={true}
+        >
+          <div className="items-list">
+            {/* table header */}
+            <div className="columns is-vcentered has-text-dark has-background-primary has-text-centered">
+              <div className="column">
+                <strong>ID</strong>
+              </div>
 
-            <div className="column ">
-              <strong>Username</strong>
-            </div>
+              <div className="column">
+                <strong>Username</strong>
+              </div>
 
-            <div className="column">
-              <strong>Time</strong>
-            </div>
+              <div className="column">
+                <strong>Time</strong>
+              </div>
 
-            <div className="column">
-              <strong>Accuracy</strong>
-            </div>
+              <div className="column">
+                <strong>Accuracy</strong>
+              </div>
 
-            <div className="column">
-              <strong>Completion Date</strong>
+              <div className="column">
+                <strong>Completion Date</strong>
+              </div>
             </div>
+            <TransitionGroup component={null}>
+              {items.map((item) => (
+                <CSSTransition
+                  classNames="analytics-fade"
+                  timeout={300}
+                  key={item.id}
+                >
+                  <AnalyticsItem key={item.id} item={item} />
+                </CSSTransition>
+              ))}
+            </TransitionGroup>
           </div>
-          <TransitionGroup component={null}>
-            {items.map((item) => (
-              <CSSTransition
-                classNames="analytics-fade"
-                timeout={300}
-                key={item.id}
-              >
-                <AnalyticsItem key={item.id} item={item} />
-              </CSSTransition>
-            ))}
-          </TransitionGroup>
-        </div>
         </Animated>
       </div>
-      
     </div>
   );
 };
