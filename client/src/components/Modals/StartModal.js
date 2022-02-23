@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { Animated } from "react-animated-css";
 const Modal = (props) => {
   // get values from props
-  const { handleStart, title, text } = props;
+  const { handleStart, title, body } = props;
 
   return (
     <div className="modal-overlay">
@@ -14,16 +14,14 @@ const Modal = (props) => {
       >
         <div className="modal-container">
           <div className="modal-title">
-            <h2 className="title is-2 has-text-primary">Welcome To {title}</h2>
+            <h2 className="title is-2 has-text-primary">{title}</h2>
           </div>
           <div className="modal-body ">
-            <p className="has-text-light">
-              <strong className="has-text-primary">Level Description:</strong>{" "}
-              {text}
-            </p>
-            <br />
+            {body}
           </div>
-          <p className="tag is-danger is-align-self-center hvr-buzz">Note: A timer will start when you press Start !</p>
+          <p className="tag is-danger is-align-self-center hvr-buzz">
+            Note: A timer will start when you press Start !
+          </p>
           <div className="modal-footer">
             <Link to="/ms/select">
               <button className="modal-btn button is-primary hvr-sweep-to-left">
@@ -34,7 +32,7 @@ const Modal = (props) => {
               className="modal-btn button is-primary hvr-pulse hvr-sweep-to-right"
               onClick={handleStart}
             >
-              Start {title}
+              Begin Now!
             </button>
           </div>
         </div>

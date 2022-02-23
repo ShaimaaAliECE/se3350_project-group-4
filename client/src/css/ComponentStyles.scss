@@ -337,8 +337,8 @@
   justify-content: center;
   align-items: center;
   .modal-container {
-    width: 600px;
-    height: 500px;
+    width: 700px;
+    height: 600px;
     border-radius: 12px;
     background-color: #000000;
     background-image: linear-gradient(180deg, #000000 0%, #434343 104%);
@@ -368,8 +368,9 @@
       justify-content: center;
       .modal-btn{
         margin: 10px;
-        width: 200px;
-        height: 45px;
+        width: 250px;
+        height: 55px;
+        font-size: 1.1rem;
         font-weight: bold;
         border:rgba(35, 35, 35, 0.95);
       }

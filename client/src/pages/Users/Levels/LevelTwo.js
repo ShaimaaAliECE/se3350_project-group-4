@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import LevelHeader from "components/LevelHeader";
 import MergeSort from "algorithms/mergeSort.mjs";
-import Modal from "components/StartModal";
+import Modal from "components/Modals/StartModal";
 import "../../../css/LevelStyles.css";
 import { Link, withRouter } from "react-router-dom";
 import StepsScroller from "components/StepsScroller";

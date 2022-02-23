@@ -3,7 +3,7 @@ import LevelHeader from "components/LevelHeader";
 import MergeSort from "algorithms/mergeSort.mjs";
 import Block from "components/Block";
 import StepsScroller from "components/StepsScroller";
-import StartModal from "components/StartModal";
+import StartModal from "components/Modals/StartModal";
 
 class LevelOne extends React.Component {
   constructor(props) {
@@ -34,14 +34,15 @@ class LevelOne extends React.Component {
     // generate new array
     this.generateArray();
     // hide start modal
-    this.setState({ showModal: false });
+    this.setState({ showStartModal: false });
     // start timer
   }
 
   // executes when the level ends
   handleEnd() {
-    // show gameover modal
-    this.setState({ showEndModal: true })
+    // show end modal
+    this.setState({ showEndModal: true });
+    // save (username, time, remaining lives, completion date as logged data)
   }
 
   //creates array at the rendering of the class
@@ -126,22 +127,40 @@ class LevelOne extends React.Component {
     return <Block value={this.state.boxes[i - 1]} />;
   }
 
-  // modal content
-  modal_title = "Level 1";
-  modal_msg =
-    "A set of 10 numbers are randomly generated out of the range (1-20). " +
-    "The steps of the algorithm would be executed as visual animation accompanied with explanation texts.";
-
-
   render() {
+    const modal_title = "Welcome to Level 1";
+    const ModalBody = () => {
+      // modal content
+      return (
+        <div>
+          <strong className="has-text-primary">Level Description:</strong>
+          <p className="has-text-light mt-3 ml-5">
+            <ol>
+              <li>
+                A set of <span className="has-text-primary">10</span> numbers
+                are randomly generated out of the range (
+                <span className="has-text-primary">1</span> - {" "}
+                <span className="has-text-primary">20</span>)
+              </li>
+              <li>
+                The steps of the algorithm would be executed as visual animation
+                accompanied with explanation texts
+              </li>
+              <li>Navigate through the steps using the step player.</li>
+            </ol>
+          </p>
+        </div>
+      );
+    };
+
     return (
       <div>
         {this.state.showStartModal ? (
           <StartModal
             handleStart={this.handleStart}
-            title={this.modal_title}
-            text={this.modal_msg}
-          />
+            title={modal_title}
+            body={<ModalBody />}
+          ></StartModal>
         ) : (
           <div>
             <div className="header mb-6">
