@@ -46,7 +46,7 @@ class AnalyticsToolBar extends React.Component {
               <div className="control">
                 <input
                   type="text"
-                  className="input search-input"
+                  className="input search-input is-primary"
                   placeholder="Search for a user by their username.."
                   value={this.state.searchText}
                   onChange={this.handleChange}
@@ -65,7 +65,32 @@ class AnalyticsToolBar extends React.Component {
           </div>
         </Animated>
 
-        <div class="dropdown is-hoverable">
+        {/* toggle chart */}
+        <div>
+          <div
+            className="button is-primary is-outlined hvr-grow "
+            onClick={this.props.handleShowChart}
+          >
+            {this.props.showChart === true ? (
+              <div>
+                <span class="icon is-small">
+                  <i class="fa-solid fa-eye"></i>
+                </span>
+                <strong>Chart: Visible</strong>
+              </div>
+            ) : (
+              <div>
+                <span class="icon is-small">
+                  <i class="fa-solid fa-eye-slash"></i>
+                </span>
+                <strong>Chart: Hidden</strong>
+              </div>
+            )}
+          </div>
+        </div>
+
+        {/* Sort drop down */}
+        <div class="dropdown is-hoverable ">
           <div class="dropdown-trigger">
             <button
               class="button is-outlined is-primary"
@@ -79,9 +104,7 @@ class AnalyticsToolBar extends React.Component {
             </button>
           </div>
           <div class="dropdown-menu" id="dropdown-menu4" role="menu">
-            
             <div class="dropdown-content">
-              
               <button
                 class="dropdown-item button"
                 onClick={this.props.sortName}

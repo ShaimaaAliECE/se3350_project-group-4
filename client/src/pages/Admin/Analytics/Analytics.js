@@ -22,6 +22,80 @@ const Analytics = () => {
   const [levelName, setLevelName] = useState(0); //default
   const [timesCompleted, setTimesCompleted] = useState(0);
   const [sourceItems, setSourceItems] = useState([]);
+  const [showChart, setShowChart] = useState(false);
+
+  const ChartArea = () => (
+    <Animated animationIn="fadeInLeft" animationOut="rubberBand" isVisible={true}>
+      <div className="recharts-wrapper">
+        <ResponsiveContainer width="50%" height={250} className="hvr-grow">
+          <AreaChart
+            data={rechart_data}
+            margin={{ top: 20, right: 20, left: 5, bottom: 20 }}
+          >
+            <defs>
+              <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
+                <stop
+                  offset="5%"
+                  stopColor="rgb(64, 223, 159)"
+                  stopOpacity={0.8}
+                />
+                <stop
+                  offset="95%"
+                  stopColor="rgb(64, 223, 159)"
+                  stopOpacity={0}
+                />
+              </linearGradient>
+            </defs>
+            <XAxis dataKey="username" />
+            <YAxis />
+            <CartesianGrid strokeDasharray="3 3" />
+            <Tooltip />
+            <Area
+              type="monotone"
+              dataKey="accuracy"
+              stroke="rgb(64, 223, 159)"
+              fillOpacity={1}
+              fill="url(#colorUv)"
+            />
+          </AreaChart>
+        </ResponsiveContainer>
+
+        <ResponsiveContainer width="50%" height={250} className="hvr-grow">
+          <AreaChart
+            data={rechart_data}
+            margin={{ top: 20, right: 5, left: 20, bottom: 20 }}
+          >
+            <defs>
+              <linearGradient id="colorPv" x1="0" y1="0" x2="0" y2="1">
+                <stop
+                  offset="5%"
+                  stopColor="rgb(194, 79, 79)"
+                  stopOpacity={0.8}
+                />
+                <stop
+                  offset="95%"
+                  stopColor="rgb(194, 79, 79)"
+                  stopOpacity={0}
+                />
+              </linearGradient>
+            </defs>
+            <XAxis dataKey="username" />
+            <YAxis />
+            <CartesianGrid strokeDasharray="3 3" />
+            <Tooltip />
+
+            <Area
+              type="monotone"
+              dataKey="time"
+              stroke="rgb(194, 79, 79)"
+              fillOpacity={1}
+              fill="url(#colorPv)"
+            />
+          </AreaChart>
+        </ResponsiveContainer>
+      </div>
+    </Animated>
+  );
 
   // get the average accuracy of the corresponding level
   const averageAccuracy = () => {
@@ -184,49 +258,16 @@ const Analytics = () => {
     }
   };
 
-  const data = [
-    {
-      name: "Page A",
-      uv: 4000,
-      pv: 2400,
-    },
-    {
-      name: "Page B",
-      uv: 3000,
-      pv: 1398,
-    },
-    {
-      name: "Page C",
-      uv: 2000,
-      pv: 9800,
-    },
-    {
-      name: "Page D",
-      uv: 2780,
-      pv: 3908,
-    },
-    {
-      name: "Page E",
-      uv: 1890,
-      pv: 4800,
-    },
-    {
-      name: "Page F",
-      uv: 2390,
-      pv: 3800,
-    },
-    {
-      name: "Page G",
-      uv: 3490,
-      pv: 4300,
-    },
-  ];
-  // const data = [...sourceItems]
+  const handleShowChart = () => {
+    if (showChart === true) {
+      setShowChart(false);
+    } else {
+      setShowChart(true);
+    }
+  };
 
-  const formatChartData = () => {
-    const data = [...sourceItems]
-
-  }
+  // data for rechart visualization tool
+  const rechart_data = [...items];
   return (
     <div>
       <ToolBar
@@ -235,6 +276,8 @@ const Analytics = () => {
         sortAccuracy={sortByAccuracy}
         sortName={sortByUsername}
         sortDate={sortByDate}
+        showChart={showChart}
+        handleShowChart={handleShowChart}
       />
       <div className="analytics-wrapper">
         <Animated animationIn="flipInX" animationOut="bounce" isVisible={true}>
@@ -297,68 +340,33 @@ const Analytics = () => {
         {/* stats level */}
         <nav className="level mt-5 has-text-light">
           <div className="level-item has-text-centered">
-            <div>
+            <div className="hvr-wobble-horizontal">
               <p className="heading">Level</p>
-              <p className="title a-stat">{levelName}</p>
+              <p className="title a-stat ">{levelName}</p>
             </div>
           </div>
           <div className="level-item has-text-centered">
-            <div>
+            <div className="hvr-wobble-horizontal">
               <p className="heading">Times Completed</p>
               <p className="title a-stat">{timesCompleted}</p>
             </div>
           </div>
           <div className="level-item has-text-centered">
-            <div>
+            <div className="hvr-wobble-horizontal">
               <p className="heading">Fastest Time</p>
               <p className="title a-stat">{fastestTime()}</p>
             </div>
           </div>
           <div className="level-item has-text-centered">
-            <div>
+            <div className="hvr-wobble-horizontal">
               <p className="heading">Average Accuracy</p>
               <p className="title a-stat">{averageAccuracy()}%</p>
             </div>
           </div>
         </nav>
-        <div className="recharts-wrapper ">
-          <ResponsiveContainer width="95%" height={400}>
-            <AreaChart
-              
-              data={data}
-              margin={{ top: 20, right: 50, left: 50, bottom: 20 }}
-            >
-              <defs>
-                <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="5%" stopColor="rgb(64, 223, 159)" stopOpacity={0.8} />
-                  <stop offset="95%" stopColor="rgb(64, 223, 159)" stopOpacity={0} />
-                </linearGradient>
-                <linearGradient id="colorPv" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="5%" stopColor="rgb(194, 79, 79)" stopOpacity={0.8} />
-                  <stop offset="95%" stopColor="rgb(194, 79, 79)" stopOpacity={0} />
-                </linearGradient>
-              </defs>
-              <XAxis dataKey="name" />
-              <YAxis />
-              <CartesianGrid strokeDasharray="3 3" />
-              <Tooltip />
-              <Area
-                type="monotone"
-                dataKey="uv"
-                stroke="rgb(64, 223, 159)"
-                fillOpacity={1}
-                fill="url(#colorUv)"
-              />
-              <Area
-                type="monotone"
-                dataKey="pv"
-                stroke="rgb(194, 79, 79)"
-                fillOpacity={1}
-                fill="url(#colorPv)"
-              />
-            </AreaChart>
-          </ResponsiveContainer>
-        </div>
+
+        {showChart ? <ChartArea /> : null}
+
         {/* list*/}
         <Animated
           animationIn="fadeInRight"
