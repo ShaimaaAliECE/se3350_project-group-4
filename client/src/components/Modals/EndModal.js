@@ -1,14 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Animated } from "react-animated-css";
-const StartModal = (props) => {
+
+const EndModal = (props) => {
   // get values from props
   const { handleStart, title, body } = props;
 
   return (
     <div className="modal-overlay">
       <Animated
-        animationIn="bounceInUp"
+        animationIn="bounceInDown"
         animationOut="bounceOut"
         isVisible={true}
       >
@@ -19,9 +20,7 @@ const StartModal = (props) => {
           <div className="modal-body ">
             {body}
           </div>
-          <p className="tag is-danger is-align-self-center hvr-buzz">
-            Note: A timer will start when you press Start !
-          </p>
+          
           <div className="modal-footer">
             <Link to="/ms/select">
               <button className="modal-btn button is-primary hvr-sweep-to-left">
@@ -41,4 +40,4 @@ const StartModal = (props) => {
   );
 };
 
-export default StartModal;
+export default EndModal;

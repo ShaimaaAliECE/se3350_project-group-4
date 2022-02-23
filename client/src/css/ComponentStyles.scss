@@ -293,8 +293,9 @@
   }
 
   .search-box {
+    width: 22rem;
     .search-input {
-      width: 22rem;
+      display: none;
       outline: 0;
     }
   }

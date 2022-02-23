@@ -15,9 +15,10 @@ class LevelOne extends React.Component {
       boxes: Array(11).fill(null),
       boxIndex: [1, 2, 4, 4, 5, 8, 9, 9, 5, 2, 3, 6, 6, 7, 10, 11, 11, 7, 3, 1],
       order: [],
-      showStartModal: true, //show modal when page loads
+      // ------ Modal States ----- //
+      showStartModal: true, //show start level modal by default
       showEndModal: false, //dont show endModal by default
-      Gameover: false,
+      showGameoverModal: false, //dont show gameover Modal by default
     };
 
     this.generateArray = this.generateArray.bind(this);
@@ -29,7 +30,7 @@ class LevelOne extends React.Component {
     this.handleEnd = this.handleEnd.bind(this);
   }
 
-  // execute when start buttob on the modal is pressed
+  // execute when start button on the modal is pressed
   handleStart() {
     // generate new array
     this.generateArray();
@@ -40,8 +41,17 @@ class LevelOne extends React.Component {
 
   // executes when the level ends
   handleEnd() {
+    // end timer
     // show end modal
     this.setState({ showEndModal: true });
+    // save (username, time, remaining lives, completion date as logged data)
+  }
+
+  // executes when player life reaches 0
+  handleGameover() {
+    // end timer
+    // show end modal
+    this.setState({ showGameoverModal: true });
     // save (username, time, remaining lives, completion date as logged data)
   }
 
@@ -128,8 +138,8 @@ class LevelOne extends React.Component {
   }
 
   render() {
-    const modal_title = "Welcome to Level 1";
-    const ModalBody = () => {
+    const start_modal_title = "Welcome to Level 1";
+    const StartModalBody = () => {
       // modal content
       return (
         <div>
@@ -139,7 +149,7 @@ class LevelOne extends React.Component {
               <li>
                 A set of <span className="has-text-primary">10</span> numbers
                 are randomly generated out of the range (
-                <span className="has-text-primary">1</span> - {" "}
+                <span className="has-text-primary">1</span> -{" "}
                 <span className="has-text-primary">20</span>)
               </li>
               <li>
@@ -158,9 +168,9 @@ class LevelOne extends React.Component {
         {this.state.showStartModal ? (
           <StartModal
             handleStart={this.handleStart}
-            title={modal_title}
-            body={<ModalBody />}
-          ></StartModal>
+            title={start_modal_title}
+            body={<StartModalBody />}
+          />
         ) : (
           <div>
             <div className="header mb-6">
