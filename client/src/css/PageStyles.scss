@@ -15,7 +15,6 @@
   justify-content: center;
   align-items: center;
   height: 62vh;
- //adjusted height so top line doesn't go through the header
 
   .login-box {
     width: 450px;
@@ -30,6 +29,23 @@
     }
   }
 }
+
+// Register Page
+.register-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 62vh;
+
+      & a {
+      transition: all 0.3s;
+
+      &:hover {
+        color: rgb(64, 223, 159);
+      }
+    }
+  }
+
 
 // Home Page
 .home-wrapper {
