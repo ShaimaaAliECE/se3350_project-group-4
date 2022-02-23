@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import LevelHeader from "components/LevelHeader";
 import MergeSort from "algorithms/mergeSort.mjs";
-import Modal from "components/Modal";
+import Modal from "components/StartModal";
 import "../../../css/LevelStyles.css";
 import { withRouter } from "react-router-dom";
 import { toast } from "react-toastify";

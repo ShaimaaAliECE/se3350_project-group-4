@@ -3,7 +3,7 @@ import LevelHeader from "components/LevelHeader";
 import MergeSort from "algorithms/mergeSort.mjs";
 import Block from "components/Block";
 import StepsScroller from "components/StepsScroller";
-import Modal from "components/Modal";
+import StartModal from "components/StartModal";
 
 class LevelOne extends React.Component {
   constructor(props) {
@@ -15,20 +15,33 @@ class LevelOne extends React.Component {
       boxes: Array(11).fill(null),
       boxIndex: [1, 2, 4, 4, 5, 8, 9, 9, 5, 2, 3, 6, 6, 7, 10, 11, 11, 7, 3, 1],
       order: [],
-      showModal: true, //show modal when page loads
+      showStartModal: true, //show modal when page loads
+      showEndModal: false, //dont show endModal by default
+      Gameover: false,
     };
+
     this.generateArray = this.generateArray.bind(this);
     this.handleNextStep = this.handleNextStep.bind(this);
     this.handlePrevStep = this.handlePrevStep.bind(this);
     this.handleReset = this.handleReset.bind(this);
     this.generateBlocks = this.generateBlocks.bind(this);
     this.handleStart = this.handleStart.bind(this);
+    this.handleEnd = this.handleEnd.bind(this);
   }
 
-  // execute when start on the modal is pressed
+  // execute when start buttob on the modal is pressed
   handleStart() {
+    // generate new array
     this.generateArray();
+    // hide start modal
     this.setState({ showModal: false });
+    // start timer
+  }
+
+  // executes when the level ends
+  handleEnd() {
+    // show gameover modal
+    this.setState({ showEndModal: true })
   }
 
   //creates array at the rendering of the class
@@ -113,19 +126,21 @@ class LevelOne extends React.Component {
     return <Block value={this.state.boxes[i - 1]} />;
   }
 
+  // modal content
+  modal_title = "Level 1";
+  modal_msg =
+    "A set of 10 numbers are randomly generated out of the range (1-20). " +
+    "The steps of the algorithm would be executed as visual animation accompanied with explanation texts.";
+
+
   render() {
-    // modal content
-    const modal_title = "Level 1";
-    const modal_msg =
-      "A set of 10 numbers are randomly generated out of the range (1-20). " +
-      "The steps of the algorithm would be executed as visual animation accompanied with explanation texts.";
     return (
       <div>
-        {this.state.showModal ? (
-          <Modal
+        {this.state.showStartModal ? (
+          <StartModal
             handleStart={this.handleStart}
-            title={modal_title}
-            text={modal_msg}
+            title={this.modal_title}
+            text={this.modal_msg}
           />
         ) : (
           <div>

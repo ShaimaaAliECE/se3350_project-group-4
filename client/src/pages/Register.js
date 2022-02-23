@@ -53,7 +53,7 @@ const Register = (props) => {
       {/* header */}
       <Animated animationIn="fadeInLeft" animationOut="bounce" isVisible={true}>
         <RegisterHeader />
-        <div className="register-wrapper">
+        <div className="login-wrapper">
           <form className="login-box" onSubmit={handleSubmit(onSubmit)}>
             <h4 className="title is-2 has-text-light">Create Account</h4>
             {/* username */}
