@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { Animated } from "react-animated-css";
 const StartModal = (props) => {
   // get values from props
-  const { handleStart, title, body } = props;
+  const { handleStart, title, body, lowerLimit, higherLimit, boxCount } = props;
 
   return (
     <div className="modal-overlay">
@@ -17,7 +17,20 @@ const StartModal = (props) => {
             <h2 className="title is-2 has-text-primary">{title}</h2>
           </div>
           <div className="modal-body ">
-            {body}
+            <div>
+              <strong className="has-text-primary">Level Description:</strong>
+              <p className="has-text-light mt-3 ml-5">
+                <ol>
+                  <li>
+                    A set of <span className="has-text-primary">{boxCount}</span>{" "}
+                    numbers are randomly generated out of the range (
+                    <span className="has-text-primary">{lowerLimit}</span> -{" "}
+                    <span className="has-text-primary">{higherLimit}</span>)
+                  </li>
+                  {body}
+                </ol>
+              </p>
+            </div>
           </div>
           <p className="tag is-danger is-align-self-center hvr-buzz">
             Note: A timer will start when you press Start !

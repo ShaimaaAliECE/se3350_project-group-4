@@ -46,7 +46,7 @@ class AnalyticsToolBar extends React.Component {
               <div className="control">
                 <input
                   type="text"
-                  className="input search-input is-primary"
+                  className="input search-input"
                   placeholder="Search for a user by their username.."
                   value={this.state.searchText}
                   onChange={this.handleChange}

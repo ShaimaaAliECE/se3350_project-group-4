@@ -283,6 +283,7 @@
   padding: 2rem 0.2rem 1.5rem 0.2rem;
   display: flex;
   justify-content: space-between;
+  
   align-items: center;
 
   .logo-text {
@@ -290,13 +291,13 @@
     color: rgb(64, 223, 159);
     font-weight: 600;
     text-transform: uppercase;
+    display: block;
   }
 
   .search-box {
-    width: 22rem;
     .search-input {
-      display: none;
       outline: 0;
+      width: 20rem;
     }
   }
 

@@ -4,6 +4,8 @@ import MergeSort from "algorithms/mergeSort.mjs";
 import Block from "components/Block";
 import StepsScroller from "components/StepsScroller";
 import StartModal from "components/Modals/StartModal";
+import GameoverModal from "components/Modals/GameoverModal";
+import EndModal from "components/Modals/EndModal";
 
 class LevelOne extends React.Component {
   constructor(props) {
@@ -16,9 +18,17 @@ class LevelOne extends React.Component {
       boxIndex: [1, 2, 4, 4, 5, 8, 9, 9, 5, 2, 3, 6, 6, 7, 10, 11, 11, 7, 3, 1],
       order: [],
       // ------ Modal States ----- //
+      showModal: true, //enable modal rendering
       showStartModal: true, //show start level modal by default
       showEndModal: false, //dont show endModal by default
       showGameoverModal: false, //dont show gameover Modal by default
+
+      // ----- Game State ----- //
+      lives: 3,
+      time: 0,
+      lowerLimit: 1,
+      higherLimit: 20,
+      boxCount: 10,
     };
 
     this.generateArray = this.generateArray.bind(this);
@@ -28,14 +38,16 @@ class LevelOne extends React.Component {
     this.generateBlocks = this.generateBlocks.bind(this);
     this.handleStart = this.handleStart.bind(this);
     this.handleEnd = this.handleEnd.bind(this);
+    this.handleGameover = this.handleGameover.bind(this);
   }
 
+  //** Modal Related functions **/
   // execute when start button on the modal is pressed
   handleStart() {
     // generate new array
     this.generateArray();
     // hide start modal
-    this.setState({ showStartModal: false });
+    this.setState({ showModal: false, showStartModal: false });
     // start timer
   }
 
@@ -43,16 +55,57 @@ class LevelOne extends React.Component {
   handleEnd() {
     // end timer
     // show end modal
-    this.setState({ showEndModal: true });
+    this.setState({
+      showModal: true,
+      showEndModal: true,
+      showGameoverModal: false,
+    });
+
     // save (username, time, remaining lives, completion date as logged data)
   }
 
   // executes when player life reaches 0
   handleGameover() {
     // end timer
-    // show end modal
-    this.setState({ showGameoverModal: true });
+    // show gameover modal
+    this.setState({
+      showModal: true,
+      showEndModal: false,
+      showGameoverModal: true,
+    });
     // save (username, time, remaining lives, completion date as logged data)
+  }
+
+  renderModal() {
+    const start_modal_title = "Welcome to Level 1";
+    const StartModalBody = () => {
+      // modal content
+      return (
+        <div>
+          <li>
+            The steps of the algorithm would be executed as visual animation
+            accompanied with explanation texts
+          </li>
+          <li>Navigate through the steps using the step player.</li>
+        </div>
+      );
+    };
+    if (this.state.showStartModal) {
+      return (
+        <StartModal
+          handleStart={this.handleStart}
+          title={start_modal_title}
+          body={<StartModalBody />}
+          lowerLimit={this.state.lowerLimit}
+          higherLimit={this.state.higherLimit}
+          boxCount={this.state.boxCount}
+        />
+      );
+    } else if (this.state.showEndModal && !this.state.showGameoverModal) {
+      return <EndModal />;
+    } else if (this.state.showGameoverModal && !this.state.showEndModal) {
+      return <GameoverModal />;
+    }
   }
 
   //creates array at the rendering of the class
@@ -138,44 +191,16 @@ class LevelOne extends React.Component {
   }
 
   render() {
-    const start_modal_title = "Welcome to Level 1";
-    const StartModalBody = () => {
-      // modal content
-      return (
-        <div>
-          <strong className="has-text-primary">Level Description:</strong>
-          <p className="has-text-light mt-3 ml-5">
-            <ol>
-              <li>
-                A set of <span className="has-text-primary">10</span> numbers
-                are randomly generated out of the range (
-                <span className="has-text-primary">1</span> -{" "}
-                <span className="has-text-primary">20</span>)
-              </li>
-              <li>
-                The steps of the algorithm would be executed as visual animation
-                accompanied with explanation texts
-              </li>
-              <li>Navigate through the steps using the step player.</li>
-            </ol>
-          </p>
-        </div>
-      );
-    };
-
     return (
       <div>
-        {this.state.showStartModal ? (
-          <StartModal
-            handleStart={this.handleStart}
-            title={start_modal_title}
-            body={<StartModalBody />}
-          />
+        {this.state.showModal ? (
+          this.renderModal()
         ) : (
           <div>
             <div className="header mb-6">
               <LevelHeader level="1" />
             </div>
+
             <div className="body">
               {/* {this.generateBlocks()} */}
               <div className="box-surround">
@@ -202,6 +227,8 @@ class LevelOne extends React.Component {
                 </div>
               </div>
               <div className="alg-steps">
+                <button onClick={this.handleEnd}>end</button>
+                <button onClick={this.handleGameover}>gameover</button>
                 <StepsScroller
                   lineOne={this.state.lineOne}
                   lineTwo={this.state.lineTwo}
