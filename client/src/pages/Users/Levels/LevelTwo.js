@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import LevelHeader from "components/LevelHeader";
+import LevelHeader from "components/LevelComponents/LevelHeader";
 import MergeSort from "algorithms/mergeSort.mjs";
 import Modal from "components/Modals/StartModal";
 import "../../../css/LevelStyles.css";

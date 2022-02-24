@@ -1,7 +1,7 @@
 import React from "react";
-import LevelHeader from "components/LevelHeader";
+import LevelHeader from "components/LevelComponents/LevelHeader";
 import MergeSort from "algorithms/mergeSort.mjs";
-import Block from "components/Block";
+import Block from "components/LevelComponents/Block";
 import StepsScroller from "components/StepsScroller";
 import StartModal from "components/Modals/StartModal";
 import GameoverModal from "components/Modals/GameoverModal";
@@ -76,6 +76,7 @@ class LevelOne extends React.Component {
     // save (username, time, remaining lives, completion date as logged data)
   }
 
+  // render the appropriate modal based on current game state
   renderModal() {
     const start_modal_title = "Welcome to Level 1";
     const StartModalBody = () => {
@@ -90,8 +91,9 @@ class LevelOne extends React.Component {
         </div>
       );
     };
+    // if `showStartModal` state is true
     if (this.state.showStartModal) {
-      return (
+      return ( //show level start modal
         <StartModal
           handleStart={this.handleStart}
           title={start_modal_title}
@@ -101,6 +103,7 @@ class LevelOne extends React.Component {
           boxCount={this.state.boxCount}
         />
       );
+      // if `showEndModal` state is true
     } else if (this.state.showEndModal && !this.state.showGameoverModal) {
       return <EndModal />;
     } else if (this.state.showGameoverModal && !this.state.showEndModal) {

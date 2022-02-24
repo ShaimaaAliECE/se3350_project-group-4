@@ -1,13 +1,12 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useState } from "react";
 import PopupMenu from "components/PopupMenu";
 import Pause from "components/Pause";
 import { withRouter } from "react-router-dom";
 import { Animated } from "react-animated-css";
 
-
 // header component for levels
 const LevelHeader = (props) => {
-
   // ----- Timer ----- //
   const [time, setTime] = useState({ ms: 0, s: 0, m: 0, h: 0 });
   const [interv, setInterv] = useState();
@@ -106,48 +105,42 @@ const LevelHeader = (props) => {
   };
 
   return (
-    <Animated
-      animationIn="fadeInDown"
-      animationOut="bounceOut"
-      isVisible={true}
-    >
-      <div className="lv-header">
-        <div>
-          <nav className="level">
-            {/*  */}
-            <p className="level-item has-text-centered">
-              <i className="fas fa-heart heart"></i>
-              <span>x 3</span>
-            </p>
-            {/* Timer */}
-            <p className="level-item has-text-centered">
-            <i class="fa-solid fa-clock mr-2"></i>
-              <span>Level Timer:</span>
-              <span>
-                <DisplayComponent time={time}/>
-              </span>
-            </p>
-            {/* Pause button */}
-            <p className="level-item has-text-centered">
-              <span className="button is-small is-primary" onClick={toPause}>
-                <i className="pause fas fa-pause"></i>
-              </span>
-            </p>
-            {/* Level number */}
-            <p className="level-item has-text-centered has-text-primary">
-              <span>LEVEL {props.level}</span>
-            </p>
-            {/* Next level button */}
-            <p className="level-item has-text-centered next-lv">
-              <div onClick={nextLevel}>NEXT LEVEL</div>
-            </p>
-          </nav>
-        </div>
-      </div>
-
-      {/* green divider */}
-      <div className="divider"></div>
-    </Animated>
+    <div className="tabs is-centered is-large is-fullwidth">
+      <ul>
+        <li className="is-active">
+          <a>
+            <span className="icon is-small">
+              <i className="fas fa-heart" aria-hidden="true"></i>
+            </span>
+            <span>3</span>
+          </a>
+        </li>
+        <li className="is-active">
+          <a>
+            <span className="icon is-small">
+              <i className="fas fa-music" aria-hidden="true"></i>
+            </span>
+            <span>Music</span>
+          </a>
+        </li>
+        <li className="is-active">
+          <a>
+            <span className="icon is-small">
+              <i className="fas fa-film" aria-hidden="true"></i>
+            </span>
+            <span>Videos</span>
+          </a>
+        </li>
+        <li className="is-active">
+          <a>
+            <span className="icon is-small">
+              <i className="far fa-file-alt" aria-hidden="true"></i>
+            </span>
+            <span>Documents</span>
+          </a>
+        </li>
+      </ul>
+    </div>
   );
 };
 

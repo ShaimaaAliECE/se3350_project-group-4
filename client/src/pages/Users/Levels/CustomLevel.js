@@ -1,5 +1,5 @@
 import React from "react";
-import LevelHeader from "components/LevelHeader";
+import LevelHeader from "components/LevelComponents/LevelHeader";
 import MergeSort from "algorithms/mergeSort.mjs";
 import PopupMenu from "components/PopupMenu";
 import CustomLevelForm from "pages/Admin/EditLevelForms/CustomLevelForm";

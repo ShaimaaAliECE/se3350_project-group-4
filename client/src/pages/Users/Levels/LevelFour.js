@@ -1,5 +1,5 @@
 import React from "react";
-import LevelHeader from "components/LevelHeader";
+import LevelHeader from "components/LevelComponents/LevelHeader";
 import Modal from "components/Modals/StartModal";
 
 class LevelFour extends React.Component {
