@@ -2,57 +2,15 @@
 import React, { useState } from "react";
 import PopupMenu from "components/PopupMenu";
 import Pause from "components/Pause";
-import { withRouter } from "react-router-dom";
+import { withRouter, } from "react-router-dom";
 import { Animated } from "react-animated-css";
+
 
 // header component for levels
 const LevelHeader = (props) => {
   // ----- Timer ----- //
-  const [time, setTime] = useState({ ms: 0, s: 0, m: 0, h: 0 });
-  const [interv, setInterv] = useState();
-  const [status, setStatus] = useState(0);
 
-  // start timer
-  const start = () => {
-    run();
-    setStatus(1);
-    setInterv(setInterval(run, 10));
-  };
-  var updatedMs = time.ms,
-    updatedS = time.s,
-    updatedM = time.m,
-    updatedH = time.h;
-  // run timer
-  const run = () => {
-    if (updatedM === 60) {
-      updatedH++;
-      updatedM = 0;
-    }
-    if (updatedS === 60) {
-      updatedM++;
-      updatedS = 0;
-    }
-    if (updatedMs === 100) {
-      updatedS++;
-      updatedMs = 0;
-    }
-    updatedMs++;
-    return setTime({ ms: updatedMs, s: updatedS, m: updatedM, h: updatedH });
-  };
-  // stop timer
-  const stop = () => {
-    clearInterval(interv);
-    setStatus(2);
-  };
-  // reset timer
-  const reset = () => {
-    clearInterval(interv);
-    setStatus(0);
-    setTime({ ms: 0, s: 0, m: 0, h: 0 });
-  };
-  // resume timer
-  const resume = () => start();
-
+ 
   // open pause menu
   const toPause = () => {
     PopupMenu.open({
@@ -65,27 +23,7 @@ const LevelHeader = (props) => {
     });
   };
 
-  function DisplayComponent(props) {
-    const h = () => {
-      if (props.time.h === 0) {
-        return "";
-      } else {
-        return (
-          <span>{props.time.h >= 10 ? props.time.h : "0" + props.time.h}</span>
-        );
-      }
-    };
-    return (
-      <div>
-        {h()}&nbsp;&nbsp;
-        <span>{props.time.m >= 10 ? props.time.m : "0" + props.time.m}</span>
-        &nbsp;:&nbsp;
-        <span>{props.time.s >= 10 ? props.time.s : "0" + props.time.s}</span>
-        &nbsp;:&nbsp;
-        <span>{props.time.ms >= 10 ? props.time.ms : "0" + props.time.ms}</span>
-      </div>
-    );
-  }
+
 
   // redirect to next level
   const nextLevel = () => {
@@ -105,42 +43,56 @@ const LevelHeader = (props) => {
   };
 
   return (
-    <div className="tabs is-centered is-large is-fullwidth">
-      <ul>
-        <li className="is-active">
-          <a>
-            <span className="icon is-small">
-              <i className="fas fa-heart" aria-hidden="true"></i>
-            </span>
-            <span>3</span>
-          </a>
-        </li>
-        <li className="is-active">
-          <a>
-            <span className="icon is-small">
-              <i className="fas fa-music" aria-hidden="true"></i>
-            </span>
-            <span>Music</span>
-          </a>
-        </li>
-        <li className="is-active">
-          <a>
-            <span className="icon is-small">
-              <i className="fas fa-film" aria-hidden="true"></i>
-            </span>
-            <span>Videos</span>
-          </a>
-        </li>
-        <li className="is-active">
-          <a>
-            <span className="icon is-small">
-              <i className="far fa-file-alt" aria-hidden="true"></i>
-            </span>
-            <span>Documents</span>
-          </a>
-        </li>
-      </ul>
-    </div>
+    <Animated
+      animationIn="fadeInDown"
+      animationOut="bounceOut"
+      isVisible={true}
+    >
+      <div className="tabs is-centered is-large is-fullwidth has-background-dark">
+        <ul>
+          <li className="is-active">
+            <a>
+              <span className="has-text-primary">LEVEL {props.level} </span>
+            </a>
+          </li>
+          <li className="is-active">
+            <a >
+              <span className="icon is-small">
+                <i className="fas fa-clock hvr-buzz" aria-hidden="true"></i>
+              </span>
+              <span>00:00:00</span>
+            </a>
+          </li>
+          <li className="is-active hvr-rectangle-in" onClick={toPause}>
+            <a>
+              <span className="icon is-small">
+                <i className="fas fa-pause" aria-hidden="true"></i>
+              </span>
+              <span>Pause</span>
+            </a>
+          </li>
+          <li className="is-active">
+            <a>
+              <span className="icon is-small">
+                <i
+                  className="fas fa-heart has-text-danger hvr-pulse"
+                  aria-hidden="true"
+                ></i>
+              </span>
+              <span> : 3</span>
+            </a>
+          </li>
+          <li className="is-active">
+            <a className="hvr-rectangle-out">
+              <span onClick={nextLevel}>Next Level</span>
+              <span className="icon is-small">
+                <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+              </span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </Animated>
   );
 };
 

@@ -1674,7 +1674,7 @@
     transform: perspective(1px) translateZ(0);
     box-shadow: 0 0 1px rgba(0, 0, 0, 0);
     position: relative;
-    background: #2098D1;
+    background: rgb(194, 79, 79);;
     -webkit-transition-property: color;
     transition-property: color;
     -webkit-transition-duration: 0.3s;
@@ -1688,7 +1688,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: #e1e1e1;
+    background: rgb(30, 28, 28);
     -webkit-transform: scale(1);
     transform: scale(1);
     -webkit-transition-property: transform;
@@ -1714,7 +1714,7 @@
     transform: perspective(1px) translateZ(0);
     box-shadow: 0 0 1px rgba(0, 0, 0, 0);
     position: relative;
-    background: #e1e1e1;
+    background: rgb(30, 28, 28);
     -webkit-transition-property: color;
     transition-property: color;
     -webkit-transition-duration: 0.3s;
@@ -1728,7 +1728,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: #2098D1;
+    background: rgb(64, 223, 159) ;
     -webkit-transform: scale(0);
     transform: scale(0);
     -webkit-transition-property: transform;
