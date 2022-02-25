@@ -1,6 +1,6 @@
 import React from "react";
-import LevelHeader from "components/LevelHeader";
-import Modal from "components/Modal";
+import LevelHeader from "components/LevelComponents/LevelHeader";
+import Modal from "components/Modals/StartModal";
 import { toast } from "react-toastify";
 
 toast.configure();
