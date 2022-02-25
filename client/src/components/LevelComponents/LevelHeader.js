@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import PopupMenu from "components/PopupMenu";
 import Pause from "components/Pause";
-import { withRouter, } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import { Animated } from "react-animated-css";
 
 

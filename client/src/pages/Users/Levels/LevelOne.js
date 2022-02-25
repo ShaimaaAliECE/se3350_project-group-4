@@ -24,6 +24,7 @@ class LevelOne extends React.Component {
       showGameoverModal: false, //dont show gameover Modal by default
 
       // ----- Game State ----- //
+      level: 1,
       lives: 3,
       time: 0,
       lowerLimit: 1,
@@ -78,7 +79,6 @@ class LevelOne extends React.Component {
 
   // render the appropriate modal based on current game state
   renderModal() {
-    const start_modal_title = "Welcome to Level 1";
     const StartModalBody = () => {
       // modal content
       return (
@@ -91,12 +91,24 @@ class LevelOne extends React.Component {
         </div>
       );
     };
+
+    const GameoverModalBody = () => {
+      return (
+        <div class="dropdown-item">
+          <p>
+            You can insert <strong>any type of content</strong> within the
+            dropdown menu.
+          </p>
+        </div>
+      );
+    };
     // if `showStartModal` state is true
     if (this.state.showStartModal) {
-      return ( //show level start modal
+      return (
+        //show level start modal
         <StartModal
           handleStart={this.handleStart}
-          title={start_modal_title}
+          title={this.state.level}
           body={<StartModalBody />}
           lowerLimit={this.state.lowerLimit}
           higherLimit={this.state.higherLimit}
@@ -105,9 +117,23 @@ class LevelOne extends React.Component {
       );
       // if `showEndModal` state is true
     } else if (this.state.showEndModal && !this.state.showGameoverModal) {
-      return <EndModal />;
+      return (
+        <EndModal
+          title={this.state.level}
+          life={this.state.lives}
+          time={this.state.time}
+          level="1"
+        />
+      );
     } else if (this.state.showGameoverModal && !this.state.showEndModal) {
-      return <GameoverModal />;
+      return (
+        // show gameover modal
+        <GameoverModal
+          title={this.state.level}
+          time={this.state.time}
+          dropdownItems={<GameoverModalBody />}
+        />
+      );
     }
   }
 
@@ -230,8 +256,21 @@ class LevelOne extends React.Component {
                 </div>
               </div>
               <div className="alg-steps">
-                <button onClick={this.handleEnd}>end</button>
-                <button onClick={this.handleGameover}>gameover</button>
+                <div className="box is-pink">
+                  <h2>For Developer Only</h2>
+                  <button
+                    className="button is-success is-outlined"
+                    onClick={this.handleEnd}
+                  >
+                    level complete
+                  </button>
+                  <button
+                    className="button is-danger is-outlined"
+                    onClick={this.handleGameover}
+                  >
+                    gameover
+                  </button>
+                </div>
                 <StepsScroller
                   lineOne={this.state.lineOne}
                   lineTwo={this.state.lineTwo}

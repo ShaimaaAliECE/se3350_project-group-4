@@ -14,7 +14,9 @@ const StartModal = (props) => {
       >
         <div className="modal-container">
           <div className="modal-title">
-            <h2 className="title is-2 has-text-primary">{title}</h2>
+            <h2 className="title is-2 has-text-primary">
+              Welcome to Level {title}
+            </h2>
           </div>
           <div className="modal-body ">
             <div>
@@ -22,8 +24,9 @@ const StartModal = (props) => {
               <p className="has-text-light mt-3 ml-5">
                 <ol>
                   <li>
-                    A set of <span className="has-text-primary">{boxCount}</span>{" "}
-                    numbers are randomly generated out of the range (
+                    A set of{" "}
+                    <span className="has-text-primary">{boxCount}</span> numbers
+                    are randomly generated out of the range (
                     <span className="has-text-primary">{lowerLimit}</span> -{" "}
                     <span className="has-text-primary">{higherLimit}</span>)
                   </li>
