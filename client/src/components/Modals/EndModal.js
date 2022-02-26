@@ -18,8 +18,8 @@ const EndModal = (props) => {
       props.history.push("/ms/level5");
     } else if (props.title === 5) {
       props.history.push("/ms/custom");
-    } else if (props.title === "custom") {
-      props.history.push("/ms/select");
+    } else if (props.title === "C") {
+      props.history.push("/alg");
     }
   };
 
