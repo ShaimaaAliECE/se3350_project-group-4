@@ -4,21 +4,21 @@ import { Animated } from "react-animated-css";
 
 const EndModal = (props) => {
   // get values from props
-  const { title, life, time } = props;
+  const { title, life, time, next } = props;
 
   // navigat eto next level based on props
   const toNextLevel = () => {
-    if (props.level === "1") {
+    if (props.title === 1) {
       props.history.push("/ms/level2");
-    } else if (props.level === "2") {
+    } else if (props.title === 2) {
       props.history.push("/ms/level3");
-    } else if (props.level === "3") {
+    } else if (props.title === 3) {
       props.history.push("/ms/level4");
-    } else if (props.level === "4") {
+    } else if (props.title === 4) {
       props.history.push("/ms/level5");
-    } else if (props.level === "5") {
+    } else if (props.title === 5) {
       props.history.push("/ms/custom");
-    } else if (props.level === "custom") {
+    } else if (props.title === "custom") {
       props.history.push("/ms/select");
     }
   };
@@ -64,8 +64,8 @@ const EndModal = (props) => {
                 </div>
                 <div class="level-item has-text-centered m-4">
                   <div>
-                    <p className="heading has-text-danger">Next Level:</p>
-                    <p className="title has-text-danger">{title + 1}</p>
+                    <p className="heading has-text-danger">Up Next:</p>
+                    <p className="title has-text-danger">{next}</p>
                   </div>
                 </div>
               </nav>

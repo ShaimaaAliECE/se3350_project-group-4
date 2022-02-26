@@ -131,7 +131,7 @@ class LevelThree extends React.Component {
           title={this.state.level}
           life={this.state.lives}
           time={this.state.time}
-          level="3"
+          next="Level 4"
         />
       );
     } else if (this.state.showGameoverModal && !this.state.showEndModal) {

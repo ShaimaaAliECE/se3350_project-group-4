@@ -92,16 +92,7 @@ class LevelOne extends React.Component {
       );
     };
 
-    const GameoverModalBody = () => {
-      return (
-        <div class="dropdown-item">
-          <p>
-            You can insert <strong>any type of content</strong> within the
-            dropdown menu.
-          </p>
-        </div>
-      );
-    };
+
     // if `showStartModal` state is true
     if (this.state.showStartModal) {
       return (
@@ -122,7 +113,7 @@ class LevelOne extends React.Component {
           title={this.state.level}
           life={this.state.lives}
           time={this.state.time}
-          level="1"
+          next="Level 2"
         />
       );
     } else if (this.state.showGameoverModal && !this.state.showEndModal) {
@@ -131,7 +122,7 @@ class LevelOne extends React.Component {
         <GameoverModal
           title={this.state.level}
           time={this.state.time}
-          dropdownItems={<GameoverModalBody />}
+          
         />
       );
     }

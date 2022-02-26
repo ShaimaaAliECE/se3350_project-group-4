@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import LevelHeader from "components/LevelComponents/LevelHeader";
 import MergeSort from "algorithms/mergeSort.mjs";
 import "../../../css/LevelStyles.css";
-import { Link, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import StepsScroller from "components/StepsScroller";
 import { toast } from "react-toastify";
 import RightSound from "assets/audios/RightSound.mp3";
@@ -129,7 +129,7 @@ class LevelTwo extends React.Component {
           title={this.state.level}
           life={this.state.lives}
           time={this.state.time}
-          level="2"
+          next="Level 3"
         />
       );
     } else if (this.state.showGameoverModal && !this.state.showEndModal) {
