@@ -228,6 +228,23 @@ class LevelOne extends React.Component {
           <div>
             <div className="header mb-6">
               <LevelHeader level="1" />
+              {/* !!!!!modal testing */}
+              <div className="box is-pink">
+                  <h2>For Developer Only</h2>
+                  <button
+                    className="button is-success is-outlined"
+                    onClick={this.handleEnd}
+                  >
+                    level complete
+                  </button>
+                  <button
+                    className="button is-danger is-outlined"
+                    onClick={this.handleGameover}
+                  >
+                    gameover
+                  </button>
+                </div>
+                {/* !!!!!modal testing */}
             </div>
 
             <div className="body">
@@ -256,21 +273,6 @@ class LevelOne extends React.Component {
                 </div>
               </div>
               <div className="alg-steps">
-                <div className="box is-pink">
-                  <h2>For Developer Only</h2>
-                  <button
-                    className="button is-success is-outlined"
-                    onClick={this.handleEnd}
-                  >
-                    level complete
-                  </button>
-                  <button
-                    className="button is-danger is-outlined"
-                    onClick={this.handleGameover}
-                  >
-                    gameover
-                  </button>
-                </div>
                 <StepsScroller
                   lineOne={this.state.lineOne}
                   lineTwo={this.state.lineTwo}

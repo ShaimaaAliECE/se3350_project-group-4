@@ -43,7 +43,7 @@ const EndModal = (props) => {
             <div>
               <figure className="image is-2by1">
                 <img
-                  src="https://c.tenor.com/-shyPWw150UAAAAd/fortnite-thanos.gif"
+                  src="https://c.tenor.com/O5jZtKfuDRoAAAAd/penguinz0-yeah-baby.gif"
                   alt="Congrats"
                 />
               </figure>
@@ -58,7 +58,7 @@ const EndModal = (props) => {
                 </div>
                 <div className="level-item has-text-centered m-4">
                   <div>
-                    <p className="heading has-text-danger">Lives Remaining: </p>
+                    <p className="heading has-text-danger">Lives Left: </p>
                     <p className="title has-text-danger">{life}</p>
                   </div>
                 </div>
@@ -89,7 +89,7 @@ const EndModal = (props) => {
               className="modal-btn button is-primary hvr-pulse hvr-sweep-to-right"
               onClick={toNextLevel}
             >
-              Next Level
+              Start Next Level
             </button>
           </div>
         </div>

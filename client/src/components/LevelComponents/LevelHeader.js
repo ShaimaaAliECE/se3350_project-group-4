@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React, { useState } from "react";
+import React, {useState} from "react";
 import PopupMenu from "components/PopupMenu";
 import Pause from "components/Pause";
 import { withRouter } from "react-router-dom";
@@ -8,9 +8,9 @@ import { Animated } from "react-animated-css";
 
 // header component for levels
 const LevelHeader = (props) => {
-  // ----- Timer ----- //
 
- 
+  // ----- Timer ----- //
+  
   // open pause menu
   const toPause = () => {
     PopupMenu.open({

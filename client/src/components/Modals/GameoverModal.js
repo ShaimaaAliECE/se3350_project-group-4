@@ -3,14 +3,13 @@ import { Animated } from "react-animated-css";
 
 const GameoverModal = (props) => {
   // get values from props
-  const { handleGameover, title, dropdownItems, lastestLevel, time } = props;
+  const { title, dropdownItems, time } = props;
 
   // quit game
   const quitGame = () => {
     window.open("about:blank", "_self");
     window.close();
     global.auth.logout();
-    handleGameover();
   };
 
   return (
@@ -28,7 +27,19 @@ const GameoverModal = (props) => {
           </div>
           <div className="modal-body ">
             <div>
+              <figure className="image is-2by1">
+                <img
+                  src="https://c.tenor.com/L553YL0qcMEAAAAC/halloween-skeletons.gif"
+                  alt="oof"
+                />
+              </figure>
               <nav className="level">
+              <div className="level-item has-text-centered m-4">
+                  <div>
+                    <p className="heading has-text-danger">Level Name:</p>
+                    <p className="title has-text-danger">{title }</p>
+                  </div>
+                </div>
                 <div className="level-item has-text-centered m-4">
                   <div>
                     <p className="heading has-text-danger">Time Spent:</p>
@@ -37,28 +48,23 @@ const GameoverModal = (props) => {
                 </div>
                 <div className="level-item has-text-centered m-4">
                   <div>
-                    <p className="heading has-text-danger">Lives Remaining: </p>
+                    <p className="heading has-text-danger">Lives Left: </p>
                     <p className="title has-text-danger">0</p>
                   </div>
                 </div>
-                <div className="level-item has-text-centered m-4">
-                  <div>
-                    <p className="heading has-text-danger">Latest Level:</p>
-                    <p className="title has-text-danger">{title - 1}</p>
-                  </div>
-                </div>
+                
               </nav>
             </div>
           </div>
           {/* drop up */}
-          <div className="dropdown is-hoverable is-up is-align-self-center">
+          <div className="dropdown is-hoverable is-up is-align-self-center mb-5">
             <div className="dropdown-trigger">
               <button
-                className="button is-primary is-outlined is-rounded"
+                class="button is-primary is-outlined is-rounded"
                 aria-haspopup="true"
                 aria-controls="dropdown-menu"
               >
-                <strong>Choose A Previous Level</strong>
+                <strong>Stuck? Try playing previous levels again.</strong>
                 <span className="icon is-small">
                   <i className="fas fa-angle-up" aria-hidden="true"></i>
                 </span>
