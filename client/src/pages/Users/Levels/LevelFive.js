@@ -33,7 +33,7 @@ class LevelFive extends React.Component {
       lives: 3,
       time: 0,
       lowerLimit: 1,
-      higherLimit: 50,
+      upperLimit: 50,
       boxCount: 20,
     };
     this.generateArray = this.generateArray.bind(this);
@@ -123,7 +123,7 @@ class LevelFive extends React.Component {
           title={this.state.level}
           body={<StartModalBody />}
           lowerLimit={this.state.lowerLimit}
-          higherLimit={this.state.higherLimit}
+          upperLimit={this.state.upperLimit}
           boxCount={this.state.boxCount}
         />
       );

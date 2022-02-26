@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { Animated } from "react-animated-css";
 const StartModal = (props) => {
   // get values from props
-  const { handleStart, title, body, lowerLimit, higherLimit, boxCount } = props;
+  const { handleStart, title, body, lowerLimit, upperLimit, boxCount } = props;
 
   return (
     <div className="modal-overlay">
@@ -28,7 +28,7 @@ const StartModal = (props) => {
                     <span className="has-text-primary">{boxCount}</span> numbers
                     are randomly generated out of the range (
                     <span className="has-text-primary">{lowerLimit}</span> -{" "}
-                    <span className="has-text-primary">{higherLimit}</span>)
+                    <span className="has-text-primary">{upperLimit}</span>)
                   </li>
                   {body}
                 </ol>

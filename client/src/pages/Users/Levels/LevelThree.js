@@ -39,7 +39,7 @@ class LevelThree extends React.Component {
       lives: 3,
       time: 0,
       lowerLimit: 1,
-      higherLimit: 20,
+      upperLimit: 20,
       boxCount: 10,
     };
     this.generateArray = this.generateArray.bind(this);
@@ -120,7 +120,7 @@ class LevelThree extends React.Component {
           title={this.state.level}
           body={<StartModalBody />}
           lowerLimit={this.state.lowerLimit}
-          higherLimit={this.state.higherLimit}
+          upperLimit={this.state.upperLimit}
           boxCount={this.state.boxCount}
         />
       );

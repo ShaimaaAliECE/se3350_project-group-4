@@ -3,6 +3,11 @@ import LevelHeader from "components/LevelComponents/LevelHeader";
 import MergeSort from "algorithms/mergeSort.mjs";
 import PopupMenu from "components/PopupMenu";
 import CustomLevelForm from "pages/Admin/EditLevelForms/CustomLevelForm";
+import { withRouter } from "react-router-dom";
+// modals
+import StartModal from "components/Modals/StartModal";
+import GameoverModal from "components/Modals/GameoverModal";
+import EndModal from "components/Modals/EndModal";
 
 class CustomLevel extends React.Component {
   constructor(props) {
@@ -10,7 +15,7 @@ class CustomLevel extends React.Component {
     this.state = {
 
       //must be >= 3
-      numOfBoxes: 3,
+      boxCount: 3,
       
       //must be >= 5
       upperLimit: 5,
@@ -19,6 +24,20 @@ class CustomLevel extends React.Component {
       lowerLimit: 0,
       
       order: [],
+      // ------ Modal States ----- //
+      showModal: true, //enable modal rendering
+      showStartModal: true, //show start level modal by default
+      showEndModal: false, //dont show endModal by default
+      showGameoverModal: false, //dont show gameover Modal by default
+
+      // ----- Game State ----- //
+      level: 4,
+      lives: 3,
+      time: 0,
+      lowerLimit: 1, lowerLimit: 0,
+      
+      upperLimit: 20, //must be >= 5
+      boxCount: 10,
     };
   }
 
@@ -134,10 +153,9 @@ class CustomLevel extends React.Component {
             <br></br>
             <input type="Submit" />
           </form>
-        {/* </Modal> */}
       </div>
     );
   }
 }
 
-export default CustomLevel;
+export default withRouter(CustomLevel);
