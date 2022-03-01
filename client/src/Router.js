@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 import Home from "pages/Home";
+import Loading from "components/Loading"
 
 // lazy components for route based code splitting with react router
 const LazyLogin = React.lazy(() => import("pages/Login"));
@@ -21,7 +22,7 @@ const LazyAnalytics = React.lazy(() => import("pages/Admin/Analytics/Analytics")
 const Router = () => (
   <BrowserRouter>
     <Switch>
-      <React.Suspense fallback='Loading'>
+      <React.Suspense fallback={<Loading/>}>
         {/* redirect to Home page */}
         <Route path="/" exact component={Home} />
 

@@ -157,7 +157,7 @@ export const LoginHeader = () => {
             {/* Back to home page */}
             <Link to="/" className="hvr-skew-backward">
               <strong>
-                <i class="fa-solid fa-arrow-left"></i> Back
+                <i className="fa-solid fa-arrow-left"></i> Back
               </strong>
             </Link>
           </div>

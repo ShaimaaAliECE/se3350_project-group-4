@@ -86,7 +86,7 @@ const LevelHeader = (props) => {
             <a className="hvr-rectangle-out">
               <span onClick={nextLevel}>Next Level</span>
               <span className="icon is-small">
-                <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+                <i className="fa-solid fa-chevron-right" aria-hidden="true"></i>
               </span>
             </a>
           </li>

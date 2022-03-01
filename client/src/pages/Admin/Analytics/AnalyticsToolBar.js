@@ -73,15 +73,15 @@ class AnalyticsToolBar extends React.Component {
           >
             {this.props.showChart === true ? (
               <div>
-                <span class="icon is-small">
-                  <i class="fa-solid fa-eye"></i>
+                <span className="icon is-small">
+                  <i className="fa-solid fa-eye"></i>
                 </span>
                 <strong>Chart: Visible</strong>
               </div>
             ) : (
               <div>
-                <span class="icon is-small">
-                  <i class="fa-solid fa-eye-slash"></i>
+                <span className="icon is-small">
+                  <i className="fa-solid fa-eye-slash"></i>
                 </span>
                 <strong>Chart: Hidden</strong>
               </div>
@@ -93,7 +93,7 @@ class AnalyticsToolBar extends React.Component {
         <div className="dropdown is-hoverable ">
           <div className="dropdown-trigger">
             <button
-              class="button is-outlined is-primary"
+              className="button is-outlined is-primary"
               aria-haspopup="true"
               aria-controls="dropdown-menu"
             >

@@ -103,7 +103,7 @@ class LevelTwo extends React.Component {
         <div>
           <a href="/ms/level1" className="dropdown-item">
             <span className="label has-text-centered">
-              Start Level 1 <i class="fa-solid fa-play"></i>
+              Start Level 1 <i className="fa-solid fa-play"></i>
             </span>
           </a>
         </div>

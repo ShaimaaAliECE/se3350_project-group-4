@@ -22,7 +22,7 @@ const GameoverModal = (props) => {
         <div className="modal-container">
           <div className="modal-title">
             <h2 className="title is-2 has-text-danger hvr-buzz">
-              <i class="fa-solid fa-skull"></i> Oof! You Died
+              <i className="fa-solid fa-skull"></i> Oof! You Died
             </h2>
           </div>
           <div className="modal-body ">
@@ -60,7 +60,7 @@ const GameoverModal = (props) => {
           <div className="dropdown is-hoverable is-up is-align-self-center mb-5">
             <div className="dropdown-trigger">
               <button
-                class="button is-primary is-outlined is-rounded"
+                className="button is-primary is-outlined is-rounded"
                 aria-haspopup="true"
                 aria-controls="dropdown-menu"
               >

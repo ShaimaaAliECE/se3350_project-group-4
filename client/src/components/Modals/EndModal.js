@@ -62,7 +62,7 @@ const EndModal = (props) => {
                     <p className="title has-text-danger">{life}</p>
                   </div>
                 </div>
-                <div class="level-item has-text-centered m-4">
+                <div className="level-item has-text-centered m-4">
                   <div>
                     <p className="heading has-text-danger">Up Next:</p>
                     <p className="title has-text-danger">{next}</p>
