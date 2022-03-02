@@ -44,7 +44,6 @@ class PopupMenu extends React.Component {
     });
   };
 
-  
   //close popup window method
   close = (data) => {
     this.setState({
@@ -73,22 +72,22 @@ class PopupMenu extends React.Component {
         {/* overlay */}
         <div
           className="over-layer"
-          // onClick={() => {
-          //   this.close();
-          // }}
+          onClick={() => {
+            this.close();
+          }}
         ></div>
         {/* window*/}
         <div className="window">
           <div className="head">
             {/* close button */}
-            {/* <span
+            <span
               className="close"
               onClick={() => {
                 this.close();
               }}
             >
               ×
-            </span> */}
+            </span>
             {/* mounted child component */}
             {this.state.component}
           </div>

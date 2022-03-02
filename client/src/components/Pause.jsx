@@ -7,39 +7,39 @@ class Pause extends React.Component {
     return (
       <div className="menu-content">
         {/* header */}
-        <div className="box has-text-centered">
-          <p className="title is-1">Paused</p>
-        </div>
+        <header className="box has-text-centered has-background-primary">
+          <p className="title is-2 ">Paused</p>
+        </header>
         {/* buttons */}
         <div className="btns">
           <div className="container">
             <button
-              className="m-btn button is-primary is-rounded is-large"
+              className="m-btn button is-primary is-outlined is-rounded is-large"
               onClick={() => {
                 this.props.close();
               }}
             >
-              <span className="title">Resume</span>
+              Resume
             </button>
           </div>
           <div className="container">
             <button
-              className="m-btn button is-primary is-rounded is-large"
+              className="m-btn button is-primary is-outlined is-rounded is-large"
               onClick={() => {
                 this.props.restart();
               }}
             >
-              <span className="title">Restart</span>
+              Restart
             </button>
           </div>
           <div className="container">
             <button
-              className="m-btn button is-primary is-rounded is-large"
+              className="m-btn button is-primary is-outlined is-rounded is-large"
               onClick={() => {
                 this.props.close("exit");
               }}
             >
-              <span className="title">Exit</span>
+              Exit
             </button>
           </div>
         </div>

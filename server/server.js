@@ -39,7 +39,7 @@ const isExist = (username) => {
 
 //generate token using jsonwebtoken library
 const SECRET = "qwerty12345"; //secret key used for token decryption
-const expiresIn = "1h"; //token expires in 1 hour after generation
+const expiresIn = "2h"; //token expires in 2 hours after generation
 const generateToken = (payload) => {
   return jwt.sign(payload, SECRET, { expiresIn });
 };

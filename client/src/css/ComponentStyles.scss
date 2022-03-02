@@ -31,40 +31,6 @@
   width: 90%;
 }
 
-//LevelHeader components
-.lv-header {
-  display: inline-block;
-  width: 90%;
-  height: 50px;
-  color: #fff;
-  line-height: 55px;
-  font-size: 20px;
-
-  .heart {
-    font-size: x-large;
-    color: rgb(194, 79, 79);
-    margin-right: 5px;
-  }
-
-  .pause {
-    font-size: x-large;
-    padding: 1em;
-  }
-
-  .next-lv {
-    cursor: pointer;
-    -moz-user-select: none;
-    -khtml-user-select: none;
-    -webkit-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-
-    &:hover {
-      color: rgb(64, 223, 159);
-      font-weight: bold;
-    }
-  }
-}
 
 //Popup Window Component
 .panel-wrapper {
@@ -283,6 +249,7 @@
   padding: 2rem 0.2rem 1.5rem 0.2rem;
   display: flex;
   justify-content: space-between;
+  
   align-items: center;
 
   .logo-text {
@@ -290,12 +257,13 @@
     color: rgb(64, 223, 159);
     font-weight: 600;
     text-transform: uppercase;
+    display: block;
   }
 
   .search-box {
     .search-input {
-      width: 30rem;
       outline: 0;
+      width: 20rem;
     }
   }
 
@@ -329,6 +297,10 @@
 }
 
 // Modal component
+.custom-instruction {
+  width: 70%;
+  line-height: 1rem;
+}
 .modal-overlay {
   width: 100vw;
   height: 100vh;
@@ -337,8 +309,8 @@
   justify-content: center;
   align-items: center;
   .modal-container {
-    width: 600px;
-    height: 500px;
+    width: 700px;
+    height: 600px;
     border-radius: 12px;
     background-color: #000000;
     background-image: linear-gradient(180deg, #000000 0%, #434343 104%);
@@ -368,8 +340,9 @@
       justify-content: center;
       .modal-btn{
         margin: 10px;
-        width: 200px;
-        height: 45px;
+        width: 250px;
+        height: 55px;
+        font-size: 1.1rem;
         font-weight: bold;
         border:rgba(35, 35, 35, 0.95);
       }

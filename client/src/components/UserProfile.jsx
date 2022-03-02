@@ -20,7 +20,7 @@ const UserProfile = (props) => {
       callback: (data) => {
         if (data === "logout") {
           toast.success("Logout Successful.");
-          props.history.push("/login");
+          props.history.push("/");
         }
       },
     });
