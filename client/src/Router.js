@@ -1,7 +1,8 @@
 import React from "react";
 import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 import Home from "pages/Home";
-import Loading from "components/Loading"
+import Loading from "components/Loading";
+import NotFound from "pages/NotFound";
 
 // lazy components for route based code splitting with react router
 const LazyLogin = React.lazy(() => import("pages/Login"));
@@ -9,63 +10,75 @@ const LazyRegister = React.lazy(() => import("pages/Register"));
 const LazySelectAlg = React.lazy(() => import("pages/SelectAlg"));
 const LazySelectLevel = React.lazy(() => import("pages/SelectLevel"));
 const LazyEditLevel = React.lazy(() => import("pages/Admin/EditLevel"));
-const LazyNotFound = React.lazy(() => import("pages/NotFound"));
 const LazyLevelOne = React.lazy(() => import("pages/Users/Levels/LevelOne"));
 const LazyLevelTwo = React.lazy(() => import("pages/Users/Levels/LevelTwo"));
-const LazyLevelThree = React.lazy(() => import("pages/Users/Levels/LevelThree"));
+const LazyLevelThree = React.lazy(() =>
+  import("pages/Users/Levels/LevelThree")
+);
 const LazyLevelFour = React.lazy(() => import("pages/Users/Levels/LevelFour"));
 const LazyLevelFive = React.lazy(() => import("pages/Users/Levels/LevelFive"));
-const LazyCustomLevel = React.lazy(() => import("pages/Users/Levels/CustomLevel"));
-const LazyAnalytics = React.lazy(() => import("pages/Admin/Analytics/Analytics"));
+const LazyCustomLevel = React.lazy(() =>
+  import("pages/Users/Levels/CustomLevel")
+);
+const LazyAnalytics = React.lazy(() =>
+  import("pages/Admin/Analytics/Analytics")
+);
 
 //router component for switching between pages
 const Router = () => (
   <BrowserRouter>
-    <Switch>
-      <React.Suspense fallback={<Loading/>}>
+    <React.Suspense fallback={<Loading />}>
+      <Switch>
         {/* redirect to Home page */}
-        <Route path="/" exact component={Home} />
+        <Route exact path="/" component={Home} />
 
         {/* redirect to login page */}
-        <Route path="/login" component={LazyLogin} />
+        <Route exact path="/login" component={LazyLogin} />
 
         {/* redirect to Create Account page */}
-        <Route path="/register" component={LazyRegister} />
+        <Route exact path="/register" component={LazyRegister} />
 
         {/* redirect to Select Algorithm page */}
-        <RequireLoginRoute path="/alg" component={LazySelectAlg} />
+        <RequireLoginRoute exact path="/alg" component={LazySelectAlg} />
 
         {/* redirect to Select Level page */}
-        <RequireLoginRoute path="/ms/select" component={LazySelectLevel} />
+        <RequireLoginRoute
+          exact
+          path="/ms/select"
+          component={LazySelectLevel}
+        />
 
         {/* redirect to Edit Level page */}
-        <AdminRoute path="/ms/edit" component={LazyEditLevel} />
+        <AdminRoute exact path="/ms/edit" component={LazyEditLevel} />
 
         {/* redirect to analytics Level page */}
-        <AdminRoute path="/ms/analytics" component={LazyAnalytics} />
+        <AdminRoute exact path="/ms/analytics" component={LazyAnalytics} />
 
         {/* redirect to Level 1 page */}
-        <RequireLoginRoute path="/ms/level1" component={LazyLevelOne} />
+        <RequireLoginRoute exact path="/ms/level1" component={LazyLevelOne} />
 
         {/* redirect to Level 2 page */}
-        <RequireLoginRoute path="/ms/level2" component={LazyLevelTwo} />
+        <RequireLoginRoute exact path="/ms/level2" component={LazyLevelTwo} />
 
         {/* redirect to Level 3 page */}
-        <RequireLoginRoute path="/ms/level3" component={LazyLevelThree} />
+        <RequireLoginRoute exact path="/ms/level3" component={LazyLevelThree} />
 
         {/* redirect to Level 4 page */}
-        <RequireLoginRoute path="/ms/level4" component={LazyLevelFour} />
+        <RequireLoginRoute exact path="/ms/level4" component={LazyLevelFour} />
 
         {/* redirect to Level 5 page */}
-        <RequireLoginRoute path="/ms/level5" component={LazyLevelFive} />
+        <RequireLoginRoute exact path="/ms/level5" component={LazyLevelFive} />
 
         {/* redirect to Custom Level page */}
-        <RequireLoginRoute path="/ms/custom" component={LazyCustomLevel} />
-
+        <RequireLoginRoute
+          exact
+          path="/ms/custom"
+          component={LazyCustomLevel}
+        />
         {/* redirect to 404 page */}
-        <Route component={LazyNotFound} />
-      </React.Suspense>
-    </Switch>
+        <Route exact component={NotFound} />
+      </Switch>
+    </React.Suspense>
   </BrowserRouter>
 );
 

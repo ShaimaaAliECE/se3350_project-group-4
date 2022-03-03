@@ -6,7 +6,7 @@ class Loading extends React.Component {
       <div className="not-found">
         {/* loading message */}
         <h2>
-          <span className="has-text-primary">Loading...</span>
+          <strong className="has-text-primary">Loading...</strong>
         </h2>
       </div>
     );
