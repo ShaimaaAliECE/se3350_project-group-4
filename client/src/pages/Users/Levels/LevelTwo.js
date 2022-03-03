@@ -387,8 +387,8 @@ function Arrays(props) {
         SoundError(); //bad sound
         toast.error("INCORRECT");
       } else if (sorted) {
-        CorrectAnswer();
-        // SoundSuccess()
+        // CorrectAnswer();
+        SoundSuccess()
         toast.success("CORRECT");
       }
       for (let i = 0; i < mergedArray.length; i++) {
