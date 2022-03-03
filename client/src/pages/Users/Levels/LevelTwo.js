@@ -386,10 +386,9 @@ function Arrays(props) {
         console.log("bad");
         SoundError(); //bad sound
         toast.error("INCORRECT");
-        sorted = true;
       } else if (sorted) {
         console.log("nice");
-        toast.success("CORRECT");
+        // toast.success("CORRECT");
         CorrectAnswer();
       }
       for (let i = 0; i < mergedArray.length; i++) {

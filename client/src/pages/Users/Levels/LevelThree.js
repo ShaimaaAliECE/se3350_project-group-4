@@ -309,11 +309,6 @@ function Arrays(props) {
     new Audio(WrongSound).play();
   }
 
-  function CorrectAnswer() {
-    new Audio(CorrectAnswer).play();
-  }
-
-
   function evaluateOtherSplit(condition) {
     // console.log("Evaluating: " + right + " to " + condition)
 
@@ -361,13 +356,7 @@ function Arrays(props) {
         console.log("bad");
         SoundError();
         toast.error("INCORRECT");
-        sorted = true;
-      } else if (sorted) {
-      console.log("nice");
-      toast.success("CORRECT");
-      CorrectAnswer();
-      sorted = true;
-    }
+      }
 
       for (let i = 0; i < mergedArray.length; i++) {
         blockItems.push([
