@@ -418,7 +418,6 @@ function Arrays(props) {
         console.log("Winner");
         SoundSuccess(); //nice sound
         toast.success("WINNER");
-        LevelTwo.handleEnd();
         setWinner(!winner);
       } else if (!sorted) {
         console.log("Loser");
