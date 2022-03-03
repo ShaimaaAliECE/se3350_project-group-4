@@ -388,7 +388,7 @@ function Arrays(props) {
         toast.error("INCORRECT");
       } else if (sorted) {
         console.log("nice");
-        // toast.success("CORRECT");
+        toast.success("CORRECT");
         CorrectAnswer();
       }
       for (let i = 0; i < mergedArray.length; i++) {
@@ -418,6 +418,7 @@ function Arrays(props) {
         console.log("Winner");
         SoundSuccess(); //nice sound
         toast.success("WINNER");
+        LevelTwo.handleEnd();
         setWinner(!winner);
       } else if (!sorted) {
         console.log("Loser");
