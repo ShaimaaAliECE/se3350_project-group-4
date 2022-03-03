@@ -357,7 +357,7 @@ function Arrays(props) {
         SoundError();
         toast.error("INCORRECT");
       } else if (sorted) {
-        console.log("nice");
+        SoundSuccess()
         toast.success("CORRECT");
       }
 
