@@ -146,7 +146,7 @@ class LevelOne extends React.Component {
                   {this.renderBlock(6)}
                   {this.renderBlock(7)}
                 </div>
-                <div id="third">
+                <div id="fourth">
                   <Block />
                   <Block />
                   {this.renderBlock(8)}

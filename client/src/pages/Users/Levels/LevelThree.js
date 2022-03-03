@@ -300,6 +300,9 @@ function Arrays(props) {
         console.log("bad");
         SoundError();
         toast.error("INCORRECT");
+      } else if (sorted) {
+        console.log("nice");
+        toast.success("CORRECT");
       }
       
       for (let i = 0; i < mergedArray.length; i++) {
