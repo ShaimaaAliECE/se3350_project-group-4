@@ -113,6 +113,6 @@ server.post("/auth/register", (req, res) => {
 });
 
 server.use(router);
-server.listen(80, () => {
-  console.log("JSON server is running on 80");
+server.listen(3001, () => {
+  console.log("JSON server is running on 3001");
 });
