@@ -46,18 +46,31 @@ MergeSort.prototype.merge = function (left, right, order, instruction) {
   const tempL = JSON.parse(JSON.stringify(left));
   const tempR = JSON.parse(JSON.stringify(right));
 
+  let tempInst = [];
+
   //Add the smaller leading value to the sorted array
   while (left.length && right.length) {
+    tempInst.push(
+      "Comparing " +
+        left[0] +
+        " and " +
+        right[0] +
+        ", push " +
+        (left[0] < right[0] ? left[0] : right[0]) +
+        " to parent array"
+    );
     arr.push(left[0] < right[0] ? left.shift() : right.shift());
   }
 
   //Add the rest of the array
   while (left.length) {
+    tempInst.push("Push the rest of the array: " + left[0]);
     arr.push(left.shift());
   }
 
   //Add the rest of the array
   while (right.length) {
+    tempInst.push("Push the rest of the array: " + right[0]);
     arr.push(right.shift());
   }
 
@@ -68,15 +81,19 @@ MergeSort.prototype.merge = function (left, right, order, instruction) {
     "Combine [" + tempL + "] and [" + tempR + "] in order to get [" + arr + "]."
   );
 
+  while (tempInst.length) {
+    instruction.push(tempInst.shift());
+  }
+
   return arr;
 };
 
-//Template on how to use the above class
+// Template on how to use the above class
 
 // var sorting = new MergeSort(1, 20, 10);
 // let order = [];
 // let instruction = [];
-// let sorted = sorting.sort(sorting.getArray(), order, instruction, false);
+// let sorted = sorting.sort(sorting.getArray(), order, [], instruction, false);
 
 // console.log(order);
 // console.log(instruction);
