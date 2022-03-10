@@ -256,6 +256,4 @@ class LevelTwo extends React.Component {
   }
 }
 
-
-
 export default withRouter(LevelTwo);
