@@ -7,7 +7,7 @@ import StepsScroller from "components/StepsScroller";
 import { toast } from "react-toastify";
 import RightSound from "assets/audios/RightSound.mp3";
 import WrongSound from "assets/audios/WrongSound.mp3";
-import CorrectAnswer from "assets/audios/CorrectAnswer.mp3";
+import Correct from "assets/audios/CorrectAnswer.mp3";
 // modals
 import StartModal from "components/Modals/StartModal";
 import GameoverModal from "components/Modals/GameoverModal";
@@ -321,8 +321,8 @@ function Arrays(props) {
     new Audio(WrongSound).play();
   }
 
-  function CorrectAnswer() {
-    new Audio(CorrectAnswer).play();
+  function SoundCorrect() {
+    new Audio(Correct).play();
   }
 
   //Called from checkSplitValidity, checks the rest of the arrays to enable Split.
@@ -384,12 +384,11 @@ function Arrays(props) {
       if (!sorted) {
         console.log(mergedArray);
         console.log("bad");
-        SoundError(); //bad sound
-        toast.error("INCORRECT");
+        //SoundError(); //bad sound
+        //toast.error("INCORRECT");
       } else if (sorted) {
-        // CorrectAnswer();
-        SoundSuccess()
-        toast.success("CORRECT");
+        //SoundCorrect();
+        //toast.success("CORRECT");
       }
       for (let i = 0; i < mergedArray.length; i++) {
         blockItems.push([
@@ -411,6 +410,11 @@ function Arrays(props) {
         if (parseInt(mergedArray[x]) > parseInt(mergedArray[x + 1])) {
           //checks if unsorted
           sorted = false;
+          SoundError(); //bad sound
+          toast.error("INCORRECT");
+        } else {
+          SoundCorrect();
+        toast.success("CORRECT");
         }
       }
       if (sorted) {
