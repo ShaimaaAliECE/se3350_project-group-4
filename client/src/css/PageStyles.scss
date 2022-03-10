@@ -37,14 +37,14 @@
   align-items: center;
   height: 62vh;
 
-      & a {
-      transition: all 0.3s;
+  & a {
+    transition: all 0.3s;
 
-      &:hover {
-        color: rgb(64, 223, 159);
-      }
+    &:hover {
+      color: rgb(64, 223, 159);
     }
   }
+}
 
 
 // Home Page
@@ -153,14 +153,15 @@
     background-color: fff;
     color: rgb(64, 223, 159);
     font-size: 1.1rem;
-    .item-wrapper{
+
+    .item-wrapper {
       border: 1px solid rgb(64, 223, 159);
     }
 
   }
 
   .recharts-wrapper {
-    margin : 0 auto;
+    margin: 0 auto;
     display: flex;
   }
 
@@ -171,14 +172,16 @@
   .analytics-fade-enter {
     opacity: 0.1;
   }
+
   .analytics-fade-enter-active {
     opacity: 1;
     transition: all 0.3s ease-in;
   }
-  
+
   .analytics-fade-exit {
     opacity: 1;
   }
+
   .analytics-fade-exit-active {
     opacity: 0.1;
     transition: all 0.3s ease-in;
