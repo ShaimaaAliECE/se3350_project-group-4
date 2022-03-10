@@ -31,7 +31,7 @@ const Arrays = (props) => {
 
   useEffect(() => {
     props.nextStep();
-  }, [array.length, array.length == mergedArray.length, array.length == 1]);
+  }, [mergedArray]);
 
   function handleSplit() {
     setIsSplit(!isSplit);
@@ -136,7 +136,7 @@ const Arrays = (props) => {
         toast.error("INCORRECT");
       } else if (sorted) {
         // CorrectAnswer();
-        SoundSuccess()
+        SoundSuccess();
         toast.success("CORRECT");
       }
       for (let i = 0; i < mergedArray.length; i++) {
@@ -246,6 +246,6 @@ const Arrays = (props) => {
       <div>{children}</div>
     </div>
   );
-}
+};
 
-export default Arrays
+export default Arrays;

@@ -77,9 +77,9 @@ MergeSort.prototype.merge = function (left, right, order, instruction) {
   // console.log(arr);
   //Track iteration
   order.push("" + arr);
-  instruction.push(
-    "Combine [" + tempL + "] and [" + tempR + "] in order to get [" + arr + "]."
-  );
+  // instruction.push(
+  //   "Combine [" + tempL + "] and [" + tempR + "] in order to get [" + arr + "]."
+  // );
 
   while (tempInst.length) {
     instruction.push(tempInst.shift());
