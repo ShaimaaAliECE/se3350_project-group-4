@@ -5,8 +5,7 @@ import Modal from "components/Modals/StartModal";
 import "../../../css/LevelStyles.css";
 import { withRouter } from "react-router-dom";
 import { toast } from "react-toastify";
-import RightSound from "assets/audios/RightSound.mp3";
-import WrongSound from "assets/audios/WrongSound.mp3";
+import Arrays from "components/LevelComponents/MergeSortBlock"
 // modals
 import StartModal from "components/Modals/StartModal";
 import GameoverModal from "components/Modals/GameoverModal";
@@ -225,13 +224,13 @@ class LevelThree extends React.Component {
                   className="button is-success is-outlined"
                   onClick={this.handleEnd}
                 >
-                  level complete
+                  Level complete
                 </button>
                 <button
                   className="button is-danger is-outlined"
                   onClick={this.handleGameover}
                 >
-                  gameover
+                  Gameover
                 </button>
               </div>
               {/* !!!!!modal testing */}
@@ -240,8 +239,8 @@ class LevelThree extends React.Component {
               <Arrays
                 array={this.state.initialArr}
                 label="initial"
-                step={0}
                 order={this.state.splitOrder}
+                nextStep={this.handleNextStep}
               />
             </div>
           </div>
@@ -249,218 +248,6 @@ class LevelThree extends React.Component {
       </div>
     );
   }
-}
-
-let step = 0;
-
-function Arrays(props) {
-  //Get array and prep block values and children
-  let array = props.array;
-  let order = props.order;
-  let blockItems = [];
-  let children = [];
-
-  //console.log(array.length);
-
-  const [buttonEnabled, setButtonState] = useState(false);
-  const [isSplit, setIsSplit] = useState(false);
-  const [childArrays, setChildArrays] = useState();
-  const [mergedArray, setMergedArray] = useState(array === 1 ? [...array] : []);
-  const [isMerging, setIsMerging] = useState(false);
-  const [isMerged, setIsMerged] = useState(false);
-  const [winner, setWinner] = useState(false);
-  const [right, setRight] = useState();
-
-  function pushToMerged(value) {
-    setMergedArray([...mergedArray, value]);
-  }
-
-  useEffect(() => {}, [array]);
-
-  function handleSplit() {
-    setIsSplit(!isSplit);
-    step++;
-
-    const middle = Math.floor(array.length / 2);
-    const array_left = array.slice(0, middle);
-    const array_right = array.slice(middle, array.length);
-
-    setRight(array_right);
-
-    setChildArrays({
-      leftArray: array_left,
-      rightArray: array_right,
-    });
-
-    setIsMerging(true);
-  }
-
-  function selectValue(el) {
-    let value = el.target.getAttribute("value");
-    props.pushToMerge(value);
-    el.target.style.display = "none";
-  }
-
-  function SoundSuccess() {
-    new Audio(RightSound).play();
-  }
-
-  function SoundError() {
-    new Audio(WrongSound).play();
-  }
-
-  function evaluateOtherSplit(condition) {
-    // console.log("Evaluating: " + right + " to " + condition)
-
-    if (right.toString() === condition) {
-      // console.log("Found a match: " + right + " and " + condition)
-      setButtonState(true);
-    } else {
-      if (array.length !== 10) {
-        props.evaluateOtherSplit(condition);
-      } else {
-        // console.log("Nothing Found")
-      }
-    }
-  }
-
-  //Function to make sure user can only split one array at a time
-  function checkSplitValidity(array) {
-    // console.log(step)
-    // console.log(order[step])
-    // console.log(array)
-    if (array.toString().indexOf(order[step]) !== -1) {
-      return true;
-    } else {
-      if (array.length !== 10) {
-        props.evaluateOtherSplit(order[step]);
-      }
-      return false;
-    }
-  }
-
-  if (isMerging) {
-    if (mergedArray != null) {
-      let sorted = true;
-      for (let x = 0; x < mergedArray.length - 1; x++) {
-        //let sorted = true;
-        if (parseInt(mergedArray[x]) > parseInt(mergedArray[x + 1])) {
-          sorted = false;
-          if (!sorted) {
-            console.log("bad");
-            console.log(mergedArray);
-          }
-        }
-      }
-      if (!sorted) {
-        console.log("bad");
-        SoundError();
-        toast.error("INCORRECT");
-      } else if (sorted) {
-        SoundSuccess()
-        toast.success("CORRECT");
-      }
-
-      for (let i = 0; i < mergedArray.length; i++) {
-        blockItems.push([
-          <button onClick={selectValue} value={mergedArray[i]}>
-            {mergedArray[i]}
-          </button>,
-        ]);
-      }
-    }
-    //merging is done if merged array length = original array length
-    if (mergedArray.length === 10) {
-      console.log("merging completed");
-      setIsMerged(isMerged);
-      setIsMerging(!isMerging);
-      let sorted = true;
-      for (let x = 0; x < mergedArray.length - 1; x++) {
-        if (parseInt(mergedArray[x]) > parseInt(mergedArray[x + 1])) {
-          sorted = false;
-          if (!sorted) {
-            console.log("Loser");
-            console.log(mergedArray);
-          }
-        }
-      }
-      if (sorted) {
-        console.log("Winner");
-        SoundSuccess();
-        toast.success("WINNER");
-        setWinner(!winner);
-      } else if (!sorted) {
-        console.log("Loser");
-        console.log(mergedArray);
-      }
-    }
-  }
-
-  if (!isMerging) {
-    //add current arrays items into blocked elements
-    for (let i = 0; i < array.length; i++) {
-      let temp = true;
-      if (array.length === 1) temp = false;
-      blockItems.push([
-        <button disabled={temp} onClick={selectValue} value={array[i]}>
-          {array[i]}
-        </button>,
-      ]);
-    }
-  }
-
-  if (!isMerged) {
-    if (childArrays !== undefined) {
-      children = (
-        <div className="split">
-          <div className="left">
-            <Arrays
-              array={childArrays.leftArray}
-              label="Left Array"
-              order={order}
-              pushToMerge={pushToMerged}
-              evaluateOtherSplit={evaluateOtherSplit}
-              setButtonState={buttonEnabled}
-            />
-          </div>
-          <div className="right">
-            <Arrays
-              array={childArrays.rightArray}
-              label="Right Array"
-              order={order}
-              pushToMerge={pushToMerged}
-              evaluateOtherSplit={evaluateOtherSplit}
-              parentButton={buttonEnabled}
-            />
-          </div>
-        </div>
-      );
-    }
-  }
-
-  function SplitButtonEnabler(array) {
-    if (props.parentButton) {
-      return true;
-    } else {
-      return checkSplitValidity(array);
-    }
-  }
-
-  //${checkSplitValidity(array) ? null : "disappear"}`} should go after line '${array.length > 1 ? null : "disappear"} +'
-  return (
-    <div className="initial">
-      <div
-        className={`${!isSplit ? null : "disappear"} + 
-        ${array.length > 1 ? null : "disappear"} +
-        ${SplitButtonEnabler(array) ? null : "disappear"}`}
-      >
-        <button onClick={handleSplit}>Split</button>
-      </div>
-      <div>{blockItems}</div>
-      <br></br>
-      <div>{children}</div>
-    </div>
-  );
 }
 
 export default withRouter(LevelThree);
