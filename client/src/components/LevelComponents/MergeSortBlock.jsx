@@ -53,6 +53,7 @@ const Arrays = (props) => {
     });
 
     setIsMerging(true);
+    splitting();
   }
 
   function selectValue(el) {
@@ -102,8 +103,8 @@ const Arrays = (props) => {
       return false;
     }
   }
-
-  if (isMerging) {
+function splitting(){
+  console.log(step);
     if (mergedArray != null) {
       /*
       let sorted = true;
@@ -132,13 +133,16 @@ const Arrays = (props) => {
       if (!sorted) {
         console.log(mergedArray);
         console.log("bad");
-        SoundError(); //bad sound
+        //SoundError(); //bad sound
         toast.error("INCORRECT");
       } else if (sorted) {
         // CorrectAnswer();
-        SoundSuccess()
+        //SoundSuccess()
         toast.success("CORRECT");
       }
+
+      merging(mergedArray);
+      /*
       for (let i = 0; i < mergedArray.length; i++) {
         blockItems.push([
           <button onClick={selectValue} value={mergedArray[i]}>
@@ -146,8 +150,18 @@ const Arrays = (props) => {
           </button>,
         ]);
       }
+      */
+    
+  }
+function merging(mergedArray){
+    for (let i = 0; i < mergedArray.length; i++) {
+      blockItems.push([
+        <button onClick={selectValue} value={mergedArray[i]}>
+          {mergedArray[i]}
+        </button>,
+      ]);
     }
-
+}
     //merging is done if merged array length = original array length
     if (mergedArray.length === 10) {
       console.log("merging completed");
@@ -173,6 +187,7 @@ const Arrays = (props) => {
       }
     }
   }
+
 
   if (!isMerging) {
     //add current arrays items into blocked elements
