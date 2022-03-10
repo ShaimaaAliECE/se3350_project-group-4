@@ -14,6 +14,7 @@ const Arrays = (props) => {
   let order = props.order;
   let blockItems = [];
   let children = [];
+  let right = ""
 
   const [buttonEnabled, setButtonState] = useState(false);
   const [isSplit, setIsSplit] = useState(false);
@@ -22,8 +23,6 @@ const Arrays = (props) => {
   const [isMerging, setIsMerging] = useState(false);
   const [isMerged, setIsMerged] = useState(false);
   const [winner, setWinner] = useState(false);
-  const [right, setRight] = useState();
-  const [steped, setSteped] = useState(false);
 
   function pushToMerged(value) {
     setMergedArray([...mergedArray, value]);
@@ -45,7 +44,7 @@ const Arrays = (props) => {
       props.nextStep();
     }
 
-    setRight(array_right);
+    right = array_right
 
     setChildArrays({
       leftArray: array_left,
