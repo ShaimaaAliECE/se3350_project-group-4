@@ -26,7 +26,7 @@ class Pause extends React.Component {
             <button
               className="m-btn button is-primary is-outlined is-rounded is-large"
               onClick={() => {
-                this.props.restart();
+                window.location.reload(false);;
               }}
             >
               Restart

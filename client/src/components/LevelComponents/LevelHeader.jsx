@@ -4,7 +4,6 @@ import PopupMenu from "components/PopupMenu";
 import Pause from "components/Pause";
 import { withRouter } from "react-router-dom";
 import { Animated } from "react-animated-css";
-import Timer from "utils/timer";
 
 // header component for levels
 const LevelHeader = (props) => {
@@ -14,7 +13,6 @@ const LevelHeader = (props) => {
 
   React.useEffect(() => {
     let interval = null;
-
     if (timerOn) {
       interval = setInterval(() => {
         setTime((prevTime) => prevTime + 10);
@@ -26,6 +24,7 @@ const LevelHeader = (props) => {
     return () => clearInterval(interval);
   }, [timerOn]);
 
+  // Timer control functions
   const startTimer = () => {
     if (!timerOn && time === 0) {
       setTimerOn(true);
@@ -57,7 +56,11 @@ const LevelHeader = (props) => {
       component: Pause,
       callback: (data) => {
         if (data === "exit") {
+          setTime(0);
           props.history.push("/ms/select");
+        }
+        if (data === "resume") {
+          setTimerOn(true);
         }
       },
     });

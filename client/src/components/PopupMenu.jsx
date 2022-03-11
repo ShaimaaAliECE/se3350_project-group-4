@@ -55,11 +55,6 @@ class PopupMenu extends React.Component {
 
   // ----- Pause Menu functions ----- //
 
-  // restart the level
-  restart = () => {
-    window.location.reload(false);
-  };
-
   render() {
     // toggle between active/inactive using css class
     const _class = {
@@ -73,7 +68,7 @@ class PopupMenu extends React.Component {
         <div
           className="over-layer"
           onClick={() => {
-            this.close();
+            this.close("resume");
           }}
         ></div>
         {/* window*/}
