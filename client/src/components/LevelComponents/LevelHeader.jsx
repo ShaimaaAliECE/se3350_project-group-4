@@ -9,7 +9,7 @@ import { Animated } from "react-animated-css";
 const LevelHeader = (props) => {
   // ----- Timer ----- //
   const [time, setTime] = useState(0);
-  const [timerOn, setTimerOn] = useState(false);
+  const [timerOn, setTimerOn] = useState(true);
 
   React.useEffect(() => {
     let interval = null;
@@ -91,18 +91,7 @@ const LevelHeader = (props) => {
     >
       <div className="tabs is-centered is-large is-fullwidth has-background-dark">
         <ul>
-          <div id="buttons">
-            {!timerOn && time === 0 && (
-              <button onClick={() => startTimer()}>Start</button>
-            )}
-            {timerOn && <button onClick={() => pauseTimer()}>Stop</button>}
-            {!timerOn && time > 0 && (
-              <button onClick={() => clearTimer()}>Reset</button>
-            )}
-            {!timerOn && time > 0 && (
-              <button onClick={() => resumeTimer()}>Resume</button>
-            )}
-          </div>
+        
           <li className="is-active">
             <a>
               <span className="has-text-primary">LEVEL {props.level} </span>
