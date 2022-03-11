@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
+import "react-toastify/dist/ReactToastify.css";
 //Sounds
 import RightSound from "assets/audios/RightSound.mp3";
 import WrongSound from "assets/audios/WrongSound.mp3";
@@ -8,6 +8,7 @@ import CorrectAnswer from "assets/audios/CorrectAnswer.mp3";
 
 //This will keep track of what step the player is on through out the entire level.
 let step = 0;
+let sorted = true;
 
 const Arrays = (props) => {
   //Get array and prep block values and children
@@ -108,7 +109,8 @@ const Arrays = (props) => {
 
   function notification() {
     if (mergedArray != null) {
-      let sorted = true; //array is sorted by default
+      // let sorted = true;
+      //array is sorted by default
       for (let x = 0; x < mergedArray.length - 1; x++) {
         //iterate through the array
         if (parseInt(mergedArray[x]) > parseInt(mergedArray[x + 1])) {
@@ -124,11 +126,11 @@ const Arrays = (props) => {
         console.log(mergedArray);
         console.log("bad");
         //SoundError(); //bad sound
-        toast.error("INCORRECT", {autoClose:500});
+        toast.error("INCORRECT", { autoClose: 500 });
       } else if (sorted) {
         // CorrectAnswer();
         //SoundSuccess()
-        toast.success("CORRECT", {autoClose:500});
+        toast.success("CORRECT", { autoClose: 500 });
       }
     }
   }
@@ -167,7 +169,7 @@ const Arrays = (props) => {
         </button>,
       ]);
     }
-    // notification();
+    notification();
   }
 
   if (!isMerging) {
