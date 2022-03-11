@@ -38,7 +38,7 @@ const Timer = (props) => {
         {!timerOn && time > 0 && (
           <button onClick={() => setTimerOn(true)}>Resume</button>
         )}
-      </div> 
+      </div>
     </div>
   );
 };

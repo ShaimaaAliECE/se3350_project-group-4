@@ -27,11 +27,32 @@ const LevelHeader = (props) => {
   }, [timerOn]);
 
   const startTimer = () => {
-    setTimerOn(true);
+    if (!timerOn && time === 0) {
+      setTimerOn(true);
+    }
+  };
+
+  const pauseTimer = () => {
+    if (timerOn) {
+      setTimerOn(false);
+    }
+  };
+
+  const clearTimer = () => {
+    if (!timerOn && time > 0) {
+      setTime(0);
+    }
+  };
+
+  const resumeTimer = () => {
+    if (!timerOn && time > 0) {
+      setTimerOn(true);
+    }
   };
 
   // open pause menu
   const toPause = () => {
+    pauseTimer();
     PopupMenu.open({
       component: Pause,
       callback: (data) => {
@@ -69,14 +90,14 @@ const LevelHeader = (props) => {
         <ul>
           <div id="buttons">
             {!timerOn && time === 0 && (
-              <button onClick={() => setTimerOn(true)}>Start</button>
+              <button onClick={() => startTimer()}>Start</button>
             )}
-            {timerOn && <button onClick={() => setTimerOn(false)}>Stop</button>}
+            {timerOn && <button onClick={() => pauseTimer()}>Stop</button>}
             {!timerOn && time > 0 && (
-              <button onClick={() => setTime(0)}>Reset</button>
+              <button onClick={() => clearTimer()}>Reset</button>
             )}
             {!timerOn && time > 0 && (
-              <button onClick={() => setTimerOn(true)}>Resume</button>
+              <button onClick={() => resumeTimer()}>Resume</button>
             )}
           </div>
           <li className="is-active">
