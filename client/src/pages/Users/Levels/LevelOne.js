@@ -92,7 +92,6 @@ class LevelOne extends React.Component {
       );
     };
 
-
     // if `showStartModal` state is true
     if (this.state.showStartModal) {
       return (
@@ -119,11 +118,7 @@ class LevelOne extends React.Component {
     } else if (this.state.showGameoverModal && !this.state.showEndModal) {
       return (
         // show gameover modal
-        <GameoverModal
-          title={this.state.level}
-          time={this.state.time}
-          
-        />
+        <GameoverModal title={this.state.level} time={this.state.time} />
       );
     }
   }
@@ -221,21 +216,21 @@ class LevelOne extends React.Component {
               <LevelHeader level="1" />
               {/* !!!!!modal testing */}
               <div className="box is-pink">
-                  <h2>For Developer Only</h2>
-                  <button
-                    className="button is-success is-outlined"
-                    onClick={this.handleEnd}
-                  >
-                    level complete
-                  </button>
-                  <button
-                    className="button is-danger is-outlined"
-                    onClick={this.handleGameover}
-                  >
-                    gameover
-                  </button>
-                </div>
-                {/* !!!!!modal testing */}
+                <h2>For Developer Only</h2>
+                <button
+                  className="button is-success is-outlined"
+                  onClick={this.handleEnd}
+                >
+                  level complete
+                </button>
+                <button
+                  className="button is-danger is-outlined"
+                  onClick={this.handleGameover}
+                >
+                  gameover
+                </button>
+              </div>
+              {/* !!!!!modal testing */}
             </div>
 
             <div className="body">
