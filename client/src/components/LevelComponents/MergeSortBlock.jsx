@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 //Sounds
 import RightSound from "assets/audios/RightSound.mp3";
 import WrongSound from "assets/audios/WrongSound.mp3";
@@ -123,11 +124,11 @@ const Arrays = (props) => {
         console.log(mergedArray);
         console.log("bad");
         //SoundError(); //bad sound
-        toast.error("INCORRECT");
+        toast.error("INCORRECT", {autoClose:500});
       } else if (sorted) {
         // CorrectAnswer();
         //SoundSuccess()
-        toast.success("CORRECT");
+        toast.success("CORRECT", {autoClose:500});
       }
     }
   }
