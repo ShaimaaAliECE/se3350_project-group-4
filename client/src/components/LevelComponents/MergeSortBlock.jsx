@@ -8,16 +8,24 @@ import CorrectAnswer from "assets/audios/CorrectAnswer.mp3";
 
 let notified = false;
 
+function SoundSuccess() {
+  new Audio(RightSound).play();
+}
+
+function SoundError() {
+  new Audio(WrongSound).play();
+}
+
 function notifer() {
   if (!notified) {
     if (!sorted) {
       // console.log(mergedArray);
       // console.log("bad");
-      //SoundError(); //bad sound
+      SoundError(); //bad sound
       toast.error("INCORRECT", { autoClose: 500 });
     } else if (sorted) {
       // CorrectAnswer();
-      //SoundSuccess()
+      SoundSuccess();
       toast.success("CORRECT", { autoClose: 500 });
     }
     notified = true;
@@ -85,14 +93,6 @@ const Arrays = (props) => {
     let value = el.target.getAttribute("value");
     props.pushToMerged(value);
     el.target.style.display = "none";
-  }
-
-  function SoundSuccess() {
-    new Audio(RightSound).play();
-  }
-
-  function SoundError() {
-    new Audio(WrongSound).play();
   }
 
   function CorrectAnswer() {
