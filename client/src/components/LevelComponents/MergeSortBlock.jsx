@@ -26,6 +26,7 @@ const Arrays = (props) => {
 
   function pushToMerged(value) {
     setMergedArray([...mergedArray, value]);
+    console.log(mergedArray)
   }
 
   useEffect(() => {
@@ -121,11 +122,11 @@ const Arrays = (props) => {
         console.log(mergedArray);
         console.log("bad");
         //SoundError(); //bad sound
-        toast.error("INCORRECT");
+        toast.error("INCORRECT"), {autoClose:1500}
       } else if (sorted) {
         // CorrectAnswer();
         //SoundSuccess()
-        toast.success("CORRECT");
+        toast.success("CORRECT"), {autoClose:1500}
       }
 
       for (let i = 0; i < mergedArray.length; i++) {
