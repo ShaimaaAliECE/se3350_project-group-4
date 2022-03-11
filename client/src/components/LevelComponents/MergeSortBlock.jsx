@@ -14,7 +14,7 @@ const Arrays = (props) => {
   let order = props.order;
   let blockItems = [];
   let children = [];
-  let right = ""
+  let right = "";
 
   const [buttonEnabled, setButtonState] = useState(false);
   const [isSplit, setIsSplit] = useState(false);
@@ -25,7 +25,9 @@ const Arrays = (props) => {
   const [winner, setWinner] = useState(false);
 
   function pushToMerged(value) {
+    console.log("Hello");
     setMergedArray([...mergedArray, value]);
+    console.log(mergedArray);
   }
 
   useEffect(() => {
@@ -44,7 +46,7 @@ const Arrays = (props) => {
       props.nextStep();
     }
 
-    right = array_right
+    right = array_right;
 
     setChildArrays({
       leftArray: array_left,
@@ -129,6 +131,7 @@ const Arrays = (props) => {
       }
 
       for (let i = 0; i < mergedArray.length; i++) {
+        console.log("hello");
         blockItems.push([
           <button onClick={selectValue} value={mergedArray[i]}>
             {mergedArray[i]}
@@ -162,7 +165,6 @@ const Arrays = (props) => {
       console.log(mergedArray);
     }
   }
-
 
   if (!isMerging) {
     //add current arrays items into blocked elements
@@ -236,6 +238,6 @@ const Arrays = (props) => {
       <div>{children}</div>
     </div>
   );
-}
+};
 
-export default Arrays
+export default Arrays;
