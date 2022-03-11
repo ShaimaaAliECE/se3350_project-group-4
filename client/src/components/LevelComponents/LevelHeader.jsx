@@ -1,16 +1,35 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React, {useState} from "react";
+import React, { useState } from "react";
 import PopupMenu from "components/PopupMenu";
 import Pause from "components/Pause";
 import { withRouter } from "react-router-dom";
 import { Animated } from "react-animated-css";
-
+import Timer from "utils/timer";
 
 // header component for levels
 const LevelHeader = (props) => {
-
   // ----- Timer ----- //
-  
+  const [time, setTime] = useState(0);
+  const [timerOn, setTimerOn] = useState(false);
+
+  React.useEffect(() => {
+    let interval = null;
+
+    if (timerOn) {
+      interval = setInterval(() => {
+        setTime((prevTime) => prevTime + 10);
+      }, 10);
+    } else if (!timerOn) {
+      clearInterval(interval);
+    }
+
+    return () => clearInterval(interval);
+  }, [timerOn]);
+
+  const startTimer = () => {
+    setTimerOn(true);
+  };
+
   // open pause menu
   const toPause = () => {
     PopupMenu.open({
@@ -22,8 +41,6 @@ const LevelHeader = (props) => {
       },
     });
   };
-
-
 
   // redirect to next level
   const nextLevel = () => {
@@ -50,17 +67,35 @@ const LevelHeader = (props) => {
     >
       <div className="tabs is-centered is-large is-fullwidth has-background-dark">
         <ul>
+          <div id="buttons">
+            {!timerOn && time === 0 && (
+              <button onClick={() => setTimerOn(true)}>Start</button>
+            )}
+            {timerOn && <button onClick={() => setTimerOn(false)}>Stop</button>}
+            {!timerOn && time > 0 && (
+              <button onClick={() => setTime(0)}>Reset</button>
+            )}
+            {!timerOn && time > 0 && (
+              <button onClick={() => setTimerOn(true)}>Resume</button>
+            )}
+          </div>
           <li className="is-active">
             <a>
               <span className="has-text-primary">LEVEL {props.level} </span>
             </a>
           </li>
           <li className="is-active">
-            <a >
+            <a>
               <span className="icon is-small">
                 <i className="fas fa-clock hvr-buzz" aria-hidden="true"></i>
               </span>
-              <span>00:00:00</span>
+              <div id="display">
+                <span>
+                  {("0" + Math.floor((time / 60000) % 60)).slice(-2)}:
+                </span>
+                <span>{("0" + Math.floor((time / 1000) % 60)).slice(-2)}:</span>
+                <span>{("0" + ((time / 10) % 100)).slice(-2)}</span>
+              </div>
             </a>
           </li>
           <li className="is-active hvr-rectangle-in" onClick={toPause}>
