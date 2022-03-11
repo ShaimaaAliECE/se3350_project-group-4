@@ -28,6 +28,7 @@ const Arrays = (props) => {
     console.log("Hello");
     setMergedArray([...mergedArray, value]);
     console.log(mergedArray);
+    //comment
   }
 
   useEffect(() => {
