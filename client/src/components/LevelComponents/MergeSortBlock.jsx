@@ -6,6 +6,28 @@ import RightSound from "assets/audios/RightSound.mp3";
 import WrongSound from "assets/audios/WrongSound.mp3";
 import CorrectAnswer from "assets/audios/CorrectAnswer.mp3";
 
+let notified = false;
+
+function notifer() {
+  if (!notified) {
+    if (!sorted) {
+      // console.log(mergedArray);
+      // console.log("bad");
+      //SoundError(); //bad sound
+      toast.error("INCORRECT", { autoClose: 500 });
+    } else if (sorted) {
+      // CorrectAnswer();
+      //SoundSuccess()
+      toast.success("CORRECT", { autoClose: 500 });
+    }
+    notified = true;
+  } else {
+    setTimeout(() => {
+      notified = false;
+    }, 500);
+  }
+}
+
 //This will keep track of what step the player is on through out the entire level.
 let step = 0;
 let sorted = true;
@@ -121,17 +143,7 @@ const Arrays = (props) => {
           console.log(array);
         }
       }
-
-      if (!sorted) {
-        console.log(mergedArray);
-        console.log("bad");
-        //SoundError(); //bad sound
-        toast.error("INCORRECT", { autoClose: 500 });
-      } else if (sorted) {
-        // CorrectAnswer();
-        //SoundSuccess()
-        toast.success("CORRECT", { autoClose: 500 });
-      }
+      notifer();
     }
   }
 
