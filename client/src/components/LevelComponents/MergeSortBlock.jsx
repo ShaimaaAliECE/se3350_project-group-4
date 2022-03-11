@@ -104,18 +104,6 @@ const Arrays = (props) => {
 
   if (isMerging) {
     if (mergedArray != null) {
-      /*
-      let sorted = true;
-      console.log(mergedArray[mergedArray.length-2]);
-      console.log(mergedArray[mergedArray.length-1]);
-      if (mergedArray[mergedArray.length-1] > mergedArray[mergedArray.length-2]) {
-        sorted = false;
-        //if(!sorted){
-        //  console.log("bad");
-          //console.log(mergedArray);
-          //}
-      }
-      */
       let sorted = true; //array is sorted by default
       for (let x = 0; x < mergedArray.length - 1; x++) {
         //iterate through the array
