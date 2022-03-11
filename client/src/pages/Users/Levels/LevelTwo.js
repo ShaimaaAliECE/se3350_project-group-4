@@ -150,7 +150,7 @@ class LevelTwo extends React.Component {
     let currentInstr = [];
     let splitOrd = [];
     // Create array using given algorithm class
-    var sorting = new MergeSort(1, 20, 10);
+    var sorting = new MergeSort(this.state.lowerLimit, this.state.upperLimit, this.state.boxCount);
 
     sorting.sort(sorting.getArray(), currentOrd, splitOrd, currentInstr, false);
     //retrieves array of instructions and order of steps

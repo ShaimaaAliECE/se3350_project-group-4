@@ -2,7 +2,6 @@ import React from "react";
 import LevelHeader from "components/LevelComponents/LevelHeader";
 import MergeSort from "algorithms/mergeSort.mjs";
 
-import CustomLevelForm from "pages/Admin/EditLevelForms/CustomLevelForm";
 import { withRouter, Link } from "react-router-dom";
 import { Animated } from "react-animated-css";
 // modals

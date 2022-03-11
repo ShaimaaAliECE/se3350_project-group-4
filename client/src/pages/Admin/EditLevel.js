@@ -24,7 +24,7 @@ const EditLevel = (props) => {
     PopupMenu.open({
       component: EditLevelTwoForm,
       callback: (data) => {
-        //console.log(data);
+        console.log(data);
       },
     });
   };

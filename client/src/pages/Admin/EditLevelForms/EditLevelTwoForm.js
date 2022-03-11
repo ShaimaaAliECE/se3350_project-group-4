@@ -1,4 +1,5 @@
 import React from "react";
+import { toast } from "react-toastify";
 
 // Edit Level components
 class EditLevelTwoForm extends React.Component {
@@ -22,6 +23,17 @@ class EditLevelTwoForm extends React.Component {
   // handel level edit form submission
   submit = (e) => {
     e.preventDefault();
+    const customState = { ...this.state };
+    if (
+      this.state.boxCount !== "" ||
+      this.state.upperRange !== "" ||
+      this.lowerRange !== ""
+    ) {
+      this.props.close(customState);
+    } else {
+      const message = "Oops, you forgot to define custom parameters!";
+      toast.error(message);
+    }
   };
 
   render() {
