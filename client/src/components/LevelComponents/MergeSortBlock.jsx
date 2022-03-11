@@ -25,10 +25,9 @@ const Arrays = (props) => {
   const [winner, setWinner] = useState(false);
 
   function pushToMerged(value) {
-    console.log("Hello");
+    // console.log("Hello");
     setMergedArray([...mergedArray, value]);
-    console.log(mergedArray);
-    //comment
+    // console.log(mergedArray);
   }
 
   useEffect(() => {
@@ -55,7 +54,7 @@ const Arrays = (props) => {
     });
 
     setIsMerging(true);
-    splitting();
+    notification();
   }
 
   function selectValue(el) {
@@ -106,7 +105,7 @@ const Arrays = (props) => {
     }
   }
 
-  function splitting() {
+  function notification() {
     if (mergedArray != null) {
       let sorted = true; //array is sorted by default
       for (let x = 0; x < mergedArray.length - 1; x++) {
@@ -129,15 +128,6 @@ const Arrays = (props) => {
         // CorrectAnswer();
         //SoundSuccess()
         toast.success("CORRECT");
-      }
-
-      for (let i = 0; i < mergedArray.length; i++) {
-        console.log("hello");
-        blockItems.push([
-          <button onClick={selectValue} value={mergedArray[i]}>
-            {mergedArray[i]}
-          </button>,
-        ]);
       }
     }
   }
@@ -165,6 +155,18 @@ const Arrays = (props) => {
       console.log("Loser");
       console.log(mergedArray);
     }
+  }
+
+  if (isMerging) {
+    for (let i = 0; i < mergedArray.length; i++) {
+      // console.log("hello");
+      blockItems.push([
+        <button onClick={selectValue} value={mergedArray[i]}>
+          {mergedArray[i]}
+        </button>,
+      ]);
+    }
+    // notification();
   }
 
   if (!isMerging) {
