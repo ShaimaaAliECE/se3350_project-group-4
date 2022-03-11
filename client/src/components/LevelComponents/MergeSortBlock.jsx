@@ -122,11 +122,11 @@ const Arrays = (props) => {
         console.log(mergedArray);
         console.log("bad");
         //SoundError(); //bad sound
-        toast.error("INCORRECT"), {autoClose:1500}
+        toast.error("INCORRECT");
       } else if (sorted) {
         // CorrectAnswer();
         //SoundSuccess()
-        toast.success("CORRECT"), {autoClose:1500}
+        toast.success("CORRECT");
       }
 
       for (let i = 0; i < mergedArray.length; i++) {
