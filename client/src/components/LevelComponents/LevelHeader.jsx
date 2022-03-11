@@ -25,11 +25,11 @@ const LevelHeader = (props) => {
   }, [timerOn]);
 
   // Timer control functions
-  const startTimer = () => {
-    if (!timerOn && time === 0) {
-      setTimerOn(true);
-    }
-  };
+  // const startTimer = () => {
+  //   if (!timerOn && time === 0) {
+  //     setTimerOn(true);
+  //   }
+  // };
 
   const pauseTimer = () => {
     if (timerOn) {
@@ -37,17 +37,17 @@ const LevelHeader = (props) => {
     }
   };
 
-  const clearTimer = () => {
-    if (!timerOn && time > 0) {
-      setTime(0);
-    }
-  };
+  // const clearTimer = () => {
+  //   if (!timerOn && time > 0) {
+  //     setTime(0);
+  //   }
+  // };
 
-  const resumeTimer = () => {
-    if (!timerOn && time > 0) {
-      setTimerOn(true);
-    }
-  };
+  // const resumeTimer = () => {
+  //   if (!timerOn && time > 0) {
+  //     setTimerOn(true);
+  //   }
+  // };
 
   // open pause menu
   const toPause = () => {
@@ -91,7 +91,6 @@ const LevelHeader = (props) => {
     >
       <div className="tabs is-centered is-large is-fullwidth has-background-dark">
         <ul>
-        
           <li className="is-active">
             <a>
               <span className="has-text-primary">LEVEL {props.level} </span>

@@ -68,6 +68,7 @@ class LevelTwo extends React.Component {
       showEndModal: true,
       showGameoverModal: false,
     });
+    // save (username, time, remaining lives, completion date as logged data)
   }
 
   // executes when player life reaches 0

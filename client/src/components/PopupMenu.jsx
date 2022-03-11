@@ -78,7 +78,7 @@ class PopupMenu extends React.Component {
             <span
               className="close"
               onClick={() => {
-                this.close();
+                this.close("resume");
               }}
             >
               ×
