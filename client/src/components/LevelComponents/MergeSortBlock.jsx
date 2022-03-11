@@ -14,16 +14,15 @@ const Arrays = (props) => {
   let order = props.order;
   let blockItems = [];
   let children = [];
+  let right = ""
 
   const [buttonEnabled, setButtonState] = useState(false);
   const [isSplit, setIsSplit] = useState(false);
   const [childArrays, setChildArrays] = useState();
-  const [mergedArray, setMergedArray] = useState(array === 1 ? [...array] : []);
+  const [mergedArray, setMergedArray] = useState(array === 1 ? array : []);
   const [isMerging, setIsMerging] = useState(false);
   const [isMerged, setIsMerged] = useState(false);
   const [winner, setWinner] = useState(false);
-  const [right, setRight] = useState();
-  const [steped, setSteped] = useState(false);
 
   function pushToMerged(value) {
     setMergedArray([...mergedArray, value]);
@@ -45,7 +44,7 @@ const Arrays = (props) => {
       props.nextStep();
     }
 
-    setRight(array_right);
+    right = array_right
 
     setChildArrays({
       leftArray: array_left,
@@ -58,7 +57,7 @@ const Arrays = (props) => {
 
   function selectValue(el) {
     let value = el.target.getAttribute("value");
-    props.pushToMerge(value);
+    props.pushToMerged(value);
     el.target.style.display = "none";
   }
 
@@ -103,21 +102,9 @@ const Arrays = (props) => {
       return false;
     }
   }
-function splitting(){
-  console.log(step);
+
+  function splitting() {
     if (mergedArray != null) {
-      /*
-      let sorted = true;
-      console.log(mergedArray[mergedArray.length-2]);
-      console.log(mergedArray[mergedArray.length-1]);
-      if (mergedArray[mergedArray.length-1] > mergedArray[mergedArray.length-2]) {
-        sorted = false;
-        //if(!sorted){
-        //  console.log("bad");
-          //console.log(mergedArray);
-          //}
-      }
-      */
       let sorted = true; //array is sorted by default
       for (let x = 0; x < mergedArray.length - 1; x++) {
         //iterate through the array
@@ -141,8 +128,6 @@ function splitting(){
         toast.success("CORRECT");
       }
 
-      merging(mergedArray);
-      /*
       for (let i = 0; i < mergedArray.length; i++) {
         blockItems.push([
           <button onClick={selectValue} value={mergedArray[i]}>
@@ -150,40 +135,31 @@ function splitting(){
           </button>,
         ]);
       }
-      */
-  }
-function merging(mergedArray){
-    for (let i = 0; i < mergedArray.length; i++) {
-      blockItems.push([
-        <button onClick={selectValue} value={mergedArray[i]}>
-          {mergedArray[i]}
-        </button>,
-      ]);
     }
-}
-    //merging is done if merged array length = original array length
-    if (mergedArray.length === 10) {
-      console.log("merging completed");
-      setIsMerged(isMerged);
-      setIsMerging(!isMerging);
-      let sorted = true;
-      for (let x = 0; x < mergedArray.length - 1; x++) {
-        //goes through array
-        if (parseInt(mergedArray[x]) > parseInt(mergedArray[x + 1])) {
-          //checks if unsorted
-          sorted = false;
-        }
+  }
+
+  //merging is done if merged array length = original array length
+  if (mergedArray.length === 10) {
+    console.log("merging completed");
+    setIsMerged(isMerged);
+    setIsMerging(!isMerging);
+    let sorted = true;
+    for (let x = 0; x < mergedArray.length - 1; x++) {
+      //goes through array
+      if (parseInt(mergedArray[x]) > parseInt(mergedArray[x + 1])) {
+        //checks if unsorted
+        sorted = false;
       }
-      if (sorted) {
-        //if sorted
-        console.log("Winner");
-        SoundSuccess(); //nice sound
-        toast.success("WINNER");
-        setWinner(!winner);
-      } else if (!sorted) {
-        console.log("Loser");
-        console.log(mergedArray);
-      }
+    }
+    if (sorted) {
+      //if sorted
+      console.log("Winner");
+      SoundSuccess(); //nice sound
+      toast.success("WINNER");
+      setWinner(!winner);
+    } else if (!sorted) {
+      console.log("Loser");
+      console.log(mergedArray);
     }
   }
 
@@ -210,7 +186,7 @@ function merging(mergedArray){
               array={childArrays.leftArray}
               label="Left Array"
               order={order}
-              pushToMerge={pushToMerged}
+              pushToMerged={pushToMerged}
               evaluateOtherSplit={evaluateOtherSplit}
               setButtonState={buttonEnabled}
               nextStep={props.nextStep}
@@ -221,7 +197,7 @@ function merging(mergedArray){
               array={childArrays.rightArray}
               label="Right Array"
               order={order}
-              pushToMerge={pushToMerged}
+              pushToMerged={pushToMerged}
               evaluateOtherSplit={evaluateOtherSplit}
               parentButton={buttonEnabled}
               nextStep={props.nextStep}
