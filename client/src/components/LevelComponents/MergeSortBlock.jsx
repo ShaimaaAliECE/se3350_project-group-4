@@ -151,7 +151,6 @@ function splitting(){
         ]);
       }
       */
-    
   }
 function merging(mergedArray){
     for (let i = 0; i < mergedArray.length; i++) {
