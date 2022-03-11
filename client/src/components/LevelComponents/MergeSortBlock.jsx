@@ -64,7 +64,7 @@ const Arrays = (props) => {
 
   useEffect(() => {
     props.nextStep();
-  }, [array.length, array.length == mergedArray.length, array.length == 1]);
+  }, [array, mergedArray]);
 
   function handleSplit() {
     setIsSplit(!isSplit);
