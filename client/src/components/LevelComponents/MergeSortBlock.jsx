@@ -143,6 +143,7 @@ const Arrays = (props) => {
           console.log(array);
         }
       }
+      //external noti function
       notifer();
     }
   }
