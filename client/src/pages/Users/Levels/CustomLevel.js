@@ -38,21 +38,8 @@ class CustomLevel extends React.Component {
     this.handleGameover = this.handleGameover.bind(this);
   }
 
-  //Mount popup form before level renders
-  // componentDidMount() {
-  //   PopupMenu.open({
-  //     component: CustomLevelForm,
-  //     callback: (data) => {
-  //       this.setState({
-  //         numOfBoxes: data.boxCount,
-  //         upperLimit: data.upperRange,
-  //         lowerLimit: data.lowerRange,
-  //       });
-  //     },
-  //   });
-  // }
-
-  //** Modal Related functions **/
+    //** Modal Related functions **/
+  
   // execute when start on the modal is pressed
   handleStart() {
     // generate new array
@@ -154,7 +141,7 @@ class CustomLevel extends React.Component {
                   </div>
                   <div className="card-content">
                     <div className="label">
-                      Now you get to defined the upper limit, lower limit and
+                      Now you get to define the upper limit, lower limit and
                       size of the generated array{" "}
                       <span className="has-text-danger hvr-buzz">yourself</span>.
                       Experiment freely.
@@ -339,43 +326,7 @@ class CustomLevel extends React.Component {
               {/* <Modal isOpen={this.state.showModal} ariaHideApp={false}> */}
               {/* Call startLevel on the submission of the form */}
               {/* <form onSubmit={this.startLevel}>
-          <label>
-            Number Of Boxes:
-            <input
-              type="number"
-              min="3"
-              max="30"
-              defaultValue={this.state.numOfBoxes}
-              name="nbox"
-            />
-          </label>
-          <br></br>
-          <br></br>
-          <label>
-            Upper Limit:
-            <input
-              type="number"
-              max="1000"
-              min="5"
-              defaultValue={this.state.upperLimit}
-              name="ulim"
-            />
-          </label>
-          <br></br>
-          <br></br>
-          <label>
-            Lower Limit:
-            <input
-              type="number"
-              max={this.state.upperLimit}
-              min="0"
-              defaultValue={this.state.lowerLimit}
-              name="llim"
-            />
-          </label>
-          <br></br>
-          <br></br>
-          <input type="Submit" />
+       
         </form> */}
             </div>
           </div>
