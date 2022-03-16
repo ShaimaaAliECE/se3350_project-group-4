@@ -8,6 +8,12 @@ import WrongSound from "client/src/audioclips/WrongSound.mp3";
 
 toast.configure();
 
+//function for actively updating lives
+
+function wrongSelection(){
+  lives--;
+}
+
 function Notification() {
   function Soundplayer() {
     new Audio(RightSound).play();
