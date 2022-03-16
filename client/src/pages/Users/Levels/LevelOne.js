@@ -52,6 +52,7 @@ class LevelOne extends React.Component {
     // hide start modal
     this.setState({ showModal: false, showStartModal: false });
     // start timer
+    global.auth.setCurrentLevel("1");
   }
 
   // executes when the level ends
