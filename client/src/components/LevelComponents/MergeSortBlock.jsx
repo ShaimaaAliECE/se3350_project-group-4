@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { Animated } from "react-animated-css";
 //Sounds
 import RightSound from "assets/audios/RightSound.mp3";
 import WrongSound from "assets/audios/WrongSound.mp3";
@@ -16,8 +17,7 @@ function SoundError() {
   new Audio(WrongSound).play();
 }
 
-// notification
-const notifier = () => {
+function notifier() {
   if (!notified) {
     if (!sorted) {
       // console.log(mergedArray);
@@ -35,7 +35,7 @@ const notifier = () => {
       notified = false;
     }, 500);
   }
-};
+}
 
 //This will keep track of what step the player is on through out the entire level.
 let step = 0;
@@ -70,6 +70,7 @@ const Arrays = (props) => {
   function handleSplit() {
     setIsSplit(!isSplit);
     step++;
+
     const middle = Math.floor(array.length / 2);
     const array_left = array.slice(0, middle);
     const array_right = array.slice(middle, array.length);
@@ -171,14 +172,15 @@ const Arrays = (props) => {
 
   if (isMerging) {
     for (let i = 0; i < mergedArray.length; i++) {
+      // console.log("hello");
       blockItems.push([
-        <div
-          className="button is-outlined is-light lv-block-item"
+        <button
+          className="level-block button is-light is-outlined is-focused"
           onClick={selectValue}
           value={mergedArray[i]}
         >
           {mergedArray[i]}
-        </div>,
+        </button>,
       ]);
     }
     notification();
@@ -190,15 +192,14 @@ const Arrays = (props) => {
       let temp = true;
       if (array.length === 1) temp = false;
       blockItems.push([
-        // block during splitting
-        <div
-          className="button is-outlined is-light lv-block-item"
+        <button
+          className="level-block button is-light is-outlined is-focused "
           disabled={temp}
           onClick={selectValue}
           value={array[i]}
         >
-          <span className="is-unselectable">{array[i]}</span>
-        </div>,
+          {array[i]}
+        </button>,
       ]);
     }
   }
@@ -234,7 +235,7 @@ const Arrays = (props) => {
     }
   }
 
-  //Allows for an override to let the Split button show no matter the evaluation
+  //Allows for an override to let the Split button show no matter the evalutaion
   function SplitButtonEnabler(array) {
     if (props.parentButton) {
       return true;
@@ -244,29 +245,37 @@ const Arrays = (props) => {
   }
 
   return (
-    <div className="initial">
-      <div
-        // null, shows the Split button, disappear hides the button
-        // isSplit checks if the button was pressed
-        // array.length > 1 checks if the array being displayed isn't a single number
-        // SplitButtonEnabler is a function that checks for the next valid place for the split button,
-        //     or if the override is enabled.
-        className={`${!isSplit ? null : "disappear"} + 
-        ${array.length > 1 ? null : "disappear"} +
-        ${SplitButtonEnabler(array) ? null : "disappear"}`}
+    <Animated
+        animationIn="fadeInDown"
+        animationOut="bounceOut"
+        isVisible={true}
       >
-        {/* split button */}
+      <div className="initial">
         <div
-          className="button is-primary is-small is-rounded"
-          onClick={handleSplit}
+          // null, shows the Split button, disappear hides the button
+          // isSplit checks if the button was pressed
+          // array.length > 1 checks if the array being displayed isnt a single number
+          // SplitButtonEnabler is a function that checks for the next valid place for the split button,
+          //     or if the override is enabled.
+          className={`${!isSplit ? null : "disappear"} + 
+          ${array.length > 1 ? null : "disappear"} +
+          ${SplitButtonEnabler(array) ? null : "disappear"}`}
         >
-          Split
+          <div
+            className="button is-primary is-small is-outlined hvr-bubble-bottom"
+            onClick={handleSplit}
+          >
+            <span className="icon is-small">
+              <i className="fa-solid fa-scissors"></i>
+            </span>
+            <span className="has-text-weight-semibold">SPLIT</span>
+          </div>
         </div>
+        <div>{blockItems}</div>
+        <br></br>
+        <div>{children}</div>
       </div>
-      <div>{blockItems}</div>
-      <br></br>
-      <div className="">{children}</div>
-    </div>
+    </Animated>
   );
 };
 

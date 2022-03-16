@@ -1,5 +1,5 @@
-.split { 
-    display: grid; 
+.split {
+    display: grid;
     text-align: center;
     grid-template-columns: 1fr 1fr;
 }
@@ -13,5 +13,14 @@
     /* display: none; */
     /* Hides the button, replaces with a blank space */
     visibility: hidden;
+}
+
+.level-block {
+    height: 2.5rem;
+    width: 2.5rem;
+    font-weight: bold;
+    font-size: 22px;
+    text-align: center;
+    padding: 20px 20px;
 }
 
