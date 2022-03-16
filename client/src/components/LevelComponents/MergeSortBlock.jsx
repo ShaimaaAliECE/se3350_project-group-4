@@ -262,7 +262,7 @@ const Arrays = (props) => {
           ${SplitButtonEnabler(array) ? null : "disappear"}`}
         >
           <div
-            className="button is-primary is-small is-outlined hvr-bubble-bottom"
+            className="button is-primary is-small is-outlined hvr-grow hvr-bubble-bottom"
             onClick={handleSplit}
           >
             <span className="icon is-small">
