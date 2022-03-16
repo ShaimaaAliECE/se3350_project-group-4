@@ -248,7 +248,6 @@ const Arrays = (props) => {
     <Animated
         animationIn="fadeInDown"
         animationOut="bounceOut"
-        isVisible={true}
       >
       <div className="initial">
         <div

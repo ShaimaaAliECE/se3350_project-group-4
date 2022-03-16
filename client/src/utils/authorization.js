@@ -2,6 +2,15 @@ import decode from "jwt-decode"; //used for decoding jwt
 
 //save key value as constant
 const JWT = "app_token_id";
+const CurrentLevel = "current_level";
+
+const setCurrentLevel = (levelNumber) => {
+  localStorage.setItem(CurrentLevel, levelNumber);
+};
+
+const getCurrentLevel = () => {
+  return localStorage.getItem(CurrentLevel);
+};
 
 // save json web token into local storage
 const setToken = (token) => {
@@ -53,6 +62,8 @@ const logout = () => {
 global.auth = {
   setToken,
   getToken,
+  setCurrentLevel,
+  getCurrentLevel,
   getUser,
   isLogin,
   logout,

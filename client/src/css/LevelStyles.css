@@ -2,9 +2,12 @@
     display: grid;
     text-align: center;
     grid-template-columns: 1fr 1fr;
+    width: 95%;
+    margin:auto;
 }
 
 .initial {
+    display: block;
     text-align: center;
 }
 

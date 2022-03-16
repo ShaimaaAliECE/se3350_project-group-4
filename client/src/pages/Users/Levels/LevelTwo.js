@@ -12,6 +12,7 @@ import EndModal from "components/Modals/EndModal";
 //Algorithm Array Block
 import Arrays from "components/LevelComponents/MergeSortBlock"
 
+
 toast.configure();
 class LevelTwo extends React.Component {
   constructor(props) {
@@ -58,6 +59,7 @@ class LevelTwo extends React.Component {
     // hide start modal
     this.setState({ showModal: false, showStartModal: false });
     // start timer
+    global.auth.setCurrentLevel("2");
   }
 
   // executes when the level ends

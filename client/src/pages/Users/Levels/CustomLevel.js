@@ -47,6 +47,7 @@ class CustomLevel extends React.Component {
     // hide start modal
     this.setState({ showModal: false, showStartModal: false });
     // start timer
+    global.auth.setCurrentLevel("Custom");
   }
 
   // executes when the level ends
