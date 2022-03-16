@@ -4,10 +4,10 @@ import "react-toastify/dist/ReactToastify.css";
 //Sounds
 import RightSound from "assets/audios/RightSound.mp3";
 import WrongSound from "assets/audios/WrongSound.mp3";
-import CorrectAnswer from "assets/audios/CorrectAnswer.mp3";
 
 let notified = false;
 
+// functions to play sound
 function SoundSuccess() {
   new Audio(RightSound).play();
 }
@@ -16,7 +16,8 @@ function SoundError() {
   new Audio(WrongSound).play();
 }
 
-function notifer() {
+// notification
+const notifier = () => {
   if (!notified) {
     if (!sorted) {
       // console.log(mergedArray);
@@ -34,7 +35,7 @@ function notifer() {
       notified = false;
     }, 500);
   }
-}
+};
 
 //This will keep track of what step the player is on through out the entire level.
 let step = 0;
@@ -69,12 +70,11 @@ const Arrays = (props) => {
   function handleSplit() {
     setIsSplit(!isSplit);
     step++;
-
     const middle = Math.floor(array.length / 2);
     const array_left = array.slice(0, middle);
     const array_right = array.slice(middle, array.length);
 
-    if (array_left.length == 1 && array_right.length > 1) {
+    if (array_left.length === 1 && array_right.length > 1) {
       props.nextStep();
     }
 
@@ -93,10 +93,6 @@ const Arrays = (props) => {
     let value = el.target.getAttribute("value");
     props.pushToMerged(value);
     el.target.style.display = "none";
-  }
-
-  function CorrectAnswer() {
-    new Audio(CorrectAnswer).play();
   }
 
   //Called from checkSplitValidity, checks the rest of the arrays to enable Split.
@@ -143,8 +139,8 @@ const Arrays = (props) => {
           console.log(array);
         }
       }
-      //external noti function
-      notifer();
+      //external notifier function
+      notifier();
     }
   }
 
@@ -175,11 +171,14 @@ const Arrays = (props) => {
 
   if (isMerging) {
     for (let i = 0; i < mergedArray.length; i++) {
-      // console.log("hello");
       blockItems.push([
-        <button onClick={selectValue} value={mergedArray[i]}>
+        <div
+          className="button is-outlined is-light lv-block-item"
+          onClick={selectValue}
+          value={mergedArray[i]}
+        >
           {mergedArray[i]}
-        </button>,
+        </div>,
       ]);
     }
     notification();
@@ -191,9 +190,15 @@ const Arrays = (props) => {
       let temp = true;
       if (array.length === 1) temp = false;
       blockItems.push([
-        <button disabled={temp} onClick={selectValue} value={array[i]}>
-          {array[i]}
-        </button>,
+        // block during splitting
+        <div
+          className="button is-outlined is-light lv-block-item"
+          disabled={temp}
+          onClick={selectValue}
+          value={array[i]}
+        >
+          <span className="is-unselectable">{array[i]}</span>
+        </div>,
       ]);
     }
   }
@@ -229,7 +234,7 @@ const Arrays = (props) => {
     }
   }
 
-  //Allows for an override to let the Split button show no matter the evalutaion
+  //Allows for an override to let the Split button show no matter the evaluation
   function SplitButtonEnabler(array) {
     if (props.parentButton) {
       return true;
@@ -243,18 +248,24 @@ const Arrays = (props) => {
       <div
         // null, shows the Split button, disappear hides the button
         // isSplit checks if the button was pressed
-        // array.length > 1 checks if the array being displayed isnt a single number
+        // array.length > 1 checks if the array being displayed isn't a single number
         // SplitButtonEnabler is a function that checks for the next valid place for the split button,
         //     or if the override is enabled.
         className={`${!isSplit ? null : "disappear"} + 
         ${array.length > 1 ? null : "disappear"} +
         ${SplitButtonEnabler(array) ? null : "disappear"}`}
       >
-        <button onClick={handleSplit}>Split</button>
+        {/* split button */}
+        <div
+          className="button is-primary is-small is-rounded"
+          onClick={handleSplit}
+        >
+          Split
+        </div>
       </div>
       <div>{blockItems}</div>
       <br></br>
-      <div>{children}</div>
+      <div className="">{children}</div>
     </div>
   );
 };
