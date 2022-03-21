@@ -28,7 +28,9 @@ class LevelOne extends React.Component {
       // ----- Game State ----- //
       level: 1,
       lives: 3,
-      time: 0,
+      time: 0, //total time (ms) that the timer has been running since start/reset
+      timerOn: false, //boolean value for if the timer is on
+      timerStart: 0, // when the timer was started (or the past projected start time if the timer is resumed)
       lowerLimit: 1,
       upperLimit: 20,
       boxCount: 10,
@@ -42,6 +44,7 @@ class LevelOne extends React.Component {
     this.handleStart = this.handleStart.bind(this);
     this.handleEnd = this.handleEnd.bind(this);
     this.handleGameover = this.handleGameover.bind(this);
+    this.stopTimer = this.stopTimer.bind(this);
   }
 
   //** Modal Related functions **/
@@ -53,24 +56,46 @@ class LevelOne extends React.Component {
     this.setState({ showModal: false, showStartModal: false });
     // start timer
     global.auth.setCurrentLevel("1");
+    // start timer
+    this.startTimer();
   }
+
+  // timer functions
+  startTimer = () => {
+    this.setState({
+      timerOn: true,
+      time: this.state.time,
+      timerStart: Date.now() - this.state.time,
+    });
+    this.timer = setInterval(() => {
+      this.setState({
+        time: Date.now() - this.state.timerStart,
+      });
+    }, 10);
+  };
+
+  stopTimer = () => {
+    this.setState({ timerOn: false });
+    clearInterval(this.timer);
+  };
 
   // executes when the level ends
   handleEnd() {
     // end timer
+    this.stopTimer();
     // show end modal
     this.setState({
       showModal: true,
       showEndModal: true,
       showGameoverModal: false,
     });
-
     // save (username, time, remaining lives, completion date as logged data)
   }
 
   // executes when player life reaches 0
   handleGameover() {
     // end timer
+    this.stopTimer();
     // show gameover modal
     this.setState({
       showModal: true,
@@ -91,6 +116,18 @@ class LevelOne extends React.Component {
             accompanied with explanation texts
           </li>
           <li>Navigate through the steps using the step player.</li>
+        </div>
+      );
+    };
+
+    const GameoverModalBody = () => {
+      return (
+        <div>
+          <a href="/ms/level1" className="dropdown-item">
+            <span className="label has-text-centered">
+              No Previous Level Available <i className="fa-solid fa-triangle-exclamation"></i> 
+            </span>
+          </a>
         </div>
       );
     };
@@ -121,7 +158,12 @@ class LevelOne extends React.Component {
     } else if (this.state.showGameoverModal && !this.state.showEndModal) {
       return (
         // show gameover modal
-        <GameoverModal title={this.state.level} time={this.state.time} />
+        <GameoverModal
+          title={this.state.level}
+          time={this.state.time}
+          d
+          dropdownItems={<GameoverModalBody />}
+        />
       );
     }
   }
@@ -216,7 +258,11 @@ class LevelOne extends React.Component {
         ) : (
           <div>
             <div className="header mb-6">
-              <LevelHeader level="1" />
+              <LevelHeader
+                level="1"
+                startTimer={this.startTimer}
+                stopTimer={this.stopTimer}
+              />
               {/* !!!!!modal testing */}
               <div className="box is-pink">
                 <h2>For Developer Only</h2>
