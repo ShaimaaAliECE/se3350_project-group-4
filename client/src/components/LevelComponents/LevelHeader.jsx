@@ -7,6 +7,7 @@ import { Animated } from "react-animated-css";
 
 // header component for levels
 const LevelHeader = (props) => {
+  const {stopTimer, startTimer} = props;
   // ----- Timer ----- //
   const [time, setTime] = useState(0);
   const [timerOn, setTimerOn] = useState(true);
@@ -52,6 +53,7 @@ const LevelHeader = (props) => {
   // open pause menu
   const toPause = () => {
     pauseTimer();
+    stopTimer(); //stop timer from each level
     PopupMenu.open({
       component: Pause,
       callback: (data) => {
@@ -61,6 +63,7 @@ const LevelHeader = (props) => {
         }
         if (data === "resume") {
           setTimerOn(true);
+          startTimer(); //resume timer from each level
         }
       },
     });

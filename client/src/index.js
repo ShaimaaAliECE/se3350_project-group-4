@@ -2,7 +2,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import Router from "Router";
-import "utils/authorization";
+import "utils/gameManager";
 import IdleTimerContainer from "utils/IdleTimerContainer"
 import { ToastContainer } from "react-toastify";
 
