@@ -54,7 +54,7 @@ class LevelOne extends React.Component {
     this.generateArray();
     // hide start modal
     this.setState({ showModal: false, showStartModal: false });
-    // start timer
+    // set current level
     global.auth.setCurrentLevel("1");
     // start timer
     this.startTimer();
@@ -161,7 +161,6 @@ class LevelOne extends React.Component {
         <GameoverModal
           title={this.state.level}
           time={this.state.time}
-          d
           dropdownItems={<GameoverModalBody />}
         />
       );

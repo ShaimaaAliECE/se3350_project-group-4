@@ -10,8 +10,7 @@ import StartModal from "components/Modals/StartModal";
 import GameoverModal from "components/Modals/GameoverModal";
 import EndModal from "components/Modals/EndModal";
 //Algorithm Array Block
-import Arrays from "components/LevelComponents/MergeSortBlock"
-
+import Arrays from "components/LevelComponents/MergeSortBlock";
 
 toast.configure();
 class LevelTwo extends React.Component {
@@ -37,7 +36,9 @@ class LevelTwo extends React.Component {
       // ----- Game State ----- //
       level: 2,
       lives: 3,
-      time: 0,
+      time: 0, //total time (ms) that the timer has been running since start/reset
+      timerOn: false, //boolean value for if the timer is on
+      timerStart: 0, // when the timer was started (or the past projected start time if the timer is resumed)
       lowerLimit: 1,
       upperLimit: 20,
       boxCount: 10,
@@ -49,6 +50,7 @@ class LevelTwo extends React.Component {
     this.handleStart = this.handleStart.bind(this);
     this.handleEnd = this.handleEnd.bind(this);
     this.handleGameover = this.handleGameover.bind(this);
+    this.stopTimer = this.stopTimer.bind(this);
   }
 
   //** Modal Related functions **/
@@ -58,12 +60,35 @@ class LevelTwo extends React.Component {
     this.generateArray();
     // hide start modal
     this.setState({ showModal: false, showStartModal: false });
-    // start timer
+    // set current level
     global.auth.setCurrentLevel("2");
+    // start timer
+    this.startTimer();
   }
+
+  // timer functions
+  startTimer = () => {
+    this.setState({
+      timerOn: true,
+      time: this.state.time,
+      timerStart: Date.now() - this.state.time,
+    });
+    this.timer = setInterval(() => {
+      this.setState({
+        time: Date.now() - this.state.timerStart,
+      });
+    }, 1);
+  };
+
+  stopTimer = () => {
+    this.setState({ timerOn: false });
+    clearInterval(this.timer);
+  };
 
   // executes when the level ends
   handleEnd() {
+    // end timer
+    this.stopTimer();
     // show end modal
     this.setState({
       showModal: true,
@@ -75,6 +100,8 @@ class LevelTwo extends React.Component {
 
   // executes when player life reaches 0
   handleGameover() {
+    // end timer
+    this.stopTimer();
     // end timer
     // show gameover modal
     this.setState({
@@ -152,7 +179,11 @@ class LevelTwo extends React.Component {
     let currentInstr = [];
     let splitOrd = [];
     // Create array using given algorithm class
-    var sorting = new MergeSort(this.state.lowerLimit, this.state.upperLimit, this.state.boxCount);
+    var sorting = new MergeSort(
+      this.state.lowerLimit,
+      this.state.upperLimit,
+      this.state.boxCount
+    );
 
     sorting.sort(sorting.getArray(), currentOrd, splitOrd, currentInstr, false);
     //retrieves array of instructions and order of steps
@@ -215,7 +246,11 @@ class LevelTwo extends React.Component {
         ) : (
           <div>
             <div className="header mb-6">
-              <LevelHeader level="2" />
+              <LevelHeader
+                level="2"
+                startTimer={this.startTimer}
+                stopTimer={this.stopTimer}
+              />
               {/* !!!!!modal testing */}
               <div className="box is-pink">
                 <h2>For Developer Only</h2>

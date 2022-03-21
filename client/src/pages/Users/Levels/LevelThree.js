@@ -5,7 +5,7 @@ import Modal from "components/Modals/StartModal";
 import "../../../css/LevelStyles.css";
 import { withRouter } from "react-router-dom";
 import { toast } from "react-toastify";
-import Arrays from "components/LevelComponents/MergeSortBlock"
+import Arrays from "components/LevelComponents/MergeSortBlock";
 // modals
 import StartModal from "components/Modals/StartModal";
 import GameoverModal from "components/Modals/GameoverModal";
@@ -36,7 +36,9 @@ class LevelThree extends React.Component {
       // ----- Game State ----- //
       level: 3,
       lives: 3,
-      time: 0,
+      time: 0, //total time (ms) that the timer has been running since start/reset
+      timerOn: false, //boolean value for if the timer is on
+      timerStart: 0, // when the timer was started (or the past projected start time if the timer is resumed)
       lowerLimit: 1,
       upperLimit: 20,
       boxCount: 10,
@@ -49,6 +51,7 @@ class LevelThree extends React.Component {
     this.handleEnd = this.handleEnd.bind(this);
     this.handleGameover = this.handleGameover.bind(this);
     this.checkCorrect = this.checkCorrect.bind(this);
+    this.stopTimer = this.stopTimer.bind(this);
   }
 
   //** Modal Related functions **/
@@ -58,12 +61,35 @@ class LevelThree extends React.Component {
     this.generateArray();
     // hide start modal
     this.setState({ showModal: false, showStartModal: false });
-    // start timer
+    // set current level
     global.auth.setCurrentLevel("3");
+    // start timer
+    this.startTimer();
   }
+
+  // timer functions
+  startTimer = () => {
+    this.setState({
+      timerOn: true,
+      time: this.state.time,
+      timerStart: Date.now() - this.state.time,
+    });
+    this.timer = setInterval(() => {
+      this.setState({
+        time: Date.now() - this.state.timerStart,
+      });
+    }, 10);
+  };
+
+  stopTimer = () => {
+    this.setState({ timerOn: false });
+    clearInterval(this.timer);
+  };
 
   // executes when the level ends
   handleEnd() {
+    // end timer
+    this.stopTimer();
     // show end modal
     this.setState({
       showModal: true,
@@ -75,6 +101,8 @@ class LevelThree extends React.Component {
   // executes when player life reaches 0
   handleGameover() {
     // end timer
+    // end timer
+    this.stopTimer();
     // show gameover modal
     this.setState({
       showModal: true,
@@ -217,7 +245,11 @@ class LevelThree extends React.Component {
         ) : (
           <div>
             <div className="header mb-6">
-              <LevelHeader level="3" />
+            <LevelHeader
+                level="3"
+                startTimer={this.startTimer}
+                stopTimer={this.stopTimer}
+              />
               {/* !!!!!modal testing */}
               <div className="box is-pink">
                 <h2>For Developer Only</h2>
