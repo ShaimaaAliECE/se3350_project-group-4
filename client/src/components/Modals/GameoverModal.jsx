@@ -34,16 +34,24 @@ const GameoverModal = (props) => {
                 />
               </figure>
               <nav className="level">
-              <div className="level-item has-text-centered m-4">
+                <div className="level-item has-text-centered m-4">
                   <div>
                     <p className="heading has-text-danger">Level Name:</p>
-                    <p className="title has-text-danger">{title }</p>
+                    <p className="title has-text-danger">{title}</p>
                   </div>
                 </div>
                 <div className="level-item has-text-centered m-4">
                   <div>
                     <p className="heading has-text-danger">Time Spent:</p>
-                    <p className="title has-text-danger">{time}</p>
+                    <p className="title has-text-danger">
+                      <span>
+                        {("0" + Math.floor((time / 60000) % 60)).slice(-2)}:
+                      </span>
+                      <span>
+                        {("0" + Math.floor((time / 1000) % 60)).slice(-2)}:
+                      </span>
+                      <span>{("0" + ((time / 10) % 100)).slice(-2)}</span>
+                    </p>
                   </div>
                 </div>
                 <div className="level-item has-text-centered m-4">
@@ -52,7 +60,6 @@ const GameoverModal = (props) => {
                     <p className="title has-text-danger">0</p>
                   </div>
                 </div>
-                
               </nav>
             </div>
           </div>
