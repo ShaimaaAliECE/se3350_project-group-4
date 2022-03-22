@@ -7,6 +7,19 @@ import BlockTwo from "assets/svgs/8.svg";
 import BlockThree from "assets/svgs/7.svg";
 import BlockFour from "assets/svgs/4.svg";
 import BlockFive from "assets/svgs/3.svg";
+import gameBGM from "assets/audios/gameBGM.m4a";
+import {Howl, Howler} from "howler";
+
+/*const audioClips = [
+  {sound: gameBGM, label: "gameBGM"}
+]
+*/
+
+const sound = new Howl({
+  src: ['gameBGM.m4a']
+});
+
+sound.play();
 
 // ------ define styled components ------ //
 
