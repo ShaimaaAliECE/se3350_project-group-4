@@ -20,7 +20,7 @@ ReactDOM.render(
     {/* container for toast notifications */}
     <ToastContainer
       position="bottom-right"
-      autoClose={5000}
+      autoClose={2000}
       hideProgressBar={false}
       newestOnTop={false}
       closeOnClick
@@ -28,6 +28,7 @@ ReactDOM.render(
       pauseOnFocusLoss
       draggable
       pauseOnHover={false}
+      limit={2}
     /> 
     <IdleTimerContainer></IdleTimerContainer>
     <Router />

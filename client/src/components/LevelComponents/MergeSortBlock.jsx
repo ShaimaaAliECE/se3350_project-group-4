@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { toast } from "react-toastify";
+import { toast, Flip } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Animated } from "react-animated-css";
 //Sounds
@@ -18,22 +18,28 @@ function SoundError() {
 }
 
 function notifier() {
-  if (!notified) {
-    if (!sorted) {
-      // console.log(mergedArray);
-      // console.log("bad");
-      SoundError(); //bad sound
-      toast.error("INCORRECT", { autoClose: 500 });
-    } else if (sorted) {
-      // CorrectAnswer();
-      SoundSuccess();
-      toast.success("CORRECT", { autoClose: 500 });
-    }
+  if (!sorted && !notified) {
+    // console.log(mergedArray);
+    // console.log("bad");
+    toast.error("INCORRECT", {
+      autoClose: 300,
+      closeButton: false,
+      position: toast.POSITION.BOTTOM_CENTER,
+      closeOnClick: true,
+      onOpen: (props) => SoundError(),
+    });
     notified = true;
-  } else {
-    setTimeout(() => {
-      notified = false;
-    }, 500);
+  }
+  if (sorted && !notified) {
+    // CorrectAnswer();
+    toast.success("CORRECT", {
+      autoClose: 300,
+      closeButton: false,
+      closeOnClick: true,
+      position: toast.POSITION.BOTTOM_CENTER,
+      onOpen: (props) => SoundSuccess(),
+    });
+    notified = true;
   }
 }
 
@@ -68,6 +74,7 @@ const Arrays = (props) => {
   }, [array, mergedArray]);
 
   function handleSplit() {
+    notified = false;
     setIsSplit(!isSplit);
     step++;
 
@@ -91,6 +98,7 @@ const Arrays = (props) => {
   }
 
   function selectValue(el) {
+    notified = false;
     let value = el.target.getAttribute("value");
     props.pushToMerged(value);
     el.target.style.display = "none";
@@ -235,7 +243,7 @@ const Arrays = (props) => {
     }
   }
 
-  //Allows for an override to let the Split button show no matter the evalutaion
+  //Allows for an override to let the Split button show no matter the evaluation
   function SplitButtonEnabler(array) {
     if (props.parentButton) {
       return true;
@@ -245,10 +253,7 @@ const Arrays = (props) => {
   }
 
   return (
-    <Animated
-        animationIn="fadeInDown"
-        animationOut="bounceOut"
-      >
+    <Animated animationIn="fadeInDown" animationOut="bounceOut">
       <div className="initial">
         <div
           // null, shows the Split button, disappear hides the button
