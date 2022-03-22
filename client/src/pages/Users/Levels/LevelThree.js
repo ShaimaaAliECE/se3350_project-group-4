@@ -3,18 +3,17 @@ import LevelHeader from "components/LevelComponents/LevelHeader";
 import MergeSort from "algorithms/mergeSort.mjs";
 import "../../../css/LevelStyles.css";
 import { withRouter } from "react-router-dom";
-import { toast } from "react-toastify";
 import Arrays from "components/LevelComponents/MergeSortBlock";
 // modals
 import StartModal from "components/Modals/StartModal";
 import GameoverModal from "components/Modals/GameoverModal";
 import EndModal from "components/Modals/EndModal";
 
-toast.configure();
 //LEVEL 3 must have a set of 10 numbers are randomly generated out of the range (1-20)
 class LevelThree extends React.Component {
   constructor(props) {
     super(props);
+    global.auth.setCurrentHealth(3);
     this.state = {
       initialArr: [],
       splitting: true,
@@ -34,7 +33,7 @@ class LevelThree extends React.Component {
 
       // ----- Game State ----- //
       level: 3,
-      lives: 3,
+      lives: global.auth.getCurrentHealth(),
       time: 0, //total time (ms) that the timer has been running since start/reset
       timerOn: false, //boolean value for if the timer is on
       timerStart: 0, // when the timer was started (or the past projected start time if the timer is resumed)
@@ -156,7 +155,7 @@ class LevelThree extends React.Component {
       return (
         <EndModal
           title={this.state.level}
-          life={this.state.lives}
+          life={global.auth.getCurrentHealth()}
           time={this.state.time}
           next="Level 4"
         />
@@ -244,10 +243,11 @@ class LevelThree extends React.Component {
         ) : (
           <div>
             <div className="header mb-6">
-            <LevelHeader
+              <LevelHeader
                 level="3"
                 startTimer={this.startTimer}
                 stopTimer={this.stopTimer}
+                lives={global.auth.getCurrentHealth()}
               />
               {/* !!!!!modal testing */}
               <div className="box is-pink">

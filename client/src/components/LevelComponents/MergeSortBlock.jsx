@@ -24,7 +24,7 @@ function notifier() {
   if (!sorted && !notified) {
     // console.log(mergedArray);
     // console.log("bad");
-    toast.error("INCORRECT", {
+    toast.error("INCORRECT ! -1 LIFE", {
       autoClose: 300,
       closeButton: false,
       position: toast.POSITION.BOTTOM_CENTER,
@@ -35,7 +35,7 @@ function notifier() {
   }
   if (sorted && !notified) {
     // CorrectAnswer();
-    toast.success("CORRECT", {
+    toast.success("CORRECT !", {
       autoClose: 300,
       closeButton: false,
       closeOnClick: true,
