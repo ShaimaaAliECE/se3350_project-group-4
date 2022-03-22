@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { toast, Flip } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Animated } from "react-animated-css";
 //Sounds
@@ -15,6 +15,9 @@ function SoundSuccess() {
 
 function SoundError() {
   new Audio(WrongSound).play();
+  if (global.auth.getCurrentHealth() > 0) {
+    global.auth.decreaseHealth();
+  }
 }
 
 function notifier() {

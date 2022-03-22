@@ -3,7 +3,7 @@ import decode from "jwt-decode"; //used for decoding jwt
 //save key value as constant
 const JWT = "app_token_id";
 const CurrentLevel = "current_level";
-const Time = "time"
+const Health = "health"
 
 // set current level
 const setCurrentLevel = (levelNumber) => {
@@ -15,6 +15,23 @@ const getCurrentLevel = () => {
   return localStorage.getItem(CurrentLevel);
 };
 
+
+// set health
+const setCurrentHealth = (lives) => {
+  localStorage.setItem(Health, lives);
+};
+
+
+// getHealth
+const getCurrentHealth = () => {
+  return localStorage.getItem(Health);
+};
+
+// -1 live
+const decreaseHealth = () => {
+  let _health = getCurrentHealth() - 1;
+  localStorage.setItem(Health, _health);
+}
 
 // save json web token into local storage
 const setToken = (token) => {
@@ -66,6 +83,9 @@ const logout = () => {
 global.auth = {
   setToken,
   getToken,
+  setCurrentHealth,
+  decreaseHealth,
+  getCurrentHealth,
   setCurrentLevel,
   getCurrentLevel,
   getUser,

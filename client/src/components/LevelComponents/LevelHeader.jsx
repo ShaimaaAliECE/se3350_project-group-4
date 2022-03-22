@@ -25,30 +25,12 @@ const LevelHeader = (props) => {
     return () => clearInterval(interval);
   }, [timerOn]);
 
-  // Timer control functions
-  // const startTimer = () => {
-  //   if (!timerOn && time === 0) {
-  //     setTimerOn(true);
-  //   }
-  // };
-
+ 
   const pauseTimer = () => {
     if (timerOn) {
       setTimerOn(false);
     }
   };
-
-  // const clearTimer = () => {
-  //   if (!timerOn && time > 0) {
-  //     setTime(0);
-  //   }
-  // };
-
-  // const resumeTimer = () => {
-  //   if (!timerOn && time > 0) {
-  //     setTimerOn(true);
-  //   }
-  // };
 
   // open pause menu
   const toPause = () => {
@@ -129,7 +111,7 @@ const LevelHeader = (props) => {
                   aria-hidden="true"
                 ></i>
               </span>
-              <span> : 3</span>
+              <span> : {props.lives} </span>
             </a>
           </li>
           <li className="is-active">

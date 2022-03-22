@@ -4,7 +4,6 @@ import MergeSort from "algorithms/mergeSort.mjs";
 import "../../../css/LevelStyles.css";
 import { withRouter } from "react-router-dom";
 import StepsScroller from "components/StepsScroller";
-import { toast } from "react-toastify";
 // modals
 import StartModal from "components/Modals/StartModal";
 import GameoverModal from "components/Modals/GameoverModal";
@@ -12,10 +11,11 @@ import EndModal from "components/Modals/EndModal";
 //Algorithm Array Block
 import Arrays from "components/LevelComponents/MergeSortBlock";
 
-toast.configure();
 class LevelTwo extends React.Component {
+  
   constructor(props) {
     super(props);
+    global.auth.setCurrentHealth(3);
     this.state = {
       initialArr: [],
       splitting: true,
@@ -35,7 +35,7 @@ class LevelTwo extends React.Component {
 
       // ----- Game State ----- //
       level: 2,
-      lives: 3,
+      lives: global.auth.getCurrentHealth(),
       time: 0, //total time (ms) that the timer has been running since start/reset
       timerOn: false, //boolean value for if the timer is on
       timerStart: 0, // when the timer was started (or the past projected start time if the timer is resumed)
@@ -156,7 +156,7 @@ class LevelTwo extends React.Component {
       return (
         <EndModal
           title={this.state.level}
-          life={this.state.lives}
+          life={global.auth.getCurrentHealth()}
           time={this.state.time}
           next="Level 3"
         />
@@ -248,6 +248,7 @@ class LevelTwo extends React.Component {
             <div className="header mb-6">
               <LevelHeader
                 level="2"
+                lives={global.auth.getCurrentHealth()}
                 startTimer={this.startTimer}
                 stopTimer={this.stopTimer}
               />
