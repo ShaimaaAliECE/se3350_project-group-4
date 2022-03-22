@@ -10,16 +10,26 @@ import BlockFive from "assets/svgs/3.svg";
 import gameBGM from "assets/audios/gameBGM.m4a";
 import {Howl, Howler} from "howler";
 
-/*const audioClips = [
+const audioClips = [
   {sound: gameBGM, label: "gameBGM"}
 ]
-*/
 
-const sound = new Howl({
-  src: ['gameBGM.m4a']
-});
+class Home extends Component {
 
-sound.play();
+soundPlay = (src) => {
+  const sound = new Howl({
+src
+  })
+  sound.play();
+}
+
+  render(){
+    Howler.volume(1.0);
+    return <div className="Home">
+
+    </div>
+  }
+}
 
 // ------ define styled components ------ //
 
