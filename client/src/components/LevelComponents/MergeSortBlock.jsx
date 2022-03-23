@@ -41,22 +41,17 @@ const Arrays = (props) => {
     notified = false;
     setIsSplit(!isSplit);
     step++;
-
     const middle = Math.floor(array.length / 2);
     const array_left = array.slice(0, middle);
     const array_right = array.slice(middle, array.length);
-
     if (array_left.length === 1 && array_right.length > 1) {
       props.nextStep();
     }
-
     right = array_right;
-
     setChildArrays({
       leftArray: array_left,
       rightArray: array_right,
     });
-
     setIsMerging(true);
     notification();
   }
@@ -204,6 +199,7 @@ const Arrays = (props) => {
           className="level-block button is-light is-outlined is-focused "
           disabled={temp}
           onClick={selectValue}
+          key={array[i]}
           value={array[i]}
         >
           {array[i]}
@@ -258,6 +254,7 @@ const Arrays = (props) => {
         <div>
           <button onClick={handleGameover}>gameover</button>
           <button onClick={handleEnd}>end</button>
+          <button onClick={ShowIncorrectReaction}>-1 life</button>
         </div>
         <div
           // null, shows the Split button, disappear hides the button
@@ -281,7 +278,7 @@ const Arrays = (props) => {
         </div>
         <div>{blockItems}</div>
         <br></br>
-        <div>{children}</div>
+        <div key={children}>{children}</div>
       </div>
     </Animated>
   );
