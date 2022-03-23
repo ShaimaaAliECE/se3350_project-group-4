@@ -20,31 +20,6 @@ function SoundError() {
   }
 }
 
-function notifier() {
-  if (!sorted && !notified) {
-    // console.log(mergedArray);
-    // console.log("bad");
-    toast.error("INCORRECT ! -1 LIFE", {
-      autoClose: 300,
-      closeButton: false,
-      position: toast.POSITION.BOTTOM_CENTER,
-      closeOnClick: true,
-      onOpen: (props) => SoundError(),
-    });
-    notified = true;
-  }
-  if (sorted && !notified) {
-    // CorrectAnswer();
-    toast.success("CORRECT !", {
-      autoClose: 300,
-      closeButton: false,
-      closeOnClick: true,
-      position: toast.POSITION.BOTTOM_CENTER,
-      onOpen: (props) => SoundSuccess(),
-    });
-    notified = true;
-  }
-}
 
 //This will keep track of what step the player is on through out the entire level.
 let step = 0;
@@ -152,7 +127,29 @@ const Arrays = (props) => {
         }
       }
       //external notifier function
-      notifier();
+      if (!sorted && !notified) {
+        // console.log(mergedArray);
+        // console.log("bad");
+        toast.error("INCORRECT ! -1 LIFE", {
+          autoClose: 300,
+          closeButton: false,
+          position: toast.POSITION.BOTTOM_CENTER,
+          closeOnClick: true,
+          onOpen: (props) => SoundError(),
+        });
+        notified = true;
+      }
+      if (sorted && !notified) {
+        // CorrectAnswer();
+        toast.success("CORRECT !", {
+          autoClose: 300,
+          closeButton: false,
+          closeOnClick: true,
+          position: toast.POSITION.BOTTOM_CENTER,
+          onOpen: (props) => SoundSuccess(),
+        });
+        notified = true;
+      }
     }
   }
 
