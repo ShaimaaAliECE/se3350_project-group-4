@@ -13,10 +13,8 @@ let step = 0;
 let sorted = true;
 
 const Arrays = (props) => {
-  const {handleGameover} = props;
+  const {handleGameover, handleEnd, order, nextStep, array} = props;
   //Get array and prep block values and children
-  let array = props.array;
-  let order = props.order;
   let blockItems = [];
   let children = [];
   let right = "";
@@ -36,7 +34,7 @@ const Arrays = (props) => {
   }
 
   useEffect(() => {
-    props.nextStep();
+    nextStep();
   }, [array, mergedArray]);
 
   function handleSplit() {
@@ -110,7 +108,7 @@ const Arrays = (props) => {
     if (global.auth.getCurrentHealth() > 1) {
       global.auth.decreaseHealth();
     } else {
-      global.auth.setGameover("true");
+      // gameover
     }
   }
 
@@ -257,6 +255,10 @@ const Arrays = (props) => {
   return (
     <Animated animationIn="fadeInDown" animationOut="bounceOut">
       <div className="initial">
+        <div>
+          <button onClick={handleGameover}>gameover</button>
+          <button onClick={handleEnd}>end</button>
+        </div>
         <div
           // null, shows the Split button, disappear hides the button
           // isSplit checks if the button was pressed

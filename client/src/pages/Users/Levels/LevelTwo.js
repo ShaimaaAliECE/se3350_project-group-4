@@ -252,7 +252,7 @@ class LevelTwo extends React.Component {
                 stopTimer={this.stopTimer}
               />
               {/* !!!!!modal testing */}
-              <div className="box is-pink">
+              {/* <div className="box is-pink">
                 <h2>For Developer Only</h2>
                 <button
                   className="button is-success is-outlined"
@@ -266,7 +266,7 @@ class LevelTwo extends React.Component {
                 >
                   Gameover
                 </button>
-              </div>
+              </div> */}
               {/* !!!!!modal testing */}
             </div>
             <div>
@@ -275,6 +275,8 @@ class LevelTwo extends React.Component {
                 label="initial"
                 order={this.state.splitOrder}
                 nextStep={this.handleNextStep}
+                handleGameover = {this.handleGameover}
+                handleEnd = {this.handleEnd}
               />
             </div>
             <div>
