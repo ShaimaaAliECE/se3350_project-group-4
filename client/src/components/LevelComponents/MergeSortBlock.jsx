@@ -8,24 +8,12 @@ import WrongSound from "assets/audios/WrongSound.mp3";
 
 let notified = false;
 
-// functions to play sound
-function SoundSuccess() {
-  new Audio(RightSound).play();
-}
-
-function SoundError() {
-  new Audio(WrongSound).play();
-  if (global.auth.getCurrentHealth() > 0) {
-    global.auth.decreaseHealth();
-  }
-}
-
-
 //This will keep track of what step the player is on through out the entire level.
 let step = 0;
 let sorted = true;
 
 const Arrays = (props) => {
+  const {handleGameover} = props;
   //Get array and prep block values and children
   let array = props.array;
   let order = props.order;
@@ -112,6 +100,20 @@ const Arrays = (props) => {
     }
   }
 
+
+  const ShowCorrectReaction = () => {
+    new Audio(RightSound).play();
+  }
+
+  const ShowIncorrectReaction = () => {
+    new Audio(WrongSound).play();
+    if (global.auth.getCurrentHealth() > 1) {
+      global.auth.decreaseHealth();
+    } else {
+      global.auth.setGameover("true");
+    }
+  }
+
   function notification() {
     if (mergedArray != null) {
       // let sorted = true;
@@ -135,7 +137,7 @@ const Arrays = (props) => {
           closeButton: false,
           position: toast.POSITION.BOTTOM_CENTER,
           closeOnClick: true,
-          onOpen: (props) => SoundError(),
+          onOpen: (props) => ShowIncorrectReaction(),
         });
         notified = true;
       }
@@ -146,7 +148,7 @@ const Arrays = (props) => {
           closeButton: false,
           closeOnClick: true,
           position: toast.POSITION.BOTTOM_CENTER,
-          onOpen: (props) => SoundSuccess(),
+          onOpen: (props) => ShowCorrectReaction(),
         });
         notified = true;
       }
@@ -169,7 +171,7 @@ const Arrays = (props) => {
     if (sorted) {
       //if sorted
       console.log("Winner");
-      SoundSuccess(); //nice sound
+      ShowCorrectReaction(); //nice sound
       toast.success("WINNER");
       setWinner(!winner);
     } else if (!sorted) {
