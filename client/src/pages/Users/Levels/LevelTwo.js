@@ -12,7 +12,6 @@ import EndModal from "components/Modals/EndModal";
 import Arrays from "components/LevelComponents/MergeSortBlock";
 
 class LevelTwo extends React.Component {
-  
   constructor(props) {
     super(props);
     global.auth.setCurrentHealth(3);

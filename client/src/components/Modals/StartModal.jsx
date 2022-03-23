@@ -21,7 +21,7 @@ const StartModal = (props) => {
           <div className="modal-body ">
             <div>
               <strong className="has-text-primary">Level Description:</strong>
-              <p className="has-text-light mt-3 ml-5">
+              <span className="has-text-light mt-3 ml-5">
                 <ol>
                   <li>
                     A set of{" "}
@@ -32,7 +32,7 @@ const StartModal = (props) => {
                   </li>
                   {body}
                 </ol>
-              </p>
+              </span>
             </div>
           </div>
           <p className="tag is-danger is-align-self-center hvr-buzz">
