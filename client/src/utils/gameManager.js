@@ -44,7 +44,7 @@ const getIsPlayingBGM = () => {
 };
 
 
-var myAudio = new Audio(BACKGROUNDMUSIC_2); 
+var myAudio = new Audio(BACKGROUNDMUSIC); 
 // play audio 
 const playBGM = (vol) => {
   myAudio.volume = vol;
