@@ -125,7 +125,8 @@ class LevelOne extends React.Component {
         <div>
           <a href="/ms/level1" className="dropdown-item">
             <span className="label has-text-centered">
-              No Previous Level Available <i className="fa-solid fa-triangle-exclamation"></i> 
+              No Previous Level Available{" "}
+              <i className="fa-solid fa-triangle-exclamation"></i>
             </span>
           </a>
         </div>
@@ -263,7 +264,7 @@ class LevelOne extends React.Component {
                 stopTimer={this.stopTimer}
               />
               {/* !!!!!modal testing */}
-              <div className="box is-pink">
+              {/* <div className="box is-pink">
                 <h2>For Developer Only</h2>
                 <button
                   className="button is-success is-outlined"
@@ -277,7 +278,7 @@ class LevelOne extends React.Component {
                 >
                   gameover
                 </button>
-              </div>
+              </div> */}
               {/* !!!!!modal testing */}
             </div>
 
