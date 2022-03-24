@@ -71,6 +71,7 @@ const Arrays = (props) => {
       console.log("fuck");
     }
     // console.log(mergedArray);
+    return outOfOrder;
   }
 
 
@@ -104,8 +105,10 @@ const Arrays = (props) => {
   function selectValue(el) {
     notified = false;
     let value = el.target.getAttribute("value");
-    props.pushToMerged(value);
-    el.target.style.display = "none";
+    let x = props.pushToMerged(value);
+    if(!x){
+      el.target.style.display = "none";
+    }
   }
 
   //Called from checkSplitValidity, checks the rest of the arrays to enable Split.
@@ -301,10 +304,6 @@ const Arrays = (props) => {
   return (
     <Animated animationIn="fadeInDown" animationOut="bounceOut">
       <div className="initial">
-        <div>
-          <button onClick={handleGameover}>gameover</button>
-          <button onClick={handleEnd}>end</button>
-        </div>
         <div
           // null, shows the Split button, disappear hides the button
           // isSplit checks if the button was pressed
