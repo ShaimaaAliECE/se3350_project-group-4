@@ -19,6 +19,7 @@ const Arrays = (props) => {
   let right = "";
 
   let array = props.array;
+  let outOfOrder = false;
 
   const [buttonEnabled, setButtonState] = useState(false);
   const [isSplit, setIsSplit] = useState(false);
@@ -28,17 +29,60 @@ const Arrays = (props) => {
   const [isMerged, setIsMerged] = useState(false);
   const [winner, setWinner] = useState(false);
 
+
+
+
+
   function pushToMerged(value) {
+    outOfOrder = false;
+    console.log("pushToMerged");
+    console.log("child arrays");
+    console.log(childArrays.leftArray);
+    console.log(childArrays.rightArray);
+    console.log("merged array");
+    console.log(mergedArray);
+    console.log("cumulative array");
+    console.log(array);
     // console.log("Hello");
-    setMergedArray([...mergedArray, value]);
+
+    for (let x = 0; x < array.length; x++) {
+      console.log(array[x]);
+    }
+
+    if(mergedArray.length === 0){
+      for (let x = 0; x < array.length; x++) {
+        //iterate through the array
+        if (value > parseInt(array[x])) { //compares value clicked to array(childarrays + merged)
+          console.log("L"); //debugging
+          outOfOrder = true;
+        }
+      }
+    }
+    else if(mergedArray.length !== 0){
+      console.log(mergedArray[mergedArray.length-1]);
+      if(parseInt(value) < mergedArray[mergedArray.length-1]){
+        console.log("no good"); //debugging
+        outOfOrder = true;
+      }
+    }
+    
+    if(outOfOrder === false){
+      setMergedArray([...mergedArray, value]);
+      console.log("fuck");
+    }
     // console.log(mergedArray);
   }
+
+
+
+
 
   useEffect(() => {
     props.nextStep();
   }, [mergedArray]);
 
   function handleSplit() {
+    console.log("handleSplit");
     notified = false;
     setIsSplit(!isSplit);
     step++;
@@ -124,9 +168,9 @@ const Arrays = (props) => {
         if (parseInt(mergedArray[x]) > parseInt(mergedArray[x + 1])) {
           //compares current and next value
           sorted = false; //array no longer sorted
-          // console.log("L"); //debugging
-          // console.log(mergedArray);
-          // console.log(array);
+          //console.log("L"); //debugging
+          //console.log(mergedArray);
+          //console.log(array);
         }
       }
       //external notifier function
@@ -141,7 +185,7 @@ const Arrays = (props) => {
           onOpen: (props) => ShowIncorrectReaction(),
         });
         notified = true;
-        if (global.auth.getCurrentHealth() > 1) {
+        if (global.auth.getCurrentHealth() > 0) {
           global.auth.decreaseHealth();
         } else {
           props.handleGameover();
@@ -248,6 +292,7 @@ const Arrays = (props) => {
       );
       console.log("setting child arrays");
     }
+  
   }
 
   //Allows for an override to let the Split button show no matter the evaluation
@@ -262,11 +307,10 @@ const Arrays = (props) => {
   return (
     <Animated animationIn="fadeInDown" animationOut="bounceOut">
       <div className="initial">
-        {/* <div>
+        <div>
           <button onClick={handleGameover}>gameover</button>
           <button onClick={handleEnd}>end</button>
-          <button onClick={()=>global.auth.decreaseHealth()}>-1 life</button>
-        </div> */}
+        </div>
         <div
           // null, shows the Split button, disappear hides the button
           // isSplit checks if the button was pressed

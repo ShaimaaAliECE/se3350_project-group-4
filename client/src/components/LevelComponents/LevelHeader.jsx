@@ -7,10 +7,14 @@ import { Animated } from "react-animated-css";
 
 // header component for levels
 const LevelHeader = (props) => {
-  const {stopTimer, startTimer} = props;
+  const {stopTimer, startTimer, lives, handleGameover} = props;
   // ----- Timer ----- //
   const [time, setTime] = useState(0);
   const [timerOn, setTimerOn] = useState(true);
+
+  const openGameoverModal = () => {
+    alert('changed  ')
+  }
 
   React.useEffect(() => {
     let interval = null;
@@ -111,7 +115,7 @@ const LevelHeader = (props) => {
                   aria-hidden="true"
                 ></i>
               </span>
-              <span> : {props.lives} </span>
+              <span> : {lives} </span>
             </a>
           </li>
           <li className="is-active">
