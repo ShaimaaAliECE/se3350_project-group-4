@@ -97,6 +97,7 @@ const Arrays = (props) => {
     notified = false;
     let value = el.target.getAttribute("value");
     props.pushToMerged(value);
+
     el.target.style.display = "none";
   }
 
