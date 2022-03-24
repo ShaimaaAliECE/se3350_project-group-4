@@ -8,6 +8,7 @@ import GameoverModal from "components/Modals/GameoverModal";
 import EndModal from "components/Modals/EndModal";
 import { toast } from "react-toastify";
 
+
 toast.configure();
 
 class LevelFive extends React.Component {
@@ -59,6 +60,7 @@ class LevelFive extends React.Component {
 
   // executes when the level ends
   handleEnd() {
+    toast.clearWaitingQueue();
     // show end modal
     this.setState({
       showModal: true,
@@ -69,6 +71,7 @@ class LevelFive extends React.Component {
 
   // executes when player life reaches 0
   handleGameover() {
+    toast.clearWaitingQueue();
     // end timer
     // show gameover modal
     this.setState({

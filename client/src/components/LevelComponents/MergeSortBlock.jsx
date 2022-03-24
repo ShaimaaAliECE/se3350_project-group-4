@@ -54,10 +54,6 @@ const Arrays = (props) => {
   const [isMerged, setIsMerged] = useState(false);
   const [winner, setWinner] = useState(false);
 
-
-
-
-
   function pushToMerged(value) {
     outOfOrder = false;
     console.log("pushToMerged");
@@ -74,33 +70,36 @@ const Arrays = (props) => {
       console.log(array[x]);
     }
 
-    if(mergedArray.length === 0){
+    if (mergedArray.length === 0) {
       for (let x = 0; x < array.length; x++) {
         //iterate through the array
-        if (value > parseInt(array[x])) { //compares value clicked to array(childarrays + merged)
+        if (value > parseInt(array[x])) {
+          //compares value clicked to array(childarrays + merged)
           console.log("L"); //debugging
           outOfOrder = true;
         }
       }
-    }
-    else if(mergedArray.length !== 0){
-      console.log(mergedArray[mergedArray.length-1]);
-      if(parseInt(value) < mergedArray[mergedArray.length-1]){
+    } else if (mergedArray.length !== 0) {
+      let temp = array.sort();
+      let lastIndex = mergedArray.length - 1;
+      if (value != temp[lastIndex + 1]) {
         console.log("no good"); //debugging
         outOfOrder = true;
       }
+      // console.log(mergedArray[mergedArray.length - 1]);
+      // if (parseInt(value) < mergedArray[mergedArray.length - 1]) {
+      //   console.log("no good"); //debugging
+      //   outOfOrder = true;
+      // }
     }
-    
-    if(outOfOrder === false){
+
+    if (outOfOrder === false) {
       setMergedArray([...mergedArray, value]);
       console.log("fuck");
     }
     // console.log(mergedArray);
+    return outOfOrder;
   }
-
-
-
-
 
   useEffect(() => {
     props.nextStep();
@@ -124,13 +123,50 @@ const Arrays = (props) => {
     });
     setIsMerging(true);
     notification();
+    correctAnswer();
+  }
+
+  function correctAnswer() {
+    if (!notified) {
+      toast.success("CORRECT !", {
+        autoClose: 300,
+        closeButton: false,
+        closeOnClick: true,
+        position: toast.POSITION.BOTTOM_CENTER,
+        onOpen: (props) => ShowCorrectReaction(),
+      });
+      notified = true;
+    }
+  }
+
+  function incorrectAnswer() {
+    if (!notified) {
+      toast.error("INCORRECT !", {
+        autoClose: 300,
+        closeButton: false,
+        position: toast.POSITION.BOTTOM_CENTER,
+        closeOnClick: true,
+        onOpen: (props) => ShowIncorrectReaction(),
+      });
+      notified = true;
+      if (global.auth.getCurrentHealth() > 0) {
+        global.auth.decreaseHealth();
+      } else {
+        props.handleGameover();
+      }
+    }
   }
 
   function selectValue(el) {
     notified = false;
     let value = el.target.getAttribute("value");
-    props.pushToMerged(value);
-    el.target.style.display = "none";
+    let x = props.pushToMerged(value);
+    if (!x) {
+      el.target.style.display = "none";
+      correctAnswer();
+    } else if (x) {
+      incorrectAnswer();
+    }
   }
 
   //Called from checkSplitValidity, checks the rest of the arrays to enable Split.
@@ -185,66 +221,65 @@ const Arrays = (props) => {
   };
 
   function notification() {
-    if (mergedArray != null) {
-      // let sorted = true;
-      //array is sorted by default
-      for (let x = 0; x < mergedArray.length - 1; x++) {
-        //iterate through the array
-        if (parseInt(mergedArray[x]) > parseInt(mergedArray[x + 1])) {
-          //compares current and next value
-          sorted = false; //array no longer sorted
-          //console.log("L"); //debugging
-          //console.log(mergedArray);
-          //console.log(array);
-        }
-      }
-      //external notifier function
-      if (!sorted && !notified) {
-        // console.log(mergedArray);
-        // console.log("bad");
-        toast.error("INCORRECT !", {
-          autoClose: 300,
-          closeButton: false,
-          position: toast.POSITION.BOTTOM_CENTER,
-          closeOnClick: true,
-          onOpen: (props) => ShowIncorrectReaction(),
-        });
-        notified = true;
-        if (global.auth.getCurrentHealth() > 0) {
-          global.auth.decreaseHealth();
-        } else {
-          props.handleGameover();
-        }
-      }
-      if (sorted && !notified) {
-        // CorrectAnswer();
-        toast.success("CORRECT !", {
-          autoClose: 300,
-          closeButton: false,
-          closeOnClick: true,
-          position: toast.POSITION.BOTTOM_CENTER,
-          onOpen: (props) => ShowCorrectReaction(),
-        });
-        notified = true;
-      }
-    }
-  }
+    // if (mergedArray != null) {
+    //   // let sorted = true;
+    //   //array is sorted by default
+    //   // for (let x = 0; x < mergedArray.length - 1; x++) {
+    //   //   //iterate through the array
+    //   //   if (parseInt(mergedArray[x]) > parseInt(mergedArray[x + 1])) {
+    //   //     //compares current and next value
+    //   //     sorted = false; //array no longer sorted
+    //   //     //console.log("L"); //debugging
+    //   //     //console.log(mergedArray);
+    //   //     //console.log(array);
+    //   //   }
+    //   // }
+    //   //external notifier function
+    //   if (!sorted && !notified) {
+    //     // console.log(mergedArray);
+    //     // console.log("bad");
+    //     toast.error("INCORRECT !", {
+    //       autoClose: 300,
+    //       closeButton: false,
+    //       position: toast.POSITION.BOTTOM_CENTER,
+    //       closeOnClick: true,
+    //       onOpen: (props) => ShowIncorrectReaction(),
+    //     });
+    //     notified = true;
+    //     if (global.auth.getCurrentHealth() > 0) {
+    //       global.auth.decreaseHealth();
+    //     } else {
+    //       props.handleGameover();
+    //     }
+    //   }
+    //   if (sorted && !notified) {
+    //     // CorrectAnswer();
+    //     toast.success("CORRECT !", {
+    //       autoClose: 300,
+    //       closeButton: false,
+    //       closeOnClick: true,
+    //       position: toast.POSITION.BOTTOM_CENTER,
+    //       onOpen: (props) => ShowCorrectReaction(),
+    //     });
+    //     notified = true;
+    //   }
+    // }
 
-  //merging is done if merged array length = original array length
-  if (mergedArray.length === 10) {
-    // console.log("merging completed");
-    setIsMerged(isMerged);
-    setIsMerging(!isMerging);
-    let sorted = true;
-    for (let x = 0; x < mergedArray.length - 1; x++) {
-      //goes through array
-      if (parseInt(mergedArray[x]) > parseInt(mergedArray[x + 1])) {
-        //checks if unsorted
-        sorted = false;
+    //merging is done if merged array length = original array length
+    if (mergedArray.length === 10) {
+      // console.log("merging completed");
+      setIsMerged(isMerged);
+      setIsMerging(!isMerging);
+      let sorted = true;
+      for (let x = 0; x < mergedArray.length - 1; x++) {
+        //goes through array
+        if (parseInt(mergedArray[x]) > parseInt(mergedArray[x + 1])) {
+          //checks if unsorted
+          sorted = false;
+        }
       }
+      performGameEnd(sorted);
     }
-    performGameEnd(sorted);
-    console.log("merging done checking");
   }
 
   if (isMerging) {
@@ -260,7 +295,6 @@ const Arrays = (props) => {
           {mergedArray[i]}
         </button>,
       ]);
-      console.log("merged array");
     }
     notification();
   }
@@ -281,7 +315,6 @@ const Arrays = (props) => {
           {array[i]}
         </button>,
       ]);
-      console.log("setting current array to array blocks");
     }
   }
 
@@ -315,9 +348,7 @@ const Arrays = (props) => {
           </div>
         </div>
       );
-      console.log("setting child arrays");
     }
-  
   }
 
   //Allows for an override to let the Split button show no matter the evaluation
@@ -336,6 +367,10 @@ const Arrays = (props) => {
         <button onClick={props.handleEnd}>end</button>
       </div>
       <div className="initial">
+        {/* <div>
+          <button onClick={handleGameover}>gameover</button>
+          <button onClick={handleEnd}>end</button>
+        </div> */}
         <div
           // null, shows the Split button, disappear hides the button
           // isSplit checks if the button was pressed
