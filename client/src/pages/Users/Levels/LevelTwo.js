@@ -277,8 +277,8 @@ class LevelTwo extends React.Component {
                 label="initial"
                 order={this.state.splitOrder}
                 nextStep={this.handleNextStep}
-                handleGameover = {this.handleGameover}
-                handleEnd = {this.handleEnd}
+                handleGameover={this.handleGameover}
+                handleEnd={this.handleEnd}
               />
             </div>
             <div>

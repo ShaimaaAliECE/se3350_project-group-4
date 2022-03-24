@@ -7,14 +7,11 @@ import { Animated } from "react-animated-css";
 
 // header component for levels
 const LevelHeader = (props) => {
-  const {stopTimer, startTimer, lives, handleGameover} = props;
+  const {stopTimer, startTimer, lives} = props;
   // ----- Timer ----- //
   const [time, setTime] = useState(0);
   const [timerOn, setTimerOn] = useState(true);
 
-  const openGameoverModal = () => {
-    alert('changed  ')
-  }
 
   React.useEffect(() => {
     let interval = null;
@@ -38,6 +35,7 @@ const LevelHeader = (props) => {
 
   // open pause menu
   const toPause = () => {
+    
     pauseTimer();
     stopTimer(); //stop timer from each level
     PopupMenu.open({
