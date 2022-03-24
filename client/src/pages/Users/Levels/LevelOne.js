@@ -9,7 +9,6 @@ import StartModal from "components/Modals/StartModal";
 import GameoverModal from "components/Modals/GameoverModal";
 import EndModal from "components/Modals/EndModal";
 
-
 import "../../../css/LevelStyles.css";
 
 class LevelOne extends React.Component {
@@ -93,6 +92,19 @@ class LevelOne extends React.Component {
             accompanied with explanation texts
           </li>
           <li>Navigate through the steps using the step player.</li>
+        </div>
+      );
+    };
+
+    const GameoverModalBody = () => {
+      return (
+        <div>
+          <a href="/ms/level1" className="dropdown-item">
+            <span className="label has-text-centered">
+              No Previous Level Available{" "}
+              <i className="fa-solid fa-triangle-exclamation"></i>
+            </span>
+          </a>
         </div>
       );
     };
@@ -207,7 +219,12 @@ class LevelOne extends React.Component {
 
   //rendering block with the state of the box
   renderBlock(i) {
-    return <Block className="level-block is-light is-outlined is-focused" value={this.state.boxes[i - 1]} />;
+    return (
+      <Block
+        className="level-block is-light is-outlined is-focused"
+        value={this.state.boxes[i - 1]}
+      />
+    );
   }
 
   render() {
@@ -220,7 +237,7 @@ class LevelOne extends React.Component {
             <div className="header mb-6">
               <LevelHeader level="1" />
               {/* !!!!!modal testing */}
-              <div className="box is-pink">
+              {/* <div className="box is-pink">
                 <h2>For Developer Only</h2>
                 <button
                   className="button is-success is-outlined"
@@ -234,7 +251,7 @@ class LevelOne extends React.Component {
                 >
                   gameover
                 </button>
-              </div>
+              </div> */}
               {/* !!!!!modal testing */}
             </div>
 
@@ -243,22 +260,16 @@ class LevelOne extends React.Component {
               {this.renderBlock(1)}
               <div className="split">
                 <div className="left">
-                  {this.renderBlock(2)} 
-                  
+                  {this.renderBlock(2)}
+
                   <div className="split">
-                    <div className="left">
-                      {this.renderBlock(4)}
-                    </div>
+                    <div className="left">{this.renderBlock(4)}</div>
                     <div className="right">
                       {this.renderBlock(5)}
 
                       <div className="split">
-                        <div className="left">
-                          {this.renderBlock(8)}
-                        </div>
-                        <div className="right">
-                          {this.renderBlock(9)}
-                        </div>
+                        <div className="left">{this.renderBlock(8)}</div>
+                        <div className="right">{this.renderBlock(9)}</div>
                       </div>
                     </div>
                   </div>
@@ -267,19 +278,13 @@ class LevelOne extends React.Component {
                   {this.renderBlock(3)}
 
                   <div className="split">
-                    <div className="left">
-                      {this.renderBlock(6)}
-                    </div>
+                    <div className="left">{this.renderBlock(6)}</div>
                     <div className="right">
                       {this.renderBlock(7)}
 
                       <div className="split">
-                        <div className="left">
-                          {this.renderBlock(10)}
-                        </div>
-                        <div className="right">
-                          {this.renderBlock(11)}
-                        </div>
+                        <div className="left">{this.renderBlock(10)}</div>
+                        <div className="right">{this.renderBlock(11)}</div>
                       </div>
                     </div>
                   </div>

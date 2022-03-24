@@ -82,8 +82,10 @@ const Arrays = (props) => {
     } else if (mergedArray.length !== 0) {
       let temp = array.sort();
       let lastIndex = mergedArray.length - 1;
-      if (value != temp[lastIndex + 1]) {
-        console.log("no good"); //debugging
+      console.log(typeof value);
+      if (value == temp[lastIndex + 1]) {
+        console.log("correct"); //debugging
+      } else {
         outOfOrder = true;
       }
       // console.log(mergedArray[mergedArray.length - 1]);
