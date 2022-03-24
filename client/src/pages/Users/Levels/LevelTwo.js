@@ -10,6 +10,7 @@ import GameoverModal from "components/Modals/GameoverModal";
 import EndModal from "components/Modals/EndModal";
 //Algorithm Array Block
 import Arrays from "components/LevelComponents/MergeSortBlock";
+import { toast } from "react-toastify";
 
 class LevelTwo extends React.Component {
   constructor(props) {
@@ -86,6 +87,7 @@ class LevelTwo extends React.Component {
 
   // executes when the level ends
   handleEnd() {
+    toast.clearWaitingQueue();
     // end timer
     this.stopTimer();
     // show end modal
@@ -99,6 +101,7 @@ class LevelTwo extends React.Component {
 
   // executes when player life reaches 0
   handleGameover() {
+    toast.clearWaitingQueue();
     // end timer
     this.stopTimer();
     // end timer
