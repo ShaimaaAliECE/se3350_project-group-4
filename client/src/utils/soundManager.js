@@ -49,7 +49,7 @@ function SoundManager({ setOpenModal, modalOpen }) {
                       className="button is-primary"
                       onClick={() => setBgmVol(bgmVol - 0.05)}
                     >
-                      <i class="fa-solid fa-minus"></i>
+                      <i className="fa-solid fa-minus"></i>
                     </div>
                   </div>
                 </div>
@@ -60,7 +60,7 @@ function SoundManager({ setOpenModal, modalOpen }) {
                       className="button is-primary"
                       onClick={() => setBgmVol(0)}
                     >
-                      <i class="fa-solid fa-volume-xmark"></i>
+                      <i className="fa-solid fa-volume-xmark"></i>
                     </div>
                   </div>
                 </div>
@@ -71,7 +71,7 @@ function SoundManager({ setOpenModal, modalOpen }) {
                       className="button is-primary"
                       onClick={() => setBgmVol(bgmVol + 0.05)}
                     >
-                      <i class="fa-solid fa-plus"></i>
+                      <i className="fa-solid fa-plus"></i>
                     </div>
                   </div>
                 </div>

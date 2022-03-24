@@ -172,10 +172,8 @@ const Arrays = (props) => {
           onOpen: (props) => ShowIncorrectReaction(),
         });
         notified = true;
-        if (global.auth.getCurrentHealth() > 1) {
+        if (global.auth.getCurrentHealth() > 0) {
           global.auth.decreaseHealth();
-        } else {
-          handleGameover()
         }
       }
       if (sorted && !notified) {
@@ -303,11 +301,10 @@ const Arrays = (props) => {
   return (
     <Animated animationIn="fadeInDown" animationOut="bounceOut">
       <div className="initial">
-        {/* <div>
+        <div>
           <button onClick={handleGameover}>gameover</button>
           <button onClick={handleEnd}>end</button>
-          <button onClick={()=>global.auth.decreaseHealth()}>-1 life</button>
-        </div> */}
+        </div>
         <div
           // null, shows the Split button, disappear hides the button
           // isSplit checks if the button was pressed

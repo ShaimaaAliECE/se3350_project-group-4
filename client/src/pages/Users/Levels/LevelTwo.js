@@ -251,6 +251,7 @@ class LevelTwo extends React.Component {
                 lives={global.auth.getCurrentHealth()}
                 startTimer={this.startTimer}
                 stopTimer={this.stopTimer}
+                handleGameover={this.handleGameover}
               />
               {/* !!!!!modal testing */}
               {/* <div className="box is-pink">
