@@ -65,10 +65,7 @@ const Arrays = (props) => {
     // console.log(array);
     // console.log("Hello");
 
-    let temp = [];
-    for (let i of array) {
-      temp.push(parseInt(i));
-    }
+    let temp = array;
 
     temp.sort(function (a, b) {
       return a - b;
