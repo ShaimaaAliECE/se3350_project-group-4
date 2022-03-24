@@ -5,13 +5,13 @@ import { Animated } from "react-animated-css";
 window.onload = function () {
   global.auth.setIsPlayingBGM(false);
   if (global.auth.getIsPlayingBGM()) {
-    global.auth.playBGM(0.5);
+    global.auth.playBGM(0.4);
     global.auth.setIsPlayingBGM(true);
   }
 };
 
 function SoundManager({ setOpenModal, modalOpen }) {
-  const [bgmVol, setBgmVol] = React.useState(0.5);
+  const [bgmVol, setBgmVol] = React.useState(0.4);
 
   function playAudio() {
     global.auth.setIsPlayingBGM(true);
