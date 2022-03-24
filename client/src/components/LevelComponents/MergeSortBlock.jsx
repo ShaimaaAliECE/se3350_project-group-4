@@ -8,6 +8,31 @@ import WrongSound from "assets/audios/WrongSound.mp3";
 
 let notified = false;
 
+function SoundSuccess() {
+  new Audio(RightSound).play();
+}
+
+function SoundError() {
+  new Audio(WrongSound).play();
+}
+
+function notifer() {
+  if (!notified) {
+    if (!sorted) {
+      SoundError(); //bad sound
+      toast.error("INCORRECT", { autoClose: 500 });
+    } else if (sorted) {
+      SoundSuccess();
+      toast.success("CORRECT", { autoClose: 500 });
+    }
+    notified = true;
+  } else {
+    setTimeout(() => {
+      notified = false;
+    }, 500);
+  }
+}
+
 //This will keep track of what step the player is on through out the entire level.
 let step = 0;
 let sorted = true;
@@ -45,7 +70,7 @@ const Arrays = (props) => {
       console.log(array[x]);
     }
 
-    if (mergedArray.length == 0) {
+    if (mergedArray.length === 0) {
       for (let x = 0; x < array.length; x++) {
         //iterate through the array
         if (value > parseInt(array[x])) {
@@ -54,7 +79,7 @@ const Arrays = (props) => {
           outOfOrder = true;
         }
       }
-    } else if (mergedArray.length != 0) {
+    } else if (mergedArray.length !== 0) {
       let temp = array.sort();
       let lastIndex = mergedArray.length - 1;
       if (value != temp[lastIndex + 1]) {
@@ -337,6 +362,10 @@ const Arrays = (props) => {
 
   return (
     <Animated animationIn="fadeInDown" animationOut="bounceOut">
+      <div>
+        <button onClick={props.handleGameover}>gameover</button>
+        <button onClick={props.handleEnd}>end</button>
+      </div>
       <div className="initial">
         {/* <div>
           <button onClick={handleGameover}>gameover</button>
