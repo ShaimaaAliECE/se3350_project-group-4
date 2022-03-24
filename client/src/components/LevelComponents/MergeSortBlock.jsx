@@ -210,7 +210,6 @@ const Arrays = (props) => {
         }
       }
       performGameEnd(sorted);
-      console.log("merging done checking");
     }
   }
 
@@ -227,7 +226,6 @@ const Arrays = (props) => {
           {mergedArray[i]}
         </button>,
       ]);
-      console.log("merged array");
     }
     notification();
   }
@@ -248,7 +246,6 @@ const Arrays = (props) => {
           {array[i]}
         </button>,
       ]);
-      console.log("setting current array to array blocks");
     }
   }
 
@@ -282,7 +279,6 @@ const Arrays = (props) => {
           </div>
         </div>
       );
-      console.log("setting child arrays");
     }
   }
 
