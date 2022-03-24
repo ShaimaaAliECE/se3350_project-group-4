@@ -20,10 +20,9 @@
 
 .level-block {
     height: 2.5rem;
-    width: 2.5rem;
     font-weight: bold;
-    font-size: 22px;
     text-align: center;
+    font-size: 22px;
     padding: 20px 20px;
 }
 

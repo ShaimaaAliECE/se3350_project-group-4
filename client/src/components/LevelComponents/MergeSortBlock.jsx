@@ -270,7 +270,7 @@ const Arrays = (props) => {
       if (array.length === 1) temp = false;
       blockItems.push([
         <button
-          className="level-block button is-light is-outlined is-focused "
+          className="level-block button is-light is-outlined is-focused"
           disabled={temp}
           onClick={selectValue}
           key={array[i]}
