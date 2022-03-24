@@ -16,7 +16,6 @@ import "css/hover.css";
 import "react-toastify/dist/ReactToastify.css";
 
 const AudioPlayer = () => {
-  
   const [modalOpen, setModalOpen] = React.useState(false);
   return (
     <div>
@@ -25,6 +24,7 @@ const AudioPlayer = () => {
           className="button is-primary audio-button"
           onClick={() => {
             setModalOpen(true);
+            global.auth.pauseBGM();
           }}
         >
           <i className="fa-solid fa-music"></i>

@@ -1,10 +1,12 @@
 import decode from "jwt-decode"; //used for decoding jwt
 import BACKGROUNDMUSIC from "assets/audios/BGM.mp3";
+import BACKGROUNDMUSIC_2 from "assets/audios/BGM.mp3";
 
 //save key value as constant
 const JWT = "app_token_id";
 const CurrentLevel = "current_level";
 const Health = "health";
+const AudioPlaying = "audio";
 
 // set current level
 const setCurrentLevel = (levelNumber) => {
@@ -32,11 +34,26 @@ const decreaseHealth = () => {
   localStorage.setItem(Health, _health);
 };
 
+
+const setIsPlayingBGM = (bool) => {
+  localStorage.setItem(AudioPlaying, bool);
+};
+
+const getIsPlayingBGM = () => {
+  return localStorage.getItem(AudioPlaying);
+};
+
+
+var myAudio = new Audio(BACKGROUNDMUSIC_2); 
 // play audio 
 const playBGM = (vol) => {
-  var myAudio = new Audio(BACKGROUNDMUSIC); 
   myAudio.volume = vol;
   myAudio.play();
+}
+
+// play audio 
+const pauseBGM = (vol) => {
+  myAudio.pause();
 }
 
 // save json web token into local storage
@@ -94,8 +111,11 @@ global.auth = {
   getCurrentHealth,
   setCurrentLevel,
   getCurrentLevel,
+  getIsPlayingBGM,
+  setIsPlayingBGM,
   playBGM,
   getUser,
   isLogin,
   logout,
+  pauseBGM
 };

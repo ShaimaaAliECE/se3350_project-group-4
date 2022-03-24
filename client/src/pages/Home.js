@@ -8,7 +8,6 @@ import BlockThree from "assets/svgs/7.svg";
 import BlockFour from "assets/svgs/4.svg";
 import BlockFive from "assets/svgs/3.svg";
 
-
 // ------ define styled components ------ //
 
 // buttons with motion
@@ -109,10 +108,6 @@ const RightColumn = styled.div`
     right: 375px;
   }
 `;
-
-window.onload = function() {
-  //global.auth.playBGM(0.5);
-};
 
 
 // Home page functional component
