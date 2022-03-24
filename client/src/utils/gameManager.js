@@ -1,6 +1,6 @@
 import decode from "jwt-decode"; //used for decoding jwt
 import BACKGROUNDMUSIC from "assets/audios/BGM.mp3";
-import BACKGROUNDMUSIC_2 from "assets/audios/BGM.mp3";
+import BACKGROUNDMUSIC_2 from "assets/audios/BGM2.mp3";
 
 //save key value as constant
 const JWT = "app_token_id";
