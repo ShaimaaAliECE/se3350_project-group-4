@@ -220,6 +220,7 @@ class LevelTwo extends React.Component {
     // box[currentBox] = this.state.order[step];
 
     step++;
+    console.log("next step");
     this.setState({
       // boxes: box,
       step: step,
