@@ -29,10 +29,6 @@ const Arrays = (props) => {
   const [isMerged, setIsMerged] = useState(false);
   const [winner, setWinner] = useState(false);
 
-
-
-
-
   function pushToMerged(value) {
     outOfOrder = false;
     console.log("pushToMerged");
@@ -49,33 +45,29 @@ const Arrays = (props) => {
       console.log(array[x]);
     }
 
-    if(mergedArray.length === 0){
+    if (mergedArray.length === 0) {
       for (let x = 0; x < array.length; x++) {
         //iterate through the array
-        if (value > parseInt(array[x])) { //compares value clicked to array(childarrays + merged)
+        if (value > parseInt(array[x])) {
+          //compares value clicked to array(childarrays + merged)
           console.log("L"); //debugging
           outOfOrder = true;
         }
       }
-    }
-    else if(mergedArray.length !== 0){
-      console.log(mergedArray[mergedArray.length-1]);
-      if(parseInt(value) < mergedArray[mergedArray.length-1]){
+    } else if (mergedArray.length !== 0) {
+      console.log(mergedArray[mergedArray.length - 1]);
+      if (parseInt(value) < mergedArray[mergedArray.length - 1]) {
         console.log("no good"); //debugging
         outOfOrder = true;
       }
     }
-    
-    if(outOfOrder === false){
+
+    if (outOfOrder === false) {
       setMergedArray([...mergedArray, value]);
       console.log("fuck");
     }
     // console.log(mergedArray);
   }
-
-
-
-
 
   useEffect(() => {
     props.nextStep();
@@ -203,23 +195,23 @@ const Arrays = (props) => {
         notified = true;
       }
     }
-  }
 
-  //merging is done if merged array length = original array length
-  if (mergedArray.length === 10) {
-    // console.log("merging completed");
-    setIsMerged(isMerged);
-    setIsMerging(!isMerging);
-    let sorted = true;
-    for (let x = 0; x < mergedArray.length - 1; x++) {
-      //goes through array
-      if (parseInt(mergedArray[x]) > parseInt(mergedArray[x + 1])) {
-        //checks if unsorted
-        sorted = false;
+    //merging is done if merged array length = original array length
+    if (mergedArray.length === 10) {
+      // console.log("merging completed");
+      setIsMerged(isMerged);
+      setIsMerging(!isMerging);
+      let sorted = true;
+      for (let x = 0; x < mergedArray.length - 1; x++) {
+        //goes through array
+        if (parseInt(mergedArray[x]) > parseInt(mergedArray[x + 1])) {
+          //checks if unsorted
+          sorted = false;
+        }
       }
+      performGameEnd(sorted);
+      console.log("merging done checking");
     }
-    performGameEnd(sorted);
-    console.log("merging done checking");
   }
 
   if (isMerging) {
@@ -292,7 +284,6 @@ const Arrays = (props) => {
       );
       console.log("setting child arrays");
     }
-  
   }
 
   //Allows for an override to let the Split button show no matter the evaluation
@@ -307,10 +298,10 @@ const Arrays = (props) => {
   return (
     <Animated animationIn="fadeInDown" animationOut="bounceOut">
       <div className="initial">
-        <div>
+        {/* <div>
           <button onClick={handleGameover}>gameover</button>
           <button onClick={handleEnd}>end</button>
-        </div>
+        </div> */}
         <div
           // null, shows the Split button, disappear hides the button
           // isSplit checks if the button was pressed
