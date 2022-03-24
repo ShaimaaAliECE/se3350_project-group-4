@@ -8,6 +8,7 @@ import Arrays from "components/LevelComponents/MergeSortBlock";
 import StartModal from "components/Modals/StartModal";
 import GameoverModal from "components/Modals/GameoverModal";
 import EndModal from "components/Modals/EndModal";
+import { toast } from "react-toastify";
 
 //LEVEL 3 must have a set of 10 numbers are randomly generated out of the range (1-20)
 class LevelThree extends React.Component {
@@ -86,6 +87,7 @@ class LevelThree extends React.Component {
 
   // executes when the level ends
   handleEnd() {
+    toast.clearWaitingQueue();
     // end timer
     this.stopTimer();
     // show end modal
@@ -98,6 +100,7 @@ class LevelThree extends React.Component {
 
   // executes when player life reaches 0
   handleGameover() {
+    toast.clearWaitingQueue();
     // end timer
     // end timer
     this.stopTimer();
