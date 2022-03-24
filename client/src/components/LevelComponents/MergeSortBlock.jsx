@@ -13,11 +13,12 @@ let step = 0;
 let sorted = true;
 
 const Arrays = (props) => {
-  const { handleGameover, handleEnd, order, nextStep, array } = props;
   //Get array and prep block values and children
   let blockItems = [];
   let children = [];
   let right = "";
+
+  let array = props.array;
 
   const [buttonEnabled, setButtonState] = useState(false);
   const [isSplit, setIsSplit] = useState(false);
@@ -34,8 +35,8 @@ const Arrays = (props) => {
   }
 
   useEffect(() => {
-    nextStep();
-  }, [array, mergedArray]);
+    props.nextStep();
+  }, [mergedArray]);
 
   function handleSplit() {
     notified = false;
@@ -81,15 +82,28 @@ const Arrays = (props) => {
   //Function to make sure user can only split one array at a time
   function checkSplitValidity(array) {
     //Check if the array in question is the next array in the given order.
-    if (array.toString().indexOf(order[step]) !== -1) {
+    if (array.toString().indexOf(props.order[step]) !== -1) {
       return true;
     } else {
       //Check if a parent exists, if so, check if other arrays are next in the order.
       if (array.length !== 10) {
-        props.evaluateOtherSplit(order[step]);
+        props.evaluateOtherSplit(props.order[step]);
       }
       //If the next array in order is not found, return false and show no Split buttons.
       return false;
+    }
+  }
+
+  function performGameEnd(sorted) {
+    if (sorted) {
+      //if sorted
+      // console.log("Winner");
+      toast.success("WINNER");
+      props.handleEnd();
+      setWinner(!winner);
+    } else if (!sorted) {
+      // console.log("Loser");
+      // console.log(mergedArray);
     }
   }
 
@@ -110,9 +124,9 @@ const Arrays = (props) => {
         if (parseInt(mergedArray[x]) > parseInt(mergedArray[x + 1])) {
           //compares current and next value
           sorted = false; //array no longer sorted
-          console.log("L"); //debugging
-          console.log(mergedArray);
-          console.log(array);
+          // console.log("L"); //debugging
+          // console.log(mergedArray);
+          // console.log(array);
         }
       }
       //external notifier function
@@ -130,7 +144,7 @@ const Arrays = (props) => {
         if (global.auth.getCurrentHealth() > 1) {
           global.auth.decreaseHealth();
         } else {
-          handleGameover()
+          props.handleGameover();
         }
       }
       if (sorted && !notified) {
@@ -149,7 +163,7 @@ const Arrays = (props) => {
 
   //merging is done if merged array length = original array length
   if (mergedArray.length === 10) {
-    console.log("merging completed");
+    // console.log("merging completed");
     setIsMerged(isMerged);
     setIsMerging(!isMerging);
     let sorted = true;
@@ -160,16 +174,8 @@ const Arrays = (props) => {
         sorted = false;
       }
     }
-    if (sorted) {
-      //if sorted
-      console.log("Winner");
-      toast.success("WINNER");
-      handleEnd();
-      setWinner(!winner);
-    } else if (!sorted) {
-      console.log("Loser");
-      console.log(mergedArray);
-    }
+    performGameEnd(sorted);
+    console.log("merging done checking");
   }
 
   if (isMerging) {
@@ -185,6 +191,7 @@ const Arrays = (props) => {
           {mergedArray[i]}
         </button>,
       ]);
+      console.log("merged array");
     }
     notification();
   }
@@ -205,6 +212,7 @@ const Arrays = (props) => {
           {array[i]}
         </button>,
       ]);
+      console.log("setting current array to array blocks");
     }
   }
 
@@ -216,26 +224,29 @@ const Arrays = (props) => {
             <Arrays
               array={childArrays.leftArray}
               label="Left Array"
-              order={order}
+              order={props.order}
               pushToMerged={pushToMerged}
               evaluateOtherSplit={evaluateOtherSplit}
               setButtonState={buttonEnabled}
               nextStep={props.nextStep}
+              handleGameover={props.handleGameover}
             />
           </div>
           <div className="right">
             <Arrays
               array={childArrays.rightArray}
               label="Right Array"
-              order={order}
+              order={props.order}
               pushToMerged={pushToMerged}
               evaluateOtherSplit={evaluateOtherSplit}
               parentButton={buttonEnabled}
               nextStep={props.nextStep}
+              handleGameover={props.handleGameover}
             />
           </div>
         </div>
       );
+      console.log("setting child arrays");
     }
   }
 
