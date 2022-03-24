@@ -207,7 +207,7 @@ class LevelOne extends React.Component {
 
   //rendering block with the state of the box
   renderBlock(i) {
-    return <Block className="level-block is-light is-outlined is-focused" value={this.state.boxes[i - 1]} />;
+    return <Block value={this.state.boxes[i - 1]} />;
   }
 
   render() {
@@ -240,23 +240,28 @@ class LevelOne extends React.Component {
 
             {/* {this.generateBlocks()} */}
             <div className="initial">
-              {this.renderBlock(1)}
+              <br></br>
+              {this.renderBlock(1)} 
               <div className="split">
                 <div className="left">
-                  {this.renderBlock(2)} 
-                  
+                <br></br>
+                  {this.renderBlock(2)}
                   <div className="split">
                     <div className="left">
+                    <br></br>
                       {this.renderBlock(4)}
                     </div>
                     <div className="right">
+                    <br></br>
                       {this.renderBlock(5)}
 
                       <div className="split">
                         <div className="left">
+                        <br></br>
                           {this.renderBlock(8)}
                         </div>
                         <div className="right">
+                        <br></br>
                           {this.renderBlock(9)}
                         </div>
                       </div>
@@ -264,20 +269,25 @@ class LevelOne extends React.Component {
                   </div>
                 </div>
                 <div className="right">
+                <br></br>
                   {this.renderBlock(3)}
 
                   <div className="split">
                     <div className="left">
+                    <br></br>
                       {this.renderBlock(6)}
                     </div>
                     <div className="right">
+                    <br></br>
                       {this.renderBlock(7)}
 
                       <div className="split">
                         <div className="left">
+                        <br></br>
                           {this.renderBlock(10)}
                         </div>
                         <div className="right">
+                        <br></br>
                           {this.renderBlock(11)}
                         </div>
                       </div>
