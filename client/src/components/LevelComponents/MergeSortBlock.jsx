@@ -45,7 +45,7 @@ const Arrays = (props) => {
       console.log(array[x]);
     }
 
-    if (mergedArray.length == 0) {
+    if (mergedArray.length === 0) {
       for (let x = 0; x < array.length; x++) {
         //iterate through the array
         if (value > parseInt(array[x])) {
@@ -54,7 +54,7 @@ const Arrays = (props) => {
           outOfOrder = true;
         }
       }
-    } else if (mergedArray.length != 0) {
+    } else if (mergedArray.length !== 0) {
       let temp = array.sort();
       let lastIndex = mergedArray.length - 1;
       if (value != temp[lastIndex + 1]) {
