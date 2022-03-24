@@ -13,7 +13,7 @@ let step = 0;
 let sorted = true;
 
 const Arrays = (props) => {
-  const {handleGameover, handleEnd, order, nextStep, array} = props;
+  const { handleGameover, handleEnd, order, nextStep, array } = props;
   //Get array and prep block values and children
   let blockItems = [];
   let children = [];
@@ -93,19 +93,13 @@ const Arrays = (props) => {
     }
   }
 
-
   const ShowCorrectReaction = () => {
     new Audio(RightSound).play();
-  }
+  };
 
   const ShowIncorrectReaction = () => {
     new Audio(WrongSound).play();
-    if (global.auth.getCurrentHealth() > 1) {
-      global.auth.decreaseHealth();
-    } else {
-      // gameover
-    }
-  }
+  };
 
   function notification() {
     if (mergedArray != null) {
@@ -125,7 +119,7 @@ const Arrays = (props) => {
       if (!sorted && !notified) {
         // console.log(mergedArray);
         // console.log("bad");
-        toast.error("INCORRECT ! -1 LIFE", {
+        toast.error("INCORRECT !", {
           autoClose: 300,
           closeButton: false,
           position: toast.POSITION.BOTTOM_CENTER,
@@ -133,6 +127,11 @@ const Arrays = (props) => {
           onOpen: (props) => ShowIncorrectReaction(),
         });
         notified = true;
+        if (global.auth.getCurrentHealth() > 1) {
+          global.auth.decreaseHealth();
+        } else {
+          handleGameover()
+        }
       }
       if (sorted && !notified) {
         // CorrectAnswer();
@@ -164,8 +163,8 @@ const Arrays = (props) => {
     if (sorted) {
       //if sorted
       console.log("Winner");
-      ShowCorrectReaction(); //nice sound
       toast.success("WINNER");
+      handleEnd();
       setWinner(!winner);
     } else if (!sorted) {
       console.log("Loser");
@@ -180,6 +179,7 @@ const Arrays = (props) => {
         <button
           className="level-block button is-light is-outlined is-focused"
           onClick={selectValue}
+          key={mergedArray[i]}
           value={mergedArray[i]}
         >
           {mergedArray[i]}
@@ -251,11 +251,11 @@ const Arrays = (props) => {
   return (
     <Animated animationIn="fadeInDown" animationOut="bounceOut">
       <div className="initial">
-        <div>
+        {/* <div>
           <button onClick={handleGameover}>gameover</button>
           <button onClick={handleEnd}>end</button>
-          <button onClick={ShowIncorrectReaction}>-1 life</button>
-        </div>
+          <button onClick={()=>global.auth.decreaseHealth()}>-1 life</button>
+        </div> */}
         <div
           // null, shows the Split button, disappear hides the button
           // isSplit checks if the button was pressed

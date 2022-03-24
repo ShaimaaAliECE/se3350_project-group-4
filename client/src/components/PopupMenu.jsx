@@ -83,9 +83,12 @@ class PopupMenu extends React.Component {
             >
               ×
             </span>
+           
             {/* mounted child component */}
             {this.state.component}
+            
           </div>
+          
         </div>
       </div>
     );

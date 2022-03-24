@@ -6,7 +6,7 @@ const EndModal = (props) => {
   // get values from props
   const { title, life, time, next } = props;
 
-  // navigat eto next level based on props
+  // navigate to next level based on props
   const toNextLevel = () => {
     if (props.title === 1) {
       props.history.push("/ms/level2");

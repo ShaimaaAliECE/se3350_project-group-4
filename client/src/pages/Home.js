@@ -8,8 +8,6 @@ import BlockThree from "assets/svgs/7.svg";
 import BlockFour from "assets/svgs/4.svg";
 import BlockFive from "assets/svgs/3.svg";
 
-import BACKGROUNDMUSIC from "assets/audios/BGM.mp3";
-
 
 // ------ define styled components ------ //
 
@@ -113,18 +111,12 @@ const RightColumn = styled.div`
 `;
 
 window.onload = function() {
-  playSound();
+  //global.auth.playBGM(0.5);
 };
 
-function playSound()
-{
-    //alert("");
-    var myAudio = new Audio(BACKGROUNDMUSIC); 
-    myAudio.play();
-}
+
 // Home page functional component
 const Home = () => {
-  playSound()
   // fade in effect
   const fadeLeft = {
     hidden: { opacity: 0, x: -100 },

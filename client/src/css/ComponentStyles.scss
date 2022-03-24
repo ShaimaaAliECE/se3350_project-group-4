@@ -249,7 +249,7 @@
   padding: 2rem 0.2rem 1.5rem 0.2rem;
   display: flex;
   justify-content: space-between;
-  
+
   align-items: center;
 
   .logo-text {
@@ -301,6 +301,7 @@
   width: 70%;
   line-height: 1rem;
 }
+
 .modal-overlay {
   width: 100vw;
   height: 100vh;
@@ -308,6 +309,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+
   .modal-container {
     width: 700px;
     height: 600px;
@@ -316,36 +318,70 @@
     background-image: linear-gradient(180deg, #000000 0%, #434343 104%);
     box-shadow: rgba(64, 223, 159, 0.9) 0px 5px 15px;
     display: flex;
-    flex-direction:column;
+    flex-direction: column;
     padding: 40px;
-    .modal-title{
+
+    .modal-title {
       display: inline-block;
       text-align: center;
       margin-top: 10px;
-      
+
     }
-    .modal-body{
+
+    .modal-body {
       display: flex;
       flex: 50%;
       font-size: 1.3rem;
       text-align: left;
       align-items: center;
       justify-content: center;
-      padding:30px;
+      padding: 30px;
     }
+
+    .modal-close-btn {
+      display: flex;
+      justify-content: flex-end;
+      font-size: large;
+    }
+
     .modal-footer {
       flex: 20%;
       display: flex;
       align-items: center;
       justify-content: center;
-      .modal-btn{
+
+      .modal-btn {
         margin: 10px;
         width: 250px;
         height: 55px;
         font-size: 1.1rem;
         font-weight: bold;
-        border:rgba(35, 35, 35, 0.95);
+        border: rgba(35, 35, 35, 0.95);
+      }
+
+      .modal-btn2 {
+        margin: 10px;
+        width: 500px;
+        height: 55px;
+        font-size: 1.1rem;
+        font-weight: bold;
+        border: rgba(35, 35, 35, 0.95);
       }
     }
+  }
+}
+
+.audio-player-wrapper {
+  position: fixed;
+  right: 1.5rem;
+  bottom: 1.5rem;
+  z-index: 99;
+
+  .audio-button {
+    width: 55px;
+    height: 55px;
+    font-size: 23px;
+    border-radius: 50%;
+    box-shadow: rgba(64, 223, 159, 0.9) 0px 0px 9px;
   }
 }
