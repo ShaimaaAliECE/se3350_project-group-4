@@ -44,7 +44,6 @@ const Arrays = (props) => {
   let right = "";
 
   let array = props.array;
-  let outOfOrder = false;
 
   const [buttonEnabled, setButtonState] = useState(false);
   const [isSplit, setIsSplit] = useState(false);
@@ -55,20 +54,29 @@ const Arrays = (props) => {
   const [winner, setWinner] = useState(false);
 
   function pushToMerged(value) {
-    outOfOrder = false;
-    console.log("pushToMerged");
-    console.log("child arrays");
-    console.log(childArrays.leftArray);
-    console.log(childArrays.rightArray);
-    console.log("merged array");
-    console.log(mergedArray);
-    console.log("cumulative array");
-    console.log(array);
+    let outOfOrder = false;
+    // console.log("pushToMerged");
+    // console.log("child arrays");
+    // console.log(childArrays.leftArray);
+    // console.log(childArrays.rightArray);
+    // console.log("merged array");
+    // console.log(mergedArray);
+    // console.log("cumulative array");
+    // console.log(array);
     // console.log("Hello");
 
-    for (let x = 0; x < array.length; x++) {
-      console.log(array[x]);
+    let temp = [];
+    for (let i of array) {
+      temp.push(parseInt(i));
     }
+
+    temp.sort(function (a, b) {
+      return a - b;
+    });
+
+    // for (let x = 0; x < array.length; x++) {
+    //   console.log(array[x]);
+    // }
 
     if (mergedArray.length === 0) {
       for (let x = 0; x < array.length; x++) {
@@ -80,10 +88,8 @@ const Arrays = (props) => {
         }
       }
     } else if (mergedArray.length !== 0) {
-      let temp = array.sort();
       let lastIndex = mergedArray.length - 1;
-      console.log(typeof value);
-      if (value == temp[lastIndex + 1]) {
+      if (parseInt(value) === parseInt(temp[lastIndex + 1])) {
         console.log("correct"); //debugging
       } else {
         outOfOrder = true;
