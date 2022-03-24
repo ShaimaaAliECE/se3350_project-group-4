@@ -9,7 +9,6 @@ import StartModal from "components/Modals/StartModal";
 import GameoverModal from "components/Modals/GameoverModal";
 import EndModal from "components/Modals/EndModal";
 
-
 import "../../../css/LevelStyles.css";
 
 class LevelOne extends React.Component {
@@ -93,6 +92,19 @@ class LevelOne extends React.Component {
             accompanied with explanation texts
           </li>
           <li>Navigate through the steps using the step player.</li>
+        </div>
+      );
+    };
+
+    const GameoverModalBody = () => {
+      return (
+        <div>
+          <a href="/ms/level1" className="dropdown-item">
+            <span className="label has-text-centered">
+              No Previous Level Available{" "}
+              <i className="fa-solid fa-triangle-exclamation"></i>
+            </span>
+          </a>
         </div>
       );
     };
@@ -220,7 +232,7 @@ class LevelOne extends React.Component {
             <div className="header mb-6">
               <LevelHeader level="1" />
               {/* !!!!!modal testing */}
-              <div className="box is-pink">
+              {/* <div className="box is-pink">
                 <h2>For Developer Only</h2>
                 <button
                   className="button is-success is-outlined"
@@ -234,7 +246,7 @@ class LevelOne extends React.Component {
                 >
                   gameover
                 </button>
-              </div>
+              </div> */}
               {/* !!!!!modal testing */}
             </div>
 
