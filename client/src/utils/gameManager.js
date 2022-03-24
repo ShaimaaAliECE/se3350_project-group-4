@@ -1,6 +1,7 @@
 import decode from "jwt-decode"; //used for decoding jwt
 import BACKGROUNDMUSIC from "assets/audios/BGM.mp3";
 import BACKGROUNDMUSIC_2 from "assets/audios/BGM2.mp3";
+import BACKGROUNDMUSIC_3 from "assets/audios/BGM3.mp3";
 
 //save key value as constant
 const JWT = "app_token_id";
@@ -34,7 +35,6 @@ const decreaseHealth = () => {
   localStorage.setItem(Health, _health);
 };
 
-
 const setIsPlayingBGM = (bool) => {
   localStorage.setItem(AudioPlaying, bool);
 };
@@ -43,18 +43,29 @@ const getIsPlayingBGM = () => {
   return localStorage.getItem(AudioPlaying);
 };
 
+var myAudio = new Audio(BACKGROUNDMUSIC);
+var myAudio2 = new Audio(BACKGROUNDMUSIC_2);
+var myAudio3 = new Audio(BACKGROUNDMUSIC_3);
 
-var myAudio = new Audio(BACKGROUNDMUSIC); 
-// play audio 
-const playBGM = (vol) => {
-  myAudio.volume = vol;
-  myAudio.play();
-}
-
-// play audio 
+// play audio
+const playBGM = (vol, trackID) => {
+  if (trackID === 1) {
+    myAudio.volume = vol;
+    myAudio.play();
+  } else if (trackID === 2) {
+    myAudio2.volume = vol;
+    myAudio2.play();
+  } else if (trackID === 3) {
+    myAudio3.volume = vol;
+    myAudio3.play();
+  }
+};
+// play audio
 const pauseBGM = (vol) => {
   myAudio.pause();
-}
+  myAudio2.pause();
+  myAudio3.pause();
+};
 
 // save json web token into local storage
 const setToken = (token) => {
@@ -117,5 +128,5 @@ global.auth = {
   getUser,
   isLogin,
   logout,
-  pauseBGM
+  pauseBGM,
 };
