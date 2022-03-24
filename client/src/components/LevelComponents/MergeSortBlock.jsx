@@ -45,7 +45,7 @@ const Arrays = (props) => {
       console.log(array[x]);
     }
 
-    if (mergedArray.length === 0) {
+    if (mergedArray.length == 0) {
       for (let x = 0; x < array.length; x++) {
         //iterate through the array
         if (value > parseInt(array[x])) {
@@ -54,12 +54,18 @@ const Arrays = (props) => {
           outOfOrder = true;
         }
       }
-    } else if (mergedArray.length !== 0) {
-      console.log(mergedArray[mergedArray.length - 1]);
-      if (parseInt(value) < mergedArray[mergedArray.length - 1]) {
+    } else if (mergedArray.length != 0) {
+      let temp = array.sort();
+      let lastIndex = mergedArray.length - 1;
+      if (value != temp[lastIndex + 1]) {
         console.log("no good"); //debugging
         outOfOrder = true;
       }
+      // console.log(mergedArray[mergedArray.length - 1]);
+      // if (parseInt(value) < mergedArray[mergedArray.length - 1]) {
+      //   console.log("no good"); //debugging
+      //   outOfOrder = true;
+      // }
     }
 
     if (outOfOrder === false) {
@@ -92,6 +98,38 @@ const Arrays = (props) => {
     });
     setIsMerging(true);
     notification();
+    correctAnswer();
+  }
+
+  function correctAnswer() {
+    if (!notified) {
+      toast.success("CORRECT !", {
+        autoClose: 300,
+        closeButton: false,
+        closeOnClick: true,
+        position: toast.POSITION.BOTTOM_CENTER,
+        onOpen: (props) => ShowCorrectReaction(),
+      });
+      notified = true;
+    }
+  }
+
+  function incorrectAnswer() {
+    if (!notified) {
+      toast.error("INCORRECT !", {
+        autoClose: 300,
+        closeButton: false,
+        position: toast.POSITION.BOTTOM_CENTER,
+        closeOnClick: true,
+        onOpen: (props) => ShowIncorrectReaction(),
+      });
+      notified = true;
+      if (global.auth.getCurrentHealth() > 0) {
+        global.auth.decreaseHealth();
+      } else {
+        props.handleGameover();
+      }
+    }
   }
 
   function selectValue(el) {
@@ -100,6 +138,9 @@ const Arrays = (props) => {
     let x = props.pushToMerged(value);
     if (!x) {
       el.target.style.display = "none";
+      correctAnswer();
+    } else if (x) {
+      incorrectAnswer();
     }
   }
 
@@ -155,49 +196,49 @@ const Arrays = (props) => {
   };
 
   function notification() {
-    if (mergedArray != null) {
-      // let sorted = true;
-      //array is sorted by default
-      for (let x = 0; x < mergedArray.length - 1; x++) {
-        //iterate through the array
-        if (parseInt(mergedArray[x]) > parseInt(mergedArray[x + 1])) {
-          //compares current and next value
-          sorted = false; //array no longer sorted
-          //console.log("L"); //debugging
-          //console.log(mergedArray);
-          //console.log(array);
-        }
-      }
-      //external notifier function
-      if (!sorted && !notified) {
-        // console.log(mergedArray);
-        // console.log("bad");
-        toast.error("INCORRECT !", {
-          autoClose: 300,
-          closeButton: false,
-          position: toast.POSITION.BOTTOM_CENTER,
-          closeOnClick: true,
-          onOpen: (props) => ShowIncorrectReaction(),
-        });
-        notified = true;
-        if (global.auth.getCurrentHealth() > 0) {
-          global.auth.decreaseHealth();
-        } else {
-          props.handleGameover();
-        }
-      }
-      if (sorted && !notified) {
-        // CorrectAnswer();
-        toast.success("CORRECT !", {
-          autoClose: 300,
-          closeButton: false,
-          closeOnClick: true,
-          position: toast.POSITION.BOTTOM_CENTER,
-          onOpen: (props) => ShowCorrectReaction(),
-        });
-        notified = true;
-      }
-    }
+    // if (mergedArray != null) {
+    //   // let sorted = true;
+    //   //array is sorted by default
+    //   // for (let x = 0; x < mergedArray.length - 1; x++) {
+    //   //   //iterate through the array
+    //   //   if (parseInt(mergedArray[x]) > parseInt(mergedArray[x + 1])) {
+    //   //     //compares current and next value
+    //   //     sorted = false; //array no longer sorted
+    //   //     //console.log("L"); //debugging
+    //   //     //console.log(mergedArray);
+    //   //     //console.log(array);
+    //   //   }
+    //   // }
+    //   //external notifier function
+    //   if (!sorted && !notified) {
+    //     // console.log(mergedArray);
+    //     // console.log("bad");
+    //     toast.error("INCORRECT !", {
+    //       autoClose: 300,
+    //       closeButton: false,
+    //       position: toast.POSITION.BOTTOM_CENTER,
+    //       closeOnClick: true,
+    //       onOpen: (props) => ShowIncorrectReaction(),
+    //     });
+    //     notified = true;
+    //     if (global.auth.getCurrentHealth() > 0) {
+    //       global.auth.decreaseHealth();
+    //     } else {
+    //       props.handleGameover();
+    //     }
+    //   }
+    //   if (sorted && !notified) {
+    //     // CorrectAnswer();
+    //     toast.success("CORRECT !", {
+    //       autoClose: 300,
+    //       closeButton: false,
+    //       closeOnClick: true,
+    //       position: toast.POSITION.BOTTOM_CENTER,
+    //       onOpen: (props) => ShowCorrectReaction(),
+    //     });
+    //     notified = true;
+    //   }
+    // }
 
     //merging is done if merged array length = original array length
     if (mergedArray.length === 10) {
