@@ -9,6 +9,9 @@ import StartModal from "components/Modals/StartModal";
 import GameoverModal from "components/Modals/GameoverModal";
 import EndModal from "components/Modals/EndModal";
 
+
+import "../../../css/LevelStyles.css";
+
 class LevelOne extends React.Component {
   constructor(props) {
     super(props);
@@ -28,9 +31,7 @@ class LevelOne extends React.Component {
       // ----- Game State ----- //
       level: 1,
       lives: 3,
-      time: 0, //total time (ms) that the timer has been running since start/reset
-      timerOn: false, //boolean value for if the timer is on
-      timerStart: 0, // when the timer was started (or the past projected start time if the timer is resumed)
+      time: 0,
       lowerLimit: 1,
       upperLimit: 20,
       boxCount: 10,
@@ -44,7 +45,6 @@ class LevelOne extends React.Component {
     this.handleStart = this.handleStart.bind(this);
     this.handleEnd = this.handleEnd.bind(this);
     this.handleGameover = this.handleGameover.bind(this);
-    this.stopTimer = this.stopTimer.bind(this);
   }
 
   //** Modal Related functions **/
@@ -54,48 +54,25 @@ class LevelOne extends React.Component {
     this.generateArray();
     // hide start modal
     this.setState({ showModal: false, showStartModal: false });
-    // set current level
-    global.auth.setCurrentLevel("1");
     // start timer
-    this.startTimer();
   }
-
-  // timer functions
-  startTimer = () => {
-    this.setState({
-      timerOn: true,
-      time: this.state.time,
-      timerStart: Date.now() - this.state.time,
-    });
-    this.timer = setInterval(() => {
-      this.setState({
-        time: Date.now() - this.state.timerStart,
-      });
-    }, 10);
-  };
-
-  stopTimer = () => {
-    this.setState({ timerOn: false });
-    clearInterval(this.timer);
-  };
 
   // executes when the level ends
   handleEnd() {
     // end timer
-    this.stopTimer();
     // show end modal
     this.setState({
       showModal: true,
       showEndModal: true,
       showGameoverModal: false,
     });
+
     // save (username, time, remaining lives, completion date as logged data)
   }
 
   // executes when player life reaches 0
   handleGameover() {
     // end timer
-    this.stopTimer();
     // show gameover modal
     this.setState({
       showModal: true,
@@ -116,18 +93,6 @@ class LevelOne extends React.Component {
             accompanied with explanation texts
           </li>
           <li>Navigate through the steps using the step player.</li>
-        </div>
-      );
-    };
-
-    const GameoverModalBody = () => {
-      return (
-        <div>
-          <a href="/ms/level1" className="dropdown-item">
-            <span className="label has-text-centered">
-              No Previous Level Available <i className="fa-solid fa-triangle-exclamation"></i> 
-            </span>
-          </a>
         </div>
       );
     };
@@ -158,11 +123,7 @@ class LevelOne extends React.Component {
     } else if (this.state.showGameoverModal && !this.state.showEndModal) {
       return (
         // show gameover modal
-        <GameoverModal
-          title={this.state.level}
-          time={this.state.time}
-          dropdownItems={<GameoverModalBody />}
-        />
+        <GameoverModal title={this.state.level} time={this.state.time} />
       );
     }
   }
@@ -246,7 +207,7 @@ class LevelOne extends React.Component {
 
   //rendering block with the state of the box
   renderBlock(i) {
-    return <Block value={this.state.boxes[i - 1]} />;
+    return <Block className="level-block is-light is-outlined is-focused" value={this.state.boxes[i - 1]} />;
   }
 
   render() {
@@ -257,11 +218,7 @@ class LevelOne extends React.Component {
         ) : (
           <div>
             <div className="header mb-6">
-              <LevelHeader
-                level="1"
-                startTimer={this.startTimer}
-                stopTimer={this.stopTimer}
-              />
+              <LevelHeader level="1" />
               {/* !!!!!modal testing */}
               <div className="box is-pink">
                 <h2>For Developer Only</h2>
@@ -281,44 +238,66 @@ class LevelOne extends React.Component {
               {/* !!!!!modal testing */}
             </div>
 
-            <div className="body">
-              {/* {this.generateBlocks()} */}
-              <div className="box-surround">
-                <div id="top">{this.renderBlock(1)}</div>
-                <div id="second">
-                  {this.renderBlock(2)}
+            {/* {this.generateBlocks()} */}
+            <div className="initial">
+              {this.renderBlock(1)}
+              <div className="split">
+                <div className="left">
+                  {this.renderBlock(2)} 
+                  
+                  <div className="split">
+                    <div className="left">
+                      {this.renderBlock(4)}
+                    </div>
+                    <div className="right">
+                      {this.renderBlock(5)}
+
+                      <div className="split">
+                        <div className="left">
+                          {this.renderBlock(8)}
+                        </div>
+                        <div className="right">
+                          {this.renderBlock(9)}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="right">
                   {this.renderBlock(3)}
-                </div>
-                <div id="third">
-                  {this.renderBlock(4)}
-                  {this.renderBlock(5)}
-                  {this.renderBlock(6)}
-                  {this.renderBlock(7)}
-                </div>
-                <div id="fourth">
-                  <Block />
-                  <Block />
-                  {this.renderBlock(8)}
-                  {this.renderBlock(9)}
-                  <Block />
-                  <Block />
-                  {this.renderBlock(10)}
-                  {this.renderBlock(11)}
+
+                  <div className="split">
+                    <div className="left">
+                      {this.renderBlock(6)}
+                    </div>
+                    <div className="right">
+                      {this.renderBlock(7)}
+
+                      <div className="split">
+                        <div className="left">
+                          {this.renderBlock(10)}
+                        </div>
+                        <div className="right">
+                          {this.renderBlock(11)}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
-              <div className="alg-steps">
-                <StepsScroller
-                  lineOne={this.state.lineOne}
-                  lineTwo={this.state.lineTwo}
-                  lineThree={this.state.lineThree}
-                  handleReset={this.handleReset}
-                  handleNextStep={this.handleNextStep}
-                  handlePrevStep={this.handlePrevStep}
-                  enablePrev={true}
-                  enableReset={true}
-                  enableNext={true}
-                />
-              </div>
+            </div>
+            <div className="alg-steps">
+              <StepsScroller
+                lineOne={this.state.lineOne}
+                lineTwo={this.state.lineTwo}
+                lineThree={this.state.lineThree}
+                handleReset={this.handleReset}
+                handleNextStep={this.handleNextStep}
+                handlePrevStep={this.handlePrevStep}
+                enablePrev={true}
+                enableReset={true}
+                enableNext={true}
+              />
             </div>
           </div>
         )}
