@@ -30,7 +30,9 @@ class LevelOne extends React.Component {
       // ----- Game State ----- //
       level: 1,
       lives: 3,
-      time: 0,
+      time: 0, //total time (ms) that the timer has been running since start/reset
+      timerOn: false, //boolean value for if the timer is on
+      timerStart: 0, // when the timer was started (or the past projected start time if the timer is resumed)
       lowerLimit: 1,
       upperLimit: 20,
       boxCount: 10,
@@ -44,6 +46,7 @@ class LevelOne extends React.Component {
     this.handleStart = this.handleStart.bind(this);
     this.handleEnd = this.handleEnd.bind(this);
     this.handleGameover = this.handleGameover.bind(this);
+    this.stopTimer = this.stopTimer.bind(this);
   }
 
   //** Modal Related functions **/
@@ -55,6 +58,26 @@ class LevelOne extends React.Component {
     this.setState({ showModal: false, showStartModal: false });
     // start timer
   }
+
+    // timer functions
+    startTimer = () => {
+      this.setState({
+        timerOn: true,
+        time: this.state.time,
+        timerStart: Date.now() - this.state.time,
+      });
+      this.timer = setInterval(() => {
+        this.setState({
+          time: Date.now() - this.state.timerStart,
+        });
+      }, 1);
+    };
+  
+    stopTimer = () => {
+      this.setState({ timerOn: false });
+      clearInterval(this.timer);
+    };
+  
 
   // executes when the level ends
   handleEnd() {
@@ -146,7 +169,7 @@ class LevelOne extends React.Component {
     let currentInstr = [];
     var sorting = new MergeSort(1, 20, 10);
     // console.log(sorting);
-    sorting.sort(sorting.getArray(), currentOrd, [], currentInstr, false);
+    sorting.sort(sorting.getArray(), currentOrd, [], currentInstr, false, true);
     //retrieves array of instructions and order of steps
     this.setState({
       order: currentOrd,
@@ -193,16 +216,16 @@ class LevelOne extends React.Component {
   handlePrevStep(e) {
     const box = this.state.boxes.slice();
     var step = this.state.step; //block order to retrieve
-    const currentBox = this.state.boxIndex[step] + 1;
-    box[currentBox] = this.state.order[step];
-    // console.log(box);
+    if (step == 0) return
     step--;
+    box[step] = null
+
     this.setState({
       boxes: box,
       step: step,
-      lineOne: this.state.instructions[step + 1],
+      lineOne: this.state.instructions[step - 1],
       lineTwo: this.state.instructions[step],
-      lineThree: this.state.instructions[step - 1],
+      lineThree: this.state.instructions[step + 1],
     });
   }
 
@@ -230,50 +253,39 @@ class LevelOne extends React.Component {
         ) : (
           <div>
             <div className="header mb-6">
-              <LevelHeader level="1" />
-              {/* !!!!!modal testing */}
-              {/* <div className="box is-pink">
-                <h2>For Developer Only</h2>
-                <button
-                  className="button is-success is-outlined"
-                  onClick={this.handleEnd}
-                >
-                  level complete
-                </button>
-                <button
-                  className="button is-danger is-outlined"
-                  onClick={this.handleGameover}
-                >
-                  gameover
-                </button>
-              </div> */}
-              {/* !!!!!modal testing */}
+              <LevelHeader
+                level="1"
+                lives={global.auth.getCurrentHealth()}
+                startTimer={this.startTimer}
+                stopTimer={this.stopTimer}
+                handleGameover={this.handleGameover}
+              />
             </div>
 
             {/* {this.generateBlocks()} */}
             <div className="initial">
               <br></br>
-              {this.renderBlock(1)} 
+              {this.renderBlock(1)}
               <div className="split">
                 <div className="left">
-                <br></br>
+                  <br></br>
                   {this.renderBlock(2)}
                   <div className="split">
                     <div className="left">
-                    <br></br>
+                      <br></br>
                       {this.renderBlock(4)}
                     </div>
                     <div className="right">
-                    <br></br>
+                      <br></br>
                       {this.renderBlock(5)}
 
                       <div className="split">
                         <div className="left">
-                        <br></br>
+                          <br></br>
                           {this.renderBlock(8)}
                         </div>
                         <div className="right">
-                        <br></br>
+                          <br></br>
                           {this.renderBlock(9)}
                         </div>
                       </div>
@@ -281,25 +293,25 @@ class LevelOne extends React.Component {
                   </div>
                 </div>
                 <div className="right">
-                <br></br>
+                  <br></br>
                   {this.renderBlock(3)}
 
                   <div className="split">
                     <div className="left">
-                    <br></br>
+                      <br></br>
                       {this.renderBlock(6)}
                     </div>
                     <div className="right">
-                    <br></br>
+                      <br></br>
                       {this.renderBlock(7)}
 
                       <div className="split">
                         <div className="left">
-                        <br></br>
+                          <br></br>
                           {this.renderBlock(10)}
                         </div>
                         <div className="right">
-                        <br></br>
+                          <br></br>
                           {this.renderBlock(11)}
                         </div>
                       </div>
