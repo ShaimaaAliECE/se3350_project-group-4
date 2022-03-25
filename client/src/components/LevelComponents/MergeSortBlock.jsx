@@ -19,9 +19,11 @@ function SoundError() {
 function notifer() {
   if (!notified) {
     if (!sorted) {
+      toast.clearWaitingQueue();
       SoundError(); //bad sound
       toast.error("INCORRECT", { autoClose: 500 });
     } else if (sorted) {
+      toast.clearWaitingQueue();
       SoundSuccess();
       toast.success("CORRECT", { autoClose: 500 });
     }
