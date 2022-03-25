@@ -279,6 +279,7 @@ class LevelTwo extends React.Component {
                 array={this.state.initialArr}
                 label="initial"
                 order={this.state.splitOrder}
+                initialSize={this.state.boxCount}
                 nextStep={this.handleNextStep}
                 handleGameover={this.handleGameover}
                 handleEnd={this.handleEnd}

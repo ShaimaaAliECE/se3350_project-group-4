@@ -206,7 +206,6 @@ class LevelFive extends React.Component {
     this.setState({ order: val });
   }
 
-  
   //reset button handling
   handleReset(e) {
     // const box = Array(11).fill(null);
@@ -285,6 +284,7 @@ class LevelFive extends React.Component {
                 label="initial"
                 order={this.state.splitOrder}
                 nextStep={this.handleNextStep}
+                initialSize={this.state.boxCount}
               />
             </div>
           </div>

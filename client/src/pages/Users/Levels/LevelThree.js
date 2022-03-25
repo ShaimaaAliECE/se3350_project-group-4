@@ -276,6 +276,7 @@ class LevelThree extends React.Component {
                 label="initial"
                 order={this.state.splitOrder}
                 nextStep={this.handleNextStep}
+                initialSize={this.state.boxCount}
               />
             </div>
           </div>

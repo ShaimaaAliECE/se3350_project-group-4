@@ -182,7 +182,7 @@ const Arrays = (props) => {
       setButtonState(true);
     } else {
       //If the condition is not met, check if a parent exists, and pass this function through again.
-      if (array.length !== 10) {
+      if (array.length !== props.initialSize) {
         props.evaluateOtherSplit(condition);
       }
     }
@@ -196,7 +196,7 @@ const Arrays = (props) => {
       return true;
     } else {
       //Check if a parent exists, if so, check if other arrays are next in the order.
-      if (array.length !== 10) {
+      if (array.length !== props.initialSize) {
         props.evaluateOtherSplit(props.order[step]);
       }
       //If the next array in order is not found, return false and show no Split buttons.
@@ -227,7 +227,7 @@ const Arrays = (props) => {
 
   function notification() {
     //merging is done if merged array length = original array length
-    if (mergedArray.length === 10) {
+    if (mergedArray.length === props.initialSize) {
       // console.log("merging completed");
       setIsMerged(isMerged);
       setIsMerging(!isMerging);
