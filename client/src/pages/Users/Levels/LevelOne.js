@@ -216,10 +216,10 @@ class LevelOne extends React.Component {
   handlePrevStep(e) {
     const box = this.state.boxes.slice();
     var step = this.state.step; //block order to retrieve
-    const currentBox = this.state.boxIndex[step] + 1;
-    box[currentBox] = this.state.order[step];
-    // console.log(box);
+    if (step == 0) return
     step--;
+    box[step] = null
+
     this.setState({
       boxes: box,
       step: step,
