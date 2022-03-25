@@ -256,7 +256,7 @@ class LevelFour extends React.Component {
                 lives={global.auth.getCurrentHealth()}
               />
               {/* !!!!!modal testing */}
-              <div className="box is-pink">
+              {/* <div className="box is-pink">
                 <h2>For Developer Only</h2>
                 <button
                   className="button is-success is-outlined"
@@ -270,7 +270,7 @@ class LevelFour extends React.Component {
                 >
                   Gameover
                 </button>
-              </div>
+              </div> */}
               {/* !!!!!modal testing */}
             </div>
             <div>
