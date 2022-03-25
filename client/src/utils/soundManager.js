@@ -19,8 +19,6 @@ function SoundManager({ setOpenModal, modalOpen }) {
     global.auth.playBGM(bgmVol, trackID);
   }
 
-  
-
   return (
     <Modal isOpen={modalOpen} ariaHideApp={false} className="modal-overlay">
       <Animated
@@ -34,8 +32,12 @@ function SoundManager({ setOpenModal, modalOpen }) {
           </div>
           <div className="modal-body">
             <div>
-              <span className="label has-text-primary">Volume: {Math.round(bgmVol * 100)}</span>
-              <span className="label has-text-primary">Playing: Track {trackID} </span>
+              <span className="label has-text-primary">
+                Volume: {Math.round(bgmVol * 100)}
+              </span>
+              <span className="label has-text-primary">
+                Playing: Track {trackID}{" "}
+              </span>
               <progress
                 className="progress is-primary"
                 value={bgmVol * 100}

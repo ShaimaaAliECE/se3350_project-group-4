@@ -22,7 +22,7 @@ const StartModal = (props) => {
             <div>
               <strong className="has-text-primary">Level Description:</strong>
               <span className="has-text-light mt-3 ml-5">
-                <ol>
+                <ul>
                   <li>
                     A set of{" "}
                     <span className="has-text-primary">{boxCount}</span> numbers
@@ -31,7 +31,7 @@ const StartModal = (props) => {
                     <span className="has-text-primary">{upperLimit}</span>)
                   </li>
                   {body}
-                </ol>
+                </ul>
               </span>
             </div>
           </div>
