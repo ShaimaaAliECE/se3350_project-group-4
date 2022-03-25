@@ -3,7 +3,7 @@ import Algorithm from "./abstractAlgorithm.mjs";
 class MergeSort extends Algorithm {}
 
 //The function that is called
-MergeSort.prototype.sort = function (array, order, orderS, instruction, flag) {
+MergeSort.prototype.sort = function (array, order, orderS, instruction, flag, level1Flag) {
   //Determine if array needs to be cut in half
   if (array.length < 2) {
     return array;
@@ -12,8 +12,12 @@ MergeSort.prototype.sort = function (array, order, orderS, instruction, flag) {
   //Track iteration
   order.push("" + array);
   orderS.push("" + array);
-  instruction.push("Half this array: [" + array + "]");
-
+  if (array.length != 10){
+    instruction.push("Derive this half: [" + array + "]");
+  }
+  if (array.length == 2) {
+    instruction.push("Sort this array: [" + array + "]");
+  }
   //Record single digit arrays using a flag
   if (flag) {
     order.push("" + array[0]);
@@ -32,15 +36,15 @@ MergeSort.prototype.sort = function (array, order, orderS, instruction, flag) {
   }
 
   //Send array back to determine if it needs to be halved again
-  const sort_left = this.sort(array_left, order, orderS, instruction);
-  const sort_right = this.sort(array_right, order, orderS, instruction, flag);
+  const sort_left = this.sort(array_left, order, orderS, instruction, null, level1Flag);
+  const sort_right = this.sort(array_right, order, orderS, instruction, flag, level1Flag);
 
   //Merge the masses!!!
-  return this.merge(sort_left, sort_right, order, instruction);
+  return this.merge(sort_left, sort_right, order, instruction, level1Flag);
 };
 
 //To merge arrays backtogether
-MergeSort.prototype.merge = function (left, right, order, instruction) {
+MergeSort.prototype.merge = function (left, right, order, instruction, flag) {
   let arr = [];
 
   const tempL = JSON.parse(JSON.stringify(left));
@@ -81,8 +85,14 @@ MergeSort.prototype.merge = function (left, right, order, instruction) {
   //   "Combine [" + tempL + "] and [" + tempR + "] in order to get [" + arr + "]."
   // );
 
-  while (tempInst.length) {
-    instruction.push(tempInst.shift());
+  if (!flag) {
+    while (tempInst.length) {
+      instruction.push(tempInst.shift());
+    }
+  } else if (arr.length != 2){
+    instruction.push(
+      "Combine [" + tempL + "] and [" + tempR + "] in order to get [" + arr + "]."
+    );
   }
 
   return arr;

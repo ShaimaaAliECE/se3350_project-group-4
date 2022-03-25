@@ -169,7 +169,7 @@ class LevelOne extends React.Component {
     let currentInstr = [];
     var sorting = new MergeSort(1, 20, 10);
     // console.log(sorting);
-    sorting.sort(sorting.getArray(), currentOrd, [], currentInstr, false);
+    sorting.sort(sorting.getArray(), currentOrd, [], currentInstr, false, true);
     //retrieves array of instructions and order of steps
     this.setState({
       order: currentOrd,
@@ -223,9 +223,9 @@ class LevelOne extends React.Component {
     this.setState({
       boxes: box,
       step: step,
-      lineOne: this.state.instructions[step + 1],
+      lineOne: this.state.instructions[step - 1],
       lineTwo: this.state.instructions[step],
-      lineThree: this.state.instructions[step - 1],
+      lineThree: this.state.instructions[step + 1],
     });
   }
 
