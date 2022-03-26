@@ -183,13 +183,12 @@ class LevelThree extends React.Component {
     // Create array using given algorithm class
     var sorting = new MergeSort(1, 20, 10);
 
-    sorting.sort(sorting.getArray(), currentOrd, splitOrd, currentInstr, false);
+    sorting.sort(sorting.getArray(), currentOrd, splitOrd, [], [], false);
     //retrieves array of instructions and order of steps
     this.setState({
       initialArr: sorting.getArray(),
       order: currentOrd,
       splitOrder: splitOrd,
-      instructions: currentInstr,
     });
   }
 
@@ -253,7 +252,7 @@ class LevelThree extends React.Component {
                 lives={global.auth.getCurrentHealth()}
               />
               {/* !!!!!modal testing */}
-              <div className="box is-pink">
+              {/* <div className="box is-pink">
                 <h2>For Developer Only</h2>
                 <button
                   className="button is-success is-outlined"
@@ -267,7 +266,7 @@ class LevelThree extends React.Component {
                 >
                   Gameover
                 </button>
-              </div>
+              </div> */}
               {/* !!!!!modal testing */}
             </div>
             <div>
@@ -277,6 +276,8 @@ class LevelThree extends React.Component {
                 order={this.state.splitOrder}
                 nextStep={this.handleNextStep}
                 initialSize={this.state.boxCount}
+                handleGameover={this.handleGameover}
+                handleEnd={this.handleEnd}
               />
             </div>
           </div>

@@ -128,6 +128,7 @@ const Arrays = (props) => {
       leftArray: array_left,
       rightArray: array_right,
     });
+
     setIsMerging(true);
     notification();
     correctAnswer();
@@ -184,8 +185,11 @@ const Arrays = (props) => {
       setButtonState(true);
     } else {
       //If the condition is not met, check if a parent exists, and pass this function through again.
-      if (array.length !== props.initialSize) {
-        props.evaluateOtherSplit(condition);
+      if (
+        array.length !== props.initialSize &&
+        props.initialSize !== undefined
+      ) {
+        if (props.evaluateOtherSplit) props.evaluateOtherSplit(condition);
       }
     }
     //No need to return anything, either the screen is updated by the override, or there is no change required.
@@ -198,8 +202,13 @@ const Arrays = (props) => {
       return true;
     } else {
       //Check if a parent exists, if so, check if other arrays are next in the order.
-      if (array.length !== props.initialSize) {
-        props.evaluateOtherSplit(props.order[step]);
+      console.log(props.initialSize);
+      if (
+        array.length !== props.initialSize &&
+        props.initialSize !== undefined
+      ) {
+        if (props.evaluateOtherSplit)
+          props.evaluateOtherSplit(props.order[step]);
       }
       //If the next array in order is not found, return false and show no Split buttons.
       return false;
@@ -229,7 +238,7 @@ const Arrays = (props) => {
 
   function notification() {
     //merging is done if merged array length = original array length
-    if (mergedArray.length === props.initialSize) {
+    if (mergedArray.length === parseInt(props.initialSize)) {
       // console.log("merging completed");
       setIsMerged(isMerged);
       setIsMerging(!isMerging);
@@ -241,6 +250,7 @@ const Arrays = (props) => {
           sorted = false;
         }
       }
+      console.log(sorted);
       performGameEnd(sorted);
     }
   }
@@ -295,6 +305,7 @@ const Arrays = (props) => {
               setButtonState={buttonEnabled}
               nextStep={props.nextStep}
               handleGameover={props.handleGameover}
+              initialSize={props.initialSize}
             />
           </div>
           <div className="right">
@@ -307,6 +318,7 @@ const Arrays = (props) => {
               parentButton={buttonEnabled}
               nextStep={props.nextStep}
               handleGameover={props.handleGameover}
+              initialSize={props.initialSize}
             />
           </div>
         </div>

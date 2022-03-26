@@ -47,7 +47,6 @@ class LevelFive extends React.Component {
     this.handleStart = this.handleStart.bind(this);
     this.handleEnd = this.handleEnd.bind(this);
     this.handleGameover = this.handleGameover.bind(this);
-    this.checkCorrect = this.checkCorrect.bind(this);
     this.stopTimer = this.stopTimer.bind(this);
   }
 
@@ -186,18 +185,16 @@ class LevelFive extends React.Component {
   //creates array at the rendering of the class
   generateArray() {
     let currentOrd = [];
-    let currentInstr = [];
     let splitOrd = [];
     // Create array using given algorithm class
     var sorting = new MergeSort(1, 100, 50);
 
-    sorting.sort(sorting.getArray(), currentOrd, splitOrd, currentInstr, false);
+    sorting.sort(sorting.getArray(), currentOrd, splitOrd, [], [], false);
     //retrieves array of instructions and order of steps
     this.setState({
       initialArr: sorting.getArray(),
       order: currentOrd,
       splitOrder: splitOrd,
-      instructions: currentInstr,
     });
   }
 
@@ -260,6 +257,23 @@ class LevelFive extends React.Component {
                 stopTimer={this.stopTimer}
                 lives={global.auth.getCurrentHealth()}
               />
+              {/* !!!!!modal testing */}
+              {/* <div className="box is-pink">
+                <h2>For Developer Only</h2>
+                <button
+                  className="button is-success is-outlined"
+                  onClick={this.handleEnd}
+                >
+                  Level complete
+                </button>
+                <button
+                  className="button is-danger is-outlined"
+                  onClick={this.handleGameover}
+                >
+                  Gameover
+                </button>
+              </div> */}
+              {/* !!!!!modal testing */}
             </div>
             <div>
               <Arrays
@@ -268,6 +282,8 @@ class LevelFive extends React.Component {
                 order={this.state.splitOrder}
                 nextStep={this.handleNextStep}
                 initialSize={this.state.boxCount}
+                handleGameover={this.handleGameover}
+                handleEnd={this.handleEnd}
               />
             </div>
           </div>
