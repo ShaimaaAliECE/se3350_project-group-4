@@ -210,6 +210,10 @@ class LevelOne extends React.Component {
       lineTwo: this.state.instructions[step],
       lineThree: this.state.instructions[step + 1],
     });
+
+    if (step === 21) {
+      this.handleEnd() //end on last step
+    }
   }
 
   // handle previous step
