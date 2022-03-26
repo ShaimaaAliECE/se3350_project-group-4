@@ -128,6 +128,7 @@ const Arrays = (props) => {
       leftArray: array_left,
       rightArray: array_right,
     });
+
     setIsMerging(true);
     notification();
     correctAnswer();

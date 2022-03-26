@@ -187,7 +187,14 @@ class LevelTwo extends React.Component {
       this.state.boxCount
     );
 
-    sorting.sort(sorting.getArray(), currentOrd, splitOrd, currentInstr, false);
+    sorting.sort(
+      sorting.getArray(),
+      currentOrd,
+      splitOrd,
+      currentInstr,
+      [],
+      false
+    );
     //retrieves array of instructions and order of steps
     this.setState({
       initialArr: sorting.getArray(),

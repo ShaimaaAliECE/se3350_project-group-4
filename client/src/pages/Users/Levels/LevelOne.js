@@ -59,25 +59,24 @@ class LevelOne extends React.Component {
     // start timer
   }
 
-    // timer functions
-    startTimer = () => {
+  // timer functions
+  startTimer = () => {
+    this.setState({
+      timerOn: true,
+      time: this.state.time,
+      timerStart: Date.now() - this.state.time,
+    });
+    this.timer = setInterval(() => {
       this.setState({
-        timerOn: true,
-        time: this.state.time,
-        timerStart: Date.now() - this.state.time,
+        time: Date.now() - this.state.timerStart,
       });
-      this.timer = setInterval(() => {
-        this.setState({
-          time: Date.now() - this.state.timerStart,
-        });
-      }, 1);
-    };
-  
-    stopTimer = () => {
-      this.setState({ timerOn: false });
-      clearInterval(this.timer);
-    };
-  
+    }, 1);
+  };
+
+  stopTimer = () => {
+    this.setState({ timerOn: false });
+    clearInterval(this.timer);
+  };
 
   // executes when the level ends
   handleEnd() {
@@ -169,7 +168,7 @@ class LevelOne extends React.Component {
     let currentInstr = [];
     var sorting = new MergeSort(1, 20, 10);
     // console.log(sorting);
-    sorting.sort(sorting.getArray(), currentOrd, [], currentInstr, false, true);
+    sorting.sort(sorting.getArray(), currentOrd, [], [], currentInstr, false);
     //retrieves array of instructions and order of steps
     this.setState({
       order: currentOrd,
@@ -216,9 +215,9 @@ class LevelOne extends React.Component {
   handlePrevStep(e) {
     const box = this.state.boxes.slice();
     var step = this.state.step; //block order to retrieve
-    if (step == 0) return
+    if (step == 0) return;
     step--;
-    box[step] = null
+    box[step] = null;
 
     this.setState({
       boxes: box,

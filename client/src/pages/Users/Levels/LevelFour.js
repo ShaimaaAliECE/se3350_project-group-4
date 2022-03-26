@@ -181,18 +181,16 @@ class LevelFour extends React.Component {
   //creates array at the rendering of the class
   generateArray() {
     let currentOrd = [];
-    let currentInstr = [];
     let splitOrd = [];
     // Create array using given algorithm class
     var sorting = new MergeSort(1, 50, 20);
 
-    sorting.sort(sorting.getArray(), currentOrd, splitOrd, currentInstr, false);
+    sorting.sort(sorting.getArray(), currentOrd, splitOrd, [], [], false);
     //retrieves array of instructions and order of steps
     this.setState({
       initialArr: sorting.getArray(),
       order: currentOrd,
       splitOrder: splitOrd,
-      instructions: currentInstr,
     });
   }
 
@@ -280,6 +278,8 @@ class LevelFour extends React.Component {
                 order={this.state.splitOrder}
                 nextStep={this.handleNextStep}
                 initialSize={this.state.boxCount}
+                handleGameover={this.handleGameover}
+                handleEnd={this.handleEnd}
               />
             </div>
           </div>

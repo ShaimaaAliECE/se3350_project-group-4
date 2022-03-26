@@ -290,11 +290,10 @@ class CustomLevel extends React.Component {
     size = arraySize;
     //Generate the array to be sorted
     let orderT = [];
-    let currentInstr = [];
     let splitOrd = [];
 
     const sorting = new MergeSort(min, max, arraySize);
-    sorting.sort(sorting.getArray(), orderT, splitOrd, currentInstr, false);
+    sorting.sort(sorting.getArray(), orderT, splitOrd, [], [], false);
 
     //Gather the inputed information and store
     this.setState({
