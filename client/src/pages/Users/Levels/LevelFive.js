@@ -9,6 +9,7 @@ import StartModal from "components/Modals/StartModal";
 import GameoverModal from "components/Modals/GameoverModal";
 import EndModal from "components/Modals/EndModal";
 import { toast } from "react-toastify";
+import axios from "utils/axios";
 
 //LEVEL 4 must have a set of 20 numbers are randomly generated out of the range (1-50)
 class LevelFive extends React.Component {
@@ -48,6 +49,7 @@ class LevelFive extends React.Component {
     this.handleEnd = this.handleEnd.bind(this);
     this.handleGameover = this.handleGameover.bind(this);
     this.stopTimer = this.stopTimer.bind(this);
+    this.logGameData = this.logGameData.bind(this);
   }
 
   //** Modal Related functions **/
@@ -62,6 +64,28 @@ class LevelFive extends React.Component {
     // start timer
     this.startTimer();
   }
+
+  logGameData = () => {
+    let id;
+    let today = new Date();
+    let dd = String(today.getDate()).padStart(2, "0");
+    let mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0
+    let yyyy = today.getFullYear();
+    today = yyyy + "-" + mm + "-" + dd;
+    axios.get("/level5").then((res) => {
+      id = res.data.length + 1;
+    });
+    const logItem = {
+      id: id,
+      time: this.state.time,
+      accuracy: global.auth.getCurrentHealth(),
+      username: global.auth.getUser().username,
+      complete_date: today,
+    };
+    axios.post("/level5", logItem).then((res) => {
+      toast.success("Your data was recorded successfully!");
+    });
+  };
 
   // timer functions
   startTimer = () => {
@@ -93,6 +117,8 @@ class LevelFive extends React.Component {
       showEndModal: true,
       showGameoverModal: false,
     });
+    // save (username, time, remaining lives, completion date as logged data)
+    this.logGameData();
   }
 
   // executes when player life reaches 0
@@ -108,6 +134,7 @@ class LevelFive extends React.Component {
       showGameoverModal: true,
     });
     // save (username, time, remaining lives, completion date as logged data)
+    this.logGameData();
   }
 
   // render the appropriate modal based on current game state
@@ -257,23 +284,6 @@ class LevelFive extends React.Component {
                 stopTimer={this.stopTimer}
                 lives={global.auth.getCurrentHealth()}
               />
-              {/* !!!!!modal testing */}
-              {/* <div className="box is-pink">
-                <h2>For Developer Only</h2>
-                <button
-                  className="button is-success is-outlined"
-                  onClick={this.handleEnd}
-                >
-                  Level complete
-                </button>
-                <button
-                  className="button is-danger is-outlined"
-                  onClick={this.handleGameover}
-                >
-                  Gameover
-                </button>
-              </div> */}
-              {/* !!!!!modal testing */}
             </div>
             <div>
               <Arrays

@@ -5,6 +5,7 @@ import { CSSTransition, TransitionGroup } from "react-transition-group";
 import { Animated } from "react-animated-css";
 import { toast } from "react-toastify";
 import axios from "utils/axios";
+import { formatTime, formatAccuracy } from "utils/format";
 
 import {
   AreaChart,
@@ -100,7 +101,7 @@ const Analytics = () => {
   // get the average accuracy of the corresponding level
   const averageAccuracy = () => {
     const average = parseFloat(
-      items.map((item) => item.accuracy).reduce((a, value) => a + value, 0) /
+      items.map((item) => formatAccuracy(item.accuracy)).reduce((a, value) => a + value, 0) /
         timesCompleted
     ).toFixed(2);
     return average;
@@ -112,17 +113,6 @@ const Analytics = () => {
     var min = Math.min.apply(null, times);
     return formatTime(min);
   };
-
-  // format time
-  function formatTime(seconds) {
-    return [
-      parseInt(seconds / 60 / 60),
-      parseInt((seconds / 60) % 60),
-      parseInt(seconds % 60),
-    ]
-      .join(":")
-      .replace(/\b(\d)\b/g, "0$1");
-  }
 
   // search function
   const search = (text) => {
@@ -252,7 +242,7 @@ const Analytics = () => {
       axios.get("/custom").then((res) => {
         setItems(res.data);
         setSourceItems(res.data);
-        setLevelName("C");
+        setLevelName("Custom");
         setTimesCompleted(res.data.length);
       });
     }
@@ -347,7 +337,7 @@ const Analytics = () => {
           </div>
           <div className="level-item has-text-centered">
             <div className="hvr-wobble-horizontal">
-              <p className="heading">Times Completed</p>
+              <p className="heading">Total Entry</p>
               <p className="title a-stat">{timesCompleted}</p>
             </div>
           </div>
@@ -385,7 +375,7 @@ const Analytics = () => {
               </div>
 
               <div className="column">
-                <strong>Time</strong>
+                <strong>HH:MM:SS</strong>
               </div>
 
               <div className="column">
@@ -393,7 +383,7 @@ const Analytics = () => {
               </div>
 
               <div className="column">
-                <strong>Completion Date</strong>
+                <strong>Activity Date</strong>
               </div>
             </div>
 

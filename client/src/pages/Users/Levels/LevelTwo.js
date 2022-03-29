@@ -4,6 +4,7 @@ import MergeSort from "algorithms/mergeSort.mjs";
 import "../../../css/LevelStyles.css";
 import { withRouter } from "react-router-dom";
 import StepsScroller from "components/StepsScroller";
+import axios from "utils/axios";
 // modals
 import StartModal from "components/Modals/StartModal";
 import GameoverModal from "components/Modals/GameoverModal";
@@ -51,6 +52,7 @@ class LevelTwo extends React.Component {
     this.handleEnd = this.handleEnd.bind(this);
     this.handleGameover = this.handleGameover.bind(this);
     this.stopTimer = this.stopTimer.bind(this);
+    this.logGameData = this.logGameData.bind(this);
   }
 
   //** Modal Related functions **/
@@ -65,6 +67,28 @@ class LevelTwo extends React.Component {
     // start timer
     this.startTimer();
   }
+
+  logGameData = () => {
+    let id;
+    let today = new Date();
+    let dd = String(today.getDate()).padStart(2, "0");
+    let mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0
+    let yyyy = today.getFullYear();
+    today = yyyy + "-" + mm + "-" + dd;
+    axios.get("/level2").then((res) => {
+      id = res.data.length + 1
+    });
+    const logItem = {
+      id: id,
+      time: this.state.time,
+      accuracy: global.auth.getCurrentHealth(),
+      username: global.auth.getUser().username,
+      complete_date: today,
+    }
+    axios.post('/level2', logItem).then(res => {
+      toast.success('Your data was recorded successfully!')
+    })
+  };
 
   // timer functions
   startTimer = () => {
@@ -97,6 +121,7 @@ class LevelTwo extends React.Component {
       showGameoverModal: false,
     });
     // save (username, time, remaining lives, completion date as logged data)
+    this.logGameData()
   }
 
   // executes when player life reaches 0
@@ -112,6 +137,7 @@ class LevelTwo extends React.Component {
       showGameoverModal: true,
     });
     // save (username, time, remaining lives, completion date as logged data)
+    this.logGameData()
   }
 
   // render the appropriate modal based on current game state
@@ -263,23 +289,6 @@ class LevelTwo extends React.Component {
                 stopTimer={this.stopTimer}
                 handleGameover={this.handleGameover}
               />
-              {/* !!!!!modal testing */}
-              {/* <div className="box is-pink">
-                <h2>For Developer Only</h2>
-                <button
-                  className="button is-success is-outlined"
-                  onClick={this.handleEnd}
-                >
-                  Level Complete
-                </button>
-                <button
-                  className="button is-danger is-outlined"
-                  onClick={this.handleGameover}
-                >
-                  Gameover
-                </button>
-              </div> */}
-              {/* !!!!!modal testing */}
             </div>
             <div>
               <Arrays

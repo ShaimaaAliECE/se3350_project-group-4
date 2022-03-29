@@ -67,6 +67,10 @@ server.post("/auth/login", (req, res) => {
   }
 });
 
+server.post ("/analytics", (req, res)=> {
+  // const {}
+})
+
 // Register interface
 server.post("/auth/register", (req, res) => {
   const { username, password, type } = req.body;

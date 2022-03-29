@@ -1,5 +1,5 @@
 import React from "react";
-import { formatTime } from "utils/format";
+import { formatTime, formatAccuracy } from "utils/format";
 
 const AnalyticsItem = (props) => {
     // deconstruct props
@@ -17,7 +17,7 @@ const AnalyticsItem = (props) => {
       </div>
 
       <div className="column">
-        <span className="a-item-time">{accuracy}%</span>
+        <span className="a-item-time">{formatAccuracy(accuracy)}%</span>
       </div>
 
       <div className="column">

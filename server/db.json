@@ -2,289 +2,291 @@
   "level1": [
     {
       "id": 1,
-      "time": 894,
-      "accuracy": 100,
+      "time": 184118,
+      "accuracy": 3,
       "username": "Drake",
       "complete_date": "2021-08-12"
     },
     {
       "id": 2,
-      "time": 492,
-      "accuracy": 33,
+      "time": 163719,
+      "accuracy": 3,
       "username": "Prado",
       "complete_date": "2021-10-11"
     },
     {
       "id": 3,
-      "time": 948,
-      "accuracy": 66,
+      "time": 176309,
+      "accuracy": 3,
       "username": "Thomas",
       "complete_date": "2022-03-14"
     },
     {
       "id": 4,
-      "time": 112,
-      "accuracy": 100,
+      "time": 60365,
+      "accuracy": 3,
       "username": "Vargas",
       "complete_date": "1241-02-14"
     },
     {
       "id": 5,
-      "time": 943,
-      "accuracy": 100,
+      "time": 76941,
+      "accuracy": 3,
       "username": "Stark",
       "complete_date": "2021-10-07"
     },
     {
       "id": 6,
-      "time": 1234,
-      "accuracy": 66,
+      "time": 142765,
+      "accuracy": 3,
       "username": "Smith",
       "complete_date": "2021-10-21"
     },
     {
       "id": 7,
-      "time": 541,
-      "accuracy": 33,
+      "time": 52485,
+      "accuracy": 3,
       "username": "Miller",
       "complete_date": "2021-11-19"
     },
     {
       "id": 8,
-      "time": 120,
-      "accuracy": 66,
+      "time": 168612,
+      "accuracy": 3,
       "username": "Wilhoit",
       "complete_date": "2021-10-19"
     },
     {
       "id": 9,
-      "time": 949,
-      "accuracy": 33,
+      "time": 92004,
+      "accuracy": 3,
       "username": "Bullock",
       "complete_date": "2021-10-19"
     }
   ],
-
   "level2": [
     {
       "id": 1,
-      "time": 726,
-      "accuracy": 66,
+      "time": 195303,
+      "accuracy": 3,
       "username": "Ashley",
       "complete_date": "2021-09-26"
     },
     {
       "id": 2,
-      "time": 1209,
-      "accuracy": 100,
+      "time": 104192,
+      "accuracy": 3,
       "username": "Bowden",
       "complete_date": "2021-04-26"
     },
     {
       "id": 3,
-      "time": 998,
-      "accuracy": 100,
+      "time": 184345,
+      "accuracy": 2,
       "username": "Schmidt",
       "complete_date": "2022-01-12"
     },
     {
       "id": 4,
-      "time": 902,
-      "accuracy": 100,
+      "time": 219273,
+      "accuracy": 3,
       "username": "player1",
       "complete_date": "2021-04-06"
     },
     {
       "id": 5,
-      "time": 1383,
-      "accuracy": 66,
+      "time": 117613,
+      "accuracy": 1,
       "username": "Evan",
       "complete_date": "2022-05-06"
     }
   ],
-
   "level3": [
     {
       "id": 1,
-      "time": 1471,
-      "accuracy": 100,
+      "time": 220405,
+      "accuracy": 2,
       "username": "Joann",
       "complete_date": "2022-02-04"
     },
     {
       "id": 2,
-      "time": 1009,
-      "accuracy": 33,
+      "time": 221058,
+      "accuracy": 1,
       "username": "Gerald",
       "complete_date": "2022-03-21"
     },
     {
       "id": 3,
-      "time": 1437,
-      "accuracy": 33,
+      "time": 130447,
+      "accuracy": 3,
       "username": "Coleman",
       "complete_date": "2022-01-03"
     },
     {
       "id": 4,
-      "time": 369,
-      "accuracy": 100,
+      "time": 165675,
+      "accuracy": 3,
       "username": "Vantassel",
       "complete_date": "2022-05-03"
     },
     {
       "id": 5,
-      "time": 348,
-      "accuracy": 33,
+      "time": 184569,
+      "accuracy": 1,
       "username": "Gerald",
       "complete_date": "2021-03-18"
     },
     {
       "id": 6,
-      "time": 1141,
-      "accuracy": 33,
+      "time": 25141,
+      "accuracy": 1,
       "username": "Coleman",
       "complete_date": "2022-01-03"
     },
     {
       "id": 7,
-      "time": 173,
-      "accuracy": 100,
+      "time": 220984,
+      "accuracy": 2,
       "username": "Vantassel",
       "complete_date": "2022-05-03"
     },
     {
       "id": 8,
-      "time": 373,
-      "accuracy": 33,
+      "time": 74456,
+      "accuracy": 1,
       "username": "Gerald",
       "complete_date": "2022-05-13"
     },
     {
       "id": 9,
-      "time": 579,
-      "accuracy": 33,
+      "time": 233564,
+      "accuracy": 2,
       "username": "Coleman",
       "complete_date": "2022-01-03"
     },
     {
       "id": 10,
-      "time": 1155,
-      "accuracy": 100,
+      "time": 119701,
+      "accuracy": 3,
       "username": "Vantassel",
       "complete_date": "2022-05-03"
     }
   ],
-
   "level4": [
     {
       "id": 1,
-      "time": 447,
-      "accuracy": 100,
+      "time": 46009,
+      "accuracy": 3,
       "username": "Whiteley",
       "complete_date": "2022-02-04"
     },
     {
       "id": 2,
-      "time": 585,
-      "accuracy": 33,
+      "time": 111455,
+      "accuracy": 1,
       "username": "Manhart",
       "complete_date": "2022-05-13"
     },
     {
       "id": 3,
-      "time": 1084,
-      "accuracy": 33,
+      "time": 129199,
+      "accuracy": 2,
       "username": "Martin",
       "complete_date": "2022-01-03"
     },
     {
       "id": 4,
-      "time": 648,
-      "accuracy": 100,
+      "time": 136282,
+      "accuracy": 3,
       "username": "Jessie",
       "complete_date": "2022-05-03"
     }
   ],
-
   "level5": [
     {
       "id": 1,
-      "time": 1641,
-      "accuracy": 33,
+      "time": 102466,
+      "accuracy": 3,
       "username": "Fetterman",
       "complete_date": "2022-02-04"
     },
     {
       "id": 2,
-      "time": 3766,
-      "accuracy": 100,
+      "time": 208157,
+      "accuracy": 3,
       "username": "Crawford",
       "complete_date": "2022-05-13"
     },
     {
       "id": 3,
-      "time": 3698,
-      "accuracy": 100,
+      "time": 189880,
+      "accuracy": 2,
       "username": "Teresa",
       "complete_date": "2022-01-12"
     },
     {
       "id": 4,
-      "time": 201,
-      "accuracy": 100,
-      "username": "Teresa",
+      "time": 98192,
+      "accuracy": 2,
+      "username": "Washington",
       "complete_date": "2022-02-08"
     },
     {
       "id": 5,
-      "time": 764,
-      "accuracy": 100,
+      "time": 123654,
+      "accuracy": 1,
       "username": "Jacob",
       "complete_date": "2022-05-24"
+    },
+    {
+      "time": 47100,
+      "accuracy": "0",
+      "username": "Robert",
+      "complete_date": "2022-03-29",
+      "id": 6
     }
   ],
-
   "custom": [
     {
       "id": 1,
-      "time": 1902,
-      "accuracy": 100,
+      "time": 229594,
+      "accuracy": 3,
       "username": "Haller",
       "complete_date": "2022-02-23"
     },
     {
       "id": 2,
-      "time": 1441,
-      "accuracy": 33,
+      "time": 32946,
+      "accuracy": 2,
       "username": "Humphrey",
       "complete_date": "2022-05-13"
     },
     {
       "id": 3,
-      "time": 475,
-      "accuracy": 33,
+      "time": 45584,
+      "accuracy": 2,
       "username": "Choi",
       "complete_date": "2022-01-14"
     },
     {
       "id": 4,
-      "time": 1219,
-      "accuracy": 33,
+      "time": 132376,
+      "accuracy": 1,
       "username": "Humphrey",
       "complete_date": "2022-05-13"
     },
     {
       "id": 5,
-      "time": 715,
-      "accuracy": 100,
+      "time": 150018,
+      "accuracy": 2,
       "username": "Jackson",
       "complete_date": "2022-05-04"
     },
     {
       "id": 6,
-      "time": 403,
-      "accuracy": 66,
+      "time": 119745,
+      "accuracy": 2,
       "username": "Mads",
       "complete_date": "2021-03-04"
     }

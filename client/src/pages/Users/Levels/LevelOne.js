@@ -8,6 +8,8 @@ import StepsScroller from "components/StepsScroller";
 import StartModal from "components/Modals/StartModal";
 import GameoverModal from "components/Modals/GameoverModal";
 import EndModal from "components/Modals/EndModal";
+import axios from "utils/axios";
+import { toast } from "react-toastify";
 
 import "../../../css/LevelStyles.css";
 
@@ -47,6 +49,7 @@ class LevelOne extends React.Component {
     this.handleEnd = this.handleEnd.bind(this);
     this.handleGameover = this.handleGameover.bind(this);
     this.stopTimer = this.stopTimer.bind(this);
+    this.logGameData = this.logGameData.bind(this);
   }
 
   //** Modal Related functions **/
@@ -57,6 +60,7 @@ class LevelOne extends React.Component {
     // hide start modal
     this.setState({ showModal: false, showStartModal: false });
     // start timer
+     this.startTimer();
   }
 
   // timer functions
@@ -78,9 +82,32 @@ class LevelOne extends React.Component {
     clearInterval(this.timer);
   };
 
+  logGameData = () => {
+    let id;
+    let today = new Date();
+    let dd = String(today.getDate()).padStart(2, "0");
+    let mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0
+    let yyyy = today.getFullYear();
+    today = yyyy + "-" + mm + "-" + dd;
+    axios.get("/level1").then((res) => {
+      id = res.data.length + 1
+    });
+    const logItem = {
+      id: id,
+      time: this.state.time,
+      accuracy: global.auth.getCurrentHealth(),
+      username: global.auth.getUser().username,
+      complete_date: today,
+    }
+    axios.post('/level1', logItem).then(res => {
+      toast.success('Your data was recorded successfully!')
+    })
+  };
+
   // executes when the level ends
   handleEnd() {
     // end timer
+    this.stopTimer();
     // show end modal
     this.setState({
       showModal: true,
@@ -89,6 +116,7 @@ class LevelOne extends React.Component {
     });
 
     // save (username, time, remaining lives, completion date as logged data)
+    this.logGameData()
   }
 
   // executes when player life reaches 0
@@ -101,6 +129,7 @@ class LevelOne extends React.Component {
       showGameoverModal: true,
     });
     // save (username, time, remaining lives, completion date as logged data)
+    this.logGameData()
   }
 
   // render the appropriate modal based on current game state
@@ -114,19 +143,6 @@ class LevelOne extends React.Component {
             accompanied with explanation texts
           </li>
           <li>Navigate through the steps using the step player.</li>
-        </div>
-      );
-    };
-
-    const GameoverModalBody = () => {
-      return (
-        <div>
-          <a href="/ms/level1" className="dropdown-item">
-            <span className="label has-text-centered">
-              No Previous Level Available{" "}
-              <i className="fa-solid fa-triangle-exclamation"></i>
-            </span>
-          </a>
         </div>
       );
     };
@@ -211,7 +227,7 @@ class LevelOne extends React.Component {
     });
 
     if (step === 21) {
-      this.handleEnd() //end on last step
+      this.handleEnd(); //end on last step
     }
   }
 
@@ -219,7 +235,7 @@ class LevelOne extends React.Component {
   handlePrevStep(e) {
     const box = this.state.boxes.slice();
     var step = this.state.step; //block order to retrieve
-    if (step == 0) return;
+    if (step === 0) return;
     step--;
     box[step] = null;
 
@@ -264,7 +280,6 @@ class LevelOne extends React.Component {
                 handleGameover={this.handleGameover}
               />
             </div>
-
             {/* {this.generateBlocks()} */}
             <div className="initial">
               <br></br>
