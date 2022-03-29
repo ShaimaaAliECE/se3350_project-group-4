@@ -205,7 +205,6 @@ class LevelThree extends React.Component {
   //creates array at the rendering of the class
   generateArray() {
     let currentOrd = [];
-    let currentInstr = [];
     let splitOrd = [];
     // Create array using given algorithm class
     var sorting = new MergeSort(1, 20, 10);
