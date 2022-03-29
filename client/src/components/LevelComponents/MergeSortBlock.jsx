@@ -136,6 +136,7 @@ const Arrays = (props) => {
 
   function correctAnswer() {
     if (!notified) {
+      toast.clearWaitingQueue();
       toast.success("CORRECT !", {
         autoClose: 300,
         closeButton: false,
@@ -149,6 +150,7 @@ const Arrays = (props) => {
 
   function incorrectAnswer() {
     if (!notified) {
+      toast.clearWaitingQueue();
       toast.error("INCORRECT !", {
         autoClose: 300,
         closeButton: false,
