@@ -95,7 +95,7 @@ class LevelOne extends React.Component {
     const logItem = {
       id: id,
       time: this.state.time,
-      accuracy: global.auth.getCurrentHealth(),
+      accuracy: 3,
       username: global.auth.getUser().username,
       complete_date: today,
     }
